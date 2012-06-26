@@ -1,0 +1,33 @@
+[alias]
+  s = status
+  a = add
+  aa = ! git add . && git s
+  b = branch
+  r = reset
+    ra = ! git r . && git s
+  f = fetch
+  m = merge
+  cm = commit -m
+  cam = commit -am
+  co = checkout
+    coa = ! git co . && git s
+  ps = push
+  pom = pull origin master
+  pl = pull
+  d = diff
+    ds = diff --staged
+  lg = log -p
+  lgs = log --pretty='format:%C(yellow)%h%C(cyan)%Creset was %C(cyan)%an%C(white), %ar, message: %s%Creset'
+  graph = log --graph --pretty='format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(blue){%an}%Creset' --abbrev-commit --date=relative
+  flc = commit --amend -a
+  np = log master.. --oneline
+  npr = log origin/master.. --oneline
+[user]
+  name = Matt Bridges
+  email = mbridges.91@gmail.com
+[color]
+  ui = true
+[push]
+  default = current
+[core]
+  excludesfile = /Users/mattbridges/.gitignore_global
