@@ -1,0 +1,5 @@
+ignore:
+  dotify:
+  - '.git'
+  - '.gitmodules'
+  - '.gitignore'
