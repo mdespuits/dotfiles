@@ -169,6 +169,7 @@ nmap :clear :bufdo bdelete
 " Flush the CommandT files
 nmap <leader>f :CommandTFlush<cr>
 
+" Edit the vimrc file
 nnoremap <leader>ev :tabedit $MYVIMRC<cr>
 
 " Source the vimrc file after saving it
