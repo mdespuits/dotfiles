@@ -1,3 +1,4 @@
+editor: 'vi'
 ignore:
   dotify:
   - '.git'
