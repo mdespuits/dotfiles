@@ -1,4 +1,5 @@
 [alias]
+  praise = blame
   s = status
   a = add
   aa = ! git add . && git s
