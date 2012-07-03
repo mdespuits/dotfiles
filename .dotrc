@@ -1,5 +1,13 @@
 editor: 'vi'
 ignore:
+  dotfiles:
+  - .filezilla
+  - .rbenv
+  - .rvm
+  - .gem
+  - .rbx
+  - .ssh
+  - .NERDTreeBookmarks
   dotify:
   - '.git'
   - '.gitmodules'
