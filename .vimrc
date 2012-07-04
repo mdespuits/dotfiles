@@ -12,7 +12,6 @@ call pathogen#infect()  " Use pathogen plugin for better plugin management
 let mapleader = ","
 let g:mapleader = ","
 
-" Testing Dotify Grit is working
 " ------------------------
 " Display
 " ------------------------
