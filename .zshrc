@@ -83,3 +83,4 @@ export SOURCE_ANNOTATION_DIRECTORES='spec'
 export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init -)"
 export PATH=$HOME/local/bin:$PATH
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
