@@ -1,13 +1,22 @@
 editor: 'vi'
 ignore:
   dotfiles:
+  - .bash_history
   - .filezilla
+  - .gem
+  - .NERDTreeBookmarks
+  - .npm
+  - .putty
   - .rbenv
   - .rvm
-  - .gem
   - .rbx
   - .ssh
-  - .NERDTreeBookmarks
+  - .pws
+  - .viminfo
+  - .vimgolf
+  - .vagrant
+  - .vagrant.d
+  - .Xauthority
   dotify:
   - '.git'
   - '.gitmodules'
