@@ -29,10 +29,6 @@ plugins=(brew rails3 rake github)
 
 source $ZSH/oh-my-zsh.sh
 
-function git_current_branch() {
-  git symbolic-ref HEAD 2> /dev/null | sed -e 's/refs\/heads\///'
-}
-
 # Customize to your needs...
 
 # Reload oh-my-zsh
@@ -56,15 +52,6 @@ alias rmdir="rm -rf"
 alias subl='open -a "Sublime Text 2"'
 alias railsdoc="open ~/code/personal/gems/railsdocs/doc/rdoc/index.html"
 
-# Git tab completion
-# if [ -f `brew --prefix`/etc/bash_completion ]; then
-#   . `brew --prefix`/etc/bash_completion
-# fi
-
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
-# export rvm_cd_complete_flag=1
-# PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-
 export PATH=/usr/local/bin:$PATH
 
 export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
@@ -79,6 +66,6 @@ export BUNDLER_EDITOR='open -a "Sublime Text 2"'
 export SOURCE_ANNOTATION_DIRECTORES='spec'
 
 export PATH=$HOME/.rbenv/bin:$PATH
-eval "$(rbenv init -)"
 export PATH=$HOME/local/bin:$PATH
+eval "$(rbenv init -)"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
