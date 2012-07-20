@@ -59,11 +59,8 @@ export PATH=/Applications/MAMP/Library/bin:$PATH
 export PATH=/Applications/MAMP/bin/php/php5.2.17/bin:$PATH
 export PATH=/Applications/MAMP/bin/php/php5.3.6/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
-export PATH=./cake/console:$PATH
-export PATH=~/code/dotfiles/shells:$PATH
 
-export BUNDLER_EDITOR='open -a "Sublime Text 2"'
-export SOURCE_ANNOTATION_DIRECTORES='spec'
+export BUNDLER_EDITOR='vi'
 
 export PATH=$HOME/.rbenv/bin:$PATH
 export PATH=$HOME/local/bin:$PATH
