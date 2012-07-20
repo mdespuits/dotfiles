@@ -41,8 +41,8 @@ alias gm="git m"
 
 # Bundler Aliases
 alias be="bundle exec"
-alias bi="bundle install"
-alias bu="bundle update"
+alias bi="bundle install && rbenv rehash"
+alias bu="bundle update && rbenv rehash"
 
 # System aliases
 alias vi="mvim -v"
