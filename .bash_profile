@@ -89,6 +89,8 @@ alias vim="vi"
 # Bash aliases
 alias back="cd -"
 alias ll="ls -lahG"
+bind '"\e[A"':history-search-backward
+bind '"\e[B"':history-search-forward
 
 # Git aliaes
 alias gc="git checkout"
