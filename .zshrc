@@ -39,6 +39,9 @@ alias gs="git s"
 alias gd="git d"
 alias gm="git m"
 
+# Bash shortcuts
+alias back='cd -'
+
 # Bundler Aliases
 alias be="bundle exec"
 alias bi="bundle install && rbenv rehash"
