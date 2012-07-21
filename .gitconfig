@@ -30,5 +30,13 @@
   ui = true
 [push]
   default = current
+[url "git@heroku.com:"]
+  insteadOf = heroku:
+[url "git://github.com/"]
+  # Read-only
+  insteadOf = gh:
+[url "git@github.com:"]
+  # With write access
+  insteadOf = wgh:
 [core]
   excludesfile = /Users/mattbridges/.gitignore_global
