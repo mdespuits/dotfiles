@@ -58,6 +58,8 @@ function minutes_since_last_commit {
   minutes_since_last_commit=$((seconds_since_last_commit/60))
   echo $minutes_since_last_commit
 }
+
+# Current Git branch
 function git_prompt {
   local g="$(__gitdir)"
   if [ -n "$g" ]; then
@@ -75,44 +77,37 @@ function git_prompt {
     echo ${GIT_PROMPT}
   fi
 }
-print_before_the_prompt () {  
-  printf "\n$txtcyn%s\n$txtrst" "$PWD"
-}  
-function prompt {
-  PROMPT_COMMAND=print_before_the_prompt
-  PS1="${txtgrn}\$(git_prompt)${txtwht} > "
-  PS2='> '
-  PS4='+ '
-}
 
-prompt
+PS1="${txtgrn}\w $(git_prompt)${txtwht} > "
+PS2='> '
+PS4='+ '
 
 # Aliases
 alias vi="mvim -v"
 alias vim="vi"
+
+# Bash aliases
+alias back="cd -"
 alias ll="ls -lahG"
+
+# Git aliaes
 alias gc="git checkout"
 alias gb="git branch"
 alias gs="git status"
 alias gm="git merge"
-alias fspec="rspec spec/no_rails"
-alias railsdoc="open ~/code/personal/gems/railsdocs/doc/rdoc/index.html"
-alias gac="git add . && git commit -m"
-alias update_rails="bundle install && rake db:migrate && rake db:test:prepare"
-alias slt='open -a "Sublime Text 2"'
-alias ann='annotate -p before -e tests,fixtures'
 
-alias cloc="perl ~/cloc-1.54.pl cloc"
+alias railsdoc="open ~/code/personal/gems/railsdocs/doc/rdoc/index.html"
+
+alias annotate='annotate -p before -e tests'
 
 export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
 export PATH=/Applications/MAMP/Library/bin:$PATH
 export PATH=/Applications/MAMP/bin/php/php5.2.17/bin/:$PATH
 export PATH=/Applications/MAMP/bin/php/php5.3.6/bin/:$PATH
-export PATH=./cake/console/:$PATH
-export PATH=~/code/dotfiles/shells:$PATH
 
 export GREP_OPTIONS="--exclude=*\.svn*"
 
-export BUNDLER_EDITOR='open -a "Sublime Text 2"'
+export BUNDLER_EDITOR='vi'
+
 export PATH=$HOME/.rbenv/bin:$PATH
 eval "$(rbenv init -)"
