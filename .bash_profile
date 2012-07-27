@@ -1,9 +1,5 @@
-export PATH=/usr/local/bin:$PATH
 #!/bin/sh
-
-# RVM Setup
-# [[ -s "$HOME/.rvm/scripts/rvm" ]] && . "$HOME/.rvm/scripts/rvm" # Load RVM function
-# export rvm_cd_complete_flag=1
+export PATH=/usr/local/bin:$PATH
 
 # Git tab completion
 if [ -f `brew --prefix`/etc/bash_completion ]; then
@@ -82,25 +78,9 @@ PS1="${txtgrn}\w $(git_prompt)${txtwht} > "
 PS2='> '
 PS4='+ '
 
-# Aliases
-alias vi="mvim -v"
-alias vim="vi"
-
-# Bash aliases
-alias back="cd -"
-alias ll="ls -lahG"
-bind '"\e[A"':history-search-backward
-bind '"\e[B"':history-search-forward
-
-# Git aliaes
-alias gc="git checkout"
-alias gb="git branch"
-alias gs="git status"
-alias gm="git merge"
-
-alias railsdoc="open ~/code/personal/gems/railsdocs/doc/rdoc/index.html"
-
-alias annotate='annotate -p before -e tests'
+if [ -f ~/.bash_aliases ]; then
+  . ~/.bash_aliases
+fi
 
 export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
 export PATH=/Applications/MAMP/Library/bin:$PATH
