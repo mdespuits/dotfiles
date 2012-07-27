@@ -3,7 +3,7 @@ export PATH=/usr/local/bin:$PATH
 
 # Git tab completion
 if [ -f `brew --prefix`/etc/bash_completion ]; then
-  . `brew --prefix`/etc/bash_completion
+  source `brew --prefix`/etc/bash_completion
 fi
 
 
@@ -78,9 +78,13 @@ PS1="${txtgrn}\w $(git_prompt)${txtwht} > "
 PS2='> '
 PS4='+ '
 
-if [ -f ~/.bash_aliases ]; then
-  . ~/.bash_aliases
+export SHELL=/bin/bash
+export DOTIFY=$HOME/.dotify 
+
+if [ -f $HOME/.bash_aliases ]; then
+  source $HOME/.bash_aliases
 fi
+
 
 export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
 export PATH=/Applications/MAMP/Library/bin:$PATH

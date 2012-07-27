@@ -1,5 +1,6 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
+DOTIFY=$HOME/.dotify
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -27,33 +28,14 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(brew rails3 rake github)
 
+export SHELL=/bin/zsh
+
 source $ZSH/oh-my-zsh.sh
+if [ -f $HOME/.bash_aliases ]; then
+  source $HOME/.bash_aliases
+fi
 
 # Customize to your needs...
-
-# Reload oh-my-zsh
-alias reload="source ~/.zshrc"
-
-# Git Aliases
-alias gs="git s"
-alias gd="git d"
-alias gm="git m"
-
-# Bash shortcuts
-alias back='cd -'
-
-# Bundler Aliases
-alias be="bundle exec"
-alias bi="bundle install && rbenv rehash"
-alias bu="bundle update && rbenv rehash"
-
-# System aliases
-alias vi="mvim -v"
-alias vim="vi"
-alias ll="ls -lahG"
-alias rmdir="rm -rf"
-alias subl='open -a "Sublime Text 2"'
-alias railsdoc="open ~/code/personal/gems/railsdocs/doc/rdoc/index.html"
 
 export PATH=/usr/local/bin:$PATH
 
