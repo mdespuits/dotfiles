@@ -25,6 +25,8 @@ alias gc="git checkout"
 alias gb="git branch"
 alias gs="git status"
 alias gm="git merge"
+alias gd="git diff"
+alias gds="git diff --staged"
 
 # Bundler Aliases
 alias be="bundle exec"
