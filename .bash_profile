@@ -1,4 +1,6 @@
 #!/bin/sh
+
+# Adding /url/local/bin for Homebrew
 export PATH=/usr/local/bin:$PATH
 
 # Git tab completion
@@ -95,5 +97,5 @@ export GREP_OPTIONS="--exclude=*\.svn*"
 
 export BUNDLER_EDITOR='vi'
 
-export PATH=$HOME/.rbenv/bin:$PATH
+# Rbenv with Homebrew
 eval "$(rbenv init -)"
