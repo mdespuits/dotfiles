@@ -28,6 +28,9 @@ alias gm="git merge"
 alias gd="git diff"
 alias gds="git diff --staged"
 
+# Hub aliased to Git
+alias git=hub
+
 # Bundler Aliases
 alias be="bundle exec"
 alias bi="bundle install && rbenv rehash"
