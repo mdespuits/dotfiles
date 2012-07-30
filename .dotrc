@@ -2,6 +2,7 @@ editor: 'vi'
 ignore:
   dotfiles:
   - .bash_history
+  - .config
   - .filezilla
   - .gem
   - .NERDTreeBookmarks
@@ -18,6 +19,6 @@ ignore:
   - .vagrant.d
   - .Xauthority
   dotify:
-  - '.git'
-  - '.gitmodules'
-  - '.gitignore'
+  - .git
+  - .gitmodules
+  - .gitignore
