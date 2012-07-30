@@ -2,6 +2,7 @@
   praise = blame
   s = status
   a = add
+  praise = blame
   aa = ! git add . && git s
   b = branch
   r = reset
