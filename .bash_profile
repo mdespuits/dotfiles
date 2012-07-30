@@ -80,7 +80,7 @@ PS1="${txtgrn}\w $(git_prompt)${txtwht} > "
 PS2='> '
 PS4='+ '
 
-export SHELL=/bin/bash
+export SHELL_NAME=bash
 export DOTIFY=$HOME/.dotify 
 
 if [ -f $HOME/.bash_aliases ]; then

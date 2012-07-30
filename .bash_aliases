@@ -6,17 +6,19 @@ alias back='cd -'
 alias vi="mvim -v"
 alias vim="vi"
 
-if [ $SHELL = '/bin/bash' ]; then
-  # Reload Bash
+# Bash-specific aliases
+if [ $SHELL_NAME = 'bash' ]; then
+  # Reload Bash config
   alias reload="source ~/.bash_profile"
 
-  # Backward history search in bash
+  # Basic backward history search in bash
   bind '"\e[A"':history-search-backward
   bind '"\e[B"':history-search-forward
 fi
 
-if [ $SHELL = '/bin/zsh' ]; then
-  # Reload ZSH
+# ZSH-specific aliases
+if [ $SHELL_NAME = 'zsh' ]; then
+  # Reload ZSH config
   alias reload="source ~/.zshrc"
 fi
 

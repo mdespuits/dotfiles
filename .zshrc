@@ -28,7 +28,7 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(brew rails3 rake github)
 
-export SHELL=/bin/zsh
+export SHELL_NAME=zsh
 
 source $ZSH/oh-my-zsh.sh
 if [ -f $HOME/.bash_aliases ]; then
