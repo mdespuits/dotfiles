@@ -92,6 +92,7 @@ export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
 export PATH=/Applications/MAMP/Library/bin:$PATH
 export PATH=/Applications/MAMP/bin/php/php5.2.17/bin/:$PATH
 export PATH=/Applications/MAMP/bin/php/php5.3.6/bin/:$PATH
+export PATH=$HOME/bin:$PATH
 
 export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH
 

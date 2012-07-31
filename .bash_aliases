@@ -41,8 +41,5 @@ alias bu="bundle update"
 # Annotate alias. Defaults are stupid
 alias annotate='annotate -p before -e tests'
 
-# System aliases
-alias subl='open -a "Sublime Text 2"'
-
 # Rails docs...
 alias railsdoc="open ~/code/personal/gems/railsdocs/doc/rdoc/index.html"
