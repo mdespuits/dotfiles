@@ -93,6 +93,8 @@ export PATH=/Applications/MAMP/Library/bin:$PATH
 export PATH=/Applications/MAMP/bin/php/php5.2.17/bin/:$PATH
 export PATH=/Applications/MAMP/bin/php/php5.3.6/bin/:$PATH
 
+export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH
+
 export GREP_OPTIONS="--exclude=*\.svn*"
 
 export BUNDLER_EDITOR='vi'

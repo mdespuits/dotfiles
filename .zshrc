@@ -49,6 +49,8 @@ export BUNDLER_EDITOR='vi'
 export PATH=$HOME/.rbenv/bin:$PATH
 export PATH=$HOME/local/bin:$PATH
 
+export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH
+
 # Rbenv
 eval "$(rbenv init -)"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
