@@ -35,8 +35,8 @@ alias git=hub
 
 # Bundler Aliases
 alias be="bundle exec"
-alias bi="bundle install && rbenv rehash"
-alias bu="bundle update && rbenv rehash"
+alias bi="bundle install"
+alias bu="bundle update"
 
 # Annotate alias. Defaults are stupid
 alias annotate='annotate -p before -e tests'
