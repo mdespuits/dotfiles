@@ -1,30 +1,44 @@
 [alias]
-  praise = blame
+  # Favorites
   s = status
   a = add
-  praise = blame
-  aa = ! git add . && git s
   b = branch
   r = reset
-    ra = ! git r . && git s
-  f = fetch
   m = merge
-  cm = commit -m
-  cam = commit -am
-  co = checkout
-    coa = ! git co . && git s
+  aa = ! git add . && git s
+  ra = ! git r . && git s
+
+  # Pushing and pulling
   ps = push
-  pom = pull origin master
+  f = fetch
   pl = pull
+  pom = pull origin master
+
+  # Just for fun
+  praise = blame
+
+  # Committing
+  cm = commit -m
+  cam = commit -a -m
+  co = checkout
+  coa = ! git co . && git s
+
+  # Logging and diffing aliases
   d = diff
-    ds = diff --staged
+  ds = diff --staged
   lg = log -p
   lgs = log --pretty='format:%C(yellow)%h%C(cyan)%Creset was %C(cyan)%an%C(white), %ar, message: %s%Creset'
-  graph = log --graph --pretty='format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(blue){%an}%Creset' --abbrev-commit --date=relative
-  flc = commit --amend -a
-  np = log master.. --oneline
-  npr = log origin/master.. --oneline
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
+  graph = log --graph --pretty='format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(blue){%an}%Creset' --abbrev-commit --date=relative
+
+  # Remove and re-stage the last commit
+  fixlast = reset --soft HEAD^
+
+  # Diff of current branch to other branches.
+  # Hope to move these into their own shell scripts
+  # for better customizing
+  np = log master.. --oneline # Diff from local master
+  npr = log origin/master.. --oneline # Diff from remote master
 [user]
   name = Matt Bridges
   email = mbridges.91@gmail.com
