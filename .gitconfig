@@ -24,6 +24,7 @@
   flc = commit --amend -a
   np = log master.. --oneline
   npr = log origin/master.. --oneline
+  lol = log --graph --decorate --pretty=oneline --abbrev-commit
 [user]
   name = Matt Bridges
   email = mbridges.91@gmail.com
