@@ -1,5 +1,6 @@
 [alias]
   # Favorites
+  c = commit
   s = status
   a = add
   b = branch
