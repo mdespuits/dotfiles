@@ -56,3 +56,5 @@
   insteadOf = wgh:
 [core]
   excludesfile = /Users/mattbridges/.gitignore_global
+[credential]
+  helper = osxkeychain
