@@ -56,6 +56,6 @@
   # With write access
   insteadOf = wgh:
 [core]
-  excludesfile = /Users/mattbridges/.gitignore_global
+  excludesfile = .gitignore_global
 [credential]
   helper = osxkeychain
