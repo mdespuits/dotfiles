@@ -30,6 +30,10 @@ alias gm="git merge"
 alias gd="git diff"
 alias gds="git diff --staged"
 
+# Screencasting
+alias hideDesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias showDesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
 # Hub aliased to Git
 alias git=hub
 
