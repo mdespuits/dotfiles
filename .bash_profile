@@ -102,3 +102,6 @@ export BUNDLER_EDITOR='vi'
 
 # Rbenv with Homebrew
 eval "$(rbenv init -)"
+
+# Hub for github
+eval "$(hub alias -s)"

@@ -46,9 +46,6 @@ alias gds="git diff --staged"
 alias hideDesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
 alias showDesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
 
-# Hub aliased to Git
-alias git=hub
-
 # Bundler Aliases
 alias be="bundle exec"
 alias bi="bundle install"
