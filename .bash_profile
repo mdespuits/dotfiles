@@ -4,8 +4,8 @@
 export PATH=/usr/local/bin:$PATH
 
 # Git tab completion
-if [ -f `brew --prefix`/etc/bash_completion ]; then
-  source `brew --prefix`/etc/bash_completion
+if [ -f $HOME/.scripts/git-completion.bash ]; then
+  source $HOME/.scripts/git-completion.bash
 fi
 
 
@@ -81,12 +81,11 @@ PS2='> '
 PS4='+ '
 
 export SHELL_NAME=bash
-export DOTIFY=$HOME/.dotify 
+export DOTIFY=$HOME/.dotify
 
 if [ -f $HOME/.aliases ]; then
   source $HOME/.aliases
 fi
-
 
 export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
 export PATH=/Applications/MAMP/Library/bin:$PATH

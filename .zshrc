@@ -35,6 +35,10 @@ if [ -f $HOME/.aliases ]; then
   source $HOME/.aliases
 fi
 
+if [ -f $HOME/.scripts/git-completion.bash ]; then
+  source $HOME/.scripts/git-completion.bash
+fi
+
 # Customize to your needs...
 export PATH=/usr/local/bin:$PATH
 
