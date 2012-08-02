@@ -1,6 +1,17 @@
 # Global bash aliases
 alias ll="ls -lahG"
+alias ls="ls -Flb"
 alias back='cd -'
+alias psx='ps -e | grep $1'
+alias h='history'
+
+alias mv='mv -i'
+# -> Prevents accedentally clobbering files
+alias mkdir='mkdir -p'
+alias j='jobs -l'
+
+# Usually want egrep
+alias grep="egrep"
 
 # Aliases
 alias vi="mvim -v"
@@ -10,6 +21,7 @@ alias vim="vi"
 if [ $SHELL_NAME = 'bash' ]; then
   # Reload Bash config
   alias reload="source ~/.bash_profile"
+  alias ..='cd ..'
 
   # Basic backward history search in bash
   bind '"\e[A"':history-search-backward
