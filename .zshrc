@@ -31,30 +31,19 @@ plugins=(brew rails3 rake github)
 export SHELL_NAME=zsh
 
 source $ZSH/oh-my-zsh.sh
-if [ -f $HOME/.aliases ]; then
+# Aliases
+if [ -f $HOME/.aliases ]
+then
   source $HOME/.aliases
 fi
 
-if [ -f $HOME/.scripts/git-completion.bash ]; then
+# Git tab completion
+if [ -f $HOME/.scripts/git-completion.bash ]
+then
   source $HOME/.scripts/git-completion.bash
 fi
 
-# Customize to your needs...
-export PATH=/usr/local/bin:$PATH
-
-export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
-export PATH=/Applications/MAMP/Library/bin:$PATH
-export PATH=/Applications/MAMP/bin/php/php5.2.17/bin:$PATH
-export PATH=/Applications/MAMP/bin/php/php5.3.6/bin:$PATH
-export PATH=/usr/local/sbin:$PATH
-export PATH=$HOME/bin:$PATH
-
-export BUNDLER_EDITOR='vi'
-
-export PATH=$HOME/.rbenv/bin:$PATH
-export PATH=$HOME/local/bin:$PATH
-
-export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH
+source $HOME/.scripts/mdb.shared_exports.sh
 
 # Rbenv
 eval "$(rbenv init -)"

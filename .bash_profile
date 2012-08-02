@@ -3,12 +3,6 @@
 # Adding /url/local/bin for Homebrew
 export PATH=/usr/local/bin:$PATH
 
-# Git tab completion
-if [ -f $HOME/.scripts/git-completion.bash ]; then
-  source $HOME/.scripts/git-completion.bash
-fi
-
-
 ##########
 # Colors #
 ##########
@@ -83,21 +77,19 @@ PS4='+ '
 export SHELL_NAME=bash
 export DOTIFY=$HOME/.dotify
 
-if [ -f $HOME/.aliases ]; then
+# Aliases
+if [ -f $HOME/.aliases ]
+then
   source $HOME/.aliases
 fi
 
-export DYLD_LIBRARY_PATH=/usr/local/mysql/lib:$DYLD_LIBRARY_PATH
-export PATH=/Applications/MAMP/Library/bin:$PATH
-export PATH=/Applications/MAMP/bin/php/php5.2.17/bin/:$PATH
-export PATH=/Applications/MAMP/bin/php/php5.3.6/bin/:$PATH
-export PATH=$HOME/bin:$PATH
+# Git tab completion
+if [ -f $HOME/.scripts/git-completion.bash ]
+then
+  source $HOME/.scripts/git-completion.bash
+fi
 
-export PATH=/Applications/Postgres.app/Contents/MacOS/bin:$PATH
-
-export GREP_OPTIONS="--exclude=*\.svn*"
-
-export BUNDLER_EDITOR='vi'
+source $HOME/.scripts/mdb.shared_exports.sh
 
 # Rbenv with Homebrew
 eval "$(rbenv init -)"
