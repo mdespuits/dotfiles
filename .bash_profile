@@ -2,6 +2,8 @@
 
 # Adding /url/local/bin for Homebrew
 export PATH=/usr/local/bin:$PATH
+export DOTIFY=$HOME/.dotify
+export DOTIFY_SCRIPTS=$DOTIFY/scripts
 
 ##########
 # Colors #
@@ -75,7 +77,6 @@ PS2='> '
 PS4='+ '
 
 export SHELL_NAME=bash
-export DOTIFY=$HOME/.dotify
 
 # Aliases
 if [ -f $HOME/.aliases ]
@@ -84,12 +85,12 @@ then
 fi
 
 # Git tab completion
-if [ -f $HOME/.scripts/git-completion.bash ]
+if [ -f $DOTIFY_SCRIPTS/git-completion.bash ]
 then
-  source $HOME/.scripts/git-completion.bash
+  source $DOTIFY_SCRIPTS/git-completion.bash
 fi
 
-source $HOME/.scripts/mdb.shared_exports.sh
+source $DOTIFY_SCRIPTS/mdb.shared_exports.sh
 
 # Rbenv with Homebrew
 eval "$(rbenv init -)"

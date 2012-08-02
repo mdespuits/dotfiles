@@ -1,6 +1,7 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
 DOTIFY=$HOME/.dotify
+DOTIFY_SCRIPTS=$DOTIFY/scripts
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -28,9 +29,16 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(brew rails3 rake github)
 
-export SHELL_NAME=zsh
+# The name of the shell that is currently in use for shared scripts
+# to be smart about what is included.
+SHELL_NAME=zsh
 
 source $ZSH/oh-my-zsh.sh
+
+###################################
+## Now...customize to your pleasure
+###################################
+
 # Aliases
 if [ -f $HOME/.aliases ]
 then
@@ -38,12 +46,12 @@ then
 fi
 
 # Git tab completion
-if [ -f $HOME/.scripts/git-completion.bash ]
+if [ -f $DOTIFY_SCRIPTS/git-completion.bash ]
 then
-  source $HOME/.scripts/git-completion.bash
+  source $DOTIFY_SCRIPTS/git-completion.bash
 fi
 
-source $HOME/.scripts/mdb.shared_exports.sh
+source $DOTIFY_SCRIPTS/mdb.shared_exports.sh
 
 # Rbenv
 eval "$(rbenv init -)"
