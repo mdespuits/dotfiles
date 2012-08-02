@@ -83,8 +83,8 @@ PS4='+ '
 export SHELL_NAME=bash
 export DOTIFY=$HOME/.dotify 
 
-if [ -f $HOME/.bash_aliases ]; then
-  source $HOME/.bash_aliases
+if [ -f $HOME/.aliases ]; then
+  source $HOME/.aliases
 fi
 
 

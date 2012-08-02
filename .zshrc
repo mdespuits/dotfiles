@@ -31,8 +31,8 @@ plugins=(brew rails3 rake github)
 export SHELL_NAME=zsh
 
 source $ZSH/oh-my-zsh.sh
-if [ -f $HOME/.bash_aliases ]; then
-  source $HOME/.bash_aliases
+if [ -f $HOME/.aliases ]; then
+  source $HOME/.aliases
 fi
 
 # Customize to your needs...
