@@ -5,6 +5,8 @@ alias back='cd -'
 alias psx='ps -e | grep $1'
 alias h='history'
 
+alias postgres_fix="sudo sysctl -w kern.sysv.shmall=65536 && sudo sysctl -w kern.sysv.shmmax=16777216"
+
 alias mv='mv -i'
 # -> Prevents accedentally clobbering files
 alias mkdir='mkdir -p'
