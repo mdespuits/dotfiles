@@ -25,6 +25,10 @@
 *.log
 *.sqlite
 
+# Sublime Projects #
+####################
+*.sublime*
+
 # OS generated files #
 ######################
 .DS_Store*
