@@ -180,6 +180,7 @@ nnoremap <leader>ev :tabedit $MYVIMRC<cr>
 " Source the vimrc file after saving it
 if has ("autocmd")
   autocmd BufWritePost .vimrc source $MYVIMRC
+  autocmd BufWritePre * :%s/\s\+$//e
 endif
 
 " ------------------------
