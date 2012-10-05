@@ -16,7 +16,7 @@ let g:mapleader = ","
 " Display
 " ------------------------
 set linespace=3
-set guifont=Monaco:h12
+set guifont=Courier:h12
 set ruler
 set title
 set cmdheight=2
@@ -26,7 +26,7 @@ set cmdheight=2
 " ------------------------
 set background=dark
 syntax on
-colorscheme solarized
+colorscheme desert256
 
 " ------------------------
 " Scrolling
@@ -126,6 +126,8 @@ au BufNewFile,BufRead *.thor      set filetype=ruby
 au BufNewFile,BufRead *.jbuilder  set filetype=ruby
 au BufNewFile,BufRead *.dump      set filetype=sql
 au BufNewFile,BufRead *.ctp       set filetype=php
+au BufNewFile,BufRead *.erb       set filetype=eruby
+au BufNewFile,BufRead *.rhtml     set filetype=eruby
 
 " ------------------------
 " System Clipboard
@@ -143,6 +145,8 @@ nmap <space> :
 nmap <space>w :w<cr>
 
 " Buffer navigation
+nmap :bs :buffers
+nmap <leader>bs :bs<cr>
 nmap <c-n> :bn<cr>
 nmap <c-p> :bp<cr>
 nmap <leader>w :bd<cr>
@@ -165,6 +169,7 @@ nmap <c-s-t> :%s/\s\+$//<cr>
 nmap <leader>rt :retab<cr>
 nmap :rhs :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<cr>
 nmap :clear :bufdo bdelete
+nmap <leader>co :!p4 edit "%";<cr>
 
 " Flush the CommandT files
 nmap <leader>f :CommandTFlush<cr>
