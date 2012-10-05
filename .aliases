@@ -1,3 +1,7 @@
+export P4PORT='np-perforce.trionworld.priv:1666'
+export P4CLIENT='mbridges_webdev'
+export P4EDITOR='vim'
+
 # Global bash aliases
 alias ll="ls -lahG"
 alias ls="ls -Flb"
