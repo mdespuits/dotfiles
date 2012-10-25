@@ -96,4 +96,6 @@ source $DOTIFY_SCRIPTS/mdb.shared_exports.sh
 eval "$(rbenv init -)"
 
 # Hub for github
-eval "$(hub alias -s)"
+if [[ $platform != 'linux' ]]; then
+  eval "$(hub alias -s)"
+fi

@@ -116,7 +116,9 @@ set number        " Show line numbers
 " ------------------------
 " Plugin Configuration
 " ------------------------
+" -- CommandT
 let g:CommandTAlwaysShowDotFiles = 1
+" -- ZenCoding
 let g:user_zen_expandabbr_key = '<c-e>'
 
 " ------------------------
@@ -128,6 +130,8 @@ au BufNewFile,BufRead *.dump      set filetype=sql
 au BufNewFile,BufRead *.ctp       set filetype=php
 au BufNewFile,BufRead *.erb       set filetype=eruby
 au BufNewFile,BufRead *.rhtml     set filetype=eruby
+au BufNewFile,BufRead Gemfile     set filetype=ruby
+au BufNewFile,BufRead Guardfile   set filetype=ruby
 
 " ------------------------
 " System Clipboard
@@ -142,9 +146,10 @@ imap <C-v> :call setreg("\"",system("pbpaste"))<CR>p
 
 " Global Shortcts
 nmap <space> :
-nmap <space>w :w<cr>
+nmap <space>w :w!<cr>
 
 " Buffer navigation
+nmap :B :b
 nmap :bs :buffers
 nmap <leader>bs :bs<cr>
 nmap <c-n> :bn<cr>
@@ -168,7 +173,7 @@ nmap :WQ! :wq!
 nmap <c-s-t> :%s/\s\+$//<cr>
 nmap <leader>rt :retab<cr>
 nmap :rhs :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<cr>
-nmap :clear :bufdo bdelete
+nmap :clear :bufdo bdelete<cr>
 nmap <leader>co :!p4 edit "%";<cr>
 
 " Flush the CommandT files
@@ -187,5 +192,5 @@ endif
 " Truncating extra whitespace
 " ------------------------
 :highlight ExtraWhitespace ctermbg=red guibg=red
-nmap <leader>tw :match ExtraWhitespace /\s\+$/<cr>
+nmap <leader>trew :match ExtraWhitespace /\s\+$/<cr>
 nmap <leader>mo :match<cr>

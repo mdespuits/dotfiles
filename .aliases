@@ -1,6 +1,15 @@
 export P4PORT='np-perforce.trionworld.priv:1666'
 export P4CLIENT='mbridges_webdev'
 export P4EDITOR='vim'
+export JRUBY_OPTS='--1.9'
+
+platform='unknown'
+unamestr=$(uname)
+if [[ "$unamestr" == 'Linux' ]]; then
+  platform='linux'
+elif [[ "$unamestr" == 'FreeBSD' ]]; then
+  platform='freebsd'
+fi
 
 # Global bash aliases
 alias ll="ls -lahG"
@@ -20,8 +29,12 @@ alias j='jobs -l'
 alias grep="egrep"
 
 # Aliases
-alias vi="mvim -v"
-alias vim="vi"
+if [[ $platform == 'linux' ]]; then
+  alias vi="vim"
+else
+  alias vim="mvim -v"
+  alias vi="vim"
+fi
 
 # Bash-specific aliases
 if [ $SHELL_NAME = 'bash' ]; then
