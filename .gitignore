@@ -5,3 +5,4 @@
 *.netrwhist
 /pkg
 *.VimballRecord
+.vim/ruby/command-t/Makefile
