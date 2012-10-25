@@ -4,3 +4,4 @@
 .*.swp
 *.netrwhist
 /pkg
+*.VimballRecord
