@@ -147,6 +147,7 @@ imap <C-v> :call setreg("\"",system("pbpaste"))<CR>p
 " Global Shortcts
 nmap <space> :
 nmap <space>w :w!<cr>
+imap jk <Esc>
 
 " Buffer navigation
 nmap :B :b
