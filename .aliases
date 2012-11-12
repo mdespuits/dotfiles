@@ -15,6 +15,13 @@ elif [[ "$unamestr" == 'FreeBSD' ]]; then
   platform='freebsd'
 fi
 
+if [[ "$platform" == 'linux' ]]; then
+  CC=/usr/bin/gcc
+  PATH=$PATH:$HOME/bin:/sbin
+else
+  CC=gcc-4.2
+fi
+
 # Global bash aliases
 alias ll="ls -lahG"
 alias ls="ls -Flb"

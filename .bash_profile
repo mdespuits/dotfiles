@@ -42,8 +42,6 @@ bakcyn='\e[46m'   # Cyan
 bakwht='\e[47m'   # White
 txtrst='\e[0m'    # Text Reset
 
-export CC=gcc-4.2
-
 # Prompt Setup
 function minutes_since_last_commit {
   now=`date +%s`
