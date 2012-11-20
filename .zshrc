@@ -45,6 +45,11 @@ then
   source $HOME/.aliases
 fi
 
+if [[ "$platform" == 'mac' ]]
+then
+  PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
+fi
+
 # Git tab completion
 if [ -f $DOTIFY_SCRIPTS/git-completion.bash ]
 then
