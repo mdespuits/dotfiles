@@ -17,6 +17,7 @@
 
   # Just for fun
   praise = blame
+  rollback = reset –hard HEAD@{1}
 
   # Committing
   cm = commit -m
