@@ -87,4 +87,4 @@ alias bu="bundle update"
 alias annotate='annotate -p before -e tests'
 
 # Rails docs...
-alias railsdoc="open ~/code/personal/gems/railsdocs/doc/rdoc/index.html"
+alias railsdoc="open ~/Sites/personal/gems/railsdocs/doc/rdoc/index.html"
