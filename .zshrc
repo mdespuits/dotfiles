@@ -40,25 +40,22 @@ source $ZSH/oh-my-zsh.sh
 ###################################
 
 # Aliases
-if [ -f $HOME/.aliases ]
-then
+if [ -f $HOME/.aliases ]; then
   source $HOME/.aliases
 fi
 
-if [[ "$platform" == 'mac' ]]
-then
+if [[ "$platform" == 'mac' ]]; then
   PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
 fi
 
 # Git tab completion
-if [ -f $DOTIFY_SCRIPTS/git-completion.bash ]
-then
+if [ -f $DOTIFY_SCRIPTS/git-completion.bash ]; then
   source $DOTIFY_SCRIPTS/git-completion.bash
 fi
 
 source $DOTIFY_SCRIPTS/mdb.shared_exports.sh
 
-# Rbenv
+# rbenv
 eval "$(rbenv init -)"
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 

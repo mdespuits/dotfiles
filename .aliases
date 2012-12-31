@@ -2,10 +2,9 @@
 # export P4CLIENT=si_mbridges
 export P4PORT='np-perforce.trionworld.priv:1666'
 export P4CLIENT='mbridges_webdev'
-
 export P4EDITOR='vim'
 
-export JRUBY_OPTS='--1.8'
+export JRUBY_OPTS='--1.9'
 
 platform='unknown'
 unamestr=$(uname)
@@ -18,18 +17,41 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
 fi
 
 if [[ "$platform" == 'linux' ]]; then
-  CC=/usr/bin/gcc
-  PATH=$PATH:$HOME/bin:/sbin
+  export CC=/usr/bin/gcc
+  export PATH=$PATH:$HOME/bin:/sbin
 else
-  CC=gcc-4.2
+  export CC=gcc-4.2
 fi
 
 # Global bash aliases
-alias ll="ls -lahG"
-alias ls="ls -Flb"
+# alias ls="ls -Flb"
+# alias psx='ps -e | grep $1'
 alias back='cd -'
-alias psx='ps -e | grep $1'
+alias ll="ls -lahG"
 alias h='history'
+
+# Bundler Aliases
+alias be="bundle exec"
+alias bi="bundle install"
+alias bu="bundle update"
+
+# Git Aliases
+alias gc="git checkout"
+alias gb="git branch"
+alias gs="git status"
+alias gm="git merge"
+alias gd="git diff"
+alias gds="git diff --staged"
+
+# Screencasting
+alias hideDesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
+alias showDesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
+
+# Annotate alias. Defaults are stupid
+alias annotate='annotate -p before -e tests'
+
+# Rails docs...
+alias railsdoc="open ~/Sites/personal/gems/railsdocs/doc/rdoc/index.html"
 
 alias postgres_fix="sudo sysctl -w kern.sysv.shmall=65536 && sudo sysctl -w kern.sysv.shmmax=16777216"
 
@@ -39,7 +61,7 @@ alias mkdir='mkdir -p'
 alias j='jobs -l'
 
 # Usually want egrep
-alias grep="egrep"
+# alias grep="egrep"
 
 # Aliases
 if [[ $platform == 'linux' ]]; then
@@ -62,29 +84,5 @@ fi
 
 # ZSH-specific aliases
 if [ $SHELL_NAME = 'zsh' ]; then
-  # Reload ZSH config
   alias reload="source ~/.zshrc"
 fi
-
-# Git Aliases
-alias gc="git checkout"
-alias gb="git branch"
-alias gs="git status"
-alias gm="git merge"
-alias gd="git diff"
-alias gds="git diff --staged"
-
-# Screencasting
-alias hideDesktop="defaults write com.apple.finder CreateDesktop -bool false && killall Finder"
-alias showDesktop="defaults write com.apple.finder CreateDesktop -bool true && killall Finder"
-
-# Bundler Aliases
-alias be="bundle exec"
-alias bi="bundle install"
-alias bu="bundle update"
-
-# Annotate alias. Defaults are stupid
-alias annotate='annotate -p before -e tests'
-
-# Rails docs...
-alias railsdoc="open ~/Sites/personal/gems/railsdocs/doc/rdoc/index.html"
