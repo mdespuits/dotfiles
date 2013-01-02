@@ -7,7 +7,7 @@ export P4EDITOR='vim'
 export JRUBY_OPTS='--1.9'
 
 platform='unknown'
-unamestr=$(uname)
+unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
   platform='linux'
 elif [[ "$unamestr" == 'FreeBSD' ]]; then
@@ -17,10 +17,10 @@ elif [[ "$unamestr" == 'Darwin' ]]; then
 fi
 
 if [[ "$platform" == 'linux' ]]; then
-  export CC=/usr/bin/gcc
+  export CC='/usr/bin/gcc'
   export PATH=$PATH:$HOME/bin:/sbin
 else
-  export CC=gcc-4.2
+  export CC='gcc-4.2'
 fi
 
 # Global bash aliases

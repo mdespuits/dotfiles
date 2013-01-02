@@ -144,6 +144,11 @@ imap <C-v> :call setreg("\"",system("pbpaste"))<CR>p
 " Mappings
 " ------------------------
 
+" Truncating extra whitespace
+:highlight ExtraWhitespace ctermbg=red guibg=red
+nmap <leader>rew :match ExtraWhitespace /\s\+$/<cr>
+nmap <leader>req :match<cr>
+
 " Global Shortcts
 nmap <space> :
 nmap <space>w :w!<cr>
@@ -171,10 +176,11 @@ nmap :Wq! :wq!
 nmap :WQ! :wq!
 
 " A few convenient shortcuts
-nmap <c-s-t> :%s/\s\+$//<cr>
-nmap <leader>rt :retab<cr>
+nmap :one :on
 nmap :rhs :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<cr>
 nmap :clear :bufdo bdelete<cr>
+nmap <c-s-t> :%s/\s\+$//<cr>
+nmap <leader>rt :retab<cr>
 nmap <leader>co :!p4 edit "%";<cr>
 
 " Flush the CommandT files
@@ -188,10 +194,3 @@ if has ("autocmd")
   autocmd BufWritePost .vimrc source $MYVIMRC
   autocmd BufWritePre * :%s/\s\+$//e
 endif
-
-" ------------------------
-" Truncating extra whitespace
-" ------------------------
-:highlight ExtraWhitespace ctermbg=red guibg=red
-nmap <leader>trew :match ExtraWhitespace /\s\+$/<cr>
-nmap <leader>mo :match<cr>
