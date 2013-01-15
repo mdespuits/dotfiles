@@ -1,9 +1,16 @@
 #!/bin/sh
 
+export JAVA_HOME=/usr/java/default
+export CATALINA_HOME=/var/lib/tomcat6/webapps
+
 # Adding /url/local/bin for Homebrew
 export PATH=/usr/local/bin:$PATH
+export PATH=~/bin:$PATH
 export DOTIFY=$HOME/.dotify
 export DOTIFY_SCRIPTS=$DOTIFY/scripts
+
+source $DOTIFY_SCRIPTS/git-completion.bash
+source $DOTIFY_SCRIPTS/mdb.shared_exports.sh
 
 ##########
 # Colors #
@@ -77,23 +84,12 @@ PS4='+ '
 export SHELL_NAME=bash
 
 # Aliases
-if [ -f $HOME/.aliases ]
-then
+if [ -f $HOME/.aliases ]; then
   source $HOME/.aliases
 fi
-
-# Git tab completion
-if [ -f $DOTIFY_SCRIPTS/git-completion.bash ]
-then
-  source $DOTIFY_SCRIPTS/git-completion.bash
-fi
-
-source $DOTIFY_SCRIPTS/mdb.shared_exports.sh
 
 # Rbenv with Homebrew
 eval "$(rbenv init -)"
 
 # Hub for github
-if [[ $platform != 'linux' ]]; then
-  eval "$(hub alias -s)"
-fi
+eval "$(hub alias -s)"
