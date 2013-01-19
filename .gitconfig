@@ -9,6 +9,10 @@
   aa = ! git add . && git s
   ra = ! git r . && git s
 
+  # Emails and Authors
+  authors = ! git log --all --format='%aN' | sort -u
+  emails = ! git log --all --format='%cE' | sort -u
+
   # Pushing and pulling
   ps = push
   f = fetch
