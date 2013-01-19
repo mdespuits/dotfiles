@@ -25,6 +25,3 @@
 [submodule ".vim/bundle/vim-ruby-minitest"]
 	path = .vim/bundle/vim-ruby-minitest
 	url = git://github.com/sunaku/vim-ruby-minitest.git
-[submodule ".vim/bundle/ColorSamplerPack"]
-	path = .vim/bundle/ColorSamplerPack
-	url = git://github.com/sjas/ColorSamplerPack.git
