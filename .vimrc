@@ -183,7 +183,8 @@ nmap <c-s-t> :%s/\s\+$//<cr>
 nmap <leader>rt :retab<cr>
 nmap <leader>co :!p4 edit "%";<cr>
 
-" Flush the CommandT files
+" CommantT mappings and options
+set wildignore+=*tmp/**
 nmap <leader>f :CommandTFlush<cr>
 
 " Edit the vimrc file
