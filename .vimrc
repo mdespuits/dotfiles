@@ -181,7 +181,11 @@ nmap :rhs :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<cr>
 nmap :clear :bufdo bdelete<cr>
 nmap <c-s-t> :%s/\s\+$//<cr>
 nmap <leader>rt :retab<cr>
-nmap <leader>co :!p4 edit "%";<cr>
+
+" Perforce commands
+nmap <leader>pe :!p4 edit "%";<cr>
+nmap <leader>pa :!p4 add "%";<cr>
+nmap <leader>pr :!p4 revert "%";<cr>
 
 " CommantT mappings and options
 set wildignore+=*tmp/**
