@@ -28,3 +28,6 @@
 [submodule ".vim/bundle/ColorSamplerPack"]
 	path = .vim/bundle/ColorSamplerPack
 	url = https://github.com/sjas/ColorSamplerPack.git
+[submodule ".vim/bundle/vim-ruby"]
+	path = .vim/bundle/vim-ruby
+	url = git://github.com/vim-ruby/vim-ruby.git
