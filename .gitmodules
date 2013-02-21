@@ -31,3 +31,6 @@
 [submodule ".vim/bundle/vim-ruby"]
 	path = .vim/bundle/vim-ruby
 	url = git://github.com/vim-ruby/vim-ruby.git
+[submodule ".vim/bundle/html5-vim-minimal"]
+	path = .vim/bundle/html5-vim-minimal
+	url = git://github.com/cfcosta/html5-vim-minimal.git
