@@ -2,6 +2,7 @@
 
 export JAVA_HOME=/usr/java/default
 export CATALINA_HOME=/var/lib/tomcat6/webapps
+export CATALINA_OPTS="-server -Xms512m -Xmx1536m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=512m -XX:MaxPermSize=512m -XX:+DisableExplicitGC -Duser.timezone=GMT -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000"
 
 # Adding /url/local/bin for Homebrew
 export PATH=/usr/local/bin:$PATH
