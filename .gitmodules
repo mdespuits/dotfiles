@@ -34,3 +34,6 @@
 [submodule ".vim/bundle/vim-ruby-minitest"]
 	path = .vim/bundle/vim-ruby-minitest
 	url = https://github.com/sunaku/vim-ruby-minitest.git
+[submodule ".vim/bundle/vim-rake"]
+	path = .vim/bundle/vim-rake
+	url = https://github.com/tpope/vim-rake.git
