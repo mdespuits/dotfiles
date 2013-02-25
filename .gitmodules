@@ -22,9 +22,6 @@
 [submodule ".vim/bundle/vim-pathogen"]
 	path = .vim/bundle/vim-pathogen
 	url = git://github.com/tpope/vim-pathogen.git
-[submodule ".vim/bundle/vim-ruby-minitest"]
-	path = .vim/bundle/vim-ruby-minitest
-	url = git://github.com/sunaku/vim-ruby-minitest.git
 [submodule ".vim/bundle/ColorSamplerPack"]
 	path = .vim/bundle/ColorSamplerPack
 	url = https://github.com/sjas/ColorSamplerPack.git
