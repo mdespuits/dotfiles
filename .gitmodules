@@ -31,3 +31,6 @@
 [submodule ".vim/bundle/html5-vim-minimal"]
 	path = .vim/bundle/html5-vim-minimal
 	url = git://github.com/cfcosta/html5-vim-minimal.git
+[submodule ".vim/bundle/vim-ruby-minitest"]
+	path = .vim/bundle/vim-ruby-minitest
+	url = https://github.com/sunaku/vim-ruby-minitest.git
