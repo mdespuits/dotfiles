@@ -45,7 +45,6 @@ export DOTIFY_SCRIPTS=$DOTIFY_HOME/scripts
 
 # Load all Dotify scripts automatically
 for file in $DOTIFY_SCRIPTS/*; do
-  echo "$file";
   if [ -f "$file" ] ; then
     . "$file"
   fi
