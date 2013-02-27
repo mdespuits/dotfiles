@@ -4,11 +4,13 @@ export JAVA_HOME=/usr/java/default
 export CATALINA_HOME=/var/lib/tomcat6/webapps
 export CATALINA_OPTS="-server -Xms512m -Xmx1536m -XX:NewSize=256m -XX:MaxNewSize=256m -XX:PermSize=512m -XX:MaxPermSize=512m -XX:+DisableExplicitGC -Duser.timezone=GMT -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=8000"
 
+export SHELL_NAME=bash
+
 # Adding /url/local/bin for Homebrew
 export PATH=/usr/local/bin:$PATH
 export PATH=~/bin:$PATH
-export DOTIFY=$HOME/.dotify
-export DOTIFY_SCRIPTS=$DOTIFY/scripts
+export DOTIFY_HOME=$HOME/.dotify
+export DOTIFY_SCRIPTS=$DOTIFY_HOME/scripts
 
 for f in $DOTIFY_SCRIPTS*; do
   if [ -f "$file" ] ; then
@@ -84,8 +86,6 @@ function git_prompt {
 PS1="${txtgrn}\w $(git_prompt)${txtwht} > "
 PS2='> '
 PS4='+ '
-
-export SHELL_NAME=bash
 
 # Aliases
 if [ -f $HOME/.aliases ]; then

@@ -1,7 +1,5 @@
 # Path to your oh-my-zsh configuration.
 ZSH=$HOME/.oh-my-zsh
-DOTIFY=$HOME/.dotify
-DOTIFY_SCRIPTS=$DOTIFY/scripts
 
 # Set name of the theme to load.
 # Look in ~/.oh-my-zsh/themes/
@@ -29,24 +27,18 @@ COMPLETION_WAITING_DOTS="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 plugins=(brew rails3 rake github)
 
-# The name of the shell that is currently in use for shared scripts
-# to be smart about what is included.
-SHELL_NAME=zsh
-
 source $ZSH/oh-my-zsh.sh
 
 ###################################
 ## Now...customize to your pleasure
 ###################################
 
-# Aliases
-if [ -f $HOME/.aliases ]; then
-  source $HOME/.aliases
-fi
+# The name of the shell that is currently in use for shared scripts
+# to be smart about what is included.
+export SHELL_NAME=zsh
 
-if [[ "$platform" == 'mac' ]]; then
-  PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
-fi
+export DOTIFY_HOME=$HOME/.dotify
+export DOTIFY_SCRIPTS=$DOTIFY_HOME/scripts
 
 # Load all Dotify scripts automatically
 for f in $DOTIFY_SCRIPTS*; do
@@ -54,6 +46,10 @@ for f in $DOTIFY_SCRIPTS*; do
     . "$file"
   fi
 done
+
+if [[ "$platform" == 'mac' ]]; then
+  PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
+fi
 
 # rbenv
 eval "$(rbenv init -)"
