@@ -215,6 +215,7 @@ nmap <leader>rt :retab<cr>
 nmap <leader>pe :!p4 edit "%";<cr>
 nmap <leader>pa :!p4 add "%";<cr>
 nmap <leader>pr :!p4 revert "%";<cr>
+nmap <leader>pd :!p4 delete "%";<cr>
 
 " CommantT mappings and options
 set wildignore+=*tmp/**
