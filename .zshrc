@@ -48,12 +48,12 @@ if [[ "$platform" == 'mac' ]]; then
   PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
 fi
 
-# Git tab completion
-if [ -f $DOTIFY_SCRIPTS/git-completion.bash ]; then
-  source $DOTIFY_SCRIPTS/git-completion.bash
-fi
-
-source $DOTIFY_SCRIPTS/mdb.shared_exports.sh
+# Load all Dotify scripts automatically
+for f in $DOTIFY_SCRIPTS*; do
+  if [ -f "$file" ] ; then
+    . "$file"
+  fi
+done
 
 # rbenv
 eval "$(rbenv init -)"
