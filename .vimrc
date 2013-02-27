@@ -189,6 +189,7 @@ nmap <leader>pr :!p4 revert "%";<cr>
 
 " CommantT mappings and options
 set wildignore+=*tmp/**
+nmap <leader><s-t> :CommandTBuffer<cr>
 nmap <leader>f :CommandTFlush<cr>
 
 " Edit the vimrc file
