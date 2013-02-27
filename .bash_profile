@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 export JAVA_HOME=/usr/java/default
 export CATALINA_HOME=/var/lib/tomcat6/webapps
@@ -12,6 +12,7 @@ export DOTIFY_SCRIPTS=$DOTIFY/scripts
 
 source $DOTIFY_SCRIPTS/git-completion.bash
 source $DOTIFY_SCRIPTS/mdb.shared_exports.sh
+source $DOTIFY_SCRIPTS/trion-stuff
 
 ##########
 # Colors #

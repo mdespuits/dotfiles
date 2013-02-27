@@ -5,4 +5,5 @@
 *.netrwhist
 /pkg
 *.VimballRecord
+scripts/trion-stuff
 .vim/ruby/command-t/Makefile
