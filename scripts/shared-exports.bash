@@ -1,4 +1,4 @@
-# Always prefer Ruby 1.0 in jRuby
+# Always prefer Ruby 1.9 in jRuby
 export JRUBY_OPTS='--1.9'
 
 # Prefer Vim when using `bundle open`
