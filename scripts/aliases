@@ -60,18 +60,14 @@ alias j='jobs -l'
 # alias grep="egrep"
 
 # Aliases
-if [[ $platform == 'linux' ]]; then
-  alias vi="vim"
-else
+if [[ $platform == 'mac' ]]; then
   alias vim="mvim -v"
-  alias vi="vim"
 fi
+
+alias vi="vim"
 
 # Bash-specific aliases
 if [ $SHELL_NAME = 'bash' ]; then
-  # Reload Bash config
-  alias ..='cd ..'
-
   # Basic backward history search in bash
   bind '"\e[A"':history-search-backward
   bind '"\e[B"':history-search-forward
