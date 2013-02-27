@@ -10,9 +10,11 @@ export PATH=~/bin:$PATH
 export DOTIFY=$HOME/.dotify
 export DOTIFY_SCRIPTS=$DOTIFY/scripts
 
-source $DOTIFY_SCRIPTS/git-completion.bash
-source $DOTIFY_SCRIPTS/mdb.shared_exports.sh
-source $DOTIFY_SCRIPTS/trion-stuff
+for f in $DOTIFY_SCRIPTS*; do
+  if [ -f "$file" ] ; then
+    . "$file"
+  fi
+done
 
 ##########
 # Colors #
