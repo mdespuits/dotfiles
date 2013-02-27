@@ -1,7 +1,5 @@
 #!/bin/bash
 
-export JRUBY_OPTS='--1.9'
-
 platform='unknown'
 unamestr=`uname`
 if [[ "$unamestr" == 'Linux' ]]; then
