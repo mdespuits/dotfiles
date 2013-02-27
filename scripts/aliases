@@ -70,15 +70,9 @@ fi
 # Bash-specific aliases
 if [ $SHELL_NAME = 'bash' ]; then
   # Reload Bash config
-  alias reload="source ~/.bash_profile"
   alias ..='cd ..'
 
   # Basic backward history search in bash
   bind '"\e[A"':history-search-backward
   bind '"\e[B"':history-search-forward
-fi
-
-# ZSH-specific aliases
-if [ $SHELL_NAME = 'zsh' ]; then
-  alias reload="source ~/.zshrc"
 fi

@@ -33,6 +33,9 @@ source $ZSH/oh-my-zsh.sh
 ## Now...customize to your pleasure
 ###################################
 
+# Reload for zsh
+alias reload="source ~/.zshrc"
+
 # The name of the shell that is currently in use for shared scripts
 # to be smart about what is included.
 export SHELL_NAME=zsh
@@ -41,7 +44,8 @@ export DOTIFY_HOME=$HOME/.dotify
 export DOTIFY_SCRIPTS=$DOTIFY_HOME/scripts
 
 # Load all Dotify scripts automatically
-for f in $DOTIFY_SCRIPTS*; do
+for file in $DOTIFY_SCRIPTS/*; do
+  echo "$file";
   if [ -f "$file" ] ; then
     . "$file"
   fi
@@ -50,6 +54,7 @@ done
 if [[ "$platform" == 'mac' ]]; then
   PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
 fi
+
 
 # rbenv
 eval "$(rbenv init -)"
