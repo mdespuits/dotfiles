@@ -23,10 +23,3 @@ txtrst='\e[0m'    # Text Reset
 PS1="${txtcyn}\w ${txtrst}\n $ "
 PS2='> '
 PS4='+ '
-
-# Rbenv with Homebrew
-eval "$(rbenv init -)"
-if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
-
-# Hub for github
-eval "$(hub alias -s)"
