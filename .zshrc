@@ -41,15 +41,6 @@ alias reload="source ~/.zshrc"
 export SHELL_NAME=zsh
 
 export DOTIFY_HOME=$HOME/.dotify
-export DOTIFY_SCRIPTS=$DOTIFY_HOME/scripts
 
-# Load all Dotify scripts automatically
-for file in $DOTIFY_SCRIPTS/*; do
-  if [ -f "$file" ] ; then
-    . "$file"
-  fi
-done
-
-if [[ "$platform" == 'mac' ]]; then
-  PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
-fi
+# Source all scripts
+source $DOTIFY_HOME/source_scripts.bash

@@ -9,13 +9,9 @@ export SHELL_NAME=bash
 export PATH=/usr/local/bin:$PATH
 export PATH=~/bin:$PATH
 export DOTIFY_HOME=$HOME/.dotify
-export DOTIFY_SCRIPTS=$DOTIFY_HOME/scripts
 
-for file in $DOTIFY_SCRIPTS/*; do
-  if [ -f "$file" ] ; then
-    . "$file"
-  fi
-done
+# Source all scripts
+source $DOTIFY_HOME/source_scripts.bash
 
 txtcyn='\e[0;36m' # Cyan
 txtrst='\e[0m'    # Text Reset
