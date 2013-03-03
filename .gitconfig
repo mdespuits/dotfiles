@@ -24,6 +24,7 @@
   rollback = reset –hard HEAD@{1}
 
   # Committing
+  amend = commit --amend
   cm = commit -m
   cam = commit -a -m
   co = checkout
