@@ -1,10 +1,14 @@
-platform='unknown'
-unamestr=`uname`
-if [[ "$unamestr" == 'Linux' ]]; then
+#!/bin/bash
+
+unamestr=$(uname)
+
+if [[ $unamestr == 'Linux' ]]; then
   platform='linux'
-elif [[ "$unamestr" == 'FreeBSD' ]]; then
+elif [[ $unamestr == 'FreeBSD' ]]; then
   platform='freebsd'
-elif [[ "$unamestr" == 'Darwin' ]]; then
+elif [[ $unamestr == 'Darwin' ]]; then
   platform='mac'
+else
+  platform='unknown'
 fi
 

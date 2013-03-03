@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source "$(dirname $0)/platform.bash"
-
 # alias ls="ls -Flb"
 # alias psx='ps -e | grep $1'
 alias back='cd -'

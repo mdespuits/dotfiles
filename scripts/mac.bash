@@ -1,7 +1,5 @@
 #!/bin/bash
 
-source "$(dirname $0)/platform.bash"
-
 if [[ $platform == 'mac' ]]; then
   # Adding /url/local/bin for Homebrew
   export PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
