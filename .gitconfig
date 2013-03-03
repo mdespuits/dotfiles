@@ -6,8 +6,8 @@
   b = branch
   r = reset
   m = merge
-  aa = ! git add . && git s
-  ra = ! git r . && git s
+  aa = add .
+  ra = reset .
 
   # Emails and Authors
   authors = ! git log --all --format='%aN' | sort -u
