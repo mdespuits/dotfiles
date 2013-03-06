@@ -204,6 +204,7 @@ nmap <c-p> :bp<cr>
 nmap <leader>w :bd<cr>
 
 " File shortcuts
+nmap <leader>r :edit<cr>
 nmap <leader>s :sp<cr>
 nmap <leader>r :edit<cr>
 nmap <leader>v :vsplit<cr>
