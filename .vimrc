@@ -223,10 +223,7 @@ nmap <leader><s-t> :CommandTBuffer<cr>
 nmap <leader>f :CommandTFlush<cr>
 
 " Edit the vimrc file
-nnoremap <leader>ev :tabedit $MYVIMRC<cr>
 
-" Source the vimrc file after saving it
-if has ("autocmd")
-  autocmd BufWritePost .vimrc source $MYVIMRC
-  autocmd BufWritePre * :%s/\s\+$//e
-endif
+" source $MYVIMRC reloads the saved $MYVIMRC
+:nmap <leader>se :source $MYVIMRC<cr>
+:nmap <leader>ev :e $MYVIMRC<cr>
