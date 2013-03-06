@@ -29,6 +29,11 @@ syntax on
 colorscheme desert256
 
 " ------------------------
+"  Vim's :! system bash
+set shellcmdflag=-c
+" ------------------------
+
+" ------------------------
 " Scrolling
 " ------------------------
 set scrolloff=8
@@ -62,10 +67,6 @@ map <Down> <Nop>
 
 " History Length
 set history=30
-
-" Use bash instead of sh
-" Pretty sure this is unnecessary because both are aliases in OSX
-set shell=/bin/bash
 
 " ------------------------
 " Files
@@ -237,3 +238,43 @@ set wildignore+=*tmp/**
 " source $MYVIMRC reloads the saved $MYVIMRC
 :nmap <leader>m :source $MYVIMRC<cr>
 :nmap <leader>ev :e $MYVIMRC<cr>
+
+
+" rspec mappings
+map <leader>c :call RunCurrentSpecFile()<cr>
+map <leader>s :call RunNearestSpec()<cr>
+map <leader>l :call RunLastSpec()<cr>
+
+function! RunCurrentSpecFile()
+  if InSpecFile()
+    let l:command = "rspec " . @% . " -f documentation"
+    call SetLastSpecCommand(l:command)
+    call RunSpecs(l:command)
+  endif
+endfunction
+
+function! RunNearestSpec()
+  if InSpecFile()
+    let l:command = "rspec " . @% . " -l " . line(".") . " -f documentation"
+    call SetLastSpecCommand(l:command)
+    call RunSpecs(l:command)
+  endif
+endfunction
+
+function! RunLastSpec()
+  if exists("t:last_spec_command")
+    call RunSpecs(t:last_spec_command)
+  endif
+endfunction
+
+function! InSpecFile()
+  return match(expand("%"), "_spec.rb$") != -1
+endfunction
+
+function! SetLastSpecCommand(command)
+  let t:last_spec_command = a:command
+endfunction
+
+function! RunSpecs(command)
+  execute ":w\|!clear && echo " . a:command . " && echo && " . a:command
+endfunction
