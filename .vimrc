@@ -113,12 +113,25 @@ set hidden        " Hide hidden files
 set number        " Show line numbers
 
 " ------------------------
+" ------------------------
+" ------------------------
 " Plugin Configuration
 " ------------------------
-" -- CommandT
-let g:CommandTAlwaysShowDotFiles = 1
+
 " -- ZenCoding
 let g:user_zen_expandabbr_key = '<c-e>'
+
+" -- ctrlp.vim
+" ------------
+" -- Alternative to CommantT and no Ruby necessary
+nnoremap <silent> <Leader>t :CtrlP<CR>
+let g:ctrlp_map = '<c-s>p'
+let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_show_hidden = 1
+
+" ------------------------
+" ------------------------
+" ------------------------
 
 " quickfixopenall.vim
 "Author:
@@ -216,10 +229,7 @@ nmap <leader>pa :!p4 add "%";<cr>
 nmap <leader>pr :!p4 revert "%";<cr>
 nmap <leader>pd :!p4 delete "%";<cr>
 
-" CommantT mappings and options
 set wildignore+=*tmp/**
-nmap <leader><s-t> :CommandTBuffer<cr>
-nmap <leader>f :CommandTFlush<cr>
 
 " Edit the vimrc file
 
