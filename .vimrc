@@ -101,7 +101,6 @@ set showcmd
 set incsearch
 set nohlsearch " Don't highlight results
 set ignorecase " Don't search by case
-set smartcase
 
 " ------------------------
 " Various
