@@ -11,7 +11,7 @@ export PATH=~/bin:$PATH
 export DOTIFY_HOME=$HOME/.dotify
 
 # Source all scripts
-source $DOTIFY_HOME/source_scripts.bash
+source $DOTIFY_HOME/scripts.sh
 
 txtcyn='\e[0;36m' # Cyan
 txtrst='\e[0m'    # Text Reset

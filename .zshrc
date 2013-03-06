@@ -43,4 +43,4 @@ export SHELL_NAME=zsh
 export DOTIFY_HOME=$HOME/.dotify
 
 # Source all scripts
-source $DOTIFY_HOME/source_scripts.bash
+source $DOTIFY_HOME/scripts.sh
