@@ -224,5 +224,5 @@ nmap <leader>f :CommandTFlush<cr>
 " Edit the vimrc file
 
 " source $MYVIMRC reloads the saved $MYVIMRC
-:nmap <leader>se :source $MYVIMRC<cr>
+:nmap <leader>m :source $MYVIMRC<cr>
 :nmap <leader>ev :e $MYVIMRC<cr>
