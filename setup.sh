@@ -3,11 +3,11 @@ export DOTIFY_SCRIPTS=$DOTIFY_HOME/scripts
 
 source "$DOTIFY_SCRIPTS/platform.bash"
 
-chmod 500 $DOTIFY_BIN;
+chmod 700 $DOTIFY_BIN;
 
 for file in $DOTIFY_BIN/*; do
   if [ -f $file ] ; then
-    chmod 500 $file
+    chmod 700 $file
   fi
 done
 
