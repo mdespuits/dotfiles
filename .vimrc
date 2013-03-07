@@ -117,17 +117,13 @@ set number        " Show line numbers
 set numberwidth=5 " Line number width
 
 " ------------------------
-" ------------------------
-" ------------------------
 " Plugin Configuration
 " ------------------------
 
-" -- ZenCoding
+" ZenCoding
 let g:user_zen_expandabbr_key = '<c-e>'
 
 " -- ctrlp.vim
-" ------------
-" -- Alternative to CommantT and no Ruby necessary
 nnoremap <silent> <Leader>t :CtrlP<CR>
 let g:ctrlp_map = '<c-s>p'
 let g:ctrlp_cmd = 'CtrlP'
