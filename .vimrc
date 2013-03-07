@@ -196,12 +196,12 @@ nmap <space>w :w!<cr>
 imap jk <Esc>
 
 " Buffer navigation
-nmap :B :b
 nmap :bs :buffers
 nmap <leader>bs :bs<cr>
 nmap <c-n> :bn<cr>
 nmap <c-p> :bp<cr>
 nmap <leader>w :bd<cr>
+nmap <c-w> :BD<cr>
 
 " File shortcuts
 nmap <leader>r :edit<cr>
