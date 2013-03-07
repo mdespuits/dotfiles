@@ -1,0 +1,13 @@
+#!/usr/bin/env ruby
+
+submodules = %x[git status | grep "modified.*\(new commits\)" | awk '{print $3}'].split("\n").map(&:strip)
+
+if submodules.any?
+  commit_message = "Updating submodules:\n"
+  submodules.each { |name| %x[git add #{name}] }
+  commit_message << submodules.map { |name| "\n * #{name}" }.join
+  %x[git commit -m "#{commit_message}"]
+else
+  puts "no submodules to update"
+end
+
