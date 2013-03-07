@@ -21,6 +21,8 @@ set ruler
 set title
 set cmdheight=2
 
+set list listchars=tab:»·,trail:·
+
 set wildignore+=*tmp/**
 
 " ------------------------
@@ -186,9 +188,7 @@ imap <C-v> :call setreg("\"",system("pbpaste"))<CR>p
 " ------------------------
 
 " Truncating extra whitespace
-:highlight ExtraWhitespace ctermbg=red guibg=red
-nmap <leader>rew :match ExtraWhitespace /\s\+$/<cr>
-nmap <leader>req :match<cr>
+" autocmd BufWritePre * :%s/\s\+$//e
 
 " Global Shortcts
 nmap <space> :
