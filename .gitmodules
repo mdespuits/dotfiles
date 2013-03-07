@@ -52,3 +52,6 @@
 [submodule ".vim/bundle/vim-slim"]
 	path = .vim/bundle/vim-slim
 	url = https://github.com/slim-template/vim-slim.git
+[submodule ".vim/bundle/bufkill.vim"]
+	path = .vim/bundle/bufkill.vim
+	url = git://github.com/mattdbridges/bufkill.vim.git
