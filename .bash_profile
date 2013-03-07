@@ -16,6 +16,10 @@ source $DOTIFY_HOME/setup.sh
 txtcyn='\e[0;36m' # Cyan
 txtrst='\e[0m'    # Text Reset
 
+# Basic backward history search in bash
+bind '"\e[A"':history-search-backward
+bind '"\e[B"':history-search-forward
+
 PS1="${txtcyn}\w ${txtrst}\n $ "
 PS2='> '
 PS4='+ '
