@@ -1,3 +1,14 @@
+[user]
+  name = Matt Bridges
+  email = mbridges.91@gmail.com
+[color]
+  ui = true
+[push]
+  default = current
+[core]
+  excludesfile = ~/.gitexcludes
+[credential]
+  helper = osxkeychain
 [alias]
   # Favorites
   c = commit
@@ -46,13 +57,6 @@
   # for better customizing
   np = log master.. --oneline # Diff from local master
   npr = log origin/master.. --oneline # Diff from remote master
-[user]
-  name = Matt Bridges
-  email = mbridges.91@gmail.com
-[color]
-  ui = true
-[push]
-  default = current
 [url "git@heroku.com:"]
   insteadOf = heroku:
 [url "git://github.com/"]
@@ -61,7 +65,3 @@
 [url "git@github.com:"]
   # With write access
   insteadOf = wgh:
-[core]
-  excludesfile = ~/.gitexcludes
-[credential]
-  helper = osxkeychain
