@@ -21,6 +21,8 @@ set ruler
 set title
 set cmdheight=2
 
+set wildignore+=*tmp/**
+
 " ------------------------
 " Theme
 " ------------------------
@@ -231,11 +233,7 @@ nmap <leader>pa :!p4 add "%";<cr>
 nmap <leader>pr :!p4 revert "%";<cr>
 nmap <leader>pd :!p4 delete "%";<cr>
 
-set wildignore+=*tmp/**
-
-" Edit the vimrc file
-
-" source $MYVIMRC reloads the saved $MYVIMRC
+" Editing the vimrc file
 :nmap <leader>m :source $MYVIMRC<cr>
 :nmap <leader>ev :e $MYVIMRC<cr>
 
