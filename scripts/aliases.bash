@@ -15,6 +15,10 @@ alias s="rspec"
 alias t="ruby -Itest"
 alias z="zeus"
 
+if [[ $SHELL == '/bin/bash' ]]; then
+  alias ll="ls -la"
+fi
+
 # Annotate alias. Defaults are stupid
 alias annotate="annotate -p before -e tests"
 
