@@ -9,7 +9,7 @@ if submodules.any?
   puts "Updating #{submodules.size} submodule(s)..."
   submodules.each { |name| %x[git add #{name}] }
   commit_message = "Updating submodules:\n"
-  commit_message << submodules.map { |name| "\s* #{name}" }.join("\n")
+  commit_message << submodules.map { |name| "* #{name}" }.join("\n")
   %x[git commit -m "#{commit_message}"]
 else
   puts "No submodules to update"
