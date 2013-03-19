@@ -30,7 +30,7 @@ set wildignore+=*tmp/**
 " ------------------------
 set background=dark
 syntax on
-colorscheme desert256
+colorscheme solarized
 
 " ------------------------
 "  Vim's :! system bash
