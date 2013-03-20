@@ -30,7 +30,7 @@ set wildignore+=*tmp/**
 " ------------------------
 set background=dark
 syntax on
-if has("mac")
+if has("mac") || has("macunix")
   colorscheme solarized
 else
   colorscheme desert256
