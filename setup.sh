@@ -7,7 +7,7 @@ chmod 700 $DOTIFY_BIN;
 
 for file in $DOTIFY_BIN/*; do
   if [ -f $file ] ; then
-    chmod 700 $file
+    chmod 755 $file
   fi
 done
 
