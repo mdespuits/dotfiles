@@ -8,7 +8,7 @@ submodules = %x[git status | grep "modified.*\(new commits\)" | awk '{print $3}'
 if submodules.any?
   puts "Updating #{submodules.size} submodule(s)..."
   submodules.each { |name| %x[git add #{name}] }
-  commit_message = "Updating submodules:\n"
+  commit_message = "Updating #{submodules.size} submodule(s):\n"
   commit_message << submodules.map { |name| "* #{name}" }.join("\n")
   %x[git commit -m "#{commit_message}"]
 else
