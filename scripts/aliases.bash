@@ -1,6 +1,6 @@
 #!/bin/bash
 
-if [[ $platform == 'mac' ]]; then
+if [ -n "$PLATFORM" ] && [ "$PLATFORM" = "mac" ]; then
   alias vim="mvim -v"
 fi
 

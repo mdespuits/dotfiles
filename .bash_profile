@@ -20,6 +20,12 @@ source $DOTIFY_HOME/setup.sh
 bind '"\e[A"':history-search-backward
 bind '"\e[B"':history-search-forward
 
-export PS1='\[\e[0;35m⌘\e[m  \e[0;36m\w/\e[m \e[0;33m`git branch 2> /dev/null | grep -e ^* | sed -E  s/^\\\\\*\ \(.+\)$/\(\\\\\1\)\ /`\e[m\]'
+if [ -n "$PLATFORM" ] && [ "$PLATFORM" = "mac" ]; then
+  echo "mac"
+  export PS1='\[\e[0;35m⌘\e[m  \e[0;36m\w/\e[m \e[0;33m`git branch 2> /dev/null | grep -e ^* | sed -E s/^\\\\\*\ \(.+\)$/\(\\\\\1\)\ /`\e[m\]'
+else
+  echo "not mac"
+  export PS1='\[\e[0;35m⌘\e[m  \e[0;36m\w/\e[m \e[0;33m`git branch 2> /dev/null | grep -e ^* | sed -e '' s/^\\\\\*\ \(.+\)$/\(\\\\\1\)\ /`\e[m\]'
+fi
 export PS2='> '
 export PS4='+ '
