@@ -30,11 +30,7 @@ set wildignore+=*tmp/**
 " ------------------------
 set background=dark
 syntax on
-if has("mac") || has("macunix")
-  colorscheme solarized
-else
-  colorscheme desert256
-endif
+colorscheme desert256
 
 " ------------------------
 "  Vim's :! system bash
