@@ -17,6 +17,4 @@ rand(min_lines..max_lines).times do |n|
   result << groups
 end
 
-4.times { result.flatten! }
-
-$stdout.write result.join
+$stdout.write result.flatten(4).join
