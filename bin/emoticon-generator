@@ -3,8 +3,8 @@
 EMOTICONS = %w[ (happy) (L) (inlove) (kiss) (hug) (sun) ]
 
 chosen = EMOTICONS.sample(rand(2..EMOTICONS.length))
-min_lines = 75
-max_lines = 125
+min_lines = 45
+max_lines = 55
 max_on_line = 15
 in_groups_of = ->(range, emo){ range.map { emo }  }
 result = []
