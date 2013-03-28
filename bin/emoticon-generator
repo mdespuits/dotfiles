@@ -1,0 +1,22 @@
+#!/usr/bin/env ruby
+
+EMOTICONS = %w[ (happy) (L) (inlove) :* (hug) ]
+
+chosen = EMOTICONS.sample(rand(2..EMOTICONS.length))
+min_lines = 75
+max_lines = 150
+max_on_line = 15
+in_groups_of = rand(2..8)
+result = []
+
+groups = chosen.collect do |emoticon|
+  in_groups_of.times.map { emoticon }
+end
+
+rand(min_lines..max_lines).times do |n|
+  result << groups
+end
+
+4.times { result.flatten! }
+
+$stdout.write result.join
