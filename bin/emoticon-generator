@@ -6,7 +6,7 @@ chosen = EMOTICONS.sample(rand(2..EMOTICONS.length))
 min_lines = 75
 max_lines = 125
 max_on_line = 15
-in_groups_of = ->(emo){ rand(2..8).times.map { emo }  }
+in_groups_of = ->(emo){ (2..8).map { emo }  }
 result = []
 
 groups = chosen.collect do |emoticon|
