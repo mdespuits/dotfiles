@@ -8,7 +8,7 @@ fi
 # Compile + Execute
 executable=$1;
 rustc $executable.rs -o $executable
-./$executable
+time ./$executable
 
 # Cleanup
 rm $executable
