@@ -13,7 +13,7 @@ if [ ! -f ./$executable.rs ]; then
 fi
 
 # Compile + Execute
-rustc $executable.rs -o $executable
+rustc -o $executable $executable.rs
 time ./$executable
 
 # Cleanup
