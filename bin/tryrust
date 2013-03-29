@@ -7,7 +7,7 @@ fi
 
 # Compile + Execute
 executable=$1;
-rustc $executable.rs
+rustc $executable.rs -o $executable
 ./$executable
 
 # Cleanup
