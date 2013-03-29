@@ -1,0 +1,9 @@
+set -e
+
+if [ -z $1 ]; then
+  echo Usage: tryrust [EXECUTABLE]
+  exit
+fi
+
+executable=$1;
+rustc "$executable.rs"; ./"$executable"; rm $executable; rm -r ./*.dSYM;
