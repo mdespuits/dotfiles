@@ -5,5 +5,11 @@ if [ -z $1 ]; then
   exit
 fi
 
+# Compile + Execute
 executable=$1;
-rustc "$executable.rs"; ./"$executable"; rm $executable; rm -r ./*.dSYM;
+rustc $executable.rs
+./$executable
+
+# Cleanup
+rm $executable
+rm -r ./*.dSYM
