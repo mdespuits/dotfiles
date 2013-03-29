@@ -1,12 +1,18 @@
 set -e
 
-if [ -z $1 ]; then
-  echo Usage: tryrust [EXECUTABLE]
+executable=$1;
+
+if [ -z $executable ]; then
+  echo "Usage: tryrust [EXECUTABLE]"
+  exit
+fi
+
+if [ ! -f ./$executable.rs ]; then
+  echo "File '$executable.rs' does not exist"
   exit
 fi
 
 # Compile + Execute
-executable=$1;
 rustc $executable.rs -o $executable
 time ./$executable
 
