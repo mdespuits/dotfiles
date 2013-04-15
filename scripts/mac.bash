@@ -15,5 +15,5 @@ if [ -n "$PLATFORM" ] && [ $PLATFORM = "mac" ]; then
 
   # Homebrew: Adding /url/local/bin
   export PATH="/usr/local/bin:$PATH"
-  export CC='gcc-4.2'
+  export CC='gcc'
 fi
