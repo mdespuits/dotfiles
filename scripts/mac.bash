@@ -11,7 +11,9 @@ if [ -n "$PLATFORM" ] && [ $PLATFORM = "mac" ]; then
   fi
 
   # OpenSSL update fix
-  export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
+  if [ -d "/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt" ]; then
+    export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
+  fi
 
   # Homebrew: Adding /url/local/bin
   export PATH="/usr/local/bin:$PATH"
