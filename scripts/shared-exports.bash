@@ -1,8 +1,8 @@
 # Always prefer Ruby 1.9 in jRuby
 export JRUBY_OPTS='--1.9'
 
-# Prefer Vim when using `bundle open`
-export BUNDLER_EDITOR='vi'
+# Set vim to be primary editor
+export EDITOR='vi'
 
 # Customize to your needs...
 export PATH=/usr/local/bin:$PATH
