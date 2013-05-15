@@ -20,6 +20,7 @@ set guifont=Courier:h12
 set ruler
 set title
 set cmdheight=2
+set winwidth=79
 
 set list listchars=tab:»·,trail:·
 
