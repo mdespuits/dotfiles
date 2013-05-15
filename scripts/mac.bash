@@ -6,6 +6,8 @@ if [ -n "$PLATFORM" ] && [ $PLATFORM = "mac" ]; then
     export PATH="/Applications/Vagrant/bin:$PATH"
   fi
 
+  alias dunnet="emacs -batch -l dunnet"
+
   if [ -d "/Applications/Postgres.app/Contents/MacOS/bin" ]; then
     export PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
   fi
