@@ -118,7 +118,7 @@ set hidden        " Hide hidden files
 set number        " Show line numbers
 set numberwidth=5 " Line number width
 
-function! NumberToggle()
+function! RelativeLineNumberToggle()
   if(&relativenumber == 1)
     set number
   else
@@ -126,7 +126,7 @@ function! NumberToggle()
   endif
 endfunc
 
-nnoremap <leader>nt :call NumberToggle()<cr>
+nnoremap <leader>rl :call RelativeLineNumberToggle()<cr>
 
 " ------------------------
 " Plugin Configuration
