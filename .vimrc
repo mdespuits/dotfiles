@@ -21,6 +21,7 @@ set ruler
 set title
 set cmdheight=2
 set winwidth=79
+set showtabline=2
 
 set list listchars=tab:»·,trail:·
 
