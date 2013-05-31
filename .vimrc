@@ -175,7 +175,13 @@ endfunction
 
 command! QuickFixOpenAll         call QuickFixOpenAll()
 
-" ------------------------
+" =======================================
+" Show 80 character line length
+" =======================================
+highlight OverLength ctermbg=red ctermfg=white guibg=#592929
+match OverLength /\%81v.*/
+
+" =======================================
 " Filetype highlighting
 " =======================================
 au BufNewFile,BufRead *.thor      set filetype=ruby
