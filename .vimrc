@@ -1,20 +1,20 @@
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 
-" ------------------------
+" =======================================
 " Basic Setup
-" ------------------------
+" =======================================
 set nocompatible        " Don't be compatible with VI
 call pathogen#infect()  " Use pathogen plugin for better plugin management
 
-" ------------------------
+" =======================================
 " Leaders
-" ------------------------
+" =======================================
 let mapleader = ","
 let g:mapleader = ","
 
-" ------------------------
+" =======================================
 " Display
-" ------------------------
+" =======================================
 set linespace=3
 set guifont=Courier:h12
 set ruler
@@ -26,35 +26,35 @@ set list listchars=tab:»·,trail:·
 
 set wildignore+=*tmp/**
 
-" ------------------------
+" =======================================
 " Theme
-" ------------------------
+" =======================================
 set background=dark
 syntax on
 colorscheme desert256
 
-" ------------------------
+" =======================================
 "  Vim's :! system bash
+" =======================================
 set shellcmdflag=-c
-" ------------------------
 
-" ------------------------
+" =======================================
 " Scrolling
-" ------------------------
+" =======================================
 set scrolloff=8
 set sidescrolloff=15
 set sidescroll=1
 set backspace=indent,eol,start " Allow backspecing over everything in insert mode
 
-" ------------------------
+" =======================================
 " Per Project .vimrc
-" ------------------------
+" =======================================
 set exrc
 set secure " Disable unsafe commands in local .vimrc files
 
-" ------------------------
+" =======================================
 " Tabbing
-" ------------------------
+" =======================================
 set tabstop=2
 set shiftwidth=2
 set softtabstop=2
@@ -62,9 +62,9 @@ set expandtab
 set smarttab " Smart tabbing
 set autoindent
 
-" ------------------------
+" =======================================
 " Arrow Keys => For Newbies
-" ------------------------
+" =======================================
 map <Left> <Nop>
 map <Right> <Nop>
 map <Up> <Nop>
@@ -73,9 +73,9 @@ map <Down> <Nop>
 " History Length
 set history=30
 
-" ------------------------
+" =======================================
 " Files
-" ------------------------
+" =======================================
 "
 " Don't backup. Already using
 " other forms of verion control.
@@ -83,11 +83,11 @@ set nobackup
 set nowb
 set noswapfile
 
-" ------------------------
+" =======================================
 " Moving
 " * Move around splits with <c-hjkl>
 " * Move between tabs with <c-s-hl>
-" ------------------------
+" =======================================
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
@@ -100,17 +100,17 @@ filetype on
 filetype indent on
 filetype plugin on
 
-" ------------------------
+" =======================================
 " Searching
-" ------------------------
+" =======================================
 set showcmd
 set incsearch
 set nohlsearch " Don't highlight results
 set ignorecase " Don't search by case
 
-" ------------------------
+" =======================================
 " Various
-" ------------------------
+" =======================================
 set go=-T         " Hide GUI toolbar
 set noerrorbells  " Don't annoy me with error bells
 set mousehide     " Hide the mouse
@@ -129,9 +129,9 @@ endfunc
 
 nnoremap <leader>rl :call RelativeLineNumberToggle()<cr>
 
-" ------------------------
+" =======================================
 " Plugin Configuration
-" ------------------------
+" =======================================
 
 " ZenCoding
 let g:user_zen_expandabbr_key = '<c-e>'
@@ -142,9 +142,9 @@ let g:ctrlp_map = '<c-s>p'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_show_hidden = 1
 
-" ------------------------
-" ------------------------
-" ------------------------
+" =======================================
+" =======================================
+" =======================================
 
 " quickfixopenall.vim
 "Author:
@@ -177,7 +177,7 @@ command! QuickFixOpenAll         call QuickFixOpenAll()
 
 " ------------------------
 " Filetype highlighting
-" ------------------------
+" =======================================
 au BufNewFile,BufRead *.thor      set filetype=ruby
 au BufNewFile,BufRead *.jbuilder  set filetype=ruby
 au BufNewFile,BufRead *.dump      set filetype=sql
@@ -187,16 +187,16 @@ au BufNewFile,BufRead *.rhtml     set filetype=eruby
 au BufNewFile,BufRead Gemfile     set filetype=ruby
 au BufNewFile,BufRead Guardfile   set filetype=ruby
 
-" ------------------------
+" =======================================
 " System Clipboard
-" ------------------------
+" =======================================
 set pastetoggle=<F2>
 vmap <C-c> y:call system("pbcopy", getreg("\""))<CR>
 imap <C-v> :call setreg("\"",system("pbpaste"))<CR>p
 
-" ------------------------
+" =======================================
 " Mappings
-" ------------------------
+" =======================================
 
 " Truncating extra whitespace
 " autocmd BufWritePre * :%s/\s\+$//e
@@ -245,7 +245,9 @@ nmap <leader>pd :!p4 delete "%";<cr>
 :nmap <leader>ev :e $MYVIMRC<cr>
 
 
-" rspec mappings
+" ==================================
+" RSpec Mappings
+" ==================================
 map <leader>c :call RunCurrentSpecFile()<cr>
 map <leader>s :call RunNearestSpec()<cr>
 map <leader>l :call RunLastSpec()<cr>
