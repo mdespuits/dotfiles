@@ -16,7 +16,6 @@ let g:mapleader = ","
 " Display
 " =======================================
 set linespace=3
-set guifont=Courier:h12
 set ruler
 set title
 set cmdheight=2
@@ -30,9 +29,10 @@ set wildignore+=*tmp/**
 " =======================================
 " Theme
 " =======================================
-set background=dark
+set background=light
+set guifont=Courier:h11
 syntax on
-colorscheme desert256
+colorscheme aqua
 
 " =======================================
 "  Vim's :! system bash
