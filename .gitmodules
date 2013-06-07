@@ -58,3 +58,6 @@
 [submodule ".vim/bundle/gist-vim"]
 	path = .vim/bundle/gist-vim
 	url = https://github.com/mattn/gist-vim.git
+[submodule ".vim/bundle/Colour-Sampler-Pack"]
+	path = .vim/bundle/Colour-Sampler-Pack
+	url = https://github.com/vim-scripts/Colour-Sampler-Pack.git
