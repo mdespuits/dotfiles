@@ -206,7 +206,7 @@ imap <C-v> :call setreg("\"",system("pbpaste"))<CR>p
 " =======================================
 
 " Truncating extra whitespace
-" autocmd BufWritePre * :%s/\s\+$//e
+autocmd BufWritePre * :%s/\s\+$//e
 
 " Global Shortcts
 nmap <space> :
