@@ -6,7 +6,7 @@ source "$DOTIFY_SCRIPTS/platform.bash"
 
 chmod -R 755 $DOTIFY_BIN;
 
-for file in $DOTIFY_SCRIPTS/*; do
+for file in $DOTIFY_SCRIPTS/**/*; do
   if [ -f "$file" ] ; then
     . "$file"
   fi
