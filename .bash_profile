@@ -9,6 +9,7 @@ export CLICOLOR=1
 export TERM=xterm-256color
 
 # Adding /url/local/bin for Homebrew
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 export PATH=/usr/local/bin:$PATH
 export PATH=~/bin:$PATH
 export DOTIFY_HOME=$HOME/.dotify

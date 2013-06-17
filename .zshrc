@@ -40,6 +40,7 @@ alias reload="source ~/.zshrc"
 # to be smart about what is included.
 export SHELL_NAME=zsh
 
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
 export DOTIFY_HOME=$HOME/.dotify
 
 # Source all scripts
