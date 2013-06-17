@@ -187,6 +187,7 @@ match OverLength /\%81v.*/
 " =======================================
 au BufNewFile,BufRead *.thor      set filetype=ruby
 au BufNewFile,BufRead *.jbuilder  set filetype=ruby
+au BufNewFile,BufRead *.tasks     set filetype=ruby
 au BufNewFile,BufRead *.dump      set filetype=sql
 au BufNewFile,BufRead *.ctp       set filetype=php
 au BufNewFile,BufRead *.erb       set filetype=eruby
