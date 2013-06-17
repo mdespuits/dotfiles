@@ -1,9 +1,9 @@
 #!/bin/bash
 
-if [ -n "$PLATFORM" ] && [ "$PLATFORM" = "mac" ]; then
-  alias vim="mvim -v"
-fi
-
+# if [ -n "$PLATFORM" ] && [ "$PLATFORM" = "mac" ]; then
+#   alias vim="mvim -v"
+# fi
+#
 alias vi="vim"
 alias edit="vi"
 alias ..="cd .."
