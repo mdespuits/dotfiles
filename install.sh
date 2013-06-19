@@ -34,6 +34,12 @@ for name in *; do
   fi
 done
 
-rm -rf ~/.vim/bundle/vundle
-git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+if [ ! -e "$HOME/.oh-my-zsh" ]; then
+  git clone https://github.com/robbyrussell/oh-my-zsh ~/.oh-my-zsh
+fi
+
+if [ ! -e "$HOME/.vim/bundle/vundle" ]; then
+  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+fi
+
 vim -u ~/.vimrc.bundles +BundleInstall +qa
