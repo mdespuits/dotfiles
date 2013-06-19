@@ -4,33 +4,11 @@
 set nocompatible        " Don't be compatible with VI
 
 " =======================================
-" Setup Vundle
+" Load Vundle File
 " =======================================
-filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-
-Bundle 'gmarik/vundle'
-
-Bundle "mattn/zencoding-vim"
-Bundle "mattn/gist-vim"
-Bundle "tpope/vim-rails"
-Bundle "tpope/vim-fugitive"
-Bundle "tpope/vim-rake"
-Bundle "tpope/vim-haml"
-Bundle "tpope/vim-surround"
-Bundle "airblade/vim-gitgutter"
-Bundle "cfcosta/html5-vim-minimal"
-Bundle "danro/rename.vim"
-Bundle "kchmck/vim-coffee-script"
-Bundle "kien/ctrlp.vim"
-Bundle "mattdbridges/bufkill.vim"
-Bundle "rking/ag.vim"
-Bundle "slim-template/vim-slim"
-Bundle "sunaku/vim-ruby-minitest"
-Bundle "vim-ruby/vim-ruby"
-Bundle "vim-scripts/Colour-Sampler-Pack"
-filetype on
+if filereadable(expand("~/.vimrc.bundles"))
+  source ~/.vimrc.bundles
+endif
 
 " =======================================
 " Leaders
