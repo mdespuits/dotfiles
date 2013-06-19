@@ -8,3 +8,5 @@
 scripts/trion-stuff
 scripts/location-specific
 .vim/ruby/command-t/Makefile
+!.vim/bundle/vundle
+.vim/bundle/*
