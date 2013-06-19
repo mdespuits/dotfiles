@@ -33,10 +33,10 @@ set wildignore+=*tmp/**
 " =======================================
 " Theme
 " =======================================
-set background=light
+set background=dark
 set guifont=Courier:h11
 syntax on
-colorscheme aqua
+colorscheme desert
 
 " =======================================
 "  Vim's :! system bash
