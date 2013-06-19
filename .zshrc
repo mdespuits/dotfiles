@@ -40,8 +40,20 @@ alias reload="source ~/.zshrc"
 # to be smart about what is included.
 export SHELL_NAME=zsh
 
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:~/bin"
 export DOTIFY_HOME=$HOME/.dotify
 
 # Source all scripts
-source $DOTIFY_HOME/setup.sh
+export DOTIFY_BIN=$DOTIFY_HOME/bin
+export DOTIFY_SCRIPTS=$DOTIFY_HOME/scripts
+export PATH="$DOTIFY_BIN:$PATH"
+
+source "$DOTIFY_SCRIPTS/platform.bash"
+
+chmod -R 755 $DOTIFY_BIN;
+
+for file in $DOTIFY_SCRIPTS/**/*; do
+  if [ -f "$file" ] ; then
+    . "$file"
+  fi
+done
