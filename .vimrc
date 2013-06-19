@@ -1,10 +1,36 @@
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-
 " =======================================
 " Basic Setup
 " =======================================
 set nocompatible        " Don't be compatible with VI
-call pathogen#infect()  " Use pathogen plugin for better plugin management
+
+" =======================================
+" Setup Vundle
+" =======================================
+filetype off
+set rtp+=~/.vim/bundle/vundle/
+call vundle#rc()
+
+Bundle 'gmarik/vundle'
+
+Bundle "mattn/zencoding-vim"
+Bundle "mattn/gist-vim"
+Bundle "tpope/vim-rails"
+Bundle "tpope/vim-fugitive"
+Bundle "tpope/vim-rake"
+Bundle "tpope/vim-haml"
+Bundle "tpope/vim-surround"
+Bundle "airblade/vim-gitgutter"
+Bundle "cfcosta/html5-vim-minimal"
+Bundle "danro/rename.vim"
+Bundle "kchmck/vim-coffee-script"
+Bundle "kien/ctrlp.vim"
+Bundle "mattdbridges/bufkill.vim"
+Bundle "rking/ag.vim"
+Bundle "slim-template/vim-slim"
+Bundle "sunaku/vim-ruby-minitest"
+Bundle "vim-ruby/vim-ruby"
+Bundle "vim-scripts/Colour-Sampler-Pack"
+filetype on
 
 " =======================================
 " Leaders
@@ -98,8 +124,7 @@ nnoremap <c-l> <c-w>l
 
 " Turn on filetype detection
 filetype on
-filetype indent on
-filetype plugin on
+filetype plugin indent on
 
 " =======================================
 " Searching
