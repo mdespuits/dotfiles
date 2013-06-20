@@ -40,11 +40,21 @@ alias reload="source ~/.zshrc"
 # to be smart about what is included.
 export SHELL_NAME=zsh
 
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:"
+export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
+export PATH=$HOME/bin:$PATH
+export PATH=$HOME/.rbenv/bin:$PATH
+
+if [ -e "/usr/local/mysql" ]; then
+  export PATH="PATH=/usr/local/mysql/bin:$PATH";
+fi
+
 export PATH="$HOME/.bin:$PATH"
 
-# Source all scripts
-export PATH="$DOTIFY_BIN:$PATH"
+# Set vim to be primary editor
+export EDITOR='vi'
+
+# Always prefer Ruby 1.9 in jRuby
+export JRUBY_OPTS='--1.9'
 
 source "$HOME/.scripts/platform.bash"
 
