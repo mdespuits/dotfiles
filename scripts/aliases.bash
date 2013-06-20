@@ -25,5 +25,3 @@ alias wget='wget -c'
 
 # Annotate alias. Defaults are stupid
 alias annotate="annotate -p before -e tests"
-
-alias postgres_fix="sudo sysctl -w kern.sysv.shmall=65536 && sudo sysctl -w kern.sysv.shmmax=16777216"
