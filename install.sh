@@ -35,11 +35,16 @@ for name in *; do
 done
 
 if [ ! -e "$HOME/.oh-my-zsh" ]; then
-  git clone https://github.com/robbyrussell/oh-my-zsh ~/.oh-my-zsh
+  echo "Installing oh-my-zsh..."
+  git clone https://github.com/robbyrussell/oh-my-zsh ~/.oh-my-zsh > /dev/null
 fi
 
 if [ ! -e "$HOME/.vim/bundle/vundle" ]; then
-  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle
+  echo "Cloning oh-my-zsh..."
+  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle > /dev/null
 fi
 
-vim -u ~/.vimrc.bundles +BundleInstall +qa
+echo "Installing vundles...";
+vim -e -s -u ~/.vimrc.bundles +BundleInstall +qa
+
+echo "Done!"
