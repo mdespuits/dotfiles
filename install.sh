@@ -36,15 +36,15 @@ done
 
 if [ ! -e "$HOME/.oh-my-zsh" ]; then
   echo "Installing oh-my-zsh..."
-  git clone https://github.com/robbyrussell/oh-my-zsh ~/.oh-my-zsh > /dev/null
+  git clone https://github.com/robbyrussell/oh-my-zsh ~/.oh-my-zsh &> /dev/null
 fi
 
 if [ ! -e "$HOME/.vim/bundle/vundle" ]; then
-  echo "Cloning oh-my-zsh..."
-  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle > /dev/null
+  echo "Installing Vundle..."
+  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle &> /dev/null
 fi
 
-echo "Installing vundles...";
+echo "Installing vim bundles...";
 vim -e -s -u ~/.vimrc.bundles +BundleInstall +qa
 
 echo "Done!"
