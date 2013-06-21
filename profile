@@ -19,15 +19,11 @@ fi
 # PATH info
 # =================================
 
-export PATH="/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin"
-export PATH=$HOME/bin:$PATH
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+export PATH=/usr/local/mysql/bin:$PATH
 export PATH=$HOME/.rbenv/bin:$PATH
-
-if [ -e "/usr/local/mysql" ]; then
-  export PATH="PATH=/usr/local/mysql/bin:$PATH";
-fi
-
-export PATH="$HOME/.bin:$PATH"
+export PATH=$HOME/bin:$PATH
+export PATH=$HOME/.bin:$PATH
 
 # =================================
 # General Environment
