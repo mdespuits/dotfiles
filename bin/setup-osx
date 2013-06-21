@@ -15,7 +15,7 @@ TTY="/dev/$( ps -p$$ -o tty | tail -1 | awk '{print$1}' )"
 # General UI/UX                                                               #
 ###############################################################################
 
-read -p "*** Do you want to alter the computer's name, host, or local name?[y/n]? " ALTER_COMPUTER_NAME < $TTY
+read -p "*** Do you want to alter the computer's name, host, or local name?[y/n] " ALTER_COMPUTER_NAME < $TTY
 
 if [[ $ALTER_COMPUTER_NAME == "y" ]]; then
   read -p "*** What do you want to call the computer? " COMPUTER_NAME < $TTY
@@ -528,7 +528,7 @@ defaults write com.google.Chrome.canary ExtensionInstallSources -array "https://
 # Transmission.app                                                            #
 ###############################################################################
 
-read -p "*** Do you have Transmission.app installed?[y/n]? " TRANSMISSION_APP_INSTALLED < $TTY
+read -p "*** Do you have Transmission.app installed?[y/n] " TRANSMISSION_APP_INSTALLED < $TTY
 
 if [[ $TRANSMISSION_APP_INSTALLED == "y" ]]; then
   # Use `~/Documents/Torrents` to store incomplete downloads
@@ -551,7 +551,7 @@ fi
 # Twitter.app                                                                 #
 ###############################################################################
 
-read -p "*** Do you have Twitter.app installed?[y/n]? " TWITTER_APP_INSTALLED < $TTY
+read -p "*** Do you have Twitter.app installed?[y/n] " TWITTER_APP_INSTALLED < $TTY
 
 if [[ $TWITTER_APP_INSTALLED == "y" ]]; then
   # Disable smart quotes as it’s annoying for code tweets
