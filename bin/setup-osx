@@ -525,58 +525,56 @@ defaults write com.google.Chrome ExtensionInstallSources -array "https://*.githu
 defaults write com.google.Chrome.canary ExtensionInstallSources -array "https://*.github.com/*" "http://userscripts.org/*"
 
 ###############################################################################
-# SizeUp.app                                                                  #
-###############################################################################
-
-# Start SizeUp at login
-defaults write com.irradiatedsoftware.SizeUp StartAtLogin -bool true
-
-# Don’t show the preferences window on next start
-defaults write com.irradiatedsoftware.SizeUp ShowPrefsOnNextStart -bool false
-
-###############################################################################
 # Transmission.app                                                            #
 ###############################################################################
 
-# Use `~/Documents/Torrents` to store incomplete downloads
-defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
-defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Documents/Torrents"
+read -p "*** Do you have Transmission.app installed?[y/n]? " TRANSMISSION_APP_INSTALLED < $TTY
 
-# Don’t prompt for confirmation before downloading
-defaults write org.m0k.transmission DownloadAsk -bool false
+if [[ $TRANSMISSION_APP_INSTALLED == "y" ]]; then
+  # Use `~/Documents/Torrents` to store incomplete downloads
+  defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
+  defaults write org.m0k.transmission IncompleteDownloadFolder -string "${HOME}/Documents/Torrents"
 
-# Trash original torrent files
-defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
+  # Don’t prompt for confirmation before downloading
+  defaults write org.m0k.transmission DownloadAsk -bool false
 
-# Hide the donate message
-defaults write org.m0k.transmission WarningDonate -bool false
-# Hide the legal disclaimer
-defaults write org.m0k.transmission WarningLegal -bool false
+  # Trash original torrent files
+  defaults write org.m0k.transmission DeleteOriginalTorrent -bool true
+
+  # Hide the donate message
+  defaults write org.m0k.transmission WarningDonate -bool false
+  # Hide the legal disclaimer
+  defaults write org.m0k.transmission WarningLegal -bool false
+fi
 
 ###############################################################################
 # Twitter.app                                                                 #
 ###############################################################################
 
-# Disable smart quotes as it’s annoying for code tweets
-defaults write com.twitter.twitter-mac AutomaticQuoteSubstitutionEnabled -bool false
+read -p "*** Do you have Twitter.app installed?[y/n]? " TWITTER_APP_INSTALLED < $TTY
 
-# Show the app window when clicking the menu icon
-defaults write com.twitter.twitter-mac MenuItemBehavior -int 1
+if [[ $TWITTER_APP_INSTALLED == "y" ]]; then
+  # Disable smart quotes as it’s annoying for code tweets
+  defaults write com.twitter.twitter-mac AutomaticQuoteSubstitutionEnabled -bool false
 
-# Enable the hidden ‘Develop’ menu
-defaults write com.twitter.twitter-mac ShowDevelopMenu -bool true
+  # Show the app window when clicking the menu icon
+  defaults write com.twitter.twitter-mac MenuItemBehavior -int 1
 
-# Open links in the background
-defaults write com.twitter.twitter-mac openLinksInBackground -bool true
+  # Enable the hidden ‘Develop’ menu
+  defaults write com.twitter.twitter-mac ShowDevelopMenu -bool true
 
-# Allow closing the ‘new tweet’ window by pressing `Esc`
-defaults write com.twitter.twitter-mac ESCClosesComposeWindow -bool true
+  # Open links in the background
+  defaults write com.twitter.twitter-mac openLinksInBackground -bool true
 
-# Show full names rather than Twitter handles
-defaults write com.twitter.twitter-mac ShowFullNames -bool true
+  # Allow closing the ‘new tweet’ window by pressing `Esc`
+  defaults write com.twitter.twitter-mac ESCClosesComposeWindow -bool true
 
-# Hide the app in the background if it’s not the front-most window
-defaults write com.twitter.twitter-mac HideInBackground -bool true
+  # Show full names rather than Twitter handles
+  defaults write com.twitter.twitter-mac ShowFullNames -bool true
+
+  # Hide the app in the background if it’s not the front-most window
+  defaults write com.twitter.twitter-mac HideInBackground -bool true
+fi
 
 ###############################################################################
 # Kill affected applications                                                  #
