@@ -24,6 +24,7 @@ Bundle "slim-template/vim-slim"
 Bundle "sunaku/vim-ruby-minitest"
 Bundle "vim-ruby/vim-ruby"
 Bundle "vim-scripts/Colour-Sampler-Pack"
+Bundle "Lokaltog/vim-powerline"
 
 Bundle 'bufkill.vim'
 Bundle "vim-coffee-script"
