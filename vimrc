@@ -34,7 +34,7 @@ set wildignore+=*tmp/**
 " Theme
 " =======================================
 set background=dark
-set guifont=Courier:h11
+set guifont=Courier
 syntax on
 colorscheme desert
 
