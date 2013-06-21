@@ -34,6 +34,16 @@ for name in *; do
   fi
 done
 
+if [ ! -e "$HOME/.local" ]; then
+  local="$HOME/.local"
+  echo "Creating $local for local config"
+  touch "$local"
+  echo "# Per-system config" >> $local
+  echo "#" >> $local
+  echo "# Your local system config goes here" >> $local
+  echo "# to avoid contaminating your dotfiles repository" >> $local
+fi
+
 if [ ! -e "$HOME/.oh-my-zsh" ]; then
   echo "Installing oh-my-zsh..."
   git clone https://github.com/robbyrussell/oh-my-zsh ~/.oh-my-zsh &> /dev/null
