@@ -25,6 +25,9 @@
   emails = ! git log --all --format='%cE' | sort -u
   standup = ! git log --since yesterday --author `git config user.email` --pretty=short
 
+  # Master is now a verb
+  master = checkout master
+
   # Pushing and pulling
   ps = push
 
