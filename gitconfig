@@ -12,27 +12,24 @@
 [alias]
   # Favorites
   c = commit
-  s = status
+  s = status -sb
   a = add
   b = branch
   r = reset
   m = merge
   aa = add --all
-  ra = reset .
+  ra = reset --all
 
   # Emails and Authors
   authors = ! git log --all --format='%aN' | sort -u
   emails = ! git log --all --format='%cE' | sort -u
+  standup = ! git log --since yesterday --author `git config user.email` --pretty=short
 
   # Pushing and pulling
   ps = push
-  f = fetch
-  pl = pull
-  pom = pull origin master
 
   # Just for fun
   praise = blame
-  rollback = reset –hard HEAD@{1}
 
   # Committing
   amend = commit --amend
@@ -44,13 +41,13 @@
   # Logging and diffing aliases
   d = diff
   ds = diff --staged
-  lg = log -p
-  lgs = log --pretty='format:%C(yellow)%h%C(cyan)%Creset was %C(cyan)%an%C(white), %ar, message: %s%Creset'
+  lgs = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
   lol = log --graph --decorate --pretty=oneline --abbrev-commit
   graph = log --graph --pretty='format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(blue){%an}%Creset' --abbrev-commit --date=relative
 
-  # Remove and re-stage the last commit
+  # Amending and resetting
   fixlast = reset --soft HEAD^
+  rollback = reset –hard HEAD@{1}
 
   # Diff of current branch to other branches.
   # Hope to move these into their own shell scripts
