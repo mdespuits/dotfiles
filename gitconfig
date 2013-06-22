@@ -35,7 +35,7 @@
   praise = blame
 
   # Committing
-  amend = commit --amend
+  amend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
   cm = commit -m
   cam = commit -a -m
   co = checkout
