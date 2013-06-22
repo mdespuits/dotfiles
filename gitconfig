@@ -25,6 +25,9 @@
   emails = ! git log --all --format='%cE' | sort -u
   standup = ! git log --since yesterday --author `git config user.email` --pretty=short
 
+  # Don't Repeat Yourself
+  this = ! git init && git add . && git commit -m "initial commit"
+
   # Master is now a verb
   master = checkout master
 
