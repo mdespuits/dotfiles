@@ -207,18 +207,26 @@ vmap <C-c> y:call system("pbcopy", getreg("\""))<CR>
 imap <C-v> :call setreg("\"",system("pbpaste"))<CR>p
 
 " =======================================
+" =======================================
+" =======================================
 " Mappings
+" =======================================
+" =======================================
 " =======================================
 
 " Truncating extra whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 
+" =======================================
 " Global Shortcts
+" =======================================
 nmap <space> :
 nmap <space>w :w!<cr>
 imap jk <Esc>
 
+" =======================================
 " Buffer navigation
+" =======================================
 nmap :bs :buffers
 nmap <leader>bs :bs<cr>
 nmap <c-n> :bn<cr>
@@ -226,12 +234,16 @@ nmap <c-p> :bp<cr>
 nmap <leader>w :bd<cr>
 nmap <c-w> :BD<cr>
 
+" =======================================
 " File shortcuts
+" =======================================
 nmap <leader>r :edit<cr>
 nmap <leader>s :sp<cr>
 nmap <leader>v :vsplit<cr>
 
+" =======================================
 " Still use commonly mistyped commands
+" =======================================
 nmap :W :w
 nmap :W! :w!
 nmap :Q :q
@@ -239,27 +251,35 @@ nmap :Q! :q!
 nmap :Wq! :wq!
 nmap :WQ! :wq!
 
+" =======================================
 " A few convenient shortcuts
+" =======================================
 nmap :one :on
 nmap :rhs :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<cr>
 nmap :clear :bufdo bdelete<cr>
 nmap <c-s-t> :%s/\s\+$//<cr>
 nmap <leader>rt :retab<cr>
 
+" =======================================
 " Perforce commands
+" =======================================
 nmap <leader>pe :!p4 edit "%";<cr>
 nmap <leader>pa :!p4 add "%";<cr>
 nmap <leader>pr :!p4 revert "%";<cr>
 nmap <leader>pd :!p4 delete "%";<cr>
 
-" Editing the vimrc file
+" =======================================
+" Managing .vimrc
+" =======================================
 :nmap <leader>m :source $MYVIMRC<cr>
 :nmap <leader>ev :e $MYVIMRC<cr>
 
 
-" ==================================
+" =======================================
+" =======================================
+" =======================================
 " RSpec Mappings
-" ==================================
+"
 map <leader>c :call RunCurrentSpecFile()<cr>
 map <leader>s :call RunNearestSpec()<cr>
 map <leader>l :call RunLastSpec()<cr>
@@ -297,3 +317,7 @@ endfunction
 function! RunSpecs(command)
   execute ":w\|!clear && echo " . a:command . " && echo && " . a:command
 endfunction
+
+" =======================================
+" =======================================
+" =======================================
