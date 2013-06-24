@@ -97,8 +97,8 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
-" nnoremap <c-s-h> :tabnext<cr>
-" nnoremap <c-s-l> :tabprev<cr>
+nnoremap <c-s-h> :tabnext<cr>
+nnoremap <c-s-l> :tabprev<cr>
 
 " Turn on filetype detection
 filetype on
