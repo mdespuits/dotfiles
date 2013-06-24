@@ -106,4 +106,4 @@ fi
 # Hub -> Git
 # =================================
 
-if which hub > /dev/null; then eval "$(hub alias -s)"; fi
+# if which hub > /dev/null; then eval "$(hub alias -s)"; fi
