@@ -22,7 +22,7 @@ let g:mapleader = ","
 set linespace=3
 set ruler
 set title
-set cmdheight=2
+set cmdheight=1
 set winwidth=79
 set showtabline=2
 
