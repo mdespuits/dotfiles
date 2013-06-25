@@ -38,29 +38,10 @@ then
 fi
 
 # =================================
-# Aliases
+# Ruby-Specific Opts
 # =================================
 
-# alias vim="mvim -v"
-alias annotate="annotate -p before -e tests" # Annotate alias. Defaults are stupid
-alias vi="vim"
-alias edit="vi"
-alias ..="cd .."
-alias ...="cd ../.."
-alias empty="cat /dev/null >"
-alias back="cd -"
-alias be="bundle exec"
-alias gs="git s"
-alias gd="git d"
-alias fastping='ping -c 5 -s 1' # ping really fast ;)
-alias ll="ls -la"
-alias mkdir="mkdir -pv"
-alias ping='ping -c 5' # ping only 5 times
-alias s="rspec"
-alias t="ruby -Itest"
-alias z="zeus"
-alias c="clear"
-alias wget='wget -c'
+export JRUBY_OPTS='--1.9'   # Always prefer Ruby 1.9 in jRuby
 
 # =================================
 # Linux

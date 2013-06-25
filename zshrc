@@ -36,5 +36,10 @@ if [ -e "$HOME/.local" ]; then
   source "$HOME/.local"
 fi
 
+# Aliases
+if [ -e "$HOME/.aliases" ]; then
+  source "$HOME/.aliases"
+fi
+
 # Bin files from this repo should be executable
 chmod -R 755 $HOME/.bin;

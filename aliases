@@ -1,0 +1,28 @@
+# =================================
+# Aliases
+# =================================
+
+# Navigation
+alias ..="cd .."
+alias ...="cd ../.."
+alias back="cd -"
+alias ll="ls -la"
+alias mkdir="mkdir -pv"
+
+# Editing
+alias edit=$EDITOR
+
+# Development
+alias be="bundle exec"
+alias fastping='ping -c 5 -s 1' # ping really fast ;)
+alias ping='ping -c 5' # ping only 5 times
+alias wget='wget -c'
+alias annotate="annotate -p before -e tests" # Annotate alias. Defaults are stupid
+
+# Git
+alias gs="git status"
+alias gd="git diff"
+alias gds="git diff --staged"
+
+# Typing errors...
+alias 'cd..=cd ..'
