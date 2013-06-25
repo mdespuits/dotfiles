@@ -29,9 +29,13 @@ export PATH=$HOME/.bin:$PATH
 # General Environment
 # =================================
 
-export VISUAL=vim
-export EDITOR=$VISUAL       # Set vim to be primary editor
-export JRUBY_OPTS='--1.9'   # Always prefer Ruby 1.9 in jRuby
+# VIM!
+if [[ -x $(which vim 2> /dev/null) ]]
+then
+  export EDITOR="VIM"
+  export USE_EDITOR=$EDITOR
+  export VISUAL=$EDITOR
+fi
 
 # =================================
 # Aliases
