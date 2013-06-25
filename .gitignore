@@ -5,8 +5,4 @@
 *.netrwhist
 /pkg
 *.VimballRecord
-scripts/trion-stuff
-scripts/location-specific
-.vim/ruby/command-t/Makefile
-!vim/bundle/.keep
 vim/bundle/*
