@@ -2,6 +2,10 @@
 # Aliases
 # =================================
 
+# Reload the shell
+alias reload="exec $SHELL -l"
+alias reload!=reload
+
 # Navigation
 alias ..="cd .."
 alias ...="cd ../.."

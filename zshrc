@@ -47,10 +47,6 @@ export PATH=$HOME/.rbenv/bin:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.bin:$PATH
 
-
-alias reload="exec $SHELL -l"
-alias reload!=reload
-
 # source "$HOME/.scripts/git-completion.bash"
 source "$HOME/.profile"
 
