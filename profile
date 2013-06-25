@@ -16,16 +16,6 @@ elif [[ $unamestr == 'Darwin' ]]; then
 fi
 
 # =================================
-# PATH info
-# =================================
-
-export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
-export PATH=/usr/local/mysql/bin:$PATH
-export PATH=$HOME/.rbenv/bin:$PATH
-export PATH=$HOME/bin:$PATH
-export PATH=$HOME/.bin:$PATH
-
-# =================================
 # General Environment
 # =================================
 

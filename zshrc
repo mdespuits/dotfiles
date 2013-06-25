@@ -34,8 +34,19 @@ setopt HIST_VERIFY
 # Enable extended globbing
 setopt EXTENDED_GLOB
 
-# Keep TONS of history
-export HISTSIZE=4096
+# Don’t write over existing files with >, use >! instead
+setopt NOCLOBBER
+
+# =================================
+# PATH info
+# =================================
+
+export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
+export PATH=/usr/local/mysql/bin:$PATH
+export PATH=$HOME/.rbenv/bin:$PATH
+export PATH=$HOME/bin:$PATH
+export PATH=$HOME/.bin:$PATH
+
 
 alias reload="source ~/.zshrc"
 
