@@ -1,6 +1,6 @@
 #!/usr/bin/env ruby
 
-EMOTICONS = %w[ (happy) (L) (inlove) (kiss) (hug) (sun) ]
+EMOTICONS = %w[ (happy) (L) (inlove) :* (sun) ]
 
 chosen = EMOTICONS.sample(rand(2..EMOTICONS.length))
 min_lines = 45
