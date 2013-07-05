@@ -45,3 +45,6 @@ fi
 
 # Bin files from this repo should be executable
 chmod -R 755 $HOME/.bin;
+
+### Added by the Heroku Toolbelt
+export PATH="/usr/local/heroku/bin:$PATH"
