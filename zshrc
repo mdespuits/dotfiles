@@ -36,6 +36,7 @@ source $ZSH/oh-my-zsh.sh
 alias reload="source ~/.zshrc"
 
 source "$HOME/.scripts/git-completion.bash"
+source "$HOME/.aliases"
 source "$HOME/.profile"
 
 # Source local config file if it exists
