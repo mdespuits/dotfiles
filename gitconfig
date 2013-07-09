@@ -63,8 +63,7 @@
   npr = log origin/master.. --oneline # Diff from remote master
 [url "git@heroku.com:"]
   insteadOf = heroku:
-[url "git://github.com/"]
-  # Read-only
+[url "https://github.com/"]
   insteadOf = gh:
 [url "git@github.com:"]
   # With write access
