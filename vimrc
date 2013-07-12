@@ -75,15 +75,16 @@ map <Right> <Nop>
 map <Up> <Nop>
 map <Down> <Nop>
 
+" =======================================
 " History Length
+" =======================================
 set history=30
 
 " =======================================
 " Files
 " =======================================
 "
-" Don't backup. Already using
-" other forms of verion control.
+" Don't backup. Already using other forms of verion control.
 set nobackup
 set nowb
 set noswapfile
@@ -100,7 +101,9 @@ nnoremap <c-l> <c-w>l
 " nnoremap <c-s-h> :tabnext<cr>
 " nnoremap <c-s-l> :tabprev<cr>
 
-" Turn on filetype detection
+" =======================================
+" Filetype detection
+" =======================================
 filetype on
 filetype plugin indent on
 
@@ -137,9 +140,11 @@ nnoremap <leader>rl :call RelativeLineNumberToggle()<cr>
 " Plugin Configuration
 " =======================================
 
-" ZenCoding
+" ---------------------------------------
+" -- ZenCoding
 let g:user_zen_expandabbr_key = '<c-e>'
 
+" ---------------------------------------
 " -- ctrlp.vim
 nnoremap <silent> <Leader>t :CtrlP<CR>
 " let g:ctrlp_cmd = 'CtrlP'
