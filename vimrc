@@ -23,8 +23,9 @@ set linespace=3
 set ruler
 set title
 set cmdheight=1
-set winwidth=79
 set showtabline=2
+set winwidth=88
+set colorcolumn=80
 
 set list listchars=tab:»·,trail:·
 
@@ -150,12 +151,6 @@ nnoremap <silent> <Leader>t :CtrlP<CR>
 " let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_root_markers = ['Gemfile']
-
-" =======================================
-" Show 80 character line length
-" =======================================
-highlight OverLength ctermbg=red ctermfg=white guibg=#592929
-match OverLength /\%81v.*/
 
 " =======================================
 " Filetype highlighting
