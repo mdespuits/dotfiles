@@ -9,7 +9,6 @@ call vundle#rc()
 Bundle 'gmarik/vundle'
 
 " Defined bundles via Github repos
-Bundle "mattn/gist-vim"
 Bundle "tpope/vim-rails"
 Bundle "tpope/vim-fugitive"
 Bundle "tpope/vim-rake"
