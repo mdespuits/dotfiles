@@ -18,7 +18,7 @@
   r = reset
   m = merge
   aa = add --all
-  ra = reset --all
+  ra = reset .
 
   # Emails and Authors
   authors = ! git log --all --format='%aN' | sort -u
