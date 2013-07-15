@@ -17,7 +17,7 @@
   b = branch
   r = reset
   m = merge
-  aa = add --all
+  aa = add .
   ra = reset .
 
   # Emails and Authors
