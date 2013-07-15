@@ -124,7 +124,7 @@ set mousehide     " Hide the mouse
 set splitbelow    " When splitting, set new file on the bottom
 set hidden        " Hide hidden files
 set number        " Show line numbers
-" set numberwidth=1 " Line number width
+set numberwidth=1 " Line number width
 
 function! RelativeLineNumberToggle()
   if(&relativenumber == 1)
