@@ -24,8 +24,9 @@ set ruler
 set title
 set cmdheight=1
 set showtabline=2
-set winwidth=88
+set winwidth=100
 set colorcolumn=80
+set nowrap
 
 set list listchars=tab:»·,trail:·
 
