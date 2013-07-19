@@ -230,10 +230,10 @@ nmap <leader>rt :retab<cr>
 " =======================================
 " Perforce commands
 " =======================================
-nmap <leader>pe :!p4 edit "%";<cr>
-nmap <leader>pa :!p4 add "%";<cr>
-nmap <leader>pr :!p4 revert "%";<cr>
-nmap <leader>pd :!p4 delete "%";<cr>
+" nmap <leader>pe :!p4 edit "%";<cr>
+" nmap <leader>pa :!p4 add "%";<cr>
+" nmap <leader>pr :!p4 revert "%";<cr>
+" nmap <leader>pd :!p4 delete "%";<cr>
 
 " =======================================
 " Managing .vimrc
