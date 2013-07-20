@@ -100,6 +100,8 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
+nnoremap <c-n> :bn<cr>
+nnoremap <c-p> :bp<cr>
 " nnoremap <c-s-h> :tabnext<cr>
 " nnoremap <c-s-l> :tabprev<cr>
 
@@ -196,8 +198,6 @@ imap jk <Esc>
 " =======================================
 nmap :bs :buffers
 nmap <leader>bs :bs<cr>
-nmap <c-n> :bn<cr>
-nmap <c-p> :bp<cr>
 nmap <leader>w :bd<cr>
 nmap <c-w> :BD<cr>
 
