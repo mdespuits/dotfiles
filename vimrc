@@ -150,8 +150,8 @@ let g:user_zen_expandabbr_key = '<c-e>'
 
 " ---------------------------------------
 " -- ctrlp.vim
-nnoremap <silent> <Leader>t :CtrlP<CR>
-" let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_regexp = 1
+let g:ctrlp_map = '<leader>t'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_root_markers = ['Gemfile']
 
