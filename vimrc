@@ -238,8 +238,8 @@ nmap <leader>rt :retab<cr>
 " =======================================
 " Managing .vimrc
 " =======================================
-:nmap <leader>m :source $MYVIMRC<cr>
-:nmap <leader>ev :e $MYVIMRC<cr>
+nmap <leader>m :source $MYVIMRC<cr>
+nmap <leader>ev :e $MYVIMRC<cr>
 
 
 " =======================================
