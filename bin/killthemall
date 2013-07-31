@@ -1,7 +1,8 @@
 #!/bin/sh
 #
-# Find and replace by a given list of files.
+# Kill all processes matching the given name
 #
-# replace foo bar **/*.rb
+# killthemall vim
+# killthemall ruby
 
 pgrep $1 | xargs kill -9
