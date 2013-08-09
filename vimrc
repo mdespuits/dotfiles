@@ -171,9 +171,8 @@ au BufNewFile,BufRead Guardfile   set filetype=ruby
 " =======================================
 " System Clipboard
 " =======================================
+set clipboard=unnamed
 set pastetoggle=<F2>
-vmap <C-c> y:call system("pbcopy", getreg("\""))<CR>
-imap <C-v> :call setreg("\"",system("pbpaste"))<CR>p
 
 " =======================================
 " =======================================
