@@ -148,6 +148,14 @@ nnoremap <leader>rl :call RelativeLineNumberToggle()<cr>
 " -- ZenCoding
 let g:user_zen_expandabbr_key = '<c-e>'
 
+
+" ---------------------------------------
+" -- vim-rspec
+map <leader>c :call RunCurrentSpecFile()<CR>
+map <leader>s :call RunNearestSpec()<CR>
+map <leader>l :call RunLastSpec()<CR>
+map <leader>a :call RunAllSpecs()<CR>
+
 " ---------------------------------------
 " -- ctrlp.vim
 let g:ctrlp_regexp = 1
