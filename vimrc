@@ -198,7 +198,6 @@ imap jk <Esc>
 nmap :bs :buffers
 nmap <leader>bs :bs<cr>
 nmap <leader>w :bd<cr>
-nmap <c-w> :BD<cr>
 
 " =======================================
 " File shortcuts
