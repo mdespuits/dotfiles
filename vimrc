@@ -152,7 +152,7 @@ let g:user_zen_expandabbr_key = '<c-e>'
 " ---------------------------------------
 " -- vim-rspec
 map <leader>c :call RunCurrentSpecFile()<CR>
-map <leader>s :call RunNearestSpec()<CR>
+map <leader>n :call RunNearestSpec()<CR>
 map <leader>l :call RunLastSpec()<CR>
 map <leader>a :call RunAllSpecs()<CR>
 
