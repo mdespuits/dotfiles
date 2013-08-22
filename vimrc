@@ -228,7 +228,7 @@ nmap :WQ! :wq!
 " A few convenient shortcuts
 " =======================================
 nmap :one :on
-nmap :rhs :%s/:\([^ ]*\)\(\s*\)=>/\1:/g<cr>
+nmap :rhs :%s/:\([^ ]*\)\(\s*\)=>/\1: /g<cr>
 nmap :clear :bufdo bdelete<cr>
 nmap <c-s-t> :%s/\s\+$//<cr>
 nmap <leader>rt :retab<cr>
