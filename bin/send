@@ -1,0 +1,18 @@
+#!/bin/sh
+#
+# Send files over the network using netcat
+#
+# On machine with file:
+#
+#     send file.zip
+#
+# On machine to receive the file:
+#
+#     listen <host-machine-ip> file.zip
+
+ip_address=$1
+shift
+file_name=$1
+shift
+
+nc $ip_address 5566 < $file_name
