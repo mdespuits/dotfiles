@@ -2,13 +2,13 @@
 #
 # Send files over the network using netcat
 #
-# On machine with file:
-#
-#     send file.zip
-#
 # On machine to receive the file:
 #
-#     listen <host-machine-ip> file.zip
+#     receive file.zip
+#
+# On machine with file:
+#
+#     send <host-machine-ip> file.zip
 
 ip_address=$1
 shift
