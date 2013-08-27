@@ -15,4 +15,6 @@ shift
 file_name=$1
 shift
 
+echo "Sending $file_name..."
+
 nc $ip_address 5566 < $file_name

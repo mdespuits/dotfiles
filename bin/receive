@@ -10,7 +10,10 @@
 #
 #     listen <host-machine-ip> file.zip
 
-file_to_send=$1
+file_to_receive=$1
 
-nc -l 5566 > $file_to_send
+echo "Waiting to receive $file_name..."
 
+nc -l 5566 > $file_to_receive
+
+echo "Received $file_to_receive!"
