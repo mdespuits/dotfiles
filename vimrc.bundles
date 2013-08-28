@@ -28,7 +28,6 @@ Bundle "elixir-lang/vim-elixir"
 Bundle "vim-scripts/Colour-Sampler-Pack"
 Bundle "Lokaltog/vim-powerline"
 
-Bundle 'bufkill.vim'
 Bundle "vim-coffee-script"
 Bundle 'ZenCoding.vim'
 
