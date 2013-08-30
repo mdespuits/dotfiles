@@ -133,8 +133,10 @@ set numberwidth=1 " Line number width
 
 function! RelativeLineNumberToggle()
   if(&relativenumber == 1)
+    set norelativenumber
     set number
   else
+    set nonumber
     set relativenumber
   endif
 endfunc
