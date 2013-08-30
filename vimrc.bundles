@@ -29,6 +29,6 @@ Bundle "vim-scripts/Colour-Sampler-Pack"
 Bundle "Lokaltog/vim-powerline"
 
 Bundle "vim-coffee-script"
-Bundle 'ZenCoding.vim'
+Bundle 'Emmet.vim'
 
 filetype on

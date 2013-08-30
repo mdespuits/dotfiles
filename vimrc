@@ -147,7 +147,7 @@ nnoremap <leader>rl :call RelativeLineNumberToggle()<cr>
 
 " ---------------------------------------
 " -- ZenCoding
-let g:user_zen_expandabbr_key = '<c-e>'
+let g:user_emmet_expandabbr_key = '<c-e>'
 
 
 " ---------------------------------------
