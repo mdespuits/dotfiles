@@ -49,9 +49,6 @@ chmod -R 755 $HOME/.bin;
 
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
-# Add the following to your ~/.bashrc or ~/.zshrc
-#
-# Alternatively, copy/symlink this file and source in your shell.  See `hitch --setup-path`.
 
 hitch() {
   command hitch "$@"
