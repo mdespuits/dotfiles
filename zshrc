@@ -33,7 +33,7 @@ source $ZSH/oh-my-zsh.sh
 ## Now...customize to your pleasure
 ###################################
 
-alias reload="source ~/.zshrc"
+alias reload="exec $SHELL -l"
 
 source "$HOME/.scripts/git-completion.bash"
 source "$HOME/.aliases"
