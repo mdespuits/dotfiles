@@ -24,3 +24,6 @@ alias t="ruby -Itest"
 alias z="zeus"
 alias c="clear"
 alias wget='wget -c'
+
+# Include custom aliases
+[[ -f ~/.aliases.local ]] && source ~/.aliases.local

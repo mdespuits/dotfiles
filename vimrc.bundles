@@ -31,4 +31,8 @@ Bundle "Lokaltog/vim-powerline"
 Bundle "vim-coffee-script"
 Bundle 'Emmet.vim'
 
+if filereadable(expand("~/.vimrc.bundles.local"))
+  source ~/.vimrc.bundles.local
+endif
+
 filetype on

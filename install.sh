@@ -6,21 +6,7 @@ for name in *; do
   target="$HOME/.$name"
   if [ -e "$target" ]; then
     if [ ! -L "$target" ]; then
-      cutline=`grep -n -m1 "$cutstring" "$target" | sed "s/:.*//"`
-      if [ -n "$cutline" ]; then
-        cutline=$((cutline-1))
-        echo "Updating $target"
-        head -n $cutline "$target" > update_tmp
-        startline=`sed '1!G;h;$!d' "$name" | grep -n -m1 "$cutstring" | sed "s/:.*//"`
-        if [ -n "$startline" ]; then
-          tail -n $startline "$name" >> update_tmp
-        else
-          cat "$name" >> update_tmp
-        fi
-        mv update_tmp "$target"
-      else
-        echo "WARNING: $target exists but is not a symlink."
-      fi
+      echo "WARNING: $target exists but is not a symlink."
     fi
   else
     if [ "$name" != 'install.sh' ] && [ "$name" != 'README.md' ] && [ "$name" != 'uninstall.sh' ]; then
@@ -33,16 +19,6 @@ for name in *; do
     fi
   fi
 done
-
-if [ ! -e "$HOME/.local" ]; then
-  local="$HOME/.local"
-  echo "Creating $local for local config"
-  touch "$local"
-  echo "# Per-system config" >> $local
-  echo "#" >> $local
-  echo "# Your local system config goes here" >> $local
-  echo "# to avoid contaminating your dotfiles repository" >> $local
-fi
 
 if [ ! -e "$HOME/.oh-my-zsh" ]; then
   echo "Installing oh-my-zsh..."

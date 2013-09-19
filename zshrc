@@ -39,11 +39,6 @@ source "$HOME/.scripts/git-completion.bash"
 source "$HOME/.aliases"
 source "$HOME/.profile"
 
-# Source local config file if it exists
-if [ -e "$HOME/.local" ]; then
-  source "$HOME/.local"
-fi
-
 # Bin files from this repo should be executable
 chmod -R 755 $HOME/.bin;
 
@@ -65,3 +60,6 @@ gif-ify() {
     echo "proper usage: gif-ify <input_movie.mov> <output_file.gif>. You DO need to include extensions."
   fi
 }
+
+# Local config
+[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
