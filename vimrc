@@ -151,6 +151,10 @@ nnoremap <leader>rl :call RelativeLineNumberToggle()<cr>
 " -- ZenCoding
 let g:user_emmet_expandabbr_key = '<c-e>'
 
+" ---------------------------------------
+" -- syntastic
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=1
 
 " ---------------------------------------
 " -- vim-rspec
@@ -178,6 +182,8 @@ au BufNewFile,BufRead *.erb       set filetype=eruby
 au BufNewFile,BufRead *.rhtml     set filetype=eruby
 au BufNewFile,BufRead Gemfile     set filetype=ruby
 au BufNewFile,BufRead Guardfile   set filetype=ruby
+
+au FileType GO setlocal shiftwidth=2 tabstop=2 noexpandtab
 
 " =======================================
 " System Clipboard

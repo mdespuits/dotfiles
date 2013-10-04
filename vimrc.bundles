@@ -27,6 +27,8 @@ Bundle "vim-ruby/vim-ruby"
 Bundle "elixir-lang/vim-elixir"
 Bundle "vim-scripts/Colour-Sampler-Pack"
 Bundle "Lokaltog/vim-powerline"
+Bundle "uggedal/go-vim"
+Bundle "scrooloose/syntastic"
 
 Bundle "vim-coffee-script"
 Bundle 'Emmet.vim'
