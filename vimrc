@@ -175,6 +175,7 @@ let g:ctrlp_root_markers = ['Gemfile']
 " Filetype highlighting
 " =======================================
 au BufNewFile,BufRead *.thor      set filetype=ruby
+au BufNewFile,BufRead *.cap       set filetype=ruby
 au BufNewFile,BufRead *.jbuilder  set filetype=ruby
 au BufNewFile,BufRead *.tasks     set filetype=ruby
 au BufNewFile,BufRead *.dump      set filetype=sql
