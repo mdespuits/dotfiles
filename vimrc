@@ -125,7 +125,8 @@ set ignorecase " Don't search by case
 " =======================================
 set go=-T         " Hide GUI toolbar
 set noerrorbells  " Don't annoy me with error bells
-set mousehide     " Hide the mouse
+" set mousehide     " Hide the mouse
+set mouse=n
 set splitbelow    " When splitting, set new file on the bottom
 set hidden        " Hide hidden files
 set number        " Show line numbers
