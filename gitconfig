@@ -31,14 +31,10 @@
   # Pushing and pulling
   ps = push
 
-  # Just for fun
-  praise = blame
-
   # Committing
   amend = commit --amend
   famend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
   cm = commit -m
-  cam = commit -a -m
   co = checkout
   coa = ! git co . && git s
 
@@ -58,12 +54,5 @@
   # for better customizing
   np = log master.. --oneline # Diff from local master
   npr = log origin/master.. --oneline # Diff from remote master
-[url "git@heroku.com:"]
-  insteadOf = heroku:
-[url "https://github.com/"]
-  insteadOf = gh:
-[url "git@github.com:"]
-  # With write access
-  insteadOf = wgh:
 [include]
   path = .gitconfig.local
