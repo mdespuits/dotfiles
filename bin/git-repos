@@ -1,0 +1,125 @@
+#!/usr/bin/env ruby
+
+require 'optparse'
+require 'ostruct'
+require 'pathname'
+
+class Text
+
+  attr_reader :string
+
+  def initialize(string)
+    @string = string
+  end
+
+  def self.[](text, color = :yellow)
+    puts self.new(text).public_send(color)
+  end
+
+  def yellow
+    colorize(33)
+  end
+
+  def cyan
+    colorize(36)
+  end
+
+  private
+
+    def colorize(color_code)
+      "\e[#{color_code}m#{string}\e[0m"
+    end
+
+end
+
+class Repo
+
+  def self.all(options)
+    @all ||= Dir.glob('**/.git', File::FNM_DOTMATCH).collect do |dir|
+      Repo.new(Pathname.new(dir).parent, options)
+    end
+  end
+
+  attr_accessor :dir, :options
+  attr_reader :original_branch
+
+  def initialize(dir, options)
+    @dir              = File.expand_path(dir)
+    @options          = options
+    @original_branch  = "'#{current_branch}'"
+    @quiet           = options[:quiet]
+  end
+
+  def in_repo_directory
+    Dir.chdir(@dir) do
+      yield if block_given?
+    end
+  end
+
+  def git(*args)
+    in_repo_directory do
+      command = %w[git].concat(args).join(" ")
+      Text["[#{File.basename(dir)}] --> #{command}"] unless @quiet
+      %x[#{command} 2> /dev/null].chomp.split("\n").map(&:strip)
+    end
+  end
+
+  def quiet
+    @quiet = true
+    yield
+  ensure
+    @quiet
+  end
+
+  def current_branch
+    quiet {
+      git(:branch).detect { |branch| branch =~ /\A\*/i }.delete "* "
+    }
+  end
+
+  def has_upstream?
+    git(:remote).include? 'upstream'
+  end
+
+  def execute
+    Text["Updating into #{dir}", :cyan]
+    git :checkout, :master
+    if has_upstream?
+      git :fetch, :upstream
+      git :rebase, 'upstream/master'
+      git :push
+    end
+    git :push if options.push == true
+    git :checkout, original_branch
+    Text[""] unless @quiet # repository separator
+  end
+end
+
+
+options = OpenStruct.new(
+  directory: Pathname.new(Dir.pwd),
+  push: false,
+  quiet: false,
+)
+
+OptionParser.new do |opts|
+
+  opts.banner = "Usage: git repos [options]"
+
+  opts.on("-d", "--directory DIRECTORY", "Specify a (preferrably) absolute directory") do |dir|
+    options.directory = File.expand_path(dir)
+  end
+
+  opts.on("-p", "--push", "Force push to remote repo") do
+    options.push = true
+  end
+
+  opts.on("-q", "--quiet", "Be quiet about update") do
+    options.quiet = true
+  end
+
+end.parse!
+
+Dir.chdir options.directory do
+  Repo.all(options).each(&:execute)
+end
