@@ -91,7 +91,6 @@ class Repo
     end
     git :push if options.push == true
     git :checkout, original_branch
-    Text[""] unless @quiet # repository separator
   end
 end
 
