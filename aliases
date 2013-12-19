@@ -2,7 +2,6 @@
 # Aliases
 # =================================
 
-# alias vim="mvim -v"
 alias annotate="annotate -p before -e tests" # Annotate alias. Defaults are stupid
 alias vi="vim"
 alias edit="vi"
