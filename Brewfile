@@ -51,32 +51,27 @@ install graphviz
 install imagemagick
 
 # OSX Apps
-tap phinze/cask
 install brew-cask
 
-function installcask() {
-  cask install "${@}" 2> /dev/null
-}
-
-# installcask audacity
-# installcask dropbox
-# installcask google-chrome
-# installcask google-chrome-canary
-# installcask iterm2
-# installcask jing
-# installcask sublime-text
-# installcask sequel-pro
-# installcask vagrant
-# installcask virtualbox
-# installcask vlc
+# cask install audacity 2> /dev/null
+# cask install dropbox 2> /dev/null
+# cask install google-chrome 2> /dev/null
+# cask install google-chrome-canary 2> /dev/null
+# cask install iterm2 2> /dev/null
+# cask install jing 2> /dev/null
+# cask install sublime-text 2> /dev/null
+# cask install sequel-pro 2> /dev/null
+# cask install vagrant 2> /dev/null
+# cask install virtualbox 2> /dev/null
+# cask install vlc 2> /dev/null
 
 # Fun OSX Quick Look plugins
-installcask betterzipql
-installcask qlcolorcode
-installcask qlmarkdown
-installcask qlprettypatch
-installcask qlstephen
-installcask quicklook-csv
-installcask quicklook-json
-installcask suspicious-package
-installcask webp-quicklook
+cask install betterzipql 2> /dev/null
+cask install qlcolorcode 2> /dev/null
+cask install qlmarkdown 2> /dev/null
+cask install qlprettypatch 2> /dev/null
+cask install qlstephen 2> /dev/null
+cask install quicklook-csv 2> /dev/null
+cask install quicklook-json 2> /dev/null
+cask install suspicious-package 2> /dev/null
+cask install webp-quicklook 2> /dev/null
