@@ -13,14 +13,15 @@ install findutils
 install bash
 install zsh
 
-tap homebrew/dupes
-
 # Essential development packages
 install git
 install the_silver_searcher
 install sqlite
 install vim --override-system-vi
 install wget
+install homebrew/dupes/apple-gcc42
+install homebrew/dupes/make
+install homebrew/dupes/unzip
 
 # Languages
 install go
@@ -38,7 +39,7 @@ install jq
 install htop-osx
 install heroku-toolbelt
 install tmux
-install tmate
+install nviennot/tmate/tmate
 # install tig
 install tree
 install ssh-copy-id
@@ -51,7 +52,7 @@ install graphviz
 install imagemagick
 
 # OSX Apps
-install brew-cask
+install phinze/cask/brew-cask
 
 # cask install audacity 2> /dev/null
 # cask install dropbox 2> /dev/null
