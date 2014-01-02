@@ -57,11 +57,15 @@ function installcask() {
   cask install "${@}" 2> /dev/null
 }
 
+# installcask audacity
 # installcask dropbox
 # installcask google-chrome
 # installcask google-chrome-canary
 # installcask iterm2
+# installcask jing
 # installcask sublime-text
+# installcask sequel-pro
+# installcask vagrant
 # installcask virtualbox
 # installcask vlc
 
