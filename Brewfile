@@ -9,8 +9,9 @@ upgrade
 install coreutils
 # Install GNU `find`, `locate`, `updatedb`, and `xargs`, g-prefixed
 install findutils
-# Install Bash 4
+# Install Bash 4 and ZSH
 install bash
+install zsh
 
 tap homebrew/dupes
 
@@ -20,7 +21,6 @@ install the_silver_searcher
 install sqlite
 install vim --override-system-vi
 install wget
-install zsh
 
 # Languages
 install go
