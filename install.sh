@@ -7,12 +7,15 @@ for name in *; do
       echo "WARNING: $target exists but is not a symlink."
     fi
   else
-    if [ "$name" != 'install.sh' ] && [ "$name" != 'README.md' ] && [ "$name" != 'uninstall.sh' ]; then
+    if [ "$name" != 'install.sh' ] && [ "$name" != 'README.md' ] && [ "$name" != 'uninstall.sh' ] && [ "$name" != "Brewfile" ]; then
       echo "Creating $target"
       ln -s "$PWD/$name" "$target"
     fi
   fi
 done
+
+# Symlink the Brewfile
+ln -s "$PWD/Brewfile" "$HOME/Brewfile"
 
 if [ ! -e "$HOME/.oh-my-zsh" ]; then
   echo "Installing oh-my-zsh..."

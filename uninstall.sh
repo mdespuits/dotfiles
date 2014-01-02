@@ -13,6 +13,8 @@ if [ -e "$HOME/.oh-my-zsh" ]; then
   rm -rf ~/.oh-my-zsh
 fi
 
+rm -rf "$HOME/Brewfile"
+
 echo "Removing bundles from vundle";
 for bundle in "$PWD/vim/bundle/*"; do
   rm -rf $bundle;
