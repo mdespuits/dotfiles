@@ -24,6 +24,10 @@ alias z="zeus"
 alias c="clear"
 alias wget='wget -c'
 
+function prepend() {
+  echo $1|cat - $2 > /tmp/out && mv /tmp/out $2
+}
+
 unsetopt correct_all
 
 # Include custom aliases
