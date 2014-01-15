@@ -30,7 +30,7 @@ export PATH=$HOME/.bin:$PATH
 # General Environment
 # =================================
 
-export EDITOR='subl -w'          # Set vim to be primary editor
+export EDITOR='subl -w'     # Giving Sublime Text a shot...
 export JRUBY_OPTS='--1.9'   # Always prefer Ruby 1.9 in jRuby
 
 # =================================
