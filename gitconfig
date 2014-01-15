@@ -9,7 +9,7 @@
 [alias]
   # Favorites
   c = commit
-  s = status -sb
+  s = status -b
   a = add
   b = branch
   r = reset
