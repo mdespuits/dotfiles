@@ -6,6 +6,8 @@
   excludesfile = ~/.gitexcludes
 [credential]
   helper = osxkeychain
+[help]
+  autocorrect = 1
 [alias]
   # Favorites
   c = commit
