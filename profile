@@ -25,6 +25,7 @@ export PATH=/usr/local/mysql/bin:$PATH
 export PATH=$HOME/.rbenv/bin:$PATH
 export PATH=$HOME/bin:$PATH
 export PATH=$HOME/.bin:$PATH
+export PATH="$PATH:/usr/local/Cellar/mysql55/5.5.30/bin"
 
 # =================================
 # General Environment
