@@ -34,17 +34,20 @@
   ps = push
 
   # Committing
-  amend = commit --amend
-  famend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
   cm = commit -m
   co = checkout
   coa = ! git co . && git s
 
-  # Logging and diffing aliases
+  amend = commit --amend
+  famend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
+
+  # Diffing
   d = diff
   ds = diff --staged
-  lgs = log --pretty=format:'%Cred%h%Creset -%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset'
-  lol = log --graph --decorate --pretty=oneline --abbrev-commit
+
+  # Logging and Graphing
+  ls = log --pretty='format:%Cred%h%Creset %Cblue%ad%Cred%d %Creset%s%Cgreen [%cn]%Creset' --decorate --date=short
+  lsv = ! git ls --numstat
   graph = log --graph --pretty='format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(blue){%an}%Creset' --abbrev-commit --date=relative
 
   # Amending and resetting
