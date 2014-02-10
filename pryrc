@@ -1,1 +1,1 @@
-Pry.config.editor = proc { |file, line| "vi +#{line} #{file}" }
+Pry.config.editor = proc { |f,l| "subl #{f}:#{l}" }
