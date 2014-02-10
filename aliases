@@ -24,11 +24,15 @@ alias z="zeus"
 alias c="clear"
 alias wget='wget -c'
 
+# Thanks @kevmoo
+alias rm_whitespace="curl -L https://gist.github.com/kevmoo/204239/raw/a7e3e1716e5d0b1c17abc364ed9be2c0b9629d54/whitespace.rb | ruby"
+
 function prepend() {
   echo $1|cat - $2 > /tmp/out && mv /tmp/out $2
 }
 
 unsetopt correct_all
+
 
 # Include custom aliases
 [[ -f ~/.aliases.local ]] && source ~/.aliases.local
