@@ -22,7 +22,7 @@ install wget
 install homebrew/dupes/apple-gcc42
 install homebrew/dupes/make
 install homebrew/dupes/unzip
-install mysql55 --llvm-gcc
+install homebrew/versions/mysql55 --llvm-gcc
 
 # Languages
 install go
