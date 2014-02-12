@@ -28,7 +28,6 @@ install homebrew/versions/mysql55 --llvm-gcc
 install go
 install node
 install rbenv ruby-build
-install rbenv-gem-rehash
 
 # Background services
 install memcached
