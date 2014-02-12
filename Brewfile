@@ -36,6 +36,7 @@ install openssl
 install redis
 
 # Extra fun stuff
+install mutt
 install jq
 install htop-osx
 install heroku-toolbelt
