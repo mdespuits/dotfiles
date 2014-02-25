@@ -36,7 +36,7 @@ require 'pry'
 Pry.config.editor = proc { |f,l| "subl #{f}:#{l}" }
 
 # Set Pry theme
-Pry.config.theme = "tomorrow-night"
+Pry.config.theme = "pry-modern"
 # Other (IMHO) good looking pry-themes:
 # "vividchalk", "railscasts", "github", "solarized"
 # "pry-zealand-16", "tomorrow", "pry-modern", "monokai"
@@ -67,6 +67,16 @@ if defined?(Rails)
   end
 end
 
+# History (Use one history file)
+Pry.config.history.file = "~/.irb_history"
+
+# ===================
+# Custom Pry aliases
+# ===================
+# Where am I?
+Pry.config.commands.alias_command 'w', 'whereami'
+# Clear Screen
+Pry.config.commands.alias_command '.cls', '.clear'
 # Shortcuts for debugging commands
 if defined?(PryDebugger)
   Pry.commands.alias_command 'c',  'continue'
@@ -76,13 +86,6 @@ if defined?(PryDebugger)
   Pry.commands.alias_command 'ss', 'show-source'
 end
 
-# ===================
-# Custom Pry aliases
-# ===================
-# Where am I?
-Pry.config.commands.alias_command 'w', 'whereami'
-# Clear Screen
-Pry.config.commands.alias_command '.cls', '.clear'
 
 # Return only the methods not present on basic objects
 class Object
