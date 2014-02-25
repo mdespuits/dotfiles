@@ -61,3 +61,6 @@
   npr = log origin/master.. --oneline # Diff from remote master
 [include]
   path = .gitconfig.local
+[filter "media"]
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
