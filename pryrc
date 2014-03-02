@@ -156,13 +156,9 @@ end
 # Display execution timing
 def time(&b)
   require 'benchmark'
-  res = nil
-  timing = Benchmark.measure do
-     res = yield
+  Benchmark.realtime do
+    yield
   end
-  puts "Using yield, it took:     user       system     total       real"
-  puts "                      #{timing}"
-  res
 end
 
 # Display which computer is in use
