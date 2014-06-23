@@ -32,6 +32,12 @@ Pry custom commands defined in my .pryrc:
 
 require 'pry'
 
+begin
+require 'awesome_print'
+rescue
+  puts "'awesome_print' is not installed. Run `gem install awesome_print`."
+end
+
 # Define which editor I want to use in Pry
 Pry.config.editor = proc { |f,l| "subl #{f}:#{l}" }
 
