@@ -166,7 +166,7 @@ map <leader>a :call RunAllSpecs()<CR>
 
 " ---------------------------------------
 " -- ctrlp.vim
-let g:ctrlp_regexp = 1
+" let g:ctrlp_regexp = 1
 let g:ctrlp_map = '<leader>t'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_root_markers = ['Gemfile']
