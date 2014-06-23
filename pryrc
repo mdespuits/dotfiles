@@ -94,16 +94,26 @@ class Object
   end
 end
 
+class PryRecentFile
+  def self.recent=(file)
+    @recent = file
+  end
+
+  def self.recent
+    @recent
+  end
+end
+
 # Load and execute a Ruby source file
 def fl(fn)
   fn += '.rb' unless fn =~ /\.rb/
-  @@recent = fn
+  PryRecentFile.recent = fn
   load "#{fn}"
 end
 
 # Reload and excute the most recently loaded ruby source file
 def rl
-  fl(@@recent)
+  fl PryRecentFile.recent
 end
 
 # Display only filenames in multiple column format
