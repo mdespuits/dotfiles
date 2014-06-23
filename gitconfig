@@ -1,5 +1,6 @@
 [color]
   ui = true
+  sh = auto
 [push]
   default = upstream
 [core]
@@ -59,8 +60,11 @@
   # for better customizing
   np = log master.. --oneline # Diff from local master
   npr = log origin/master.. --oneline # Diff from remote master
+  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
 [include]
   path = .gitconfig.local
 [filter "media"]
 	clean = git-media-clean %f
 	smudge = git-media-smudge %f
+[color "sh"]
+	dirty = red
