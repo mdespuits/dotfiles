@@ -282,5 +282,12 @@ def pm
 
 end
 
+# Do some prep work to make presenting easier
+def present!
+  if defined? ActiveRecord::Base
+    ActiveRecord::Base.logger = nil
+  end
+end
+
 # When opening pry, show summary of methods defined
 pm
