@@ -35,7 +35,6 @@ source $ZSH/oh-my-zsh.sh
 
 alias reload="exec $SHELL -l"
 
-source "$HOME/.scripts/git-completion.bash"
 source "$HOME/.aliases"
 source "$HOME/.profile"
 
