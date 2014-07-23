@@ -1,3 +1,19 @@
 # mattdbridges Dotfiles
 
-See [thoughtbot/dotfiles](https://github.com/thoughtbot/dotfiles) for usage and installation instructions.
+Dotfiles I have been grooming for quite a while. It has gone through several iterations due to changes in how I manage them.
+
+Currently, I am using [`rcm`](https://github.com/thoughtbot/rcm).
+
+# Install
+
+**Prerequisites**
+
+* Homebrew
+* git
+
+**Actions**
+
+    $ cd ~
+    $ git clone https://github.com/mattdbridges/dotfiles.git
+    $ brew bundle dotfiles/Brewfile
+    $ rcup -d dotfiles -x README.md -x LICENSE -x Brewfile

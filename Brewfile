@@ -25,6 +25,7 @@ install homebrew/dupes/apple-gcc42
 install homebrew/dupes/make
 install homebrew/dupes/unzip
 install homebrew/versions/mysql55 --llvm-gcc
+install thoughtbot/formulae/rcm
 
 # Languages
 install go
