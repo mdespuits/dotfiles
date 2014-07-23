@@ -20,6 +20,7 @@ install sqlite
 install vim --override-system-vi
 install wget
 install docker
+install direnv
 install homebrew/dupes/apple-gcc42
 install homebrew/dupes/make
 install homebrew/dupes/unzip

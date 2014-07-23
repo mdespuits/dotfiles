@@ -61,5 +61,8 @@ gif-ify() {
   fi
 }
 
+# Hook direnv into ZSH
+eval "$(direnv hook zsh)"
+
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local

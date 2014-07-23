@@ -33,5 +33,6 @@
 ######################
 .DS_Store*
 ehthumbs.db
+.envrc
 # Icon?
 Thumbs.db
