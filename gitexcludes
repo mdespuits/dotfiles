@@ -29,10 +29,13 @@
 ####################
 *.sublime*
 
+# Direnv #
+##########
+.envrc
+
 # OS generated files #
 ######################
 .DS_Store*
 ehthumbs.db
-.envrc
 # Icon?
 Thumbs.db
