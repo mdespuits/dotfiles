@@ -15,5 +15,5 @@ Currently, I am using [`rcm`](https://github.com/thoughtbot/rcm).
 
     $ cd ~
     $ git clone https://github.com/mattdbridges/dotfiles.git
-    $ brew bundle dotfiles/Brewfile
+    $ brew install rcm
     $ rcup -d dotfiles -x README.md -x LICENSE -x Brewfile
