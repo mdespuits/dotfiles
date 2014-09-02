@@ -11,13 +11,8 @@
   autocorrect = 1
 [alias]
   # Favorites
-  c = commit
-  s = status -b
-  a = add
   b = branch
-  r = reset
-  m = merge
-  aa = add .
+  aa = add --all
   ra = reset .
 
   # Emails and Authors
@@ -59,7 +54,7 @@
 [include]
   path = .gitconfig.local
 [filter "media"]
-	clean = git-media-clean %f
-	smudge = git-media-smudge %f
+  clean = git-media-clean %f
+  smudge = git-media-smudge %f
 [color "sh"]
-	dirty = red
+  dirty = red
