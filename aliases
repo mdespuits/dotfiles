@@ -18,8 +18,6 @@ alias fastping='ping -c 5 -s 1' # ping really fast ;)
 alias ll="ls -lai"
 alias mkdir="mkdir -pv"
 alias ping='ping -c 5' # ping only 5 times
-alias z="zeus"
-alias c="clear"
 alias wget='wget -c'
 
 # tmux aliases
