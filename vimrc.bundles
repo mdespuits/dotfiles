@@ -16,6 +16,7 @@ Bundle "tpope/vim-haml"
 Bundle "tpope/vim-commentary"
 Bundle "tpope/vim-surround"
 Bundle "thoughtbot/vim-rspec"
+Bundle 'jgdavey/tslime.vim'
 Bundle "airblade/vim-gitgutter"
 Bundle "cfcosta/html5-vim-minimal"
 Bundle "danro/rename.vim"
