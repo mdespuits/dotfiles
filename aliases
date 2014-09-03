@@ -22,6 +22,11 @@ alias z="zeus"
 alias c="clear"
 alias wget='wget -c'
 
+# tmux aliases
+alias tml="tmux list-sessions"
+alias tma="tmux -2 attach -t $1"
+alias tmk="tmux kill-session -t $1"
+
 # Thanks @kevmoo
 alias rm_whitespace="curl -L https://gist.github.com/kevmoo/204239/raw/a7e3e1716e5d0b1c17abc364ed9be2c0b9629d54/whitespace.rb | ruby"
 
