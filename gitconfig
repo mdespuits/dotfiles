@@ -58,3 +58,7 @@
   smudge = git-media-smudge %f
 [color "sh"]
   dirty = red
+[diff]
+  tool = vimdiff
+[difftool]
+  prompt = false
