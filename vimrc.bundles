@@ -9,6 +9,7 @@ call vundle#begin()
 Plugin 'gmarik/Vundle.vim'
 
 " Defined Plugins via Github repos
+Plugin 'tpope/vim-abolish'
 Plugin 'tpope/vim-rails'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-rake'
