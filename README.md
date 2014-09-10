@@ -16,4 +16,4 @@ Currently, I am using [`rcm`](https://github.com/thoughtbot/rcm).
     $ cd ~
     $ git clone https://github.com/mattdbridges/dotfiles.git
     $ brew install rcm
-    $ rcup -d dotfiles -x README.md -x LICENSE -x Brewfile
+    $ rcup -d dotfiles -x README.md -x LICENSE -x Brewfile -x com.googlecode.iterm2.plist
