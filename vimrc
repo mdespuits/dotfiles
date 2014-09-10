@@ -101,8 +101,8 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
-nnoremap <c-n> :bn<cr>
-nnoremap <c-p> :bp<cr>
+nnoremap <c-n> :bp<cr>
+nnoremap <c-p> :bn<cr>
 " nnoremap <c-s-h> :tabnext<cr>
 " nnoremap <c-s-l> :tabprev<cr>
 
