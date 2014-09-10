@@ -214,8 +214,10 @@ au FileType GO setlocal shiftwidth=2 tabstop=2 noexpandtab
 " =======================================
 " System Clipboard
 " =======================================
-" set clipboard=unnamed
-" set pastetoggle=<F2>
+if $TMUX == ''
+  set clipboard+=unnamed
+endif
+set pastetoggle=<F2>
 
 " =======================================
 " =======================================
