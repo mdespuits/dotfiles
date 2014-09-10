@@ -125,11 +125,11 @@
 	<key>NSWindow Frame NSFontPanel</key>
 	<string>646 77 728 270 0 0 1440 878 </string>
 	<key>NSWindow Frame Preferences</key>
-	<string>161 278 924 485 0 0 1440 878 </string>
+	<string>577 281 924 485 0 0 1440 878 </string>
 	<key>NSWindow Frame SUStatusFrame</key>
 	<string>768 787 384 129 0 0 1920 1178 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
-	<string>0 65 1434 813 0 0 1440 878 </string>
+	<string>0 20 1434 858 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 1</key>
 	<string>0 395 585 473 0 0 1440 878 </string>
 	<key>NSWindow Frame iTerm Window 2</key>
@@ -158,11 +158,11 @@
 			<key>Ansi 0 Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.20109233260154724</real>
+				<real>0.0</real>
 				<key>Green Component</key>
-				<real>0.20109233260154724</real>
+				<real>0.0</real>
 				<key>Red Component</key>
-				<real>0.20109233260154724</real>
+				<real>0.0</real>
 			</dict>
 			<key>Ansi 1 Color</key>
 			<dict>
@@ -194,11 +194,11 @@
 			<key>Ansi 12 Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.96217477321624756</real>
+				<real>1</real>
 				<key>Green Component</key>
-				<real>0.3183097243309021</real>
+				<real>0.3333333432674408</real>
 				<key>Red Component</key>
-				<real>0.31964045763015747</real>
+				<real>0.3333333432674408</real>
 			</dict>
 			<key>Ansi 13 Color</key>
 			<dict>
@@ -248,9 +248,9 @@
 			<key>Ansi 4 Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.95273613929748535</real>
+				<real>0.73333334922790527</real>
 				<key>Green Component</key>
-				<real>7.8138189564924687e-05</real>
+				<real>0.0</real>
 				<key>Red Component</key>
 				<real>0.0</real>
 			</dict>
@@ -275,20 +275,20 @@
 			<key>Ansi 7 Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.68753534555435181</real>
+				<real>0.73333334922790527</real>
 				<key>Green Component</key>
-				<real>0.68753534555435181</real>
+				<real>0.73333334922790527</real>
 				<key>Red Component</key>
-				<real>0.68753534555435181</real>
+				<real>0.73333334922790527</real>
 			</dict>
 			<key>Ansi 8 Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.32186794281005859</real>
+				<real>0.3333333432674408</real>
 				<key>Green Component</key>
-				<real>0.32186794281005859</real>
+				<real>0.3333333432674408</real>
 				<key>Red Component</key>
-				<real>0.32186794281005859</real>
+				<real>0.3333333432674408</real>
 			</dict>
 			<key>Ansi 9 Color</key>
 			<dict>
@@ -306,11 +306,11 @@
 			<key>Background Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.12162400782108307</real>
+				<real>0.12667915225028992</real>
 				<key>Green Component</key>
-				<real>0.12162400782108307</real>
+				<real>0.11162598431110382</real>
 				<key>Red Component</key>
-				<real>0.12162400782108307</real>
+				<real>0.10942656546831131</real>
 			</dict>
 			<key>Background Image Is Tiled</key>
 			<false/>
@@ -380,11 +380,11 @@
 			<key>Foreground Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.86595577001571655</real>
+				<real>0.73333334922790527</real>
 				<key>Green Component</key>
-				<real>0.88733738660812378</real>
+				<real>0.73333334922790527</real>
 				<key>Red Component</key>
-				<real>0.87664657831192017</real>
+				<real>0.73333334922790527</real>
 			</dict>
 			<key>Guid</key>
 			<string>AE88FAC3-7C19-437D-8265-6810F2E689F9</string>
@@ -597,11 +597,11 @@
 			<key>Name</key>
 			<string>Default</string>
 			<key>Non Ascii Font</key>
-			<string>SourceCodePro-RegularForPowerline 13</string>
+			<string>SauceCodePowerline-Regular 13</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
-			<string>SourceCodePro-RegularForPowerline 13</string>
+			<string>SauceCodePowerline-Regular 13</string>
 			<key>Option Key Sends</key>
 			<integer>2</integer>
 			<key>Prompt Before Closing 2</key>
@@ -621,11 +621,11 @@
 			<key>Selected Text Color</key>
 			<dict>
 				<key>Blue Component</key>
-				<real>0.2953726053237915</real>
+				<real>0.0</real>
 				<key>Green Component</key>
-				<real>0.2953726053237915</real>
+				<real>0.0</real>
 				<key>Red Component</key>
-				<real>0.2953726053237915</real>
+				<real>0.0</real>
 			</dict>
 			<key>Selection Color</key>
 			<dict>
