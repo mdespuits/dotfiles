@@ -173,8 +173,7 @@ let g:airline_symbols.space = "\ua0"
 
 " ---------------------------------------
 " -- Tagbar
-nmap <leader>bo :TagbarOpen<cr>
-nmap <leader>bc :TagbarClose<cr>
+nnoremap <leader>b :TagbarToggle<cr>
 
 " ---------------------------------------
 " -- syntastic
