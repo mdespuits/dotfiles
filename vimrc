@@ -132,6 +132,9 @@ set hidden        " Hide hidden files
 set number        " Show line numbers
 set numberwidth=1 " Line number width
 
+" =======================================
+" Relative Line Numbers
+" =======================================
 function! RelativeLineNumberToggle()
   if(&relativenumber == 1)
     set norelativenumber
@@ -151,6 +154,27 @@ nnoremap <leader>rl :call RelativeLineNumberToggle()<cr>
 " ---------------------------------------
 " -- ZenCoding
 let g:user_emmet_expandabbr_key = '<c-e>'
+
+" ---------------------------------------
+" -- Indent Guides
+let g:indent_guides_enable_on_vim_startup = 0
+let g:indent_guides_guide_size = 1
+
+" ---------------------------------------
+" -- Airline Config
+set laststatus=2
+" set fillchars+=stl:\ ,stlnc:\
+let g:airline#extensions#tabline#enabled = 1
+" let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+  endif
+let g:airline_symbols.space = "\ua0"
+
+" ---------------------------------------
+" -- Tagbar
+nmap <leader>bo :TagbarOpen<cr>
+nmap <leader>bc :TagbarClose<cr>
 
 " ---------------------------------------
 " -- syntastic
