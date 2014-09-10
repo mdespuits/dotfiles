@@ -1,4 +1,4 @@
-# mattdbridges Dotfiles
+# Dotfiles
 
 Dotfiles I have been grooming for quite a while. It has gone through several iterations due to changes in how I manage them.
 
