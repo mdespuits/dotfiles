@@ -59,8 +59,8 @@ if [ -n "$PLATFORM" ] && [ $PLATFORM = "mac" ]; then
 
   alias dunnet="emacs -batch -l dunnet"
 
-  if [ -d "/Applications/Postgres.app/Contents/MacOS/bin" ]; then
-    export PATH="/Applications/Postgres.app/Contents/MacOS/bin:$PATH"
+  if [ -d "/Applications/Postgres.app/Contents/Versions/9.3/bin" ]; then
+    export PATH="/Applications/Postgres.app/Contents/Versions/9.3/bin:$PATH"
   fi
 
   # OpenSSL update fix
