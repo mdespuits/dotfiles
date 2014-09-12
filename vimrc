@@ -188,6 +188,10 @@ map <leader>l :call RunLastSpec()<CR>
 map <leader>a :call RunAllSpecs()<CR>
 
 " ---------------------------------------
+" -- vim-textobj-rubyblock
+runtime macros/matchit.vim
+
+" ---------------------------------------
 " -- ctrlp.vim
 " let g:ctrlp_regexp = 1
 let g:ctrlp_map = '<leader>t'
