@@ -187,6 +187,7 @@ map <leader>c :call RunCurrentSpecFile()<CR>
 map <leader>n :call RunNearestSpec()<CR>
 map <leader>l :call RunLastSpec()<CR>
 map <leader>a :call RunAllSpecs()<CR>
+let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec {spec} --format progress\n")'
 
 " ---------------------------------------
 " -- vim-textobj-rubyblock
