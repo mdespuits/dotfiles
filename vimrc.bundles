@@ -38,7 +38,6 @@ Plugin 'mengbo/vim-dash'
 
 Plugin 'vim-coffee-script'
 Plugin 'Emmet.vim'
-Plugin 'Tagbar'
 
 if filereadable(expand('~/.vimrc.bundle.local'))
   source ~/.vimrc.bundle.local
