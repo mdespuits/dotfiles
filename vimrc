@@ -248,7 +248,7 @@ imap jk <Esc>
 " =======================================
 nmap :bs :buffers
 nmap <leader>bs :bs<cr>
-nmap <leader>w :bd<cr>
+nmap <leader>w :bd!<cr>
 nmap <leader>cb :ene<CR>:bw #<CR>
 
 " =======================================
