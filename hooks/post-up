@@ -10,5 +10,5 @@ if [ ! -e "$HOME/.vim/bundle/vundle" ]; then
   git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle &> /dev/null
 fi
 echo "Installing vim bundles...";
-vim -e -s -u ~/.vimrc.bundles +BundleInstall +qa
+vim +PluginInstall +qall
 
