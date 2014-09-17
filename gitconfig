@@ -5,6 +5,7 @@
   default = upstream
 [core]
   excludesfile = ~/.gitexcludes
+  pager = cat
 [credential]
   helper = osxkeychain
 [help]
