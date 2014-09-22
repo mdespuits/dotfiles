@@ -5,7 +5,6 @@
   default = upstream
 [core]
   excludesfile = ~/.gitexcludes
-  pager = cat
 [credential]
   helper = osxkeychain
 [help]
@@ -55,8 +54,8 @@
 [include]
   path = .gitconfig.local
 [filter "media"]
-  clean = git-media-clean %f
-  smudge = git-media-smudge %f
+	clean = git-media-clean %f
+	smudge = git-media-smudge %f
 [color "sh"]
   dirty = red
 [diff]
