@@ -83,6 +83,8 @@ if [ -e "$HOME/.rbenv" ]; then
   fi
 fi
 
+# Local config
+[[ -f ~/.profile.local ]] && source ~/.profile.local
 
 # =================================
 # Hub -> Git
