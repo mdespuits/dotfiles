@@ -33,6 +33,10 @@
 ##########
 .envrc
 
+# Per-project vimrc
+######################
+.vimrc
+
 # OS generated files #
 ######################
 .DS_Store*
