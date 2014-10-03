@@ -9,6 +9,24 @@ if [ ! -e "$HOME/.vim/bundle/vundle" ]; then
   echo "Installing Vundle..."
   git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle &> /dev/null
 fi
+
+# For development
+brew install vim --override-system-vi --with-lua
+brew install tmux
+
+# Setup Ruby Version Manager
+brew install rbenv
+brew install ruby-build --HEAD
+
+# Setup other useful tools/langs
+brew install ack
+brew install bash
+brew install elixir
+brew install the_silver_searcher
+brew install heroku-toolbelt
+brew install wget
+brew install zsh
+
 echo "Installing vim bundles...";
 vim +PluginInstall +qall
 
