@@ -21,9 +21,10 @@ brew install ruby-build --HEAD
 # Setup other useful tools/langs
 brew install ack
 brew install bash
+brew install direnv
 brew install elixir
-brew install the_silver_searcher
 brew install heroku-toolbelt
+brew install the_silver_searcher
 brew install wget
 brew install zsh
 
