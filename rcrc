@@ -1,2 +1,2 @@
-EXCLUDES="README.md LICENSE Brewfile"
+EXCLUDES="README.md LICENSE Brewfile com.googlecode.iterm2.plist"
 DOTFILES_DIRS="$HOME/dotfiles"
