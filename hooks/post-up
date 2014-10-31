@@ -1,8 +1,14 @@
-#!/bin/sh
+#!/bin/zsh
 
-if [ ! -e "$HOME/.oh-my-zsh" ]; then
-  echo "Installing oh-my-zsh..."
-  git clone https://github.com/robbyrussell/oh-my-zsh ~/.oh-my-zsh &> /dev/null
+if [ ! -e "$HOME/.zprezto" ]; then
+  echo "Installing Prezto..."
+  git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" &> /dev/null
+  setopt EXTENDED_GLOB
+  for rcfile in "${ZDOTDIR:-$HOME}"/.zprezto/runcoms/^README.md(.N); do
+    if [ ! -f "$HOME/.${rcfile:t}" ]; then
+      ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+    fi
+  done
 fi
 
 if [ ! -e "$HOME/.vim/bundle/vundle" ]; then

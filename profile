@@ -30,7 +30,8 @@ export PATH="$PATH:/usr/local/Cellar/mysql55/5.5.30/bin"
 # General Environment
 # =================================
 
-export EDITOR='vim'     # Giving Sublime Text a shot...
+export EDITOR='vim'
+export VISUAL=$EDITOR
 export JRUBY_OPTS='--1.9'   # Always prefer Ruby 1.9 in jRuby
 
 # =================================
