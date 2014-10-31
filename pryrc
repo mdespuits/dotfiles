@@ -53,12 +53,12 @@ Pry.config.theme = "pry-modern"
 
 # Configure Pry's prompt, showiung current Ruby and Rails versions
 # Rails version is shown after you require 'rails'
-Pry.config.prompt = proc do |obj, level, _|
-  prompt = ""
-  prompt << "#{Rails.version}@" if defined?(Rails)
-  prompt << "#{RUBY_VERSION}"
-  "#{prompt} (#{obj})> "
-end
+# Pry.config.prompt = proc do |obj, level, _|
+#   prompt = ""
+#   prompt << "#{Rails.version}@" if defined?(Rails)
+#   prompt << "#{RUBY_VERSION}"
+#   "#{prompt} (#{obj})> "
+# end
 
 # Reformat Exception
 Pry.config.exception_handler = proc do |output, exception, _|
@@ -292,6 +292,3 @@ def present!
     ActiveRecord::Base.logger = nil
   end
 end
-
-# When opening pry, show summary of methods defined
-pm
