@@ -13,6 +13,8 @@ fi
 
 alias reload="exec $SHELL -l"
 
+setopt interactivecomments
+
 source "$HOME/.aliases"
 source "$HOME/.profile"
 
