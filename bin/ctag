@@ -1,0 +1,26 @@
+#!/bin/sh -e
+# If you're new to ctags, here's the quick intro:
+#
+# It's just a little database that lets you hop to definitions, quickly.
+# If you have a favorite GUI that does something like this, it either uses
+# ctags internally or does something similar.
+
+[ "`uname`" != Darwin -o -e /usr/local/bin/ctags ] || brew install ctags
+
+# Quickref:
+# For vim, the CLI use is:
+#   vim -t all_latest_job_applications_for_any_version
+# And while inside vim, you can:
+#  - hit ^] to hop to the current word as a tag
+#  - do :ta whatever_tag  (with tabcompletion!)
+# Plus the list-selection versions (for when there are plural definitions):
+#  - hit g] to hop to the current word as a tag, but with a menu first
+#  - :tj whatever_tag  to hop directly if only one match, otherwise show the menu
+# Other commands:
+#  - Go back to where you were with ^t
+#  - Find more with :h tags
+
+# Without these options, a basic 'ctags -R' generates a 180Mb+ tags file, which
+# takes a few minutes to generate.
+# With these options, it's <3Mb, and takes under a second
+ctags -R --languages=Ruby --totals
