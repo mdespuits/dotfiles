@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/zsh
 
 # =================================
 # Determine the Platform
@@ -19,12 +19,13 @@ fi
 # PATH info
 # =================================
 
+export PATH=/usr/local/heroku/bin:$PATH
 export PATH=/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/local/mysql/bin:$PATH
 export PATH=$HOME/.rbenv/bin:$PATH
 export PATH=$HOME/.bin:$PATH
-export PATH="$PATH:/usr/local/Cellar/mysql55/5.5.30/bin"
+export PATH=$PATH:/usr/local/Cellar/mysql55/5.5.30/bin
 
 # =================================
 # General Environment
@@ -84,11 +85,64 @@ if [ -e "$HOME/.rbenv" ]; then
   fi
 fi
 
-# Local config
-[[ -f ~/.profile.local ]] && source ~/.profile.local
-
 # =================================
 # Hub -> Git
 # =================================
 
 # if which hub > /dev/null; then eval "$(hub alias -s)"; fi
+
+# =================================
+# Aliases
+# =================================
+
+alias annotate="annotate -p before -e tests" # Annotate alias. Defaults are stupid
+alias vi="vim"
+alias ..="cd .."
+alias ...="cd ../.."
+alias empty="cat /dev/null >"
+alias h="history | grep"
+alias back="cd -"
+alias be="bundle exec"
+alias g="git"
+alias gs="git status"
+alias gd="git diff"
+alias gds="git diff --staged"
+alias fastping='ping -c 5 -s 1' # ping really fast ;)
+alias ll="ls -lai"
+alias mkdir="mkdir -pv"
+alias ping='ping -c 5' # ping only 5 times
+alias wget='wget -c'
+alias h="history | grep"
+
+# tmux aliases
+alias tml="tmux list-sessions"
+alias tma="tmux -2 attach -t $1"
+alias tmk="tmux kill-session -t $1"
+
+# =================================
+# Functions
+# =================================
+
+function prepend() {
+  echo $1|cat - $2 > /tmp/out && mv /tmp/out $2
+}
+
+function who_wrote_this_code {
+  find $1 \( ! -regex '.*/\..*' \) -name '*.rb' -type f -print -exec git blame '{}' \; | ruby -pe "sub /(^.*\((.*?)\s+2.*$)/, '\2'" | egrep -vE '[[:punct:][:digit:]]' | sort | uniq -c | sort -nr;
+}
+
+function hitch() {
+  command hitch "$@"
+  if [[ -s "$HOME/.hitch_export_authors" ]] ; then source "$HOME/.hitch_export_authors" ; fi
+}
+alias unhitch='hitch -u'
+
+function gif-ify() {
+  if [[ -n "$1" && -n "$2" ]]; then
+    ffmpeg -i $1 -pix_fmt rgb24 temp.gif
+    convert -layers Optimize temp.gif $2
+    rm temp.gif
+  else
+    echo "proper usage: gif-ify <input_movie.mov> <output_file.gif>. You DO need to include extensions."
+  fi
+}
