@@ -42,12 +42,22 @@ export JRUBY_OPTS='--1.9'   # Always prefer Ruby 1.9 in jRuby
 export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 # =================================
+# Compiler options
+# =================================
+#
+# Previously, OS X did not have an up-to-date
+# version of the gcc compiler. As of Yosemite,
+# it now provides the only compiler that will
+# compile the latest versions of Ruby.
+# =================================
+
+export CC='/usr/bin/gcc'
+
+# =================================
 # Linux
 # =================================
 
-if [ -n "$PLATFORM" ] && [ "$PLATFORM" = "linux" ]; then
-  export CC='/usr/bin/gcc'
-fi
+# Nothing currently.
 
 # =================================
 # Mac OS X
@@ -72,7 +82,6 @@ if [ -n "$PLATFORM" ] && [ $PLATFORM = "mac" ]; then
 
   # Homebrew: Adding /url/local/bin
   export PATH="/usr/local/bin:$PATH"
-  export CC='/usr/bin/gcc'
 fi
 
 # =================================
