@@ -1,0 +1,6 @@
+#!/usr/bin/env ruby
+
+abort "Not a git repository" unless File.directory?(".git")
+
+branches = `git branch`.chomp.split("\n")
+puts branches.detect { |b| b.start_with?("* ") }.tr("* ", "")
