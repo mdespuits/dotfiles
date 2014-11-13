@@ -31,6 +31,7 @@ export PATH=$PATH:/usr/local/Cellar/mysql55/5.5.30/bin
 # General Environment
 # =================================
 
+bindkey -v # Use Vim mode!
 export EDITOR='vim'
 export VISUAL=$EDITOR
 export JRUBY_OPTS='--1.9'   # Always prefer Ruby 1.9 in jRuby
