@@ -115,10 +115,13 @@ filetype plugin indent on
 " =======================================
 " Searching
 " =======================================
+highlight Search guibg=black guifg=white gui=underline
+highlight Search ctermbg=black ctermfg=white cterm=underline
+
 set showcmd
 set incsearch
-set nohlsearch " Don't highlight results
-set ignorecase " Don't search by case
+set hlsearch " Don't highlight results
+" set ignorecase " Don't search by case
 
 " =======================================
 " Various
