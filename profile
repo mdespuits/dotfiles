@@ -32,6 +32,7 @@ export PATH=$PATH:/usr/local/Cellar/mysql55/5.5.30/bin
 # =================================
 
 bindkey -v # Use Vim mode!
+bindkey '^R' history-incremental-search-backward
 export EDITOR='vim'
 export VISUAL=$EDITOR
 export JRUBY_OPTS='--1.9'   # Always prefer Ruby 1.9 in jRuby
