@@ -271,6 +271,7 @@ nmap :WQ! :wq!
 " =======================================
 nmap :one :on
 nmap :rhs :%s/:\([^ ]*\)\(\s*\)=>\s*/\1: /g<cr>
+nmap :hrs :%s/\([a-zA-Z][a-zA-Z0-9_]*\):\s\([^\,\}]*\)/:\1 => \2/g<cr>
 nmap :clear :bufdo! bdelete<cr>
 nmap <c-s-t> :%s/\s\+$//<cr>
 nmap <leader>rt :retab<cr>
