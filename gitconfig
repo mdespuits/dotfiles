@@ -28,15 +28,14 @@
   ps = push
 
   # Committing
-  cm = commit -m
-  coa = ! git checkout . && git status
-
-  amend = commit --amend
-  famend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
+  cm      = commit -m
+  amend   = commit --amend
+  coa     = ! git checkout . && git status
+  famend  = ! git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
 
   # Diffing
-  # d = diff
-  # ds = diff --staged
+  d = diff
+  ds = diff --staged
 
   # Logging and Graphing
   ls = log --pretty='format:%Cred%h%Creset %Cblue%ad%Cred%d %Creset%s%Cgreen [%cn]%Creset' --decorate --date=short
