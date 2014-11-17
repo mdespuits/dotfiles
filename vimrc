@@ -243,7 +243,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 " =======================================
 nmap <space> :
 nmap <space>w :w!<cr>
-imap jk <Esc>
+nmap :noh :noh<cr>
 
 " =======================================
 " Buffer navigation
