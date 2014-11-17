@@ -16,9 +16,10 @@
   ra = reset .
 
   # Emails and Authors
-  authors = ! git log --all --format='%aN' | sort -u
-  emails = ! git log --all --format='%cE' | sort -u
-  standup = ! git log --since yesterday --author `git config user.email` --pretty=short
+  fsearch  = ! git ls-files | grep
+  authors  = ! git log --all --format='%aN' | sort -u
+  emails   = ! git log --all --format='%cE' | sort -u
+  standup  = ! git log --since yesterday --author `git config user.email` --pretty=short
 
   # Master is now a verb
   master = checkout master
