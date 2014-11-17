@@ -38,6 +38,7 @@ Plugin 'majutsushi/tagbar'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'uggedal/go-vim'
 Plugin 'mengbo/vim-dash'
+Plugin 'aliev/bclose'
 
 Plugin 'vim-coffee-script'
 Plugin 'Emmet.vim'
