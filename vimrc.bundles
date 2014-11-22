@@ -43,8 +43,8 @@ Plugin 'aliev/bclose'
 Plugin 'vim-coffee-script'
 Plugin 'Emmet.vim'
 
-if filereadable(expand('~/.vimrc.bundle.local'))
-  source ~/.vimrc.bundle.local
+if filereadable(expand('~/.vimrc.bundles.local'))
+  source ~/.vimrc.bundles.local
 endif
 
 call vundle#end()
