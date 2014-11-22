@@ -1,7 +1,7 @@
 " =======================================
 " Basic Setup
 " =======================================
-set nocompatible        " Don't be compatible with VI
+set nocompatible " Don't be compatible with VI
 
 " =======================================
 " Load Vundle File
@@ -11,7 +11,7 @@ if filereadable(expand("~/.vimrc.bundles"))
 endif
 
 " =======================================
-" Leaders
+" Leader
 " =======================================
 let mapleader = ","
 let g:mapleader = ","
@@ -20,13 +20,11 @@ let g:mapleader = ","
 " Display
 " =======================================
 set linespace=3
-set ruler
 set title
 set cmdheight=1
 set showtabline=2
 set winwidth=100
 set winheight=10
-set colorcolumn=80
 set nowrap
 
 set list listchars=tab:»·,trail:·
@@ -50,26 +48,25 @@ set shellcmdflag=-c
 " =======================================
 " Scrolling
 " =======================================
-set scrolloff=8
-set sidescrolloff=15
-set sidescroll=1
+set scrolloff=8                " Lines to keep above and below the cursor
+set sidescrolloff=15           " Columns to keep on either side of cursor
 set backspace=indent,eol,start " Allow backspecing over everything in insert mode
 
 " =======================================
 " Per Project .vimrc
 " =======================================
-set exrc
+set exrc   " Load .vimrc in project directory
 set secure " Disable unsafe commands in local .vimrc files
 
 " =======================================
 " Tabbing
 " =======================================
-set tabstop=2
-set shiftwidth=2
-set softtabstop=2
-set expandtab
-set smarttab " Smart tabbing
-set autoindent
+set tabstop=2       " Number of spaces in 'soft' tabs
+set softtabstop=2   " Number of spaces in 'soft' tabs
+set shiftwidth=2    " For use with indent plugins and `tabstop` setting
+set expandtab       " Use 'soft' tabs when using <Tab> character
+set smarttab        " Smart tabbing
+set autoindent      " Use indent level from current line for next line
 
 " =======================================
 " Arrow Keys => For Newbies
@@ -89,9 +86,9 @@ set history=30
 " =======================================
 "
 " Don't backup. Already using other forms of verion control.
-set nobackup
-set nowb
-set noswapfile
+set nobackup   " Do not make backup before over-writing file
+set nowb       " Do not backup file before writing
+set noswapfile " Do not save swapfiles for unsaved buffers
 
 " =======================================
 " Moving
@@ -110,14 +107,13 @@ nnoremap <c-p> :bn<cr>
 " =======================================
 " Filetype detection
 " =======================================
-filetype on
 filetype plugin indent on
 
 " =======================================
 " Searching
 " =======================================
-highlight Search guibg=black guifg=white gui=underline
-highlight Search ctermbg=black ctermfg=white cterm=underline
+highlight Search guibg=yellow guifg=black gui=underline
+highlight Search ctermbg=yellow ctermfg=black cterm=underline
 
 set showcmd
 set incsearch
@@ -130,7 +126,7 @@ set hlsearch " Don't highlight results
 set go=-T         " Hide GUI toolbar
 set noerrorbells  " Don't annoy me with error bells
 set mousehide     " Hide the mouse
-set mouse=n
+set mouse=n       " Allow 'mouse' navigation in Normal (n) mode
 set splitbelow    " When splitting, set new file on the bottom
 set hidden        " Hide hidden files
 set number        " Show line numbers
@@ -138,6 +134,11 @@ set numberwidth=1 " Line number width
 
 " =======================================
 " Relative Line Numbers
+" ---------------------------------------
+"
+" Always display current line number, but
+" toggle the rest of the line numbers
+" between relative and absolute.
 " =======================================
 function! RelativeLineNumberToggle()
   if(&relativenumber == 1)
@@ -169,8 +170,8 @@ set laststatus=2
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
 if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
-  endif
+  let g:airline_symbols = {}
+endif
 let g:airline_symbols.space = "\ua0"
 
 " ---------------------------------------
@@ -228,42 +229,42 @@ endif
 set pastetoggle=<F2>
 
 " =======================================
-" =======================================
-" =======================================
 " Mappings
-" =======================================
-" =======================================
 " =======================================
 
 " Truncating extra whitespace
 autocmd BufWritePre * :%s/\s\+$//e
 
-" =======================================
+" ***************************************
 " Global Shortcts
-" =======================================
+" ***************************************
 nmap <space> :
 nmap <space>w :w!<cr>
 nmap :noh :noh<cr>
 
-" =======================================
+" ***************************************
 " Buffer navigation
-" =======================================
+" ***************************************
 nmap :bs :buffers
 nmap <leader>bs :bs<cr>
 nmap <leader>w :Bclose!<cr>
 nmap <leader>q :bd!<cr>
 nmap <leader>cb :ene<CR>:bw #<CR>
 
-" =======================================
+" ***************************************
 " File shortcuts
-" =======================================
-nmap <leader>r :edit<cr>
+" ***************************************
+
+" -- Reload the current buffer from file on disk
+nmap <leader>r :reload!<cr>
+" -- Create a horizontal split
 nmap <leader>s :sp<cr>
+" -- Create a vertical split
 nmap <leader>v :vsplit<cr>
 
-" =======================================
-" Still use commonly mistyped commands
-" =======================================
+" ***************************************
+" Commonly mistyped commands
+" ***************************************
 nmap :W :w
 nmap :W! :w!
 nmap :Q :q
@@ -271,26 +272,39 @@ nmap :Q! :q!
 nmap :Wq! :wq!
 nmap :WQ! :wq!
 
-" =======================================
+" ***************************************
 " A few convenient shortcuts
-" =======================================
-nmap :one :on
-nmap :rhs :%s/:\([^ ]*\)\(\s*\)=>\s*/\1: /g<cr>
-nmap :hrs :%s/\([a-zA-Z][a-zA-Z0-9_]*\):\s\([^\,\}]*\)/:\1 => \2/g<cr>
-nmap :clear :bufdo! bdelete<cr>
-nmap <c-s-t> :%s/\s\+$//<cr>
-nmap <leader>rt :retab<cr>
+" ***************************************
 
-" =======================================
+" --- Make the current window the only one on the screen
+nmap :one :on
+" --- Convert Ruby 1.8 Hashes to Ruby 1.9
+nmap :rhs :%s/:\([^ ]*\)\(\s*\)=>\s*/\1: /g<cr>
+" --- Convert Ruby 1.9 Hashes to Ruby 1.8
+nmap :hrs :%s/\([a-zA-Z][a-zA-Z0-9_]*\):\s\([^\,\}]*\)/:\1 => \2/g<cr>
+" --- Clear all buffers and splits
+nmap :clear :bufdo! bdelete<cr>
+" --- Replace all 'hard' tabs with 'soft' tabs
+nmap <leader>rt :retab<cr>
+" nmap <c-s-t> :%s/\s\+$//<cr>
+
+" ***************************************
 " Perforce commands
-" =======================================
+" ***************************************
 " nmap <leader>pe :!p4 edit "%";<cr>
 " nmap <leader>pa :!p4 add "%";<cr>
 " nmap <leader>pr :!p4 revert "%";<cr>
 " nmap <leader>pd :!p4 delete "%";<cr>
 
-" =======================================
+" ***************************************
 " Managing .vimrc
-" =======================================
+" ***************************************
 nmap <leader>m :source $MYVIMRC<cr>
 nmap <leader>ev :e $MYVIMRC<cr>
+
+" ***************************************
+" Local machine overrides
+" ***************************************
+if filereadable(expand('~/.vimrc.local'))
+  source ~/.vimrc.local
+endif
