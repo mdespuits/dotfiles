@@ -99,10 +99,10 @@ nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
 nnoremap <c-h> <c-w>h
 nnoremap <c-l> <c-w>l
-nnoremap <c-n> :bp<cr>
-nnoremap <c-p> :bn<cr>
-" nnoremap <c-s-h> :tabnext<cr>
-" nnoremap <c-s-l> :tabprev<cr>
+nnoremap <c-n> :bp<CR>
+nnoremap <c-p> :bn<CR>
+" nnoremap <c-s-h> :tabnext<CR>
+" nnoremap <c-s-l> :tabprev<CR>
 
 " =======================================
 " Filetype detection
@@ -148,7 +148,7 @@ function! RelativeLineNumberToggle()
   endif
 endfunc
 
-nnoremap <leader>rl :call RelativeLineNumberToggle()<cr>
+nnoremap <leader>rl :call RelativeLineNumberToggle()<CR>
 
 " =======================================
 " Plugin Configuration
@@ -176,7 +176,7 @@ let g:airline_symbols.space = "\ua0"
 
 " ---------------------------------------
 " -- Tagbar
-nnoremap <leader>b :Tagbar<cr>
+nnoremap <leader>b :Tagbar<CR>
 let g:tagbar_autofocus = 1
 
 " ---------------------------------------
@@ -239,16 +239,16 @@ autocmd BufWritePre * :%s/\s\+$//e
 " Global Shortcts
 " ***************************************
 nmap <space> :
-nmap <space>w :w!<cr>
-nmap :noh :noh<cr>
+nmap <space>w :w!<CR>
+nmap :noh :noh<CR>
 
 " ***************************************
 " Buffer navigation
 " ***************************************
 nmap :bs :buffers
-nmap <leader>bs :bs<cr>
-nmap <leader>w :Bclose!<cr>
-nmap <leader>q :bd!<cr>
+nmap <leader>bs :bs<CR>
+nmap <leader>w :Bclose!<CR>
+nmap <leader>q :bd!<CR>
 nmap <leader>cb :ene<CR>:bw #<CR>
 
 " ***************************************
@@ -258,9 +258,9 @@ nmap <leader>cb :ene<CR>:bw #<CR>
 " -- Reload the current buffer from file on disk
 nmap <leader>r :edit!<CR>
 " -- Create a horizontal split
-nmap <leader>s :sp<cr>
+nmap <leader>s :sp<CR>
 " -- Create a vertical split
-nmap <leader>v :vsplit<cr>
+nmap <leader>v :vsplit<CR>
 
 " ***************************************
 " Commonly mistyped commands
@@ -279,28 +279,28 @@ nmap :WQ! :wq!
 " --- Make the current window the only one on the screen
 nmap :one :on
 " --- Convert Ruby 1.8 Hashes to Ruby 1.9
-nmap :rhs :%s/:\([^ ]*\)\(\s*\)=>\s*/\1: /g<cr>
+nmap :rhs :%s/:\([^ ]*\)\(\s*\)=>\s*/\1: /g<CR>
 " --- Convert Ruby 1.9 Hashes to Ruby 1.8
-nmap :hrs :%s/\([a-zA-Z][a-zA-Z0-9_]*\):\s\([^\,\}]*\)/:\1 => \2/g<cr>
+nmap :hrs :%s/\([a-zA-Z][a-zA-Z0-9_]*\):\s\([^\,\}]*\)/:\1 => \2/g<CR>
 " --- Clear all buffers and splits
-nmap :clear :bufdo! bdelete<cr>
+nmap :clear :bufdo! bdelete<CR>
 " --- Replace all 'hard' tabs with 'soft' tabs
-nmap <leader>rt :retab<cr>
-" nmap <c-s-t> :%s/\s\+$//<cr>
+nmap <leader>rt :retab<CR>
+" nmap <c-s-t> :%s/\s\+$//<CR>
 
 " ***************************************
 " Perforce commands
 " ***************************************
-" nmap <leader>pe :!p4 edit "%";<cr>
-" nmap <leader>pa :!p4 add "%";<cr>
-" nmap <leader>pr :!p4 revert "%";<cr>
-" nmap <leader>pd :!p4 delete "%";<cr>
+" nmap <leader>pe :!p4 edit "%";<CR>
+" nmap <leader>pa :!p4 add "%";<CR>
+" nmap <leader>pr :!p4 revert "%";<CR>
+" nmap <leader>pd :!p4 delete "%";<CR>
 
 " ***************************************
 " Managing .vimrc
 " ***************************************
-nmap <leader>m :source $MYVIMRC<cr>
-nmap <leader>ev :e $MYVIMRC<cr>
+nmap <leader>m :source $MYVIMRC<CR>
+nmap <leader>ev :e $MYVIMRC<CR>
 
 " ***************************************
 " Local machine overrides
