@@ -256,7 +256,7 @@ nmap <leader>cb :ene<CR>:bw #<CR>
 " ***************************************
 
 " -- Reload the current buffer from file on disk
-nmap <leader>r :reload!<cr>
+nmap <leader>r :edit!<CR>
 " -- Create a horizontal split
 nmap <leader>s :sp<cr>
 " -- Create a vertical split
