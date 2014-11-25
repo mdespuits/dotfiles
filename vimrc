@@ -185,6 +185,10 @@ let g:syntastic_enable_signs=1
 let g:syntastic_auto_loc_list=1
 
 " ---------------------------------------
+" -- vim-fugitive
+map <leader>gd  :Gvdiff<CR>
+
+" ---------------------------------------
 " -- vim-rspec
 map <leader>c :call RunCurrentSpecFile()<CR>
 map <leader>n :call RunNearestSpec()<CR>
