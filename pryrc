@@ -43,7 +43,7 @@ Pry.print = proc { |output, value|
 }
 
 # Define which editor I want to use in Pry
-Pry.config.editor = proc { |f,l| "subl #{f}:#{l}" }
+Pry.config.editor = proc { |f,l| "vim #{f}:#{l}" }
 
 # Set Pry theme
 Pry.config.theme = "pry-modern"
