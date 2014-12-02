@@ -36,7 +36,7 @@ Plugin 'vim-scripts/Colour-Sampler-Pack'
 Plugin 'bling/vim-airline'
 Plugin 'majutsushi/tagbar'
 Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'uggedal/go-vim'
+Plugin 'fatih/vim-go'
 Plugin 'mengbo/vim-dash'
 Plugin 'aliev/bclose'
 
