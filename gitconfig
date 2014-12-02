@@ -2,7 +2,7 @@
   ui = true
   sh = auto
 [push]
-  default = upstream
+  default = simple
 [core]
   excludesfile = ~/.gitexcludes
 [credential]
