@@ -39,6 +39,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'fatih/vim-go'
 Plugin 'mengbo/vim-dash'
 Plugin 'aliev/bclose'
+Plugin 'godlygeek/tabular'
 
 Plugin 'vim-coffee-script'
 Plugin 'Emmet.vim'
