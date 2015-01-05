@@ -33,6 +33,7 @@ brew install heroku-toolbelt
 brew install the_silver_searcher
 brew install wget
 brew install zsh
+brew install lastpass-cli --with-pinentry --with-doc
 
 echo "Installing vim bundles...";
 vim +PluginInstall +qall
