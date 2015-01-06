@@ -287,7 +287,7 @@ nmap :rhs :%s/:\([^ ]*\)\(\s*\)=>\s*/\1: /g<CR>
 " --- Convert Ruby 1.9 Hashes to Ruby 1.8
 nmap :hrs :%s/\([a-zA-Z][a-zA-Z0-9_]*\):\s\([^\,\}]*\)/:\1 => \2/g<CR>
 " --- Clear all buffers and splits
-nmap :clear :bufdo! bdelete<CR>
+nmap :clear :bufdo! bdelete!<CR>
 " --- Replace all 'hard' tabs with 'soft' tabs
 nmap <leader>rt :retab<CR>
 " nmap <c-s-t> :%s/\s\+$//<CR>
