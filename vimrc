@@ -187,6 +187,7 @@ let g:syntastic_auto_loc_list=1
 " ---------------------------------------
 " -- vim-fugitive
 map <leader>gd  :Gvdiff<CR>
+map <leader>gs  :Gstatus<CR>
 
 " ---------------------------------------
 " -- vim-rspec
