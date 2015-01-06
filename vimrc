@@ -248,6 +248,15 @@ nmap <space>w :w!<CR>
 nmap :noh :noh<CR>
 
 " ***************************************
+" Text Replacement
+" =======================================
+" See http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text
+" for more information
+" ***************************************
+nnoremap S "_diwP
+vnoremap S "_dP
+
+" ***************************************
 " Buffer navigation
 " ***************************************
 nmap :bs :buffers
