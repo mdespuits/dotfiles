@@ -23,7 +23,8 @@
   standup  = ! git log --since yesterday --author `git config user.email` --pretty=short
 
   # Master is now a verb
-  master = checkout master
+  master          = checkout master
+  current-branch  = rev-parse --abbrev-ref HEAD
 
   # Committing
   amend   = commit --amend

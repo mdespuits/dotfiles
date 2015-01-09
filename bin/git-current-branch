@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-git branch | grep "*" | cut -f2 -d' '
