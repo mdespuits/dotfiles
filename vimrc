@@ -222,6 +222,8 @@ au BufNewFile,BufRead *.rhtml     set filetype=eruby
 au BufNewFile,BufRead Gemfile     set filetype=ruby
 au BufNewFile,BufRead Guardfile   set filetype=ruby
 au BufNewFile,BufRead Capfile     set filetype=ruby
+au BufNewFile,BufRead .pryrc      set filetype=ruby
+au BufNewFile,BufRead pryrc       set filetype=ruby
 
 au FileType GO setlocal shiftwidth=2 tabstop=2 noexpandtab
 
