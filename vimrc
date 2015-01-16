@@ -246,6 +246,7 @@ autocmd BufWritePre * :%s/\s\+$//e
 nmap <space> :
 nmap <space>w :w!<CR>
 nmap :noh :noh<CR>
+nmap :Noh :noh<CR>
 
 " ***************************************
 " Text Replacement
