@@ -32,16 +32,6 @@ Pry custom commands defined in my .pryrc:
 
 require 'pry'
 
-begin
-require 'awesome_print'
-rescue
-  puts "'awesome_print' is not installed. Run `gem install awesome_print`."
-end
-
-Pry.print = proc { |output, value|
-  Pry::Helpers::BaseHelpers.stagger_output("=> #{value.ai}", output)
-}
-
 # Define which editor I want to use in Pry
 Pry.config.editor = proc { |f,l| "vim #{f}:#{l}" }
 
