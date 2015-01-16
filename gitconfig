@@ -43,7 +43,7 @@
 
   # Amending and resetting
   fixlast = reset --soft HEAD^
-  rollback = reset –hard HEAD@{1}
+  rollback = reset --hard HEAD@{1}
 
   # Diff of current branch to other branches.
   # Hope to move these into their own shell scripts
