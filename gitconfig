@@ -25,6 +25,7 @@
   # Master is now a verb
   master          = checkout master
   current-branch  = rev-parse --abbrev-ref HEAD
+  last-branch     = ! git rev-parse --symbolic-full-name @{-1} | cut -f3 -d'/'
 
   # Committing
   amend   = commit --amend
