@@ -123,7 +123,6 @@ alias ll="ls -lai"
 alias mkdir="mkdir -pv"
 alias ping='ping -c 5' # ping only 5 times
 alias wget='wget -c'
-alias h="history | grep"
 
 # tmux aliases
 alias tml="tmux list-sessions"
