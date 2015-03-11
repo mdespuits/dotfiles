@@ -26,6 +26,7 @@ install homebrew/dupes/make
 install homebrew/dupes/unzip
 install homebrew/versions/mysql55 --llvm-gcc
 install thoughtbot/formulae/rcm
+install thoughtbot/formulae/pick
 
 # Languages
 install go
