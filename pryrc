@@ -234,6 +234,16 @@ def sip
   print %x(ifconfig)
 end
 
+class Object
+  def self.descendants
+    ObjectSpace.each_object(Class).select { |klass| klass < self }
+  end
+
+  def interesting_methods
+    self.methods - Object.methods
+  end
+end
+
 # Show methods defined in .pryrc
 # This depends heavily on the format of
 # method definitions. A single comment
