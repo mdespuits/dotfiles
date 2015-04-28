@@ -211,6 +211,12 @@ let g:ctrlp_map = '<leader>t'
 let g:ctrlp_show_hidden = 1
 let g:ctrlp_root_markers = ['Gemfile']
 
+" ---------------------------------------
+" -- ctrlp-funky
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+
 " =======================================
 " Filetype highlighting
 " =======================================
