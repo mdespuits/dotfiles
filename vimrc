@@ -189,6 +189,9 @@ let g:syntastic_auto_loc_list=1
 map <leader>gd  :Gvdiff<CR>
 map <leader>gs  :Gstatus<CR>
 
+" Remove fugitive buffers completely when done
+autocmd BufReadPost fugitive://* set bufhidden=delete
+
 " ---------------------------------------
 " -- vim-rspec
 map <leader>c :call RunCurrentSpecFile()<CR>
