@@ -89,6 +89,7 @@ set history=30
 set nobackup   " Do not make backup before over-writing file
 set nowb       " Do not backup file before writing
 set noswapfile " Do not save swapfiles for unsaved buffers
+set shortmess=aWtI
 
 " =======================================
 " Moving
@@ -228,11 +229,12 @@ au BufNewFile,BufRead *.dump      set filetype=sql
 au BufNewFile,BufRead *.ctp       set filetype=php
 au BufNewFile,BufRead *.erb       set filetype=eruby
 au BufNewFile,BufRead *.rhtml     set filetype=eruby
-au BufNewFile,BufRead Gemfile     set filetype=ruby
 au BufNewFile,BufRead Guardfile   set filetype=ruby
 au BufNewFile,BufRead Capfile     set filetype=ruby
 au BufNewFile,BufRead .pryrc      set filetype=ruby
 au BufNewFile,BufRead pryrc       set filetype=ruby
+au BufNewFile,BufRead *.{md,markdown,mdown,mkd,mkdn,txt} set filetype=markdown
+au BufNewFile,BufRead Gemfile     set filetype=ruby
 
 au FileType GO setlocal shiftwidth=2 tabstop=2 noexpandtab
 
@@ -250,6 +252,9 @@ set pastetoggle=<F2>
 
 " Truncating extra whitespace
 autocmd BufWritePre * :%s/\s\+$//e
+
+" Resize windows within terminal and tmux
+autocmd VimResized * :wincmd =
 
 " ***************************************
 " Global Shortcts
