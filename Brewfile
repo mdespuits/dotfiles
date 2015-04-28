@@ -15,6 +15,7 @@ install zsh
 
 # Essential development packages
 install git
+install git-hooks
 install the_silver_searcher
 install sqlite
 install vim --override-system-vi
