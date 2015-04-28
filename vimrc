@@ -32,6 +32,30 @@ set list listchars=tab:»·,trail:·
 set wildignore+=*tmp/**
 set wildignore+=*coverage
 
+" Disable output and VCS files
+set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
+
+" Ignore images and log files
+set wildignore+=*.gif,*.jpg,*.png,*.log
+
+" Disable archive files
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+
+" Ignore bundler and sass cache
+set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+
+" Ignore custom folders
+set wildignore+=*/resources/*
+
+" Ignore node modules
+set wildignore+=node_modules/*
+
+" Disable temp and backup files
+set wildignore+=*.swp,*~,._*
+
+" Disable osx index files
+set wildignore+=.DS_Store
+
 " =======================================
 " Theme
 " =======================================
