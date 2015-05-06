@@ -5,3 +5,4 @@
 /pkg
 *.VimballRecord
 vim/bundle/*
+!git_hooks
