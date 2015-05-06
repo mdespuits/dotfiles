@@ -65,4 +65,4 @@
 [difftool]
   prompt = false
 [init]
-  templatedir = ~/.git-template
+  templatedir = ~/.git-template-with-git-hooks
