@@ -20,7 +20,7 @@
   fsearch  = ! git ls-files | grep -i
   authors  = ! git log --all --format='%aN' | sort -u
   emails   = ! git log --all --format='%cE' | sort -u
-  standup  = ! git log --since yesterday --author `git config user.email` --pretty=short
+  me       = ! git ls --since 7.days.ago --author `git config user.email` --branches
 
   # Master is now a verb
   master          = checkout master
