@@ -24,6 +24,26 @@ brew install tmux
 brew install rbenv
 brew install ruby-build --HEAD
 
+# Essential development packages
+brew install git
+brew install git-hooks
+brew install the_silver_searcher
+brew install thoughtbot/formulae/rcm
+brew install thoughtbot/formulae/pick
+
+# Background services
+brew install memcached
+brew install openssl
+brew install redis
+
+# Extra fun stuff
+brew install jq
+brew install htop-osx
+brew install heroku-toolbelt
+brew install nviennot/tmate/tmate
+brew install tree
+brew install ssh-copy-id
+
 # Setup other useful tools/langs
 brew install ack
 brew install bash
