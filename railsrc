@@ -1,1 +1,1 @@
---skip-bundle --database postgresql --skip-fixture -T
+--skip-turbolinks --skip-bundle --database postgresql --skip-fixture
