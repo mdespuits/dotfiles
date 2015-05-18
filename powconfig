@@ -1,3 +1,2 @@
 export HOME=/Users/`whoami`
 export PATH="$HOME/.rbenv/shims:$HOME/.rbenv/bin:/usr/local/bin:$PATH"
-export POW_DOMAINS=dev,local,lo.peopleadmin.com
