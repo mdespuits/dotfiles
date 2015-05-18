@@ -55,6 +55,32 @@ brew install wget
 brew install zsh
 brew install lastpass-cli --with-pinentry --with-doc
 
+# OSX Apps
+brew install phinze/cask/brew-cask
+
+# brew cask install audacity 2> /dev/null
+# brew cask install dropbox 2> /dev/null
+# brew cask install google-chrome 2> /dev/null
+# brew cask install google-chrome-canary 2> /dev/null
+# brew cask install iterm2 2> /dev/null
+# brew cask install jing 2> /dev/null
+# brew cask install sublime-text 2> /dev/null
+# brew cask install sequel-pro 2> /dev/null
+# brew cask install vagrant 2> /dev/null
+# brew cask install virtualbox 2> /dev/null
+# brew cask install vlc 2> /dev/null
+
+# Fun OSX Quick Look plugins
+brew cask install betterzipql 2> /dev/null
+brew cask install qlcolorcode 2> /dev/null
+brew cask install qlmarkdown 2> /dev/null
+brew cask install qlprettypatch 2> /dev/null
+brew cask install qlstephen 2> /dev/null
+brew cask install quicklook-csv 2> /dev/null
+brew cask install quicklook-json 2> /dev/null
+brew cask install suspicious-package 2> /dev/null
+brew cask install webp-quicklook 2> /dev/null
+
 echo "Installing vim bundles...";
 vim +PluginInstall +qall
 
