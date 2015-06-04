@@ -141,6 +141,15 @@ function who_wrote_this_code {
   find $1 \( ! -regex '.*/\..*' \) -name '*.rb' -type f -print -exec git blame '{}' \; | ruby -pe "sub /(^.*\((.*?)\s+2.*$)/, '\2'" | egrep -vE '[[:punct:][:digit:]]' | sort | uniq -c | sort -nr;
 }
 
+function edit-file() {
+  if [[ -d ".git" ]] ; then
+    vim $(git ls-files | pick)
+  else
+    vim $(find . -type f | pick)
+  fi
+}
+alias edit='edit-file'
+
 function hitch() {
   command hitch "$@"
   if [[ -s "$HOME/.hitch_export_authors" ]] ; then source "$HOME/.hitch_export_authors" ; fi
