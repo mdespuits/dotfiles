@@ -17,6 +17,7 @@ Plugin 'tpope/vim-haml'
 Plugin 'tpope/vim-commentary'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-unimpaired'
+Plugin 'scrooloose/syntastic'
 Plugin 'kana/vim-textobj-user' " Dependency for vim-textobj-rubyblock
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'thoughtbot/vim-rspec'
