@@ -321,7 +321,7 @@ vnoremap S "_dP
 " ***************************************
 nmap :bs :buffers
 nmap <leader>bs :bs<CR>
-nmap <leader>w :Bclose!<CR>
+nmap <leader>w :Bclose<CR>
 nmap <leader>q :bd!<CR>
 nmap <leader>cb :ene<CR>:bw #<CR>
 nmap <leader>lc :lclose<CR>
