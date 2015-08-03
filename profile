@@ -157,6 +157,10 @@ function hitch() {
 }
 alias unhitch='hitch -u'
 
+function kill-dnsmasq() {
+  sudo kill $(ps aux | grep '[d]nsmasq' | awk '{print $2}')
+}
+
 function gif-ify() {
   if [[ -n "$1" && -n "$2" ]]; then
     ffmpeg -i $1 -pix_fmt rgb24 temp.gif
