@@ -59,6 +59,7 @@ brew install lastpass-cli --with-pinentry --with-doc
 
 # OSX Apps
 brew install phinze/cask/brew-cask
+brew cask install hammerspoon 2> /dev/null
 
 # brew cask install audacity 2> /dev/null
 # brew cask install dropbox 2> /dev/null
