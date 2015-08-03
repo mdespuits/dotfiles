@@ -106,7 +106,7 @@ fi
 # Aliases
 # =================================
 
-alias annotate="annotate -p before -e tests" # Annotate alias. Defaults are stupid
+# alias annotate="annotate -p before -e tests" # Annotate alias. Defaults are stupid
 alias vi="vim"
 alias ..="cd .."
 alias ...="cd ../.."
