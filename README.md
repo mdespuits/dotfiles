@@ -17,4 +17,4 @@ Currently, I am using [`rcm`](https://github.com/thoughtbot/rcm).
     $ git clone https://github.com/mattdbridges/dotfiles.git
     $ brew tap thoughtbot/formulae
     $ brew install rcm
-    $ rcup -d dotfiles -x README.md -x LICENSE -x com.googlecode.iterm2.plist
+    $ rcup -x README.md -x LICENSE -x com.googlecode.iterm2.plist
