@@ -36,6 +36,7 @@ zstyle ':prezto:load' pmodule \
   'prompt' \
   'homebrew' \
   'ruby' \
+  'git' \
   'tmux'
 
 #
@@ -53,7 +54,10 @@ zstyle ':prezto:module:editor' dot-expansion 'yes'
 #
 
 # Ignore submodules when they are 'dirty', 'untracked', 'all', or 'none'.
-# zstyle ':prezto:module:git:status:ignore' submodules 'all'
+zstyle ':prezto:module:git:status:ignore' submodules 'all'
+
+zstyle ':prezto:module:git:log:context' format 'medium'
+
 
 #
 # GNU Utility
