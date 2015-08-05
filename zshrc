@@ -24,7 +24,7 @@ setopt AUTO_CD
 setopt NO_BEEP
 
 # Where it gets saved
-HISTFILE=~/.history
+HISTFILE=~/.zhistory
 
 # Remember about a years worth of history (AWESOME)
 SAVEHIST=10000
