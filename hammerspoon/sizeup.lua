@@ -5,6 +5,7 @@
 -- To use, you can tweak the key bindings and the margins
 
 local sizeup = { }
+local hyper = { "ctrl", "cmd" }
 
 --------------
 -- Bindings --
@@ -12,19 +13,19 @@ local sizeup = { }
 
 --- Split Screen Actions ---
 -- Send Window Left
-hs.hotkey.bind({"ctrl","alt","cmd"}, "Left", function()
+hs.hotkey.bind(hyper, "Left", function()
   sizeup.send_window_left()
 end)
 -- Send Window Right
-hs.hotkey.bind({"ctrl","alt","cmd"}, "Right", function()
+hs.hotkey.bind(hyper, "Right", function()
   sizeup.send_window_right()
 end)
 -- Send Window Up
-hs.hotkey.bind({"ctrl","alt","cmd"}, "Up", function()
+hs.hotkey.bind(hyper, "Up", function()
   sizeup.send_window_up()
 end)
 -- Send Window Down
-hs.hotkey.bind({"ctrl","alt","cmd"}, "Down", function()
+hs.hotkey.bind(hyper, "Down", function()
   sizeup.send_window_down()
 end)
 
@@ -48,12 +49,14 @@ end)
 
 --- Multiple Monitor Actions ---
 -- Send Window Prev Monitor
-hs.hotkey.bind({ "ctrl", "alt" }, "Left", function()
+hs.hotkey.bind({ "ctrl", "alt", "cmd" }, "Left", function()
   sizeup.send_window_prev_monitor()
+  sizeup.maximize()
 end)
 -- Send Window Next Monitor
-hs.hotkey.bind({ "ctrl", "alt" }, "Right", function()
+hs.hotkey.bind({ "ctrl", "alt", "cmd" }, "Right", function()
   sizeup.send_window_next_monitor()
+  sizeup.maximize()
 end)
 
 --- Spaces Actions ---
@@ -64,16 +67,16 @@ end)
 -- If you have any ideas, please visit the ticket
 
 --- Snapback Action ---
-hs.hotkey.bind({"ctrl","alt","cmd"}, "Z", function()
+hs.hotkey.bind(hyper, "Z", function()
   sizeup.snapback()
 end)
 --- Other Actions ---
 -- Make Window Full Screen
-hs.hotkey.bind({"cmd","alt","ctrl"}, "M", function()
+hs.hotkey.bind({"ctrl", "alt", "cmd"}, "M", function()
   sizeup.maximize()
 end)
 -- Send Window Center
-hs.hotkey.bind({"cmd","alt","ctrl"}, "J", function()
+hs.hotkey.bind(hyper, "J", function()
   sizeup.move_to_center_absolute({w=800, h=600})
   -- sizeup.move_to_center_relative({w=0.75, h=0.75})
 end)
