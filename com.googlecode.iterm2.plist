@@ -1096,7 +1096,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/mattbridges/dotfiles</string>
+	<string>/Users/mattbridges/.dotfiles</string>
 	<key>PromptOnClose</key>
 	<true/>
 	<key>PromptOnQuit</key>
