@@ -130,6 +130,13 @@ nnoremap <c-p> :bn<CR>
 " nnoremap <c-s-l> :tabprev<CR>
 
 " =======================================
+" Neovim-specific configuration
+" =======================================
+if has('nvim')
+  tnoremap <Esc> <C-\><C-n>
+endif
+
+" =======================================
 " Filetype detection
 " =======================================
 filetype plugin indent on
