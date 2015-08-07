@@ -11,10 +11,12 @@
   autocorrect = 1
 [alias]
   # Favorites
-  ps = push
-  b = branch
-  aa = add --all
-  ra = reset .
+  ps  = push
+  b   = branch
+  aa  = add --all
+  ra  = reset .
+  co  = checkout
+  coa = ! git checkout .
 
   # Emails and Authors
   fsearch  = ! git ls-files | grep -i
@@ -28,9 +30,8 @@
   last-branch     = ! git rev-parse --symbolic-full-name @{-1} | cut -f3 -d'/'
 
   # Committing
+  cm      = commit -v
   amend   = commit --amend
-  co      = checkout
-  coa     = ! git checkout .
   famend  = ! git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
 
   # Diffing
