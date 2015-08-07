@@ -19,7 +19,7 @@ end
 utcbar.menubar = hs.menubar.new()
 
 -- Initializes the hs.timer
-utcbar.timer = hs.timer.new(0.05, utcbar.update)
+utcbar.timer = hs.timer.new(0.5, utcbar.update)
 
 -- What format should we display
 utcbar.dateformat = "!%H:%M:%S" .. " UTC"
