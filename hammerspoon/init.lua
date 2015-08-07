@@ -1,29 +1,36 @@
--- Capture the hostname, so we can make this config behave differently across my Macs
-hostname = hs.host.localizedName()
+---------------------------------------------
+-- Configuration
+---------------------------------------------
 
 -- Ensure the IPC command line client is available
 hs.ipc.cliInstall()
 
-local fnutils = require("hs.fnutils")
+-- We don't like animation around here
+hs.window.animationDuration = 0.0
 
 -- Watchers
 local configFileWatcher = nil
 local screenWatcher = nil
 local applicationWatcher = nil
+local batteryWatcher = nil
 
-function tablelength(T)
+-- Debugging
+-- hs.logger.defaultLogLevel = "debug"
+logger = hs.logger.new("debugger")
+
+fnutils = require("hs.fnutils")
+
+function fnutils.length(T)
   local count = 0
   for _ in pairs(T) do count = count + 1 end
   return count
 end
 
-hs.window.animationDuration = 0.0
-
 -- Other libraries
 utcbar  = require("utcbar")
-sizeup  = require("sizeup")
-
 utcbar:start()
+
+sizeup  = require("sizeup")
 
 function reloadConfig(files)
   doReload = false
@@ -38,25 +45,38 @@ function reloadConfig(files)
   end
 end
 
-hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", reloadConfig):start()
-hs.pathwatcher.new(os.getenv("HOME") .. "/.dotfiles/hammerspoon/", reloadConfig):start()
-hs.notify.new({title="Hammerspoon", informativeText="Config reloaded", autoWithdraw=true}):send():release()
+hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", hs.reload):start()
+hs.pathwatcher.new(os.getenv("HOME") .. "/.dotfiles/hammerspoon/", hs.reload):start()
 
--- Toggle WiFi off when I'm plugged into my external monitor at work
+-- Reload Hammerspoon every five minutes to keep it alive and well
+hs.timer.new(hs.timer.minutes(30), function()
+  logger:d("Reloading Hammerspoon for freshness!")
+  hs.reload()
+end):start()
 
+-- Screen Names
+externalDisplayName = "Thunderbolt Display"
+mainDisplayName = "Color LCD"
+
+local lastScreenCount = fnutils.length(hs.screen.allScreens())
+
+-- Watch for Screen events
 function onScreenCountChange()
   local status = "on"
-  local screencount = tablelength(hs.screen.allScreens())
+  local screencount = fnutils.length(hs.screen.allScreens())
+  logger:d("Screen count changed: " .. screencount .. " monitors")
 
-  if screencount > 1 then
+  if (screencount >= 2 and not (screencount == lastScreenCount)) then
+    -- Toggle WiFi off when I'm plugged into my external monitor at work
     status = "off"
   else
     status = "on"
   end
+  lastScreenCount = screencount
   output, status, _, rc = hs.execute("networksetup -setairportpower en0 " .. status)
 end
 
--- Bring all windows to the front
+-- Watch for Application events
 function onApplicationEvent(name, eventType, app)
   if (eventType == hs.application.watcher.activated) then
     -- Bring all Finder windows forward when one gets activated
@@ -73,6 +93,18 @@ function onApplicationEvent(name, eventType, app)
   end
 end
 
+-- Watch for Battery events
+function onBatteryChange()
+  local battery = hs.battery
+  local batterylogger = hs.logger.new("battery", "debug")
+
+  if (battery.powerSource() == "Battery Power") then
+    batterylogger:d("Minutes Remaining: " .. battery.timeRemaining())
+  else
+    batterylogger:d("Minutes Until Charged: " .. battery.timeToFullCharge())
+  end
+end
+
 -- Enable Application Watcher
 applicationWatcher = hs.application.watcher.new(onApplicationEvent)
 applicationWatcher:start()
@@ -80,6 +112,10 @@ applicationWatcher:start()
 -- Enable Screen Watcher
 screenWatcher = hs.screen.watcher.new(onScreenCountChange)
 screenWatcher:start()
+
+-- Enable Battery Watcher
+batteryWatcher = hs.battery.watcher.new(onBatteryChange)
+batteryWatcher:start()
 
 ---------------------------------------------
 -- OS X Notification Clear
