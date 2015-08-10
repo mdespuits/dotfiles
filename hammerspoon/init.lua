@@ -9,22 +9,15 @@ hs.ipc.cliInstall()
 hs.window.animationDuration = 0.0
 
 -- Watchers
-local configFileWatcher = nil
 local screenWatcher = nil
 local applicationWatcher = nil
 local batteryWatcher = nil
 
+local hyper = { "ctrl", "alt", "cmd" }
+
 -- Debugging
 -- hs.logger.defaultLogLevel = "debug"
 logger = hs.logger.new("debugger")
-
-fnutils = require("hs.fnutils")
-
-function fnutils.length(T)
-  local count = 0
-  for _ in pairs(T) do count = count + 1 end
-  return count
-end
 
 -- Other libraries
 utcbar  = require("utcbar")
@@ -32,48 +25,81 @@ utcbar:start()
 
 sizeup  = require("sizeup")
 
-function reloadConfig(files)
-  doReload = false
-  for _,file in pairs(files) do
-    if file:sub(-4) == ".lua" then
-      doReload = true
-    end
-  end
-  if doReload then
-    hs:reload()
-    hs.notify.new({title="Hammerspoon", informativeText="Config reloaded", autoWithdraw=true}):send()
+function reloadConfig(alert)
+  hs:reload()
+  if alert == true then
+    hs.notify.new({title="Hammerspoon", informativeText="Config reloaded", autoWithdraw=true}):send():release()
   end
 end
 
-hs.pathwatcher.new(os.getenv("HOME") .. "/.hammerspoon/", hs.reload):start()
-hs.pathwatcher.new(os.getenv("HOME") .. "/.dotfiles/hammerspoon/", hs.reload):start()
-
--- Reload Hammerspoon every five minutes to keep it alive and well
-hs.timer.new(hs.timer.minutes(30), function()
+-- Reload Hammerspoon every so often to keep it alive and well
+hs.timer.new(hs.timer.minutes(10), function()
   logger:d("Reloading Hammerspoon for freshness!")
-  hs.reload()
+  hs.reload(false)
 end):start()
 
 -- Screen Names
 externalDisplayName = "Thunderbolt Display"
 mainDisplayName = "Color LCD"
 
-local lastScreenCount = fnutils.length(hs.screen.allScreens())
+local single_display = {
+  { "Google Chrome"    , nil , mainDisplayName , hs.layout.maximized , nil , nil } ,
+  { "iTerm"            , nil , mainDisplayName , hs.layout.maximized , nil , nil } ,
+  { "Activity Monitor" , nil , mainDisplayName , hs.layout.left50    , nil , nil } ,
+  { "Dash"             , nil , mainDisplayName , hs.layout.maximized , nil , nil } ,
+  { "Messages"         , nil , mainDisplayName , hs.layout.right50   , nil , nil }
+}
+
+
+local dual_display = {
+  { "Google Chrome"    , nil , mainDisplayName     , hs.layout.maximized , nil , nil } ,
+  { "iTerm"            , nil , externalDisplayName , hs.layout.maximized , nil , nil } ,
+  { "Activity Monitor" , nil , mainDisplayName     , hs.layout.left50    , nil , nil } ,
+  { "Dash"             , nil , externalDisplayName , hs.layout.right50   , nil , nil } ,
+  { "Messages"         , nil , mainDisplayName     , hs.layout.right50   , nil , nil }
+}
+
+-- Apply a particular screen layout based on the number of screens present
+function applyScreenLayout(screencount)
+  if screencount == 1 then
+    hs.layout.apply(single_display)
+  else
+    hs.layout.apply(dual_display)
+  end
+end
+
+-- Toggle WiFi off when I'm plugged into my external monitor at work
+function applyWifiEnabled(screencount)
+  local networkstatus = "on"
+  networkstatus = screencount > 1 and 'off' or 'on'
+
+  output, status, t, rc = hs.execute("networksetup -setairportpower en0 " .. networkstatus)
+  logger:d("Output: " .. output)
+  logger:d("Status: " .. tostring(status))
+  logger:d("Type: " .. t)
+  logger:d("RC: " .. rc)
+
+  if not status == true or not rc == 0 then
+    hs.alert("WiFi change failed :" .. output)
+  end
+end
+
+local lastNumberOfScreens = #hs.screen.allScreens()
 
 -- Watch for Screen events
 function onScreenCountChange()
   local status = "on"
-  local screencount = fnutils.length(hs.screen.allScreens())
-  logger:d("Screen count changed: " .. screencount .. " monitors")
+  newNumberOfScreens = #hs.screen.allScreens()
 
-  if (screencount >= 2 and not (screencount == lastScreenCount)) then
-    -- Toggle WiFi off when I'm plugged into my external monitor at work
-    status = "off"
-  else
-    status = "on"
+  logger:d("Screen count changed: " .. newNumberOfScreens .. " monitors")
+
+  -- Make sure we only apply changes when screen count changes, not on any screen event
+  if lastNumberOfScreens ~= newNumberOfScreens then
+    applyWifiEnabled(newNumberOfScreens)
+    applyScreenLayout(newNumberOfScreens)
   end
-  lastScreenCount = screencount
-  output, status, _, rc = hs.execute("networksetup -setairportpower en0 " .. status)
+
+  lastNumberOfScreens = newNumberOfScreens
 end
 
 -- Watch for Application events
@@ -116,6 +142,16 @@ screenWatcher:start()
 -- Enable Battery Watcher
 batteryWatcher = hs.battery.watcher.new(onBatteryChange)
 batteryWatcher:start()
+
+
+---------------------------------------------
+-- General Hotkeys
+---------------------------------------------
+hs.hotkey.bind(hyper, '1', function() applyScreenLayout(1) end)
+hs.hotkey.bind(hyper, '2', function() applyScreenLayout(2) end)
+
+hs.hotkey.bind(hyper, 'y', function() hs.toggleConsole() end)
+hs.hotkey.bind(hyper, 'r', function() reloadConfig(true) end)
 
 ---------------------------------------------
 -- OS X Notification Clear
