@@ -40,7 +40,7 @@ end):start()
 
 -- Screen Names
 externalDisplayName = "Thunderbolt Display"
-mainDisplayName = "Color LCD"
+mainDisplayName     = "Color LCD"
 
 local single_display = {
   { "Google Chrome"    , nil , mainDisplayName , hs.layout.maximized , nil , nil } ,
