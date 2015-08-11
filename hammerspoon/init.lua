@@ -13,7 +13,8 @@ local screenWatcher = nil
 local applicationWatcher = nil
 local batteryWatcher = nil
 
-local hyper = { "ctrl", "alt", "cmd" }
+local mash      = { "ctrl", "alt", "cmd" }
+local mashshift = { "cmd", "alt", "shift" }
 
 -- Debugging
 -- hs.logger.defaultLogLevel = "debug"
@@ -143,20 +144,10 @@ screenWatcher:start()
 batteryWatcher = hs.battery.watcher.new(onBatteryChange)
 batteryWatcher:start()
 
-
----------------------------------------------
--- General Hotkeys
----------------------------------------------
-hs.hotkey.bind(hyper, '1', function() applyScreenLayout(1) end)
-hs.hotkey.bind(hyper, '2', function() applyScreenLayout(2) end)
-
-hs.hotkey.bind(hyper, 'y', function() hs.toggleConsole() end)
-hs.hotkey.bind(hyper, 'r', function() reloadConfig(true) end)
-
 ---------------------------------------------
 -- OS X Notification Clear
 ---------------------------------------------
-hs.hotkey.bind({"cmd", "alt", "shift"}, "S", function()
+function clearNotifications()
   local script = [[
     my closeNotif()
     on closeNotif()
@@ -178,5 +169,16 @@ hs.hotkey.bind({"cmd", "alt", "shift"}, "S", function()
 
     end closeNotif
   ]]
-  hs.applescript._applescript(script)
-end)
+  hs.applescript.applescript(script)
+end
+
+---------------------------------------------
+-- General Hotkeys
+---------------------------------------------
+hs.hotkey.bind(mash, '1', function() applyScreenLayout(1) end)
+hs.hotkey.bind(mash, '2', function() applyScreenLayout(2) end)
+
+hs.hotkey.bind(mash, 'y', function() hs.toggleConsole() end)
+hs.hotkey.bind(mash, 'r', function() reloadConfig(true) end)
+
+hs.hotkey.bind(mashshift, "S", clearNotifications)
