@@ -8,16 +8,20 @@ hs.ipc.cliInstall()
 -- We don't like animation around here
 hs.window.animationDuration = 0.0
 
+-- Hints
+hs.hints.style = "vimperator"
+
 -- Watchers
 local screenWatcher = nil
 local applicationWatcher = nil
 local batteryWatcher = nil
+local wifiWatcher = nil
 
 local mash      = { "ctrl", "alt", "cmd" }
 local mashshift = { "cmd", "alt", "shift" }
 
 -- Debugging
--- hs.logger.defaultLogLevel = "debug"
+hs.logger.defaultLogLevel = "debug"
 logger = hs.logger.new("debugger")
 
 -- Other libraries
@@ -132,6 +136,22 @@ function onBatteryChange()
   end
 end
 
+local homeNetwork = "ATT902"
+function onWifiChange()
+  local enablePasswordlessLogin = "false"
+  local wifinetwork = hs.wifi.currentNetwork()
+
+  logger:d("Home Network : " .. homeNetwork)
+  if wifinetwork == homeNetwork then
+    enablePasswordlessLogin = "true"
+  end
+  logger:d("Enabling Passwordless Login: " .. enablePasswordlessLogin)
+  output, status, resultype, rc = hs.execute([[
+    sudo osascript -e 'tell application "System Events" to set require password to wake of security preferences to'
+  ]] .. enablePasswordlessLogin)
+  logger:d(tostring(output) .. " | " .. tostring(status) .. " | " .. tostring(resultype) .. " | " .. tostring(rc))
+end
+
 -- Enable Application Watcher
 applicationWatcher = hs.application.watcher.new(onApplicationEvent)
 applicationWatcher:start()
@@ -143,6 +163,12 @@ screenWatcher:start()
 -- Enable Battery Watcher
 batteryWatcher = hs.battery.watcher.new(onBatteryChange)
 batteryWatcher:start()
+
+-- Enable Wifi Watcher
+wifiWatcher = hs.wifi.watcher.new(onWifiChange)
+wifiWatcher:start()
+
+hs.timer.new(20, function() onWifiChange() end):start()
 
 ---------------------------------------------
 -- OS X Notification Clear
@@ -182,3 +208,34 @@ hs.hotkey.bind(mash, 'y', function() hs.toggleConsole() end)
 hs.hotkey.bind(mash, 'r', function() reloadConfig(true) end)
 
 hs.hotkey.bind(mashshift, "S", clearNotifications)
+
+---------------------------------------------
+-- Safari tab keys
+---------------------------------------------
+-- hs.hotkey.bind({"cmd"}, "1", function()
+--   hs.applescript._applescript('tell front window of app "Safari" to set current tab to tab 1')
+-- end)
+-- hs.hotkey.bind({"cmd"}, "2", function()
+--   hs.applescript._applescript('tell front window of app "Safari" to set current tab to tab 2')
+-- end)
+-- hs.hotkey.bind({"cmd"}, "3", function()
+--   hs.applescript._applescript('tell front window of app "Safari" to set current tab to tab 3')
+-- end)
+-- hs.hotkey.bind({"cmd"}, "4", function()
+--   hs.applescript._applescript('tell front window of app "Safari" to set current tab to tab 4')
+-- end)
+-- hs.hotkey.bind({"cmd"}, "5", function()
+--   hs.applescript._applescript('tell front window of app "Safari" to set current tab to tab 5')
+-- end)
+-- hs.hotkey.bind({"cmd"}, "6", function()
+--   hs.applescript._applescript('tell front window of app "Safari" to set current tab to tab 6')
+-- end)
+-- hs.hotkey.bind({"cmd"}, "7", function()
+--   hs.applescript._applescript('tell front window of app "Safari" to set current tab to tab 7')
+-- end)
+-- hs.hotkey.bind({"cmd"}, "8", function()
+--   hs.applescript._applescript('tell front window of app "Safari" to set current tab to tab 8')
+-- end)
+-- hs.hotkey.bind({"cmd"}, "9", function()
+--   hs.applescript._applescript('tell front window of app "Safari" to set current tab to tab 9')
+-- end)
