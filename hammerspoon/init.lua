@@ -138,18 +138,17 @@ end
 
 local homeNetwork = "ATT902"
 function onWifiChange()
-  local enablePasswordlessLogin = "false"
   local wifinetwork = hs.wifi.currentNetwork()
 
   logger:d("Home Network : " .. homeNetwork)
   if wifinetwork == homeNetwork then
-    enablePasswordlessLogin = "true"
+    logger:d("At home!")
   end
-  logger:d("Enabling Passwordless Login: " .. enablePasswordlessLogin)
-  output, status, resultype, rc = hs.execute([[
-    sudo osascript -e 'tell application "System Events" to set require password to wake of security preferences to'
-  ]] .. enablePasswordlessLogin)
-  logger:d(tostring(output) .. " | " .. tostring(status) .. " | " .. tostring(resultype) .. " | " .. tostring(rc))
+  -- logger:d("Enabling Passwordless Login: " .. enablePasswordlessLogin)
+  -- output, status, resultype, rc = hs.execute([[
+  --   sudo osascript -e 'tell application "System Events" to set require password to wake of security preferences to'
+  -- ]] .. enablePasswordlessLogin)
+  -- logger:d(tostring(output) .. " | " .. tostring(status) .. " | " .. tostring(resultype) .. " | " .. tostring(rc))
 end
 
 -- Enable Application Watcher
