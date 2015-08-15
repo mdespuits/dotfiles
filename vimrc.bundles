@@ -21,6 +21,8 @@ Plugin 'scrooloose/syntastic'
 Plugin 'kana/vim-textobj-user' " Dependency for vim-textobj-rubyblock
 Plugin 'nelstrom/vim-textobj-rubyblock'
 Plugin 'thoughtbot/vim-rspec'
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 Plugin 'jgdavey/tslime.vim'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'cfcosta/html5-vim-minimal'

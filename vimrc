@@ -187,6 +187,10 @@ nnoremap <leader>rl :call RelativeLineNumberToggle()<CR>
 " =======================================
 
 " ---------------------------------------
+" -- vim-jsx
+let g:jsx_ext_required = 0
+
+" ---------------------------------------
 " -- ZenCoding
 let g:user_emmet_expandabbr_key = '<c-e>'
 
