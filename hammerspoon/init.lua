@@ -38,7 +38,7 @@ function reloadConfig(alert)
 end
 
 -- Reload Hammerspoon every so often to keep it alive and well
-hs.timer.new(hs.timer.minutes(10), function()
+hs.timer.new(hs.timer.hours(1), function()
   logger:d("Reloading Hammerspoon for freshness!")
   hs.reload(false)
 end):start()
