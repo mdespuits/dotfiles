@@ -17,6 +17,7 @@
   ra  = reset .
   co  = checkout
   coa = ! git checkout .
+  reset-origin = ! git fetch && git reset --hard origin/$(git current-branch)
 
   # Emails and Authors
   fsearch  = ! git ls-files | grep -i
