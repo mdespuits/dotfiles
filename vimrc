@@ -289,6 +289,7 @@ au BufNewFile,BufRead .pryrc      set filetype=ruby
 au BufNewFile,BufRead pryrc       set filetype=ruby
 au BufNewFile,BufRead *.{md,markdown,mdown,mkd,mkdn,txt} set filetype=markdown
 au BufNewFile,BufRead Gemfile     set filetype=ruby
+au BufNewFile,BufRead *.es6       set filetype=javascript.jsx
 
 au FileType GO setlocal shiftwidth=2 tabstop=2 noexpandtab
 
