@@ -8,48 +8,57 @@ call vundle#begin()
 " Let Vundle manage Vundle
 Plugin 'gmarik/Vundle.vim'
 
-" Defined Plugins via Github repos
-Plugin 'tpope/vim-abolish'
-Plugin 'tpope/vim-rails'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rake'
-Plugin 'tpope/vim-haml'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-Plugin 'scrooloose/syntastic'
-Plugin 'kana/vim-textobj-user' " Dependency for vim-textobj-rubyblock
-Plugin 'nelstrom/vim-textobj-rubyblock'
-Plugin 'thoughtbot/vim-rspec'
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
-Plugin 'jgdavey/tslime.vim'
-Plugin 'airblade/vim-gitgutter'
+" Language Support
 Plugin 'cfcosta/html5-vim-minimal'
-Plugin 'danro/rename.vim'
-" Plugin 'SirVer/ultisnips'
-" Plugin 'honza/vim-snippets'
-Plugin 'kien/ctrlp.vim'
-Plugin 'tacahiroy/ctrlp-funky'
-Plugin 'rking/ag.vim'
+Plugin 'elixir-lang/vim-elixir'
+Plugin 'fatih/vim-go'
+Plugin 'mustache/vim-mustache-handlebars'
+Plugin 'mxw/vim-jsx'
+Plugin 'pangloss/vim-javascript'
+Plugin 'rust-lang/rust.vim'
+Plugin 'scrooloose/syntastic'
 Plugin 'slim-template/vim-slim'
 Plugin 'sunaku/vim-ruby-minitest'
+Plugin 'thoughtbot/vim-rspec'
+Plugin 'vim-coffee-script'
 Plugin 'vim-ruby/vim-ruby'
-Plugin 'mustache/vim-mustache-handlebars'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'vim-scripts/Colour-Sampler-Pack'
-Plugin 'bling/vim-airline'
+
+" Navigation/Editing
+Plugin 'nelstrom/vim-textobj-rubyblock'
+Plugin 'kana/vim-textobj-user' " Dependency for vim-textobj-rubyblock
+Plugin 'Emmet.vim'
+Plugin 'chrismccord/bclose.vim'
+Plugin 'danro/rename.vim'
+Plugin 'godlygeek/tabular'
+Plugin 'kien/ctrlp.vim'
 Plugin 'majutsushi/tagbar'
 Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'junegunn/vim-github-dashboard'
-Plugin 'fatih/vim-go'
-Plugin 'rust-lang/rust.vim'
-Plugin 'mengbo/vim-dash'
-Plugin 'chrismccord/bclose.vim'
-Plugin 'godlygeek/tabular'
+Plugin 'rking/ag.vim'
+Plugin 'tacahiroy/ctrlp-funky'
 
-Plugin 'vim-coffee-script'
-Plugin 'Emmet.vim'
+" Git
+Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-fugitive'
+
+" Tim Pope!
+Plugin 'tpope/vim-abolish'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-haml'
+Plugin 'tpope/vim-rails'
+Plugin 'tpope/vim-rake'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+
+
+Plugin 'jgdavey/tslime.vim'
+" Plugin 'SirVer/ultisnips'
+" Plugin 'honza/vim-snippets'
+
+" Just for fun
+Plugin 'bling/vim-airline'
+Plugin 'junegunn/vim-github-dashboard'
+Plugin 'mengbo/vim-dash'
+Plugin 'vim-scripts/Colour-Sampler-Pack'
 
 if filereadable(expand('~/.vimrc.bundles.local'))
   source ~/.vimrc.bundles.local
