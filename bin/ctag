@@ -23,4 +23,4 @@
 # Without these options, a basic 'ctags -R' generates a 180Mb+ tags file, which
 # takes a few minutes to generate.
 # With these options, it's <3Mb, and takes under a second
-ctags -R --languages=Ruby --totals
+ctags -R --languages="Ruby,JavaScript"
