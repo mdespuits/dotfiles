@@ -44,6 +44,8 @@
   lsv = ! git ls --numstat
   graph = log --graph --pretty='format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(blue){%an}%Creset' --abbrev-commit --date=relative
 
+  co-pr = "! f() { git fetch origin pull/$1/head:pull-request-$1 && git checkout pull-request-$1; }; f"
+
   # Amending and resetting
   fixlast = reset --soft HEAD^
   rollback = reset --hard HEAD@{1}
