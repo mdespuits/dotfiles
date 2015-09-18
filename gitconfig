@@ -19,6 +19,12 @@
   coa = ! git checkout .
   reset-origin = ! git fetch && git reset --hard origin/$(git current-branch)
 
+  # Picking
+  pick    = ! git branch | cut -c 3- | pick
+  pco     = ! git pick | xargs git checkout
+  dbranch = ! git pick | xargs git branch -d
+  Dbranch = ! git pick | xargs git branch -D
+
   # Emails and Authors
   fsearch  = ! git ls-files | grep -i
   authors  = ! git log --all --format='%aN' | sort -u
