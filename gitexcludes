@@ -42,6 +42,9 @@
 /git_hooks
 /.githooks
 
+# Project scripts #
+/localbin
+
 # Direnv #
 ##########
 .envrc
