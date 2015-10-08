@@ -293,6 +293,9 @@ au BufNewFile,BufRead *.es6       set filetype=javascript.jsx
 
 au FileType GO setlocal shiftwidth=2 tabstop=2 noexpandtab
 
+let &colorcolumn="80"
+highlight ColorColumn ctermbg=234 guibg=#2c2d27
+
 " =======================================
 " System Clipboard
 " =======================================
