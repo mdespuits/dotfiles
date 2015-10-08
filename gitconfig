@@ -18,6 +18,7 @@
   co  = checkout
   coa = ! git checkout .
   reset-origin = ! git fetch && git reset --hard origin/$(git current-branch)
+  co-pr = "! f() { git fetch origin pull/$1/head:pull-request-$1 && git checkout pull-request-$1; }; f"
 
   # Picking
   pick    = ! git branch | grep -v "^*" | cut -c 3- | pick
@@ -49,8 +50,6 @@
   ls = log --pretty='format:%Cred%h%Creset %Cblue%ad%Cred%d %Creset%s%Cgreen [%cn]%Creset' --decorate --date=short
   lsv = ! git ls --numstat
   graph = log --graph --pretty='format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(blue){%an}%Creset' --abbrev-commit --date=relative
-
-  co-pr = "! f() { git fetch origin pull/$1/head:pull-request-$1 && git checkout pull-request-$1; }; f"
 
   # Amending and resetting
   fixlast = reset --soft HEAD^
