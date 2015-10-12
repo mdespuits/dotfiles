@@ -1,0 +1,15 @@
+#!/bin/zsh
+
+set -e
+
+local ORIGINAL_BRANCH=$(git current-branch)
+local TARGET_BRANCH=$1
+shift
+
+git checkout $TARGET_BRANCH >/dev/null 2>&1
+
+echo "==> Resetting branch $TARGET_BRANCH"
+git fetch >/dev/null 2>&1
+git reset --hard origin/$TARGET_BRANCH >/dev/null 2>&1
+
+git checkout $ORIGINAL_BRANCH >/dev/null 2>&1
