@@ -87,6 +87,8 @@ brew cask install quicklook-json 2> /dev/null
 brew cask install suspicious-package 2> /dev/null
 brew cask install webp-quicklook 2> /dev/null
 
-echo "Installing vim bundles...";
-vim +PluginInstall +qall
+echo "==> Adding $HOME/.localbin directory for other scripts"
+mkdir "$HOME/.localbin" >/dev/null 2>&1
 
+echo "==> Installing vim bundles...";
+vim +PluginInstall +qall

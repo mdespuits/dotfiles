@@ -60,6 +60,9 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin
 export PATH=/usr/local/heroku/bin:$PATH
 export PATH=/usr/local/mysql/bin:$PATH
 export PATH=$HOME/.bin:$PATH
+if [[ -d "$HOME/.localbin" ]] ; then
+  export PATH=$HOME/.localbin:$PATH
+fi
 export PATH=$PATH:/usr/local/Cellar/mysql55/5.5.30/bin
 
 # =================================
