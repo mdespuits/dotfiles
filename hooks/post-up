@@ -11,9 +11,12 @@ if [ ! -e "$HOME/.zprezto" ]; then
   done
 fi
 
-if [ ! -e "$HOME/.vim/bundle/vundle" ]; then
-  echo "Installing Vundle..."
-  git clone https://github.com/gmarik/vundle.git ~/.vim/bundle/vundle &> /dev/null
+if [ ! -e "$HOME/.vim/bundle/Vundle.vim" ]; then
+  echo "==> Installing Vundle.vim"
+  git clone https://github.com/gmarik/Vundle.vim.git ~/.vim/bundle/Vundle.vim >/dev/null 2>&1
+else
+  echo "==> Updating Vundle.vim"
+  cd ~/.vim/bundle/Vundle.vim && git pull origin master >/dev/null 2>&1
 fi
 
 # For development
