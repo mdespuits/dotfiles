@@ -30,8 +30,8 @@ brew install vim --override-system-vi --with-lua
 brew install tmux
 
 # Setup Ruby Version Manager
-brew install rbenv
-brew install ruby-build --HEAD
+brew install chruby
+brew install ruby-install --HEAD
 
 # Essential development packages
 brew install git
@@ -98,3 +98,6 @@ mkdir "$HOME/.localbin" >/dev/null 2>&1
 
 echo "==> Installing vim bundles...";
 vim +PluginInstall +qall
+
+echo "==> Installing latest version of Ruby"
+ruby-install ruby

@@ -110,10 +110,9 @@ if [ -d "/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt" ]; then
 fi
 
 # =================================
-# Rbenv
+# chruby
 # =================================
-export PATH=$HOME/.rbenv/bin:$PATH
-eval "$(rbenv init -)"
+source /usr/local/opt/chruby/share/chruby/chruby.sh
 
 # =================================
 # Aliases
