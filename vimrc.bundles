@@ -21,15 +21,14 @@ Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'eruby'] }
 
 " Navigation/Editing
 Plug 'kana/vim-textobj-user' | Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'Emmet.vim'
+Plug 'Emmet.vim', { 'for': ['eruby', 'html'] }
 Plug 'chrismccord/bclose.vim'
 Plug 'danro/rename.vim'
 Plug 'godlygeek/tabular'
-Plug 'kien/ctrlp.vim'
 Plug 'majutsushi/tagbar'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'rking/ag.vim'
-Plug 'tacahiroy/ctrlp-funky'
+Plug 'kien/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky'
 
 " Git
 Plug 'airblade/vim-gitgutter'
@@ -50,8 +49,8 @@ Plug 'jgdavey/tslime.vim'
 " Plug 'honza/vim-snippets'
 
 " Just for fun
-Plug 'bling/vim-airline'
 Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
+Plug 'bling/vim-airline'
 Plug 'mengbo/vim-dash'
 
 if filereadable(expand('~/.vimrc.bundles.local'))
