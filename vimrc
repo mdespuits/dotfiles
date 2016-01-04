@@ -47,6 +47,9 @@ set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
 " Ignore custom folders
 set wildignore+=*/resources/*
 
+" Ignore custom folders
+set wildignore+=*/tmp/*
+
 " Ignore node modules
 set wildignore+=node_modules/*
 
