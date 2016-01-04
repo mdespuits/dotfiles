@@ -1,5 +1,9 @@
 call plug#begin('~/.vim/plugged')
 
+" Themes
+Plug 'whatyouhide/vim-gotham'
+" Plug 'duythinht/vim-coffee'
+
 " Language Support
 Plug 'cfcosta/html5-vim-minimal'
 Plug 'elixir-lang/vim-elixir'
@@ -13,7 +17,7 @@ Plug 'slim-template/vim-slim'
 Plug 'sunaku/vim-ruby-minitest'
 Plug 'thoughtbot/vim-rspec'
 Plug 'vim-coffee-script'
-Plug 'vim-ruby/vim-ruby'
+Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'eruby'] }
 
 " Navigation/Editing
 Plug 'kana/vim-textobj-user' | Plug 'nelstrom/vim-textobj-rubyblock'
@@ -34,9 +38,9 @@ Plug 'tpope/vim-fugitive'
 " Tim Pope!
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-haml'
-Plug 'tpope/vim-rails'
-Plug 'tpope/vim-rake'
+Plug 'tpope/vim-haml', { 'for': 'haml' }
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
+Plug 'tpope/vim-rake', { 'for': 'ruby' }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 
@@ -49,8 +53,6 @@ Plug 'jgdavey/tslime.vim'
 Plug 'bling/vim-airline'
 Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }
 Plug 'mengbo/vim-dash'
-Plug 'whatyouhide/vim-gotham'
-Plug 'duythinht/vim-coffee'
 
 if filereadable(expand('~/.vimrc.bundles.local'))
   source ~/.vimrc.bundles.local
