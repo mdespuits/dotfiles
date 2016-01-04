@@ -95,10 +95,10 @@ set autoindent      " Use indent level from current line for next line
 " =======================================
 " Arrow Keys => For Newbies
 " =======================================
-map <Left> <Nop>
-map <Right> <Nop>
-map <Up> <Nop>
-map <Down> <Nop>
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
 
 " =======================================
 " History Length
@@ -206,11 +206,11 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
+let g:syntastic_auto_loc_list = 0
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
-let g:syntastic_ruby_checkers = ['mri']
+let g:syntastic_ruby_checkers = []
 let g:syntastic_eruby_checkers = []
 let g:syntastic_scss_checkers = []
 
