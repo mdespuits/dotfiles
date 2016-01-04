@@ -58,8 +58,8 @@
   # Diff of current branch to other branches.
   # Hope to move these into their own shell scripts
   # for better customizing
-  dpr = ! git diff origin/$(git current-branch)..
-  npr = ! git log origin/$(git current-branch).. --oneline
+  unpushed = ! git log origin/$(git current-branch).. --oneline
+  unpushed-stat = ! git diff origin/$(git current-branch)..
   lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
 [include]
   path = .gitconfig.local
