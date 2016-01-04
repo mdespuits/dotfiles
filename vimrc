@@ -62,7 +62,7 @@ set wildignore+=.DS_Store
 set background=dark
 set guifont=Courier
 syntax on
-colorscheme desert
+colorscheme gotham256
 
 " =======================================
 "  Vim's :! system bash
@@ -228,6 +228,8 @@ if !exists('g:airline_symbols')
   let g:airline_symbols = {}
 endif
 let g:airline_symbols.space = "\ua0"
+let g:airline_theme = "gotham256"
+let g:airline_section_b = '%{fugitive#head()}'
 
 " ---------------------------------------
 " -- Tagbar
@@ -319,6 +321,7 @@ autocmd VimResized * :wincmd =
 " ***************************************
 nmap <space> :
 nmap <space>w :w!<CR>
+nmap ; :
 nmap :noh :noh<CR>
 nmap :Noh :noh<CR>
 
