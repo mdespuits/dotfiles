@@ -199,8 +199,13 @@ let g:user_emmet_expandabbr_key = '<c-e>'
 
 " ---------------------------------------
 " -- Indent Guides
-let g:indent_guides_enable_on_vim_startup = 0
-let g:indent_guides_guide_size = 1
+let g:indent_guides_enable_on_vim_startup = 1
+let g:indent_guides_auto_colors = 0
+let g:indent_guides_guide_size = 2
+let g:indent_guides_start_level = 2
+
+autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black ctermbg=232
+autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=233
 
 " ---------------------------------------
 " -- Syntastic
@@ -209,13 +214,15 @@ set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 0
+let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
-let g:syntastic_ruby_checkers = []
+let g:syntastic_ruby_checkers = ['mri']
 let g:syntastic_eruby_checkers = []
 let g:syntastic_scss_checkers = []
+
+" highlight SyntasticError guibg=#2f0000
 
 " ---------------------------------------
 " -- vim-ruby
