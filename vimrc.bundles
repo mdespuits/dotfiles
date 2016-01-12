@@ -6,24 +6,19 @@ Plug 'whatyouhide/vim-gotham'
 
 " Language Support
 Plug 'cfcosta/html5-vim-minimal'
-Plug 'elixir-lang/vim-elixir'
-Plug 'fatih/vim-go'
+Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
+Plug 'fatih/vim-go', { 'for': 'go' }
 Plug 'mustache/vim-mustache-handlebars'
 Plug 'mxw/vim-jsx'
 Plug 'pangloss/vim-javascript'
-Plug 'rust-lang/rust.vim'
+Plug 'rust-lang/rust.vim', { 'for': 'rust' }
 Plug 'scrooloose/syntastic'
 Plug 'slim-template/vim-slim'
-Plug 'sunaku/vim-ruby-minitest'
-Plug 'thoughtbot/vim-rspec'
-Plug 'vim-coffee-script'
-Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'eruby'] }
+Plug 'vim-coffee-script', { 'for': ['coffee'] }
 
 " Navigation/Editing
-Plug 'kana/vim-textobj-user' | Plug 'nelstrom/vim-textobj-rubyblock'
 Plug 'Emmet.vim', { 'for': ['eruby', 'html'] }
 Plug 'chrismccord/bclose.vim'
-Plug 'danro/rename.vim'
 Plug 'godlygeek/tabular'
 Plug 'majutsushi/tagbar'
 Plug 'nathanaelkane/vim-indent-guides'
@@ -34,16 +29,22 @@ Plug 'kien/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky'
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
+" Ruby
+Plug 'tpope/vim-rails', { 'for': 'ruby' }
+Plug 'tpope/vim-rake', { 'for': 'ruby' }
+Plug 'ngmy/vim-rubocop', { 'for': 'ruby' }
+Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'eruby'] }
+Plug 'kana/vim-textobj-user' | Plug 'nelstrom/vim-textobj-rubyblock'
+Plug 'sunaku/vim-ruby-minitest', { 'for': 'ruby' }
+Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
+
 " Tim Pope!
 Plug 'tpope/vim-abolish'
 Plug 'tpope/vim-commentary'
 Plug 'tpope/vim-haml', { 'for': 'haml' }
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
-Plug 'tpope/vim-rake', { 'for': 'ruby' }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
-
-
+Plug 'tpope/vim-eunuch'
 Plug 'jgdavey/tslime.vim'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
