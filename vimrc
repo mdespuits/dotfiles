@@ -26,6 +26,7 @@ set showtabline=2
 set winwidth=100
 set winheight=10
 set nowrap
+set ruler
 
 set list listchars=tab:»·,trail:·
 
