@@ -20,7 +20,6 @@
 *.tar
 *.zip
 
-
 # ctags!!!           #
 ######################
 /tags
@@ -36,6 +35,11 @@
 # Sublime Projects #
 ####################
 *.sublime*
+
+# IntelliJ IDEA    #
+####################
+*.iml
+.idea
 
 # git-hooks        #
 ####################
