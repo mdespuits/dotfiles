@@ -128,7 +128,7 @@ alias gs="git status"
 alias gd="git diff -w"
 alias gds="git diff --staged -w"
 alias fastping='ping -c 1 -s 1' # One. Ping. Only.
-alias ll="ls -lai"
+alias ll="ls -laih"
 alias wget='wget -c'
 
 # tmux aliases
