@@ -23,13 +23,15 @@ Plug 'godlygeek/tabular'
 Plug 'majutsushi/tagbar'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'rking/ag.vim'
-Plug 'kien/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky'
+Plug 'jiangmiao/auto-pairs'
+Plug 'kien/ctrlp.vim' | Plug 'tacahiroy/ctrlp-funky' | Plug 'JazzCore/ctrlp-cmatcher', { 'do': 'CFLAGS=-Qunused-arguments CPPFLAGS=-Qunused-arguments ./install.sh' }
 
 " Git
 Plug 'airblade/vim-gitgutter'
 Plug 'tpope/vim-fugitive'
 
 " Ruby
+Plug 'tpope/vim-endwise', { 'for': 'ruby' }
 Plug 'tpope/vim-rails', { 'for': 'ruby' }
 Plug 'tpope/vim-rake', { 'for': 'ruby' }
 Plug 'ngmy/vim-rubocop', { 'for': 'ruby' }
