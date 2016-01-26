@@ -48,6 +48,8 @@
 
 # Project scripts #
 /localbin
+/.localbin
+/.bin
 
 # Direnv #
 ##########
