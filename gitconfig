@@ -1,6 +1,8 @@
 [color]
   ui = true
   sh = auto
+[merge]
+  edit = no
 [push]
   default = current
 [core]
@@ -11,17 +13,23 @@
   autocorrect = 1
 [alias]
   # Favorites
-  ps  = push
+  ps  = push -u
   b   = branch
   aa  = add --all
   ra  = reset .
   co  = checkout
   coa = ! git checkout .
   reset-origin = ! git reset-branch $(git current-branch)
+  track = "! f() { git fetch origin && git checkout -t origin/$1; }; f"
   co-pr = "! f() { git fetch origin pull/$1/head:pull-request-$1 && git checkout pull-request-$1; }; f"
 
+  # Cleaning up
+  cleanup = "! f() { git co ${1-development} && git reset-origin && git merged-branches-delete && git remote prune origin; }; f"
+  merged-branches        = ! git branch --merged | grep -v "\\\\*"
+  merged-branches-delete = ! git merged-branches | xargs git branch -D
+
   # Picking
-  pick    = ! git branch | grep -v "^*" | cut -c 3- | pick
+  pick    = ! git branch | grep -v "^*" | cut -c 3- | pick -X
   pco     = ! git pick | xargs git checkout
   dbranch = ! git pick | xargs git branch -d
   Dbranch = ! git pick | xargs git branch -D
@@ -37,10 +45,14 @@
   current-branch  = rev-parse --abbrev-ref HEAD
   last-branch     = ! git rev-parse --symbolic-full-name @{-1} | cut -f3 -d'/'
 
+  # Temporarily ignoring changings for certain files
+  ignore-file   = update-index --assume-unchanged
+  remember-file = update-index --no-assume-unchanged
+
   # Committing
   cm      = commit -v
-  amend   = commit --amend
-  famend  = ! git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
+  amend   = commit --amend --date=now
+  famend  = ! git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend --date=now
 
   # Diffing
   d = diff
