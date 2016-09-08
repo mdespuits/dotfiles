@@ -28,7 +28,10 @@ set winheight=10
 set nowrap
 set ruler
 
-set list listchars=tab:»·,trail:·
+set shortmess=a
+set cmdheight=2
+
+" set list listchars=tab:»·,trail:·
 
 set wildignore+=*tmp/**
 set wildignore+=*coverage
@@ -95,6 +98,7 @@ set shiftwidth=2    " For use with indent plugins and `tabstop` setting
 set expandtab       " Use 'soft' tabs when using <Tab> character
 set smarttab        " Smart tabbing
 set autoindent      " Use indent level from current line for next line
+set autoread        " Automatically read files from disk when detected
 
 " =======================================
 " Arrow Keys => For Newbies
@@ -186,6 +190,39 @@ endfunc
 
 nnoremap <leader>rl :call RelativeLineNumberToggle()<CR>
 
+" Restore cursor position, window position, and last search after running a
+" command.
+function! Preserve(command)
+  " Save the last search.
+  let search = @/
+
+  " Save the current cursor position.
+  let cursor_position = getpos('.')
+
+  " Save the current window position.
+  normal! H
+  let window_position = getpos('.')
+  call setpos('.', cursor_position)
+
+  " Execute the command.
+  execute a:command
+
+  " Restore the last search.
+  let @/ = search
+
+  " Restore the previous window position.
+  call setpos('.', window_position)
+  normal! zt
+
+  " Restore the previous cursor position.
+  call setpos('.', cursor_position)
+endfunction
+
+" Re-indent the whole buffer.
+function! Indent()
+  call Preserve('normal gg=G')
+endfunction
+
 " =======================================
 " Plugin Configuration
 " =======================================
@@ -220,6 +257,7 @@ let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
 let g:syntastic_ruby_checkers = ['mri']
+let g:syntastic_java_checkers = []
 let g:syntastic_eruby_checkers = []
 let g:syntastic_scss_checkers = []
 
@@ -228,6 +266,21 @@ let g:syntastic_scss_checkers = []
 " ---------------------------------------
 " -- vim-ruby
 let g:ruby_indent_access_modifier_style = 'indent'
+
+" Regex used for words, that, at the start of a line, remove a level of indent
+setlocal indentkeys+==module_function
+let g:indent_access_modifier_regex = '\C^\s*\%(module_function\|protected\|private\)\s*\%(#.*\)\=$''))'
+let s:ruby_indent_keywords =
+      \ '^\s*\zs\<\%(module\||module_function\|class\|if\|for' .
+      \   '\|while\|until\|else\|elsif\|case\|when\|unless\|begin\|ensure\|rescue' .
+      \   '\|\%(module_function\|public\|protected\|private\)\=\s*def\):\@!\>' .
+      \ '\|\%([=,*/%+-]\|<<\|>>\|:\s\)\s*\zs' .
+      \    '\<\%(if\|for\|while\|until\|case\|unless\|begin\):\@!\>'
+
+" ***************************************
+" vim-github-dashboard
+" ***************************************
+let g:github_dashboard = { 'username': $GITHUB_USERNAME, 'password': $GITHUB_TOKEN  }
 
 " ---------------------------------------
 " -- Airline Config
@@ -244,7 +297,8 @@ let g:airline_section_b = '%{fugitive#head()}'
 
 " ---------------------------------------
 " -- Tagbar
-nnoremap <leader>b :Tagbar<CR>
+" nnoremap <leader>b :Tagbar<CR>
+" nnoremap <space>tt :TagbarToggle f<cr>
 let g:tagbar_autofocus = 1
 
 " ---------------------------------------
@@ -262,36 +316,68 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " ---------------------------------------
 " -- vim-rspec
-map <leader>c :call RunCurrentSpecFile()<CR>
-map <leader>n :call RunNearestSpec()<CR>
-map <leader>l :call RunLastSpec()<CR>
-map <leader>a :call RunAllSpecs()<CR>
-let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec {spec} --format progress\n")'
+" map <leader>c :call RunCurrentSpecFile()<CR>
+" map <leader>n :call RunNearestSpec()<CR>
+" map <leader>l :call RunLastSpec()<CR>
+" map <leader>a :call RunAllSpecs()<CR>
+" let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec {spec} --format progress\n")'
 
 " ---------------------------------------
 " -- vim-textobj-rubyblock
 runtime macros/matchit.vim
 
 " ---------------------------------------
-" -- ctrlp.vim
-" let g:ctrlp_regexp = 1
-let g:ctrlp_map = '<leader>t'
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_root_markers = ['Gemfile']
-let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-if executable('ag')
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-endif
+" -- NERDTree
+nnoremap <leader>n :NERDTreeToggle<cr>
 
 " ---------------------------------------
-" -- ctrlp-funky
-nnoremap <Leader>fu :CtrlPFunky<Cr>
-" narrow the list down with a word under cursor
-nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+" -- vim-go
+let g:go_highlight_functions = 1
+let g:go_highlight_methods = 1
+let g:go_highlight_structs = 1
+let g:go_highlight_interfaces = 1
+let g:go_highlight_operators = 1
+let g:go_highlight_build_constraints = 1
+
+function! SetGoOPtions()
+  :call tagbar#autoopen(0)
+endfunction
+
+augroup GoFile
+  autocmd!
+  autocmd filetype go call SetGoOPtions()
+  autocmd filetype go nnoremap <leader>rg :! go run %<cr>
+augroup END
+
+" ---------------------------------------
+" -- pick.vim
+nmap <Leader>t  :call PickFile()<CR>
+nmap <Leader>fs :call PickFileSplit()<CR>
+nmap <Leader>fv :call PickFileVerticalSplit()<CR>
+nmap <Leader>b  :call PickBuffer()<CR>
+nmap <Leader>]  :call PickTag()<CR>
+
+" ---------------------------------------
+" -- ctrlp.vim
+" let g:ctrlp_regexp = 1
+" let g:ctrlp_map = '<leader>t'
+" let g:ctrlp_show_hidden = 1
+" let g:ctrlp_root_markers = ['Gemfile']
+" let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+" if executable('ag')
+"   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+" endif
+
+" " ---------------------------------------
+" " -- ctrlp-funky
+" nnoremap <Leader>fu :CtrlPFunky<Cr>
+" " narrow the list down with a word under cursor
+" nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
 " =======================================
 " Filetype highlighting
 " =======================================
+au BufNewFile,BufRead *.svg       set filetype=html
 au BufNewFile,BufRead *.thor      set filetype=ruby
 au BufNewFile,BufRead *.cap       set filetype=ruby
 au BufNewFile,BufRead *.jbuilder  set filetype=ruby
@@ -309,8 +395,14 @@ au BufNewFile,BufRead Gemfile     set filetype=ruby
 au BufNewFile,BufRead *.es6       set filetype=javascript.jsx
 
 au FileType GO setlocal shiftwidth=2 tabstop=2 noexpandtab
+au FileType java setlocal shiftwidth=4
 
-let &colorcolumn="80"
+augroup VimCSS3Syntax
+  autocmd!
+  autocmd FileType css setlocal iskeyword+=-
+augroup END
+
+let &colorcolumn="100"
 highlight ColorColumn ctermbg=234 guibg=#2c2d27
 
 " =======================================
@@ -353,7 +445,6 @@ vnoremap S "_dP
 " Buffer navigation
 " ***************************************
 nmap :bs :buffers
-nmap <leader>bs :bs<CR>
 nmap <leader>w :Bclose<CR>
 nmap <leader>q :bd!<CR>
 nmap <leader>cb :ene<CR>:bw #<CR>
