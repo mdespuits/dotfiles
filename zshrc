@@ -49,6 +49,9 @@ bindkey -v
 # Reverse search on the prompt
 bindkey '^R' history-incremental-search-backward
 
+# Allow [ or  ] whereever you want
+unsetopt nomatch
+
 # Add homebrew to the completion path
 fpath=("/usr/local/bin/" $fpath)
 
@@ -125,8 +128,8 @@ alias vi="vim"
 alias h="history 0 | grep"
 alias be="bundle exec"
 alias gs="git status"
-alias gd="git diff -w"
-alias gds="git diff --staged -w"
+alias gd="git diff"
+alias gds="git diff --staged"
 alias fastping='ping -c 1 -s 1' # One. Ping. Only.
 alias ll="ls -laih"
 alias wget='wget -c'
@@ -135,7 +138,7 @@ alias wget='wget -c'
 alias tml="tmux list-sessions"
 alias tma="tmux -2 attach -t $1"
 alias tmk="tmux kill-session -t $1"
-alias tms="mux start $1"
+alias tms="tmuxinator start $1"
 alias osx="reattach-to-user-namespace"
 
 # =================================
