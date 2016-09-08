@@ -1,1 +1,8 @@
---skip-turbolinks --skip-bundle --database postgresql --skip-fixture
+--database=postgresql
+--skip-action-cable
+--skip-bundle
+--skip-fixture
+--skip-keeps
+--skip-spring
+--skip-turbolinks
+--skip-test
