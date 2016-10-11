@@ -28,6 +28,8 @@ set winheight=10
 set nowrap
 set ruler
 
+set cursorline
+
 set shortmess=a
 set cmdheight=2
 
