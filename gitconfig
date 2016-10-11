@@ -24,7 +24,7 @@
   co-pr = "! f() { git fetch origin pull/$1/head:pull-request-$1 && git checkout pull-request-$1; }; f"
 
   # Cleaning up
-  cleanup = "! f() { git co ${1-development} && git reset-origin && git merged-branches-delete && git remote prune origin; }; f"
+  cleanup = "! f() { git reset-branch development && git merged-branches-delete && git remote prune origin; }; f"
   merged-branches        = ! git branch --merged | grep -v "\\\\*"
   merged-branches-delete = ! git merged-branches | xargs git branch -D
 
@@ -52,7 +52,7 @@
   # Committing
   cm      = commit -v
   amend   = commit --amend --date=now
-  famend  = ! git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend --date=now
+  commend = ! git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend --date=now
 
   # Diffing
   d = diff
