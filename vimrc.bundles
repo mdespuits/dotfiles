@@ -18,6 +18,8 @@ Plug 'vim-coffee-script', { 'for': ['coffee'] }
 Plug 'ap/vim-css-color', { 'for': ['scss', 'css'] }
 Plug 'hail2u/vim-css3-syntax', { 'for': ['scss', 'css'] }
 
+Plug 'janko-m/vim-test'
+
 " Navigation/Editing
 Plug 'Emmet.vim', { 'for': ['eruby', 'html'] }
 Plug 'scrooloose/nerdtree', { 'on': ['NERDTree', 'NERDTreeToggle'] }
@@ -50,6 +52,7 @@ Plug 'tpope/vim-haml', { 'for': 'haml' }
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-dispatch'
 Plug 'jgdavey/tslime.vim'
 " Plug 'SirVer/ultisnips'
 " Plug 'honza/vim-snippets'
