@@ -10,6 +10,10 @@ if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
 
+packadd minpac
+call minpac#init()
+call minpac#add('k-takata/minpac', {'type': 'opt'})
+
 " =======================================
 " Leader
 " =======================================
@@ -229,6 +233,50 @@ endfunction
 " Plugin Configuration
 " =======================================
 
+call minpac#add('airblade/vim-gitgutter')
+
+" Tim Pope!
+call minpac#add('tpope/vim-abolish')
+call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-haml', {'type': 'opt'})
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-unimpaired')
+call minpac#add('tpope/vim-eunuch')
+" call minpac#add('tpope/vim-dispatch')
+" call minpac#add('jgdavey/tslime.vim')
+
+
+" ---------------------------------------
+" -- Language Support
+" ---------------------------------------
+call minpac#add('othree/html5.vim')
+call minpac#add('mustache/vim-mustache-handlebars')
+call minpac#add('mxw/vim-jsx')
+call minpac#add('pangloss/vim-javascript')
+call minpac#add('slim-template/vim-slim')
+call minpac#add('honza/vim-snippets')
+call minpac#add('posva/vim-vue')
+
+" Ruby-specific stuff
+call minpac#add('tpope/vim-endwise')
+call minpac#add('tpope/vim-rails')
+call minpac#add('tpope/vim-rake')
+call minpac#add('ngmy/vim-rubocop')
+call minpac#add('vim-ruby/vim-ruby')
+call minpac#add('sunaku/vim-ruby-minitest')
+
+call minpac#add('kana/vim-textobj-user') " vim-textobj-rubyblock dependeny
+call minpac#add('nelstrom/vim-textobj-rubyblock')
+
+call minpac#add('elixir-lang/vim-elixir', {'type': 'opt'})
+call minpac#add('fatih/vim-go', {'type': 'opt'})
+call minpac#add('rust-lang/rust.vim', {'type': 'opt'})
+" call minpac#add('vim-coffee-script', {'type': 'opt'})
+" call minpac#add('ap/vim-css-color', {'type': 'opt'})
+" call minpac#add('hail2u/vim-css3-syntax', {'type': 'opt'})
+
+" call minpac#add('thoughtbot/vim-rspec')
+
 " ---------------------------------------
 " -- vim-jsx
 let g:jsx_ext_required = 0
@@ -285,19 +333,6 @@ let s:ruby_indent_keywords =
 let g:github_dashboard = { 'username': $GITHUB_USERNAME, 'password': $GITHUB_TOKEN  }
 
 " ---------------------------------------
-" -- Airline Config
-set laststatus=2
-" set fillchars+=stl:\ ,stlnc:\
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
-let g:airline_theme = "gotham256"
-let g:airline_section_b = '%{fugitive#head()}'
-
-" ---------------------------------------
 " -- Tagbar
 " nnoremap <leader>b :Tagbar<CR>
 " nnoremap <space>tt :TagbarToggle f<cr>
@@ -310,11 +345,25 @@ let g:syntastic_auto_loc_list=1
 
 " ---------------------------------------
 " -- vim-fugitive
+call minpac#add('tpope/vim-fugitive')
 map <leader>gd  :Gvdiff<CR>
 map <leader>gs  :Gstatus<CR>
 
 " Remove fugitive buffers completely when done
 autocmd BufReadPost fugitive://* set bufhidden=delete
+
+" ---------------------------------------
+" -- Airline Config
+set laststatus=2
+" set fillchars+=stl:\ ,stlnc:\
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+let g:airline_theme = "simple"
+let g:airline_section_b = '%{fugitive#head()}'
 
 " ---------------------------------------
 " -- vim-rspec
@@ -352,7 +401,24 @@ augroup GoFile
 augroup END
 
 " ---------------------------------------
+" -- Tabularize
+call minpac#add('godlygeek/tabular')
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
+
+" ---------------------------------------
 " -- pick.vim
+call minpac#add('thoughtbot/pick.vim')
 nmap <Leader>t  :call PickFile()<CR>
 nmap <Leader>fs :call PickFileSplit()<CR>
 nmap <Leader>fv :call PickFileVerticalSplit()<CR>

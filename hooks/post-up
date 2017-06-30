@@ -25,6 +25,13 @@ fi
 
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
+echo "==> Preparing minpac for Vim"
+mkdir -p ~/.vim/pack/minpac/opt
+cd "$HOME/.vim/pack/minpac/opt" &> /dev/null
+git clone https://github.com/k-takata/minpac.git
+cd - &> /dev/null
+
+
 # For development
 brew install vim --override-system-vi --with-lua
 brew install tmux
