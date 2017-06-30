@@ -52,8 +52,6 @@ set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
 
 " Ignore custom folders
 set wildignore+=*/resources/*
-
-" Ignore custom folders
 set wildignore+=*/tmp/*
 
 " Ignore node modules
@@ -106,7 +104,7 @@ set autoindent      " Use indent level from current line for next line
 set autoread        " Automatically read files from disk when detected
 
 " =======================================
-" Arrow Keys => For Newbies
+" Arrow Keys Are Not Allowed
 " =======================================
 nnoremap <Left> <Nop>
 nnoremap <Right> <Nop>
@@ -325,10 +323,15 @@ let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
 
+let g:syntastic_enable_signs=1
+let g:syntastic_auto_loc_list=1
+let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_ruby_checkers = ['mri']
 let g:syntastic_java_checkers = []
 let g:syntastic_eruby_checkers = []
-let g:syntastic_scss_checkers = []
+let g:syntastic_scss_checkers = ['mixedindentlint', 'scssc', 'scss_lint']
+let g:syntastic_scss_scss_lint_args = "-x StringQuotes"
+let g:syntastic_mode_map = { "mode": "active" }
 
 " highlight SyntasticError guibg=#2f0000
 
@@ -346,21 +349,11 @@ let s:ruby_indent_keywords =
       \ '\|\%([=,*/%+-]\|<<\|>>\|:\s\)\s*\zs' .
       \    '\<\%(if\|for\|while\|until\|case\|unless\|begin\):\@!\>'
 
-" ***************************************
-" vim-github-dashboard
-" ***************************************
-let g:github_dashboard = { 'username': $GITHUB_USERNAME, 'password': $GITHUB_TOKEN  }
-
 " ---------------------------------------
 " -- Tagbar
 " nnoremap <leader>b :Tagbar<CR>
 " nnoremap <space>tt :TagbarToggle f<cr>
-let g:tagbar_autofocus = 1
-
-" ---------------------------------------
-" -- syntastic
-let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=1
+" let g:tagbar_autofocus = 1
 
 " ---------------------------------------
 " -- vim-fugitive
@@ -395,10 +388,6 @@ let g:airline_section_b = '%{fugitive#head()}'
 " ---------------------------------------
 " -- vim-textobj-rubyblock
 runtime macros/matchit.vim
-
-" ---------------------------------------
-" -- NERDTree
-nnoremap <leader>n :NERDTreeToggle<cr>
 
 " ---------------------------------------
 " -- vim-go
@@ -573,7 +562,6 @@ nmap :hrs :%s/\([a-zA-Z][a-zA-Z0-9_]*\):\s\([^\,\}]*\)/:\1 => \2/g<CR>
 nmap :clear :bufdo! bdelete!<CR>
 " --- Replace all 'hard' tabs with 'soft' tabs
 nmap <leader>rt :retab<CR>
-" nmap <c-s-t> :%s/\s\+$//<CR>
 
 " ***************************************
 " Perforce commands
