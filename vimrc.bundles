@@ -5,18 +5,6 @@ Plug 'whatyouhide/vim-gotham'
 " Plug 'duythinht/vim-coffee'
 
 " Language Support
-Plug 'othree/html5.vim'
-Plug 'elixir-lang/vim-elixir', { 'for': 'elixir' }
-Plug 'fatih/vim-go', { 'for': 'go' }
-Plug 'mustache/vim-mustache-handlebars'
-Plug 'mxw/vim-jsx'
-Plug 'pangloss/vim-javascript'
-Plug 'rust-lang/rust.vim', { 'for': 'rust' }
-Plug 'scrooloose/syntastic'
-Plug 'slim-template/vim-slim'
-Plug 'vim-coffee-script', { 'for': ['coffee'] }
-Plug 'ap/vim-css-color', { 'for': ['scss', 'css'] }
-Plug 'hail2u/vim-css3-syntax', { 'for': ['scss', 'css'] }
 
 Plug 'janko-m/vim-test'
 
@@ -28,18 +16,6 @@ Plug 'majutsushi/tagbar'
 Plug 'nathanaelkane/vim-indent-guides'
 Plug 'rking/ag.vim'
 Plug 'jiangmiao/auto-pairs'
-
-" Ruby
-Plug 'tpope/vim-endwise', { 'for': 'ruby' }
-Plug 'tpope/vim-rails', { 'for': 'ruby' }
-Plug 'tpope/vim-rake', { 'for': 'ruby' }
-Plug 'ngmy/vim-rubocop', { 'for': 'ruby' }
-Plug 'vim-ruby/vim-ruby', { 'for': ['ruby', 'eruby'] }
-Plug 'kana/vim-textobj-user' | Plug 'nelstrom/vim-textobj-rubyblock'
-Plug 'sunaku/vim-ruby-minitest', { 'for': 'ruby' }
-Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
-
-" Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
 
 " Just for fun
 Plug 'junegunn/vim-github-dashboard', { 'on': ['GHDashboard', 'GHActivity'] }

@@ -245,6 +245,38 @@ call minpac#add('tpope/vim-eunuch')
 " call minpac#add('tpope/vim-dispatch')
 " call minpac#add('jgdavey/tslime.vim')
 
+
+" ---------------------------------------
+" -- Language Support
+" ---------------------------------------
+call minpac#add('othree/html5.vim')
+call minpac#add('mustache/vim-mustache-handlebars')
+call minpac#add('mxw/vim-jsx')
+call minpac#add('pangloss/vim-javascript')
+call minpac#add('slim-template/vim-slim')
+call minpac#add('honza/vim-snippets')
+call minpac#add('posva/vim-vue')
+
+" Ruby-specific stuff
+call minpac#add('tpope/vim-endwise')
+call minpac#add('tpope/vim-rails')
+call minpac#add('tpope/vim-rake')
+call minpac#add('ngmy/vim-rubocop')
+call minpac#add('vim-ruby/vim-ruby')
+call minpac#add('sunaku/vim-ruby-minitest')
+
+call minpac#add('kana/vim-textobj-user') " vim-textobj-rubyblock dependeny
+call minpac#add('nelstrom/vim-textobj-rubyblock')
+
+call minpac#add('elixir-lang/vim-elixir', {'type': 'opt'})
+call minpac#add('fatih/vim-go', {'type': 'opt'})
+call minpac#add('rust-lang/rust.vim', {'type': 'opt'})
+" call minpac#add('vim-coffee-script', {'type': 'opt'})
+" call minpac#add('ap/vim-css-color', {'type': 'opt'})
+" call minpac#add('hail2u/vim-css3-syntax', {'type': 'opt'})
+
+" call minpac#add('thoughtbot/vim-rspec')
+
 " ---------------------------------------
 " -- vim-jsx
 let g:jsx_ext_required = 0
