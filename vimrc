@@ -7,6 +7,9 @@ packadd minpac
 call minpac#init()
 call minpac#add('k-takata/minpac', {'type': 'opt'})
 
+command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
+command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
+
 " =======================================
 " Leader
 " =======================================
@@ -68,7 +71,10 @@ set wildignore+=.DS_Store
 set background=dark
 set guifont=Courier
 syntax on
-colorscheme gotham256
+
+call minpac#add('whatyouhide/vim-gotham')
+call minpac#add('dracula/vim')
+colorscheme dracula
 
 " =======================================
 "  Vim's :! system bash
@@ -238,6 +244,20 @@ call minpac#add('tpope/vim-eunuch')
 " call minpac#add('tpope/vim-dispatch')
 " call minpac#add('jgdavey/tslime.vim')
 
+call minpac#add('editorconfig/editorconfig-vim')
+
+" ---------------------------------------
+" -- Navigation/Editing
+" ---------------------------------------
+call minpac#add('mattn/emmet-vim')
+call minpac#add('chrismccord/bclose.vim')
+call minpac#add('nathanaelkane/vim-indent-guides')
+call minpac#add('rking/ag.vim')
+call minpac#add('jiangmiao/auto-pairs')
+call minpac#add('vim-airline/vim-airline')
+call minpac#add('vim-airline/vim-airline-themes')
+call minpac#add('mengbo/vim-dash')
+" Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
 " ---------------------------------------
 " -- Language Support
@@ -254,23 +274,28 @@ call minpac#add('posva/vim-vue')
 call minpac#add('tpope/vim-endwise')
 call minpac#add('tpope/vim-rails')
 call minpac#add('tpope/vim-rake')
-call minpac#add('ngmy/vim-rubocop')
 call minpac#add('vim-ruby/vim-ruby')
 call minpac#add('sunaku/vim-ruby-minitest')
-
+call minpac#add('ngmy/vim-rubocop', {'type': 'opt'})
 call minpac#add('kana/vim-textobj-user') " vim-textobj-rubyblock dependeny
 call minpac#add('nelstrom/vim-textobj-rubyblock')
+call minpac#add('janko-m/vim-test')
 
 call minpac#add('elixir-lang/vim-elixir', {'type': 'opt'})
 call minpac#add('fatih/vim-go', {'type': 'opt'})
 call minpac#add('rust-lang/rust.vim', {'type': 'opt'})
-" call minpac#add('vim-coffee-script', {'type': 'opt'})
-" call minpac#add('ap/vim-css-color', {'type': 'opt'})
-" call minpac#add('hail2u/vim-css3-syntax', {'type': 'opt'})
+call minpac#add('kchmck/vim-coffee-script', {'type': 'opt'})
+call minpac#add('ap/vim-css-color', {'type': 'opt'})
+call minpac#add('hail2u/vim-css3-syntax', {'type': 'opt'})
 
 " call minpac#add('thoughtbot/vim-rspec')
 
 " ---------------------------------------
+" -- vim-snipmate
+call minpac#add('tomtom/tlib_vim')
+call minpac#add('MarcWeber/vim-addon-mw-utils')
+call minpac#add('garbas/vim-snipmate')
+
 " -- vim-jsx
 let g:jsx_ext_required = 0
 
@@ -290,6 +315,7 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=233
 
 " ---------------------------------------
 " -- Syntastic
+call minpac#add('scrooloose/syntastic')
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
