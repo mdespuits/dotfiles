@@ -235,6 +235,16 @@ endfunction
 
 call minpac#add('airblade/vim-gitgutter')
 
+" Tim Pope!
+call minpac#add('tpope/vim-abolish')
+call minpac#add('tpope/vim-commentary')
+call minpac#add('tpope/vim-haml', {'type': 'opt'})
+call minpac#add('tpope/vim-surround')
+call minpac#add('tpope/vim-unimpaired')
+call minpac#add('tpope/vim-eunuch')
+" call minpac#add('tpope/vim-dispatch')
+" call minpac#add('jgdavey/tslime.vim')
+
 " ---------------------------------------
 " -- vim-jsx
 let g:jsx_ext_required = 0
@@ -359,7 +369,24 @@ augroup GoFile
 augroup END
 
 " ---------------------------------------
+" -- Tabularize
+call minpac#add('godlygeek/tabular')
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if exists(':Tabularize') && getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
+
+" ---------------------------------------
 " -- pick.vim
+call minpac#add('thoughtbot/pick.vim')
 nmap <Leader>t  :call PickFile()<CR>
 nmap <Leader>fs :call PickFileSplit()<CR>
 nmap <Leader>fv :call PickFileVerticalSplit()<CR>
