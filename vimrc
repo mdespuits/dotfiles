@@ -10,6 +10,10 @@ if filereadable(expand("~/.vimrc.bundles"))
   source ~/.vimrc.bundles
 endif
 
+packadd minpac
+call minpac#init()
+call minpac#add('k-takata/minpac', {'type': 'opt'})
+
 " =======================================
 " Leader
 " =======================================
@@ -229,6 +233,8 @@ endfunction
 " Plugin Configuration
 " =======================================
 
+call minpac#add('airblade/vim-gitgutter')
+
 " ---------------------------------------
 " -- vim-jsx
 let g:jsx_ext_required = 0
@@ -285,19 +291,6 @@ let s:ruby_indent_keywords =
 let g:github_dashboard = { 'username': $GITHUB_USERNAME, 'password': $GITHUB_TOKEN  }
 
 " ---------------------------------------
-" -- Airline Config
-set laststatus=2
-" set fillchars+=stl:\ ,stlnc:\
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
-let g:airline_theme = "gotham256"
-let g:airline_section_b = '%{fugitive#head()}'
-
-" ---------------------------------------
 " -- Tagbar
 " nnoremap <leader>b :Tagbar<CR>
 " nnoremap <space>tt :TagbarToggle f<cr>
@@ -310,11 +303,25 @@ let g:syntastic_auto_loc_list=1
 
 " ---------------------------------------
 " -- vim-fugitive
+call minpac#add('tpope/vim-fugitive')
 map <leader>gd  :Gvdiff<CR>
 map <leader>gs  :Gstatus<CR>
 
 " Remove fugitive buffers completely when done
 autocmd BufReadPost fugitive://* set bufhidden=delete
+
+" ---------------------------------------
+" -- Airline Config
+set laststatus=2
+" set fillchars+=stl:\ ,stlnc:\
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1
+if !exists('g:airline_symbols')
+  let g:airline_symbols = {}
+endif
+let g:airline_symbols.space = "\ua0"
+let g:airline_theme = "simple"
+let g:airline_section_b = '%{fugitive#head()}'
 
 " ---------------------------------------
 " -- vim-rspec

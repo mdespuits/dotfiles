@@ -32,8 +32,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'thoughtbot/pick.vim'
 
 " Git
-Plug 'airblade/vim-gitgutter'
-Plug 'tpope/vim-fugitive'
+" Plug 'airblade/vim-gitgutter'
+" Plug 'tpope/vim-fugitive'
 
 " Ruby
 Plug 'tpope/vim-endwise', { 'for': 'ruby' }
