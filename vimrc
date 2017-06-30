@@ -3,13 +3,6 @@
 " =======================================
 set nocompatible " Don't be compatible with VI
 
-" =======================================
-" Load Vundle File
-" =======================================
-if filereadable(expand("~/.vimrc.bundles"))
-  source ~/.vimrc.bundles
-endif
-
 packadd minpac
 call minpac#init()
 call minpac#add('k-takata/minpac', {'type': 'opt'})
