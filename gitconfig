@@ -24,7 +24,7 @@
   co-pr = "! f() { git fetch origin pull/$1/head:pull-request-$1 && git checkout pull-request-$1; }; f"
 
   # Cleaning up
-  cleanup = "! f() { git reset-branch development && git merged-branches-delete && git remote prune origin; }; f"
+  cleanup = "! f() { git reset-branch master && git merged-branches-delete && git remote prune origin; }; f"
   merged-branches        = ! git branch --merged | grep -v "\\\\*"
   merged-branches-delete = ! git merged-branches | xargs git branch -D
 
