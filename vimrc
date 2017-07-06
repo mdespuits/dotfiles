@@ -424,31 +424,32 @@ function! s:align()
   endif
 endfunction
 
-" ---------------------------------------
-" -- pick.vim
-call minpac#add('thoughtbot/pick.vim')
-nmap <Leader>t  :call PickFile()<CR>
-nmap <Leader>fs :call PickFileSplit()<CR>
-nmap <Leader>fv :call PickFileVerticalSplit()<CR>
-nmap <Leader>b  :call PickBuffer()<CR>
-nmap <Leader>]  :call PickTag()<CR>
+if has("nvim")
+  " -- ctrlp.vim
+  call minpac#add('ctrlpvim/ctrlp.vim', {'type': 'opt'})
+  " let g:ctrlp_regexp = 1
+  let g:ctrlp_map = '<leader>t'
+  let g:ctrlp_working_path_mode = 'rw'
+  let g:ctrlp_root_markets = ['Gemfile']
+  let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
 
-" ---------------------------------------
-" -- ctrlp.vim
-" let g:ctrlp_regexp = 1
-" let g:ctrlp_map = '<leader>t'
-" let g:ctrlp_show_hidden = 1
-" let g:ctrlp_root_markers = ['Gemfile']
-" let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-" if executable('ag')
-"   let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-" endif
+  if executable('ag')
+    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  endif
 
-" " ---------------------------------------
-" " -- ctrlp-funky
-" nnoremap <Leader>fu :CtrlPFunky<Cr>
-" " narrow the list down with a word under cursor
-" nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+  packadd ctrlp.vim
+else
+  " ---------------------------------------
+  " -- pick.vim
+  call minpac#add('thoughtbot/pick.vim', {'type': 'opt'})
+  nmap <Leader>t  :call PickFile()<CR>
+  nmap <Leader>fs :call PickFileSplit()<CR>
+  nmap <Leader>fv :call PickFileVerticalSplit()<CR>
+  nmap <Leader>b  :call PickBuffer()<CR>
+  nmap <Leader>]  :call PickTag()<CR>
+
+  packadd pick.vim
+endif
 
 " =======================================
 " Filetype highlighting
