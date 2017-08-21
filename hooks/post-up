@@ -50,13 +50,13 @@ brew install thoughtbot/formulae/pick
 # Background services
 brew install memcached
 brew install openssl
-brew install redis
+# brew install redis
 
 # Extra fun stuff
 brew install jq
 brew install htop-osx
 brew install heroku-toolbelt
-brew install nviennot/tmate/tmate
+# brew install nviennot/tmate/tmate
 brew install tree
 brew install pandoc
 brew install xmlstarlet
