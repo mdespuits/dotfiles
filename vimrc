@@ -1,8 +1,6 @@
 " =======================================
 " Basic Setup
 " =======================================
-set nocompatible " Don't be compatible with VI
-
 packadd minpac
 call minpac#init()
 call minpac#add('k-takata/minpac', {'type': 'opt'})
@@ -26,14 +24,11 @@ set showtabline=2
 set winwidth=100
 set winheight=10
 set nowrap
-set ruler
 
 set cursorline
 
 set shortmess=a
 set cmdheight=2
-
-" set list listchars=tab:»·,trail:·
 
 set wildignore+=*tmp/**
 set wildignore+=*coverage
@@ -64,15 +59,13 @@ set wildignore+=*.swp,*~,._*
 set wildignore+=.DS_Store
 
 " =======================================
-" Theme
+" Theme/Styling
 " =======================================
-set background=dark
-set guifont=Courier
 syntax on
+set background=dark
 
-call minpac#add('whatyouhide/vim-gotham')
-call minpac#add('dracula/vim')
-colorscheme dracula
+call minpac#add('morhetz/gruvbox')
+colorscheme gruvbox
 
 " =======================================
 "  Vim's :! system bash
@@ -84,7 +77,6 @@ set shellcmdflag=-c
 " =======================================
 set scrolloff=8                " Lines to keep above and below the cursor
 set sidescrolloff=15           " Columns to keep on either side of cursor
-set backspace=indent,eol,start " Allow backspecing over everything in insert mode
 
 " =======================================
 " Per Project .vimrc
@@ -99,9 +91,6 @@ set tabstop=2       " Number of spaces in 'soft' tabs
 set softtabstop=2   " Number of spaces in 'soft' tabs
 set shiftwidth=2    " For use with indent plugins and `tabstop` setting
 set expandtab       " Use 'soft' tabs when using <Tab> character
-set smarttab        " Smart tabbing
-set autoindent      " Use indent level from current line for next line
-set autoread        " Automatically read files from disk when detected
 
 " =======================================
 " Arrow Keys Are Not Allowed
@@ -110,11 +99,6 @@ nnoremap <Left> <Nop>
 nnoremap <Right> <Nop>
 nnoremap <Up> <Nop>
 nnoremap <Down> <Nop>
-
-" =======================================
-" History Length
-" =======================================
-set history=30
 
 " =======================================
 " Files
@@ -127,9 +111,7 @@ set noswapfile " Do not save swapfiles for unsaved buffers
 set shortmess=aWtI
 
 " =======================================
-" Moving
-" * Move around splits with <c-hjkl>
-" * Move between tabs with <c-s-hl>
+" Movement
 " =======================================
 nnoremap <c-j> <c-w>j
 nnoremap <c-k> <c-w>k
@@ -144,13 +126,37 @@ nnoremap <c-p> :bn<CR>
 " Neovim-specific configuration
 " =======================================
 if has('nvim')
+  " Make escape work in the Neovim terminal.
   tnoremap <Esc> <C-\><C-n>
+
+  " Make navigation into and out of Neovim terminal splits nicer.
+  tnoremap <C-h> <C-\><C-N><C-w>h
+  tnoremap <C-j> <C-\><C-N><C-w>j
+  tnoremap <C-k> <C-\><C-N><C-w>k
+  tnoremap <C-l> <C-\><C-N><C-w>l
+
+  " I like relative numbering when in normal mode.
+  autocmd TermOpen * setlocal conceallevel=0 colorcolumn=0 relativenumber
+
+  " Prefer Neovim terminal insert mode to normal mode.
+  autocmd BufEnter term://* startinsert
+
+  set inccommand=nosplit
+  set notagbsearch
+else
+  " When classic Vim is in use
 endif
 
-" =======================================
-" Filetype detection
-" =======================================
-filetype plugin indent on
+set belloff=all
+set history=3000               " History Length
+set backspace=indent,eol,start " Allow backspecing over everything in insert mode
+set autoread                   " Automatically read files from disk when detected
+set smarttab                   " Smart tabbing
+set autoindent                 " Use indent level from current line for next line
+set nocompatible               " Don't be compatible with VI
+set ruler
+
+filetype plugin indent on " Filetype detection
 
 " =======================================
 " Searching
@@ -167,7 +173,6 @@ set hlsearch " Don't highlight results
 " Various
 " =======================================
 set go=-T         " Hide GUI toolbar
-set noerrorbells  " Don't annoy me with error bells
 set mousehide     " Hide the mouse
 set mouse=n       " Allow 'mouse' navigation in Normal (n) mode
 set splitbelow    " When splitting, set new file on the bottom
@@ -247,13 +252,9 @@ call minpac#add('editorconfig/editorconfig-vim')
 " ---------------------------------------
 " -- Navigation/Editing
 " ---------------------------------------
-call minpac#add('mattn/emmet-vim')
 call minpac#add('chrismccord/bclose.vim')
-call minpac#add('nathanaelkane/vim-indent-guides')
-call minpac#add('rking/ag.vim')
+" call minpac#add('rking/ag.vim')
 call minpac#add('jiangmiao/auto-pairs')
-call minpac#add('vim-airline/vim-airline')
-call minpac#add('vim-airline/vim-airline-themes')
 call minpac#add('mengbo/vim-dash')
 " Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
@@ -262,17 +263,15 @@ call minpac#add('mengbo/vim-dash')
 " ---------------------------------------
 call minpac#add('othree/html5.vim')
 call minpac#add('mustache/vim-mustache-handlebars')
-call minpac#add('mxw/vim-jsx')
 call minpac#add('pangloss/vim-javascript')
-call minpac#add('slim-template/vim-slim')
+call minpac#add('slim-template/vim-slim', {'type': 'opt'})
 call minpac#add('honza/vim-snippets')
-call minpac#add('posva/vim-vue')
+call minpac#add('posva/vim-vue', {'type': 'opt'})
 
 " Ruby-specific stuff
 call minpac#add('tpope/vim-endwise')
 call minpac#add('tpope/vim-rails')
 call minpac#add('tpope/vim-rake')
-call minpac#add('vim-ruby/vim-ruby')
 call minpac#add('sunaku/vim-ruby-minitest')
 call minpac#add('ngmy/vim-rubocop', {'type': 'opt'})
 call minpac#add('kana/vim-textobj-user') " vim-textobj-rubyblock dependeny
@@ -280,13 +279,13 @@ call minpac#add('nelstrom/vim-textobj-rubyblock')
 call minpac#add('janko-m/vim-test')
 
 call minpac#add('elixir-lang/vim-elixir', {'type': 'opt'})
-call minpac#add('fatih/vim-go', {'type': 'opt'})
 call minpac#add('rust-lang/rust.vim', {'type': 'opt'})
-call minpac#add('kchmck/vim-coffee-script', {'type': 'opt'})
 call minpac#add('ap/vim-css-color', {'type': 'opt'})
 call minpac#add('hail2u/vim-css3-syntax', {'type': 'opt'})
 
-" call minpac#add('thoughtbot/vim-rspec')
+" ---------------------------------------
+" -- vim-coffee-script
+call minpac#add('kchmck/vim-coffee-script')
 
 " ---------------------------------------
 " -- vim-snipmate
@@ -295,14 +294,17 @@ call minpac#add('MarcWeber/vim-addon-mw-utils')
 call minpac#add('garbas/vim-snipmate')
 
 " -- vim-jsx
+call minpac#add('mxw/vim-jsx', { 'type': 'opt' })
 let g:jsx_ext_required = 0
 
 " ---------------------------------------
-" -- ZenCoding
+" -- Emmet
+call minpac#add('mattn/emmet-vim')
 let g:user_emmet_expandabbr_key = '<c-e>'
 
 " ---------------------------------------
 " -- Indent Guides
+call minpac#add('nathanaelkane/vim-indent-guides')
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 2
@@ -322,21 +324,22 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 0
 let g:syntastic_check_on_wq = 0
-
 let g:syntastic_enable_signs=1
-let g:syntastic_auto_loc_list=1
+
 let g:syntastic_javascript_checkers = ['eslint']
 let g:syntastic_ruby_checkers = ['mri']
 let g:syntastic_java_checkers = []
-let g:syntastic_eruby_checkers = []
-let g:syntastic_scss_checkers = ['mixedindentlint', 'scssc', 'scss_lint']
+let g:syntastic_eruby_checkers = ['ruby']
+" let g:syntastic_scss_checkers = ['mixedindentlint', 'scssc', 'scss_lint']
+let g:syntastic_scss_checkers = ['mixedindentlint', 'scssc']
 let g:syntastic_scss_scss_lint_args = "-x StringQuotes"
 let g:syntastic_mode_map = { "mode": "active" }
 
-" highlight SyntasticError guibg=#2f0000
+highlight SyntasticError guibg=#2f0000
 
 " ---------------------------------------
 " -- vim-ruby
+call minpac#add('vim-ruby/vim-ruby')
 let g:ruby_indent_access_modifier_style = 'indent'
 
 " Regex used for words, that, at the start of a line, remove a level of indent
@@ -358,6 +361,7 @@ let s:ruby_indent_keywords =
 " ---------------------------------------
 " -- vim-fugitive
 call minpac#add('tpope/vim-fugitive')
+call minpac#add('tpope/vim-rhubarb') " For using :Gbrowse
 map <leader>gd  :Gvdiff<CR>
 map <leader>gs  :Gstatus<CR>
 
@@ -366,6 +370,9 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " ---------------------------------------
 " -- Airline Config
+call minpac#add('vim-airline/vim-airline')
+call minpac#add('vim-airline/vim-airline-themes')
+
 set laststatus=2
 " set fillchars+=stl:\ ,stlnc:\
 let g:airline#extensions#tabline#enabled = 1
@@ -379,6 +386,8 @@ let g:airline_section_b = '%{fugitive#head()}'
 
 " ---------------------------------------
 " -- vim-rspec
+" call minpac#add('thoughtbot/vim-rspec')
+
 " map <leader>c :call RunCurrentSpecFile()<CR>
 " map <leader>n :call RunNearestSpec()<CR>
 " map <leader>l :call RunLastSpec()<CR>
@@ -391,6 +400,7 @@ runtime macros/matchit.vim
 
 " ---------------------------------------
 " -- vim-go
+call minpac#add('fatih/vim-go', {'type': 'opt'})
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
@@ -399,7 +409,7 @@ let g:go_highlight_operators = 1
 let g:go_highlight_build_constraints = 1
 
 function! SetGoOPtions()
-  :call tagbar#autoopen(0)
+  " :call tagbar#autoopen(0)
 endfunction
 
 augroup GoFile
@@ -426,29 +436,51 @@ endfunction
 
 if has("nvim")
   " -- ctrlp.vim
-  call minpac#add('ctrlpvim/ctrlp.vim', {'type': 'opt'})
-  " let g:ctrlp_regexp = 1
-  let g:ctrlp_map = '<leader>t'
-  let g:ctrlp_working_path_mode = 'rw'
-  let g:ctrlp_root_markets = ['Gemfile']
-  let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+  call minpac#add('junegunn/fzf')
+  call minpac#add('junegunn/fzf.vim')
 
-  if executable('ag')
-    let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
-  endif
+  " let g:fzf_action = {
+  " \ 'ctrl-t': 'split',
+  " \ 'ctrl-x': 'split',
+  " \ 'ctrl-v': 'vsplit' }
 
-  packadd ctrlp.vim
+  " nmap <Leader>t :Files<CR>
+
+
+  " let g:fzf_layout = { 'up': '~40%' }
+  let g:fzf_layout = { 'window': 'enew' }
+
+  " command! -bang -nargs=? -complete=dir Files
+  " \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
+
+  nmap <leader>t :Files<CR>
+  nmap <leader>b :Buffers<CR>
+  " call minpac#add('ctrlpvim/ctrlp.vim')
+  " " let g:ctrlp_regexp = 1
+  " let g:ctrlp_map = '<leader>t'
+  " let g:ctrlp_working_path_mode = 'rw'
+  " let g:ctrop_switch_buffer = 'e'
+  " let g:ctrlp_max_files = 5000
+  " let g:ctrlp_root_markets = ['Gemfile']
+  " let g:ctrlp_match_window = 'top,order:btt,max:25'
+  " let g:ctrlp_match_current_file = 1
+  " let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
+  " let g:ctrlp_show_hidden = 1
+
+  " nmap <Leader>b :CtrlPBuffer<CR>
+
+  " if executable('ag')
+  "   let g:ctrlp_user_command = 'fzf -f="" --no-sort'
+  " endif
 else
   " ---------------------------------------
   " -- pick.vim
-  call minpac#add('thoughtbot/pick.vim', {'type': 'opt'})
+  call minpac#add('thoughtbot/pick.vim')
   nmap <Leader>t  :call PickFile()<CR>
   nmap <Leader>fs :call PickFileSplit()<CR>
   nmap <Leader>fv :call PickFileVerticalSplit()<CR>
   nmap <Leader>b  :call PickBuffer()<CR>
   nmap <Leader>]  :call PickTag()<CR>
-
-  packadd pick.vim
 endif
 
 " =======================================
@@ -515,15 +547,15 @@ nmap :Noh :noh<CR>
 " See http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text
 " for more information
 " ***************************************
-nnoremap S "_diwP
-vnoremap S "_dP
+" nnoremap S "_diwP
+" vnoremap S "_dP
 
 " ***************************************
 " Buffer navigation
 " ***************************************
 nmap :bs :buffers
 nmap <leader>w :Bclose<CR>
-nmap <leader>q :bd!<CR>
+nmap <leader>q :bwipeout!<CR>
 nmap <leader>cb :ene<CR>:bw #<CR>
 nmap <leader>lc :lclose<CR>
 nmap <leader>lo :lopen<CR>
@@ -560,9 +592,9 @@ nmap :rhs :%s/:\([^ ]*\)\(\s*\)=>\s*/\1: /g<CR>
 " --- Convert Ruby 1.9 Hashes to Ruby 1.8
 nmap :hrs :%s/\([a-zA-Z][a-zA-Z0-9_]*\):\s\([^\,\}]*\)/:\1 => \2/g<CR>
 " --- Clear all buffers and splits
-nmap :clear :bufdo! bdelete!<CR>
+nmap :clear :bufdo! bwipeout!<CR>
 " --- Replace all 'hard' tabs with 'soft' tabs
-nmap <leader>rt :retab<CR>
+nmap <leader>rt :retab!<Return>
 
 " ***************************************
 " Perforce commands
