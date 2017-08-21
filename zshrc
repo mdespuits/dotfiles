@@ -72,7 +72,7 @@ export PATH=$PATH:/usr/local/Cellar/mysql55/5.5.30/bin
 # General Environment
 # =================================
 
-export EDITOR='vim'
+export EDITOR='nvim'
 export VISUAL=$EDITOR
 export JRUBY_OPTS='--1.9'   # Always prefer Ruby 1.9 in jRuby
 
@@ -124,7 +124,8 @@ source /usr/local/opt/chruby/share/chruby/chruby.sh
 
 # alias annotate="annotate -p before -e tests" # Annotate alias. Defaults are stupid
 alias reload="exec $SHELL -l"
-alias vi="vim"
+alias vim="nvim"
+alias vi="nvim"
 alias h="history 0 | grep"
 alias be="bundle exec"
 alias gs="git status"
@@ -154,11 +155,13 @@ function who_wrote_this_code {
   find $1 \( ! -regex '.*/\..*' \) -name '*.rb' -type f -print -exec git blame '{}' \; | ruby -pe "sub /(^.*\((.*?)\s+2.*$)/, '\2'" | egrep -vE '[[:punct:][:digit:]]' | sort | uniq -c | sort -nr;
 }
 
+export FZF_DEFAULT_COMMAND='ag -g ""'
+
 function edit-file() {
   if [[ -d ".git" ]] ; then
-    vim $(git ls-files | pick)
+    vim $(git ls-files | fzf)
   else
-    vim $(find . -type f | pick)
+    vim $(fzf)
   fi
 }
 alias edit='edit-file'

@@ -7,6 +7,7 @@
   default = current
 [core]
   excludesfile = ~/.gitexcludes
+  editor = nvim
 [credential]
   helper = osxkeychain
 [help]
@@ -29,7 +30,7 @@
   merged-branches-delete = ! git merged-branches | xargs git branch -D
 
   # Picking
-  pick    = ! git branch | grep -v "^*" | cut -c 3- | pick -X
+  pick    = ! git branch | grep -v "^*" | fzf-tmux -d 15
   pco     = ! git pick | xargs git checkout
   dbranch = ! git pick | xargs git branch -d
   Dbranch = ! git pick | xargs git branch -D
@@ -38,7 +39,7 @@
   fsearch  = ! git ls-files | grep -i
   authors  = ! git log --all --format='%aN' | sort -u
   emails   = ! git log --all --format='%cE' | sort -u
-  me       = ! git ls --since 7.days.ago --author `git config user.email` --branches
+  me       = ! git ls --since 3.days.ago --author `git config user.email` --branches
 
   # Master is now a verb
   master          = checkout master
