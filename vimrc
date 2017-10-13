@@ -339,7 +339,8 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_enable_signs=1
 
 let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_ruby_checkers = ['mri']
+let g:syntastic_ruby_checkers = ['mri', 'rubocop', 'flog']
+" let g:syntastic_ruby_rubocop_exec = "~/.gem/ruby/2.1.7/bin/rubocop"
 let g:syntastic_java_checkers = []
 let g:syntastic_eruby_checkers = ['ruby']
 " let g:syntastic_scss_checkers = ['mixedindentlint', 'scssc', 'scss_lint']
