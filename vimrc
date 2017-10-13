@@ -205,20 +205,13 @@ set numberwidth=1 " Line number width
 " =======================================
 " Relative Line Numbers
 " ---------------------------------------
-"
-" Always display current line number, but
-" toggle the rest of the line numbers
-" between relative and absolute.
+" Stolen directly from https://github.com/jeffkreeftmeijer/vim-numbertoggle
 " =======================================
-function! RelativeLineNumberToggle()
-  if(&relativenumber == 1)
-    set norelativenumber
-  else
-    set relativenumber
-  endif
-endfunc
-
-nnoremap <leader>rl :call RelativeLineNumberToggle()<CR>
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave * if &nu | set rnu   | endif
+  autocmd BufLeave,FocusLost,InsertEnter   * if &nu | set nornu | endif
+augroup END
 
 " Restore cursor position, window position, and last search after running a
 " command.
