@@ -156,6 +156,29 @@ set autoindent                 " Use indent level from current line for next lin
 set nocompatible               " Don't be compatible with VI
 set ruler
 
+function! GitBranch()
+  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
+endfunction
+
+function! StatuslineGit()
+  let l:branchname = GitBranch()
+  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
+endfunction
+
+set statusline=
+set statusline+=%#Pmenu#
+set statusline+=%{StatuslineGit()}
+set statusline+=%#LineNr#
+set statusline+=\ %f
+set statusline+=%m
+set statusline+=\ %R
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+set statusline+=%=
+set statusline+=\ %p%%
+set statusline+=\ %l:%c
+
 filetype plugin indent on " Filetype detection
 
 " =======================================
@@ -273,7 +296,7 @@ call minpac#add('tpope/vim-endwise')
 call minpac#add('tpope/vim-rails')
 call minpac#add('tpope/vim-rake')
 call minpac#add('sunaku/vim-ruby-minitest')
-call minpac#add('ngmy/vim-rubocop', {'type': 'opt'})
+" call minpac#add('ngmy/vim-rubocop', {'type': 'opt'})
 call minpac#add('kana/vim-textobj-user') " vim-textobj-rubyblock dependeny
 call minpac#add('nelstrom/vim-textobj-rubyblock')
 call minpac#add('janko-m/vim-test')
@@ -316,9 +339,6 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=233
 " ---------------------------------------
 " -- Syntastic
 call minpac#add('scrooloose/syntastic')
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
@@ -368,21 +388,6 @@ map <leader>gs  :Gstatus<CR>
 " Remove fugitive buffers completely when done
 autocmd BufReadPost fugitive://* set bufhidden=delete
 
-" ---------------------------------------
-" -- Airline Config
-call minpac#add('vim-airline/vim-airline')
-call minpac#add('vim-airline/vim-airline-themes')
-
-set laststatus=2
-" set fillchars+=stl:\ ,stlnc:\
-let g:airline#extensions#tabline#enabled = 1
-let g:airline_powerline_fonts = 1
-if !exists('g:airline_symbols')
-  let g:airline_symbols = {}
-endif
-let g:airline_symbols.space = "\ua0"
-let g:airline_theme = "simple"
-let g:airline_section_b = '%{fugitive#head()}'
 
 " ---------------------------------------
 " -- vim-rspec
