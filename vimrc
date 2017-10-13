@@ -153,7 +153,6 @@ set backspace=indent,eol,start " Allow backspecing over everything in insert mod
 set autoread                   " Automatically read files from disk when detected
 set smarttab                   " Smart tabbing
 set autoindent                 " Use indent level from current line for next line
-set nocompatible               " Don't be compatible with VI
 set ruler
 
 function! GitBranch()
