@@ -25,6 +25,9 @@ cd "$HOME/.config/nvim/pack/minpac/opt" &> /dev/null
 git clone https://github.com/k-takata/minpac.git
 cd - &> /dev/null
 
+# Install iTerm2 Configured Font
+cp $HOME/.dotfiles/fonts/* $HOME/Library/Fonts
+
 # Core packages
 brew install neovim tmux zsh fzf
 
