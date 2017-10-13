@@ -564,14 +564,6 @@ nmap :clear :bufdo! bwipeout!<CR>
 nmap <leader>rt :retab!<Return>
 
 " ***************************************
-" Perforce commands
-" ***************************************
-" nmap <leader>pe :!p4 edit "%";<CR>
-" nmap <leader>pa :!p4 add "%";<CR>
-" nmap <leader>pr :!p4 revert "%";<CR>
-" nmap <leader>pd :!p4 delete "%";<CR>
-
-" ***************************************
 " Managing .vimrc
 " ***************************************
 nmap <leader>m :source $MYVIMRC<CR>
