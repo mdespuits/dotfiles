@@ -17,24 +17,16 @@ else
   cd - &> /dev/null
 fi
 
-if [ ! -e "$HOME/.vim/autoload/plug.vim" ]; then
-  echo "==> Installing vim-plug"
-else
-  echo "==> Updating vim-plug"
-fi
-
-curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-
 echo "==> Preparing minpac for Vim"
-mkdir -p ~/.vim/pack/minpac/opt
-cd "$HOME/.vim/pack/minpac/opt" &> /dev/null
+mkdir -p ~/.config/nvim/pack/minpac/opt
+rm -f $HOME/.config/nvim/init.vim
+ln -s $HOME/.vimrc $HOME/.config/nvim/init.vim
+cd "$HOME/.config/nvim/pack/minpac/opt" &> /dev/null
 git clone https://github.com/k-takata/minpac.git
 cd - &> /dev/null
 
-
-# For development
-brew install vim --override-system-vi --with-lua
-brew install tmux
+# Core packages
+brew install neovim tmux zsh fzf
 
 # Setup Ruby Version Manager
 brew install chruby
@@ -45,67 +37,49 @@ brew install git
 brew install git-hooks
 brew install the_silver_searcher
 brew install thoughtbot/formulae/rcm
-brew install thoughtbot/formulae/pick
 
 # Background services
-brew install memcached
 brew install openssl
+# brew install memcached
 # brew install redis
 
 # Extra fun stuff
 brew install jq
-brew install htop-osx
 brew install heroku-toolbelt
-# brew install nviennot/tmate/tmate
 brew install tree
 brew install pandoc
-brew install xmlstarlet
 brew install ssh-copy-id
 
 # Setup other useful tools/langs
-brew install ack
 brew install bash
 brew install ccat
 brew install direnv
 brew install elixir
-brew install heroku-toolbelt
-brew install the_silver_searcher
 brew install wget
-brew install zsh
-brew install lastpass-cli --with-pinentry --with-doc
 
 # OSX Apps
 brew install phinze/cask/brew-cask
-brew cask install hammerspoon 2> /dev/null
 
-# brew cask install audacity 2> /dev/null
-# brew cask install dropbox 2> /dev/null
-# brew cask install google-chrome 2> /dev/null
-# brew cask install google-chrome-canary 2> /dev/null
-# brew cask install iterm2 2> /dev/null
-# brew cask install jing 2> /dev/null
-# brew cask install sublime-text 2> /dev/null
-# brew cask install sequel-pro 2> /dev/null
-# brew cask install vagrant 2> /dev/null
-# brew cask install virtualbox 2> /dev/null
-# brew cask install vlc 2> /dev/null
-
-# Fun OSX Quick Look plugins
-brew cask install betterzipql 2> /dev/null
-brew cask install qlcolorcode 2> /dev/null
-brew cask install qlmarkdown 2> /dev/null
-brew cask install qlprettypatch 2> /dev/null
-brew cask install qlstephen 2> /dev/null
-brew cask install quicklook-csv 2> /dev/null
-brew cask install quicklook-json 2> /dev/null
-brew cask install suspicious-package 2> /dev/null
-brew cask install webp-quicklook 2> /dev/null
+brew cask install vivaldi 2> /dev/null
+brew cask install selfcontrol 2> /dev/null
+brew cask install vlc 2> /dev/null
+brew cask install flux 2> /dev/null
+brew cask install gitup 2> /dev/null
+brew cask install goofy 2> /dev/null
+brew cask install iterm2 2> /dev/null
+brew cask install mojibar 2> /dev/null
+brew cask install spotify 2> /dev/null
+brew cask install slack 2> /dev/null
+brew cask install google-drive 2> /dev/null
+brew cask install alfred 2> /dev/null
+brew cask install bartender 2> /dev/null
+brew cask install caffeine 2> /dev/null
 
 echo "==> Adding $HOME/.localbin directory for other scripts"
 mkdir "$HOME/.localbin" >/dev/null 2>&1
 
-echo "==> Installing vim bundles...";
-vim +PluginInstall +qall
+echo "==> Installing vim packages...";
+vim +PackUpdate
 
 echo "==> Installing latest version of Ruby"
-ruby-install ruby
+# ruby-install ruby
