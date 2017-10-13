@@ -25,7 +25,7 @@
   co-pr = "! f() { git fetch origin pull/$1/head:pull-request-$1 && git checkout pull-request-$1; }; f"
 
   # Cleaning up
-  cleanup = "! f() { git reset-branch master && git merged-branches-delete && git remote prune origin; }; f"
+  cleanup = "! f() { git checkout master && git reset-origin && git merged-branches-delete && git remote prune origin && git checkout -; }; f"
   merged-branches        = ! git branch --merged | grep -v "\\\\*"
   merged-branches-delete = ! git merged-branches | xargs git branch -D
 
@@ -60,7 +60,7 @@
   ds = diff --staged
 
   # Logging and Graphing
-  ls = log --pretty='format:%Cred%h%Creset %Cblue%ad%Cred%d %Creset%s%Cgreen [%cn]%Creset' --decorate --date=short
+  ls = log --pretty='format:%Cred%h%Creset %Cblue%ai%Cred%d %Creset%s%Cgreen [%cn]%Creset' --decorate --date=short
   lsv = ! git ls --numstat
   graph = log --graph --pretty='format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(blue){%an}%Creset' --abbrev-commit --date=relative
 
