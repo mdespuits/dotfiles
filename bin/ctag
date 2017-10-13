@@ -23,4 +23,4 @@
 # Without these options, a basic 'ctags -R' generates a 180Mb+ tags file, which
 # takes a few minutes to generate.
 # With these options, it's <3Mb, and takes under a second
-ctags --sort=yes -R --languages="Ruby,JavaScript" --exclude=node_modules --exclude=tmp --exclude=sandi_meter --exclude=public --exclude=spec
+ctags --sort=yes -R --languages="Ruby,JavaScript" --exclude=node_modules --exclude=tmp --exclude=sandi_meter --exclude=public --exclude=spec &> /dev/null 2>&1 &
