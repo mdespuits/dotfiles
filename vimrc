@@ -434,54 +434,16 @@ function! s:align()
   endif
 endfunction
 
-if has("nvim")
-  " -- ctrlp.vim
-  call minpac#add('junegunn/fzf')
-  call minpac#add('junegunn/fzf.vim')
+" ---------------------------------------
+" -- fzf
+call minpac#add('junegunn/fzf')
+call minpac#add('junegunn/fzf.vim')
 
-  " let g:fzf_action = {
-  " \ 'ctrl-t': 'split',
-  " \ 'ctrl-x': 'split',
-  " \ 'ctrl-v': 'vsplit' }
+nmap <leader>t :Files<CR>
+nmap <leader>b :Buffers<CR>
+nmap <leader><S-T> :BTags<CR>
 
-  " nmap <Leader>t :Files<CR>
-
-
-  " let g:fzf_layout = { 'up': '~40%' }
-  let g:fzf_layout = { 'window': 'enew' }
-
-  " command! -bang -nargs=? -complete=dir Files
-  " \ call fzf#vim#files(<q-args>, fzf#vim#with_preview(), <bang>0)
-
-  nmap <leader>t :Files<CR>
-  nmap <leader>b :Buffers<CR>
-  " call minpac#add('ctrlpvim/ctrlp.vim')
-  " " let g:ctrlp_regexp = 1
-  " let g:ctrlp_map = '<leader>t'
-  " let g:ctrlp_working_path_mode = 'rw'
-  " let g:ctrop_switch_buffer = 'e'
-  " let g:ctrlp_max_files = 5000
-  " let g:ctrlp_root_markets = ['Gemfile']
-  " let g:ctrlp_match_window = 'top,order:btt,max:25'
-  " let g:ctrlp_match_current_file = 1
-  " let g:ctrlp_cache_dir = $HOME . '/.cache/ctrlp'
-  " let g:ctrlp_show_hidden = 1
-
-  " nmap <Leader>b :CtrlPBuffer<CR>
-
-  " if executable('ag')
-  "   let g:ctrlp_user_command = 'fzf -f="" --no-sort'
-  " endif
-else
-  " ---------------------------------------
-  " -- pick.vim
-  call minpac#add('thoughtbot/pick.vim')
-  nmap <Leader>t  :call PickFile()<CR>
-  nmap <Leader>fs :call PickFileSplit()<CR>
-  nmap <Leader>fv :call PickFileVerticalSplit()<CR>
-  nmap <Leader>b  :call PickBuffer()<CR>
-  nmap <Leader>]  :call PickTag()<CR>
-endif
+let g:fzf_layout = { 'window': 'enew' }
 
 " =======================================
 " Filetype highlighting
