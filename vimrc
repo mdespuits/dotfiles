@@ -349,6 +349,7 @@ let g:syntastic_scss_scss_lint_args = "-x StringQuotes"
 let g:syntastic_mode_map = { "mode": "active" }
 
 highlight SyntasticError guibg=#2f0000
+let g:ale_lint_on_enter = 0
 
 " ---------------------------------------
 " -- vim-ruby
@@ -541,8 +542,6 @@ nmap :WQ! :wq!
 " A few convenient shortcuts
 " ***************************************
 
-" --- Make the current window the only one on the screen
-nmap :one :on
 " --- Convert Ruby 1.8 Hashes to Ruby 1.9
 nmap :rhs :%s/:\([^ ]*\)\(\s*\)=>\s*/\1: /g<CR>
 " --- Convert Ruby 1.9 Hashes to Ruby 1.8
