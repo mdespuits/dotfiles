@@ -40,6 +40,7 @@
   authors  = ! git log --all --format='%aN' | sort -u
   emails   = ! git log --all --format='%cE' | sort -u
   me       = ! git ls --since 3.days.ago --author `git config user.email` --branches
+  yesterday = ! git ls --since 1.day.ago --author `git config user.email` --branches
 
   # Master is now a verb
   master          = checkout master
