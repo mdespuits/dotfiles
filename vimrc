@@ -309,7 +309,7 @@ call minpac#add('MarcWeber/vim-addon-mw-utils')
 call minpac#add('garbas/vim-snipmate')
 
 " -- vim-jsx
-call minpac#add('mxw/vim-jsx', { 'type': 'opt' })
+call minpac#add('mxw/vim-jsx')
 let g:jsx_ext_required = 0
 
 " ---------------------------------------
