@@ -83,7 +83,6 @@ set sidescrolloff=15           " Columns to keep on either side of cursor
 " =======================================
 set exrc   " Load .vimrc in project directory
 set secure " Disable unsafe commands in local .vimrc files
-
 " =======================================
 " Tabbing
 " =======================================
@@ -172,7 +171,7 @@ set statusline+=\ %f
 set statusline+=%m
 set statusline+=\ %R
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%{LinterStatus()}
 set statusline+=%*
 set statusline+=%=
 set statusline+=\ %p%%
@@ -329,27 +328,38 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black ctermbg=232
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=233
 
 " ---------------------------------------
-" -- Syntastic
-call minpac#add('scrooloose/syntastic')
+" -- Ale
+call minpac#add('w0rp/ale')
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 0
-let g:syntastic_check_on_wq = 0
-let g:syntastic_enable_signs=1
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
 
-let g:syntastic_javascript_checkers = ['eslint']
-let g:syntastic_ruby_checkers = ['mri', 'rubocop', 'flog']
-" let g:syntastic_ruby_rubocop_exec = "~/.gem/ruby/2.1.7/bin/rubocop"
-let g:syntastic_java_checkers = []
-let g:syntastic_eruby_checkers = ['ruby']
-" let g:syntastic_scss_checkers = ['mixedindentlint', 'scssc', 'scss_lint']
-let g:syntastic_scss_checkers = ['mixedindentlint', 'scssc']
-let g:syntastic_scss_scss_lint_args = "-x StringQuotes"
-let g:syntastic_mode_map = { "mode": "active" }
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
 
-highlight SyntasticError guibg=#2f0000
+let g:ale_linters = {
+\ 'ruby': ['rubocop', 'ruby'],
+\ 'javascript': ['eslint']
+\}
+
+let g:ale_fixers = {
+\  'javascript': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
+\  'html': ['remove_trailing_lines', 'trim_whitespace']
+\}
+
+" let g:ale_fixer_aliases = { 'erb': 'html' }
+
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 0
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
 
 " ---------------------------------------
 " -- vim-ruby
