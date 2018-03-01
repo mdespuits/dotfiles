@@ -561,7 +561,7 @@ nmap <leader>ev :e $MYVIMRC<CR>
 " Managing Sessions
 " ***************************************
 nmap <F2> :wa<Bar>exe "mksession! ~/vim-sessions/current.vim"<CR>
-nmap <F3> :! rm -rf ~/vim-sessions/current.vim<CR>
+nmap <F3> :silent! rm -rf ~/vim-sessions/current.vim<CR>
 nmap <F4> :source ~/vim-sessions/current.vim<CR>
 
 " ***************************************
