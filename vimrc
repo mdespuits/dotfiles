@@ -281,7 +281,7 @@ call minpac#add('mustache/vim-mustache-handlebars')
 call minpac#add('pangloss/vim-javascript')
 call minpac#add('slim-template/vim-slim', {'type': 'opt'})
 call minpac#add('honza/vim-snippets')
-call minpac#add('posva/vim-vue', {'type': 'opt'})
+call minpac#add('posva/vim-vue')
 
 " Ruby-specific stuff
 call minpac#add('tpope/vim-endwise')
