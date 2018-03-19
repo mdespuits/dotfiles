@@ -155,7 +155,8 @@ function who_wrote_this_code {
   find $1 \( ! -regex '.*/\..*' \) -name '*.rb' -type f -print -exec git blame '{}' \; | ruby -pe "sub /(^.*\((.*?)\s+2.*$)/, '\2'" | egrep -vE '[[:punct:][:digit:]]' | sort | uniq -c | sort -nr;
 }
 
-export FZF_DEFAULT_COMMAND='ag -g ""'
+export FZF_TMUX_HEIGHT="40%"
+export FZF_DEFAULT_COMMAND='ag -U --hidden -g "" --ignore .git --ignore "*.png" --ignore "*.jpg" --ignore "node_modules" --ignore .bin --ignore .DS_Store --ignore "*.gif"'
 
 function edit-file() {
   if [[ -d ".git" ]] ; then
