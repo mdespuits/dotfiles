@@ -28,61 +28,7 @@ cd - &> /dev/null
 # Install iTerm2 Configured Font
 cp $HOME/.dotfiles/fonts/* $HOME/Library/Fonts
 
-# Core packages
-brew install neovim tmux zsh fzf
-
-# Setup Ruby Version Manager
-brew install chruby
-brew install ruby-install --HEAD
-
-# Essential development packages
-brew install git
-brew install git-hooks
-brew install the_silver_searcher
-brew install thoughtbot/formulae/rcm
-
-# Background services
-brew install openssl
-# brew install memcached
-# brew install redis
-
-# Extra fun stuff
-brew install jq
-brew install heroku-toolbelt
-brew install tree
-brew install pandoc
-brew install ssh-copy-id
-
-# Setup other useful tools/langs
-brew install bash
-brew install ccat
-brew install direnv
-brew install elixir
-brew install wget
-
-# OSX Apps
-brew install phinze/cask/brew-cask
-
-brew cask install vivaldi 2> /dev/null
-brew cask install selfcontrol 2> /dev/null
-brew cask install vlc 2> /dev/null
-brew cask install flux 2> /dev/null
-brew cask install gitup 2> /dev/null
-brew cask install goofy 2> /dev/null
-brew cask install iterm2 2> /dev/null
-brew cask install mojibar 2> /dev/null
-brew cask install spotify 2> /dev/null
-brew cask install slack 2> /dev/null
-brew cask install google-drive 2> /dev/null
-brew cask install alfred 2> /dev/null
-brew cask install bartender 2> /dev/null
-brew cask install caffeine 2> /dev/null
-
-echo "==> Adding $HOME/.localbin directory for other scripts"
-mkdir "$HOME/.localbin" >/dev/null 2>&1
-
-echo "==> Installing vim packages...";
-vim +PackUpdate
-
-echo "==> Installing latest version of Ruby"
-# ruby-install ruby
+echo "==> Installing Homebrew dependencies"                   ; brew bundle --global --no-upgrade
+echo "==> Adding $HOME/.localbin directory for other scripts" ; mkdir "$HOME/.localbin" >/dev/null 2>&1
+echo "==> Installing vim packages..."                         ; vim +PackUpdate
+echo "==> Installing latest version of Ruby"                  ; ruby-install ruby
