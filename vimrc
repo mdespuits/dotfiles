@@ -67,6 +67,9 @@ set background=dark
 call minpac#add('morhetz/gruvbox')
 colorscheme gruvbox
 
+" Allow direnv environment handling
+call minpac#add('direnv/direnv.vim')
+
 " =======================================
 "  Vim's :! system bash
 " =======================================
@@ -154,30 +157,29 @@ set smarttab                   " Smart tabbing
 set autoindent                 " Use indent level from current line for next line
 set ruler
 
-function! GitBranch()
-  return system("git rev-parse --abbrev-ref HEAD 2>/dev/null | tr -d '\n'")
-endfunction
-
-function! StatuslineGit()
-  let l:branchname = GitBranch()
-  return strlen(l:branchname) > 0?'  '.l:branchname.' ':''
-endfunction
-
-set statusline=
-set statusline+=%#Pmenu#
-set statusline+=%{StatuslineGit()}
-set statusline+=%#LineNr#
-set statusline+=\ %f
-set statusline+=%m
-set statusline+=\ %R
-set statusline+=%#warningmsg#
-set statusline+=%{LinterStatus()}
-set statusline+=%*
-set statusline+=%=
-set statusline+=\ %p%%
-set statusline+=\ %l:%c
-
 filetype plugin indent on " Filetype detection
+
+" =======================================
+" Statusline Setup
+" =======================================
+call minpac#add('itchyny/lightline.vim')
+set laststatus=2
+set noshowmode
+
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ }
+      \ }
+
+if !has('gui_running')
+  set t_Co=256
+endif
 
 " =======================================
 " Searching
@@ -344,13 +346,18 @@ function! LinterStatus() abort
 endfunction
 
 let g:ale_linters = {
-\ 'ruby': ['rubocop', 'ruby'],
-\ 'javascript': ['eslint']
+\  'ruby': ['rubocop', 'ruby'],
+\  'javascript': ['eslint'],
+\  'scss': []
 \}
 
 let g:ale_fixers = {
 \  'javascript': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
-\  'html': ['remove_trailing_lines', 'trim_whitespace']
+\  'json': ['prettier'],
+\  'ruby': ['rubocop'],
+\  'html': ['remove_trailing_lines', 'trim_whitespace'],
+\  'vue': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
+\  'scss': ['remove_trailing_lines', 'trim_whitespace']
 \}
 
 " let g:ale_fixer_aliases = { 'erb': 'html' }
@@ -360,6 +367,9 @@ let g:ale_lint_on_save = 1
 let g:ale_lint_on_enter = 0
 let g:ale_set_loclist = 1
 let g:ale_set_quickfix = 0
+let g:ale_set_signs = 1
+let g:ale_sign_column_always = 0
+let g:ale_sign_offset = 50000
 
 " ---------------------------------------
 " -- vim-ruby
@@ -401,7 +411,7 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 " map <leader>n :call RunNearestSpec()<CR>
 " map <leader>l :call RunLastSpec()<CR>
 " map <leader>a :call RunAllSpecs()<CR>
-" let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec {spec} --format progress\n")'
+" let g:rspec_command = '!rspec {spec} --color'
 
 " ---------------------------------------
 " -- vim-textobj-rubyblock
