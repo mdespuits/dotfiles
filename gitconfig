@@ -6,64 +6,66 @@
 [push]
   default = current
 [core]
-  excludesfile = ~/.gitexcludes
+	excludesfile = /Users/mattbridges/.gitexcludes
   editor = nvim
 [credential]
   helper = osxkeychain
 [help]
   autocorrect = 1
 [alias]
-  # Favorites
-  ps  = push -u
-  b   = branch
-  aa  = add --all
+  ps  = push
+  psu = push -u
+  pso = push -u origin
+
   ra  = reset .
+  rh  = reset --hard
+  rhh = reset --hard HEAD
+
+  d   = diff
+  ds  = diff --staged
+
   co  = checkout
-  coa = ! git checkout .
-  reset-origin = ! git reset-branch $(git current-branch)
+  com = checkout master
+  coa = !git checkout .
+  b   = branch
+  bd  = !git pick | xargs git branch -d
+
+  a   = add .
+  ap  = add -p
+  ac  = !git add . && git commit
+  acm = !git add . && git commit -m
+  c   = commit
+  cm  = commit -v -m
+  ca  = commit --amend --date=now
+
+  commend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend --date=now
+  pick    = !git branch | grep -v "^*" | fzf-tmux -d 15
+  pco     = !git pick | xargs git checkout
+  dbranch = !git pick | xargs git branch -d
+
+  l     = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
+  lg    = log --color --graph --pretty=format:'%C(bold white)%h%Creset -%C(bold green)%d%Creset %s %C(bold green)(%cr)%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --date = relative
+  ll    = log --stat --abbrev-commit
+  llg   = log --color --graph --pretty=format:'%C(bold white)%H %d%Creset%n%s%n%+b%C(bold blue)%an <%ae>%Creset %C(bold green)%cr (%ci)' --abbrev-commit
+  ls    = log --pretty='format:%Cred%h%Creset %Cblue%ai%Cred%d %Creset%s%Cgreen [%cn]%Creset' --decorate --date                                                 = short
+  graph = log --graph --pretty='format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(blue){%an}%Creset' --abbrev-commit --date                          = relative
+
+  reset-origin = ! git reset-branch $(git rev-parse --abbrev-ref HEAD)
   track = "! f() { git fetch origin && git checkout -t origin/$1; }; f"
   co-pr = "! f() { git fetch origin pull/$1/head:pull-request-$1 && git checkout pull-request-$1; }; f"
 
   # Cleaning up
-  cleanup = "! f() { git checkout master && git reset-origin && git merged-branches-delete && git remote prune origin; }; f"
+  cleanup-master = "! f() { git checkout master && git reset-origin && git merged-branches-delete && git remote prune origin; }; f"
+  cleanup-dev = "! f() { git checkout dev && git reset-origin && git merged-branches-delete && git remote prune origin; }; f"
   merged-branches        = ! git branch --merged | grep -v "\\\\*"
   merged-branches-delete = ! git merged-branches | xargs git branch -D
 
-  # Picking
-  pick    = ! git branch | grep -v "^*" | fzf-tmux -d 15
-  pco     = ! git pick | xargs git checkout
-  dbranch = ! git pick | xargs git branch -d
-  Dbranch = ! git pick | xargs git branch -D
-
   # Emails and Authors
-  fsearch  = ! git ls-files | grep -i
-  authors  = ! git log --all --format='%aN' | sort -u
-  emails   = ! git log --all --format='%cE' | sort -u
-  me       = ! git ls --since 3.days.ago --author `git config user.email` --branches
+  authors   = ! git log --all --format='%aN' | sort -u
+  emails    = ! git log --all --format='%cE' | sort -u
+  fsearch   = ! git ls-files | grep -i
+  me        = ! git ls --since 3.days.ago --author `git config user.email` --branches
   yesterday = ! git ls --since 1.day.ago --author `git config user.email` --branches
-
-  # Master is now a verb
-  master          = checkout master
-  current-branch  = rev-parse --abbrev-ref HEAD
-  last-branch     = ! git rev-parse --symbolic-full-name @{-1} | cut -f3 -d'/'
-
-  # Temporarily ignoring changings for certain files
-  ignore-file   = update-index --assume-unchanged
-  remember-file = update-index --no-assume-unchanged
-
-  # Committing
-  cm      = commit -v
-  amend   = commit --amend --date=now
-  commend = ! git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend --date=now
-
-  # Diffing
-  d = diff
-  ds = diff --staged
-
-  # Logging and Graphing
-  ls = log --pretty='format:%Cred%h%Creset %Cblue%ai%Cred%d %Creset%s%Cgreen [%cn]%Creset' --decorate --date=short
-  lsv = ! git ls --numstat
-  graph = log --graph --pretty='format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(blue){%an}%Creset' --abbrev-commit --date=relative
 
   # Amending and resetting
   fixlast = reset --soft HEAD^
@@ -72,9 +74,11 @@
   # Diff of current branch to other branches.
   # Hope to move these into their own shell scripts
   # for better customizing
-  unpushed = ! git log origin/$(git current-branch).. --oneline
-  unpushed-stat = ! git diff origin/$(git current-branch)..
-  lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%C(bold blue)<%an>%Creset' --abbrev-commit
+  unpushed = ! git log origin/$(git rev-parse --abbrev-ref HEAD).. --oneline
+  unpushed-stat = ! git diff origin/$(git rev-parse --abbrev-ref HEAD)..
+
+  # Alias Master Command
+  alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
 [include]
   path = .gitconfig.local
 [filter "media"]
