@@ -49,7 +49,7 @@ bindkey -v
 # Reverse search on the prompt
 bindkey '^R' history-incremental-search-backward
 
-# Allow [ or  ] whereever you want
+# Allow [ or ] wherever you want
 unsetopt nomatch
 
 # Add homebrew to the completion path
@@ -61,12 +61,11 @@ fpath=("/usr/local/bin/" $fpath)
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin
 export PATH=/usr/local/heroku/bin:$PATH
-export PATH=/usr/local/mysql/bin:$PATH
+export PATH=/usr/local/opt/mysql@5.7/bin:$PATH
 export PATH=$HOME/.bin:$PATH
 if [[ -d "$HOME/.localbin" ]] ; then
   export PATH=$HOME/.localbin:$PATH
 fi
-export PATH=$PATH:/usr/local/Cellar/mysql55/5.5.30/bin
 
 # =================================
 # General Environment
@@ -95,7 +94,7 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export CC='/usr/bin/gcc'
 
 # =================================
-# Mac OS X
+# macOS
 # =================================
 
 if [ -d "/Applications/Vagrant/bin" ]; then
@@ -116,13 +115,11 @@ fi
 # chruby
 # =================================
 source /usr/local/opt/chruby/share/chruby/chruby.sh
-# source /usr/local/opt/chruby/share/chruby/auto.sh
 
 # =================================
 # Aliases
 # =================================
 
-# alias annotate="annotate -p before -e tests" # Annotate alias. Defaults are stupid
 alias reload="exec $SHELL -l"
 alias vim="nvim"
 alias vi="nvim"
@@ -147,16 +144,9 @@ alias osx="reattach-to-user-namespace"
 # Functions
 # =================================
 
-function prepend() {
-  echo $1|cat - $2 > /tmp/out && mv /tmp/out $2
-}
-
 function who_wrote_this_code {
-  find $1 \( ! -regex '.*/\..*' \) -name '*.rb' -type f -print -exec git blame '{}' \; | ruby -pe "sub /(^.*\((.*?)\s+2.*$)/, '\2'" | egrep -vE '[[:punct:][:digit:]]' | sort | uniq -c | sort -nr;
+  find $1 \( ! -regex '.*/\..*' \) -name '*.rb' -o -name '*.js' -o -name '*.css' -o -name '*.scss' -type f -print -exec git blame '{}' \; | ruby -pe "sub /(^.*\((.*?)\s+2.*$)/, '\2'" | egrep -vE '[[:punct:][:digit:]]' | sort | uniq -c | sort -nr;
 }
-
-export FZF_TMUX_HEIGHT="40%"
-export FZF_DEFAULT_COMMAND='ag -U --hidden -g "" --ignore .git --ignore "*.png" --ignore "*.jpg" --ignore "node_modules" --ignore .bin --ignore .DS_Store --ignore "*.gif"'
 
 function edit-file() {
   if [[ -d ".git" ]] ; then
@@ -167,41 +157,17 @@ function edit-file() {
 }
 alias edit='edit-file'
 
-function hitch() {
-  command hitch "$@"
-  if [[ -s "$HOME/.hitch_export_authors" ]] ; then source "$HOME/.hitch_export_authors" ; fi
-}
-alias unhitch='hitch -u'
-
-function kill-dnsmasq() {
-  sudo kill $(ps aux | grep '[d]nsmasq' | awk '{print $2}')
-}
-
-function gif-ify() {
-  if [[ -n "$1" && -n "$2" ]]; then
-    ffmpeg -i $1 -pix_fmt rgb24 temp.gif
-    convert -layers Optimize temp.gif $2
-    rm temp.gif
-  else
-    echo "proper usage: gif-ify <input_movie.mov> <output_file.gif>. You DO need to include extensions."
-  fi
-}
-
-function taocl() {
-  curl -s https://raw.githubusercontent.com/jlevy/the-art-of-command-line/master/README.md |
-    pandoc -f markdown -t html |
-    xmlstarlet fo --html --dropdtd |
-    xmlstarlet sel -t -v "(html/body/ul/li[count(p)>0])[$RANDOM mod last()+1]" |
-    xmlstarlet unesc | fmt -80
-}
-
 # Bin files from this repo should be executable
 chmod -R 755 $HOME/.bin;
 
 # Hook direnv into ZSH
 eval "$(direnv hook zsh)"
 
+# FZF Searching
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+
+export FZF_TMUX_HEIGHT="40%"
+export FZF_DEFAULT_COMMAND='ag -U --hidden -g "" --ignore .git --ignore "*.png" --ignore "*.jpg" --ignore "node_modules" --ignore .bin --ignore .DS_Store --ignore "*.gif"'
+
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
-
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
