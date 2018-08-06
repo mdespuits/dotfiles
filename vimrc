@@ -247,6 +247,48 @@ function! Indent()
   call Preserve('normal gg=G')
 endfunction
 
+function! DeleteInactiveBufs()
+  "From tabpagebuflist() help, get a list of all buffers in all tabs
+  let tablist = []
+  for i in range(tabpagenr('$'))
+    call extend(tablist, tabpagebuflist(i + 1))
+  endfor
+
+  "Below originally inspired by Hara Krishna Dara and Keith Roberts
+  "http://tech.groups.yahoo.com/group/vim/message/56425
+  let nWipeouts = 0
+  for i in range(1, bufnr('$'))
+    if bufexists(i) && !getbufvar(i,"&mod") && index(tablist, i) == -1
+      "bufno exists AND isn't modified AND isn't in the list of buffers open in windows and tabs
+      silent exec 'bwipeout' i
+      let nWipeouts = nWipeouts + 1
+    endif
+  endfor
+  echomsg nWipeouts . ' buffer(s) wiped out'
+endfunction
+command! Bdi :call DeleteInactiveBufs()
+
+function! DeleteAllBufs()
+  "From tabpagebuflist() help, get a list of all buffers in all tabs
+  let tablist = []
+  for i in range(tabpagenr('$'))
+    call extend(tablist, tabpagebuflist(i + 1))
+  endfor
+
+  "Below originally inspired by Hara Krishna Dara and Keith Roberts
+  "http://tech.groups.yahoo.com/group/vim/message/56425
+  let nWipeouts = 0
+  for i in range(1, bufnr('$'))
+    if bufexists(i) && !getbufvar(i,"&mod")
+      "bufno exists AND isn't modified AND isn't in the list of buffers open in windows and tabs
+      silent exec 'bwipeout' i
+      let nWipeouts = nWipeouts + 1
+    endif
+  endfor
+  echomsg nWipeouts . ' buffer(s) wiped out'
+endfunction
+command! Bda :call DeleteAllBufs()
+
 " =======================================
 " Plugin Configuration
 " =======================================
@@ -351,8 +393,9 @@ let g:ale_linters = {
 \  'scss': []
 \}
 
+" \  'javascript': ['eslint', 'remove_trailing_lines', 'trim_whitespace'],
 let g:ale_fixers = {
-\  'javascript': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
+\  'javascript': ['remove_trailing_lines', 'trim_whitespace'],
 \  'json': ['prettier'],
 \  'ruby': ['rubocop'],
 \  'html': ['remove_trailing_lines', 'trim_whitespace'],
@@ -567,8 +610,6 @@ nmap :WQ! :wq!
 nmap :rhs :%s/:\([^ ]*\)\(\s*\)=>\s*/\1: /g<CR>
 " --- Convert Ruby 1.9 Hashes to Ruby 1.8
 nmap :hrs :%s/\([a-zA-Z][a-zA-Z0-9_]*\):\s\([^\,\}]*\)/:\1 => \2/g<CR>
-" --- Clear all buffers and splits
-nmap :clear :bufdo! bwipeout!<CR>
 " --- Replace all 'hard' tabs with 'soft' tabs
 nmap <leader>rt :retab!<Return>
 
