@@ -7,13 +7,9 @@
       "whitespace"
     ]
     telemetryConsent: "limited"
-    themes: [
-      "one-dark-ui"
-      "base16-tomorrow-dark-theme"
-    ]
     uriHandlerRegistration: "always"
   "exception-reporting":
-    userId: "00b693e7-761c-475d-828e-65ff7bf6583c"
+    userId: "d01d458c-9bb8-4abf-bc63-5bee06b46660"
   "linter-rubocop":
     disableWhenNoConfigFile: true
   welcome:
