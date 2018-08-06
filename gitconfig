@@ -26,17 +26,19 @@
 
   co  = checkout
   com = checkout master
+  cob = checkout -b
   coa = !git checkout .
   b   = branch
   bd  = !git pick | xargs git branch -d
 
   a   = add .
   ap  = add -p
-  ac  = !git add . && git commit
-  acm = !git add . && git commit -m
-  c   = commit
+  ac  = !git add . && git commit -v
+  acm = !git add . && git commit -v -m
+  c   = commit -v
   cm  = commit -v -m
-  ca  = commit --amend --date=now
+  ca  = commit --amend --date=now -v
+  cma = commit --amend --date=now -m
 
   commend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend --date=now
   pick    = !git branch | grep -v "^*" | fzf-tmux -d 15
