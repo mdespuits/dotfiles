@@ -1,11 +1,18 @@
+atom-ternjs@0.18.3
 busy-signal@1.4.3
+editorconfig@2.2.2
+file-icons@2.1.22
 git-plus@8.0.0
+highlight-selected@0.14.0
 intentions@1.1.5
 language-vue@0.23.1
 linter@2.2.0
 linter-eslint@8.4.1
 linter-rubocop@2.2.3
 linter-ui-default@1.7.1
+pigments@0.40.2
+prettier-atom@0.54.0
+pure-syntax@0.3.0
 react@0.18.0
 vim-mode-plus@1.34.0
 
