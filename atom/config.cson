@@ -1,0 +1,20 @@
+"*":
+  "bracket-matcher":
+    highlightMatchingLineNumber: true
+  core:
+    audioBeep: false
+    disabledPackages: [
+      "whitespace"
+    ]
+    telemetryConsent: "limited"
+    themes: [
+      "one-dark-ui"
+      "base16-tomorrow-dark-theme"
+    ]
+    uriHandlerRegistration: "always"
+  "exception-reporting":
+    userId: "00b693e7-761c-475d-828e-65ff7bf6583c"
+  "linter-rubocop":
+    disableWhenNoConfigFile: true
+  welcome:
+    showOnStartup: false
