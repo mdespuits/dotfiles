@@ -31,4 +31,4 @@ cp $HOME/.dotfiles/fonts/* $HOME/Library/Fonts
 echo "==> Installing Homebrew dependencies"                   ; brew bundle --global --no-upgrade
 echo "==> Adding $HOME/.localbin directory for other scripts" ; mkdir "$HOME/.localbin" >/dev/null 2>&1
 echo "==> Installing vim packages..."                         ; vim +PackUpdate
-echo "==> Installing latest version of Ruby"                  ; ruby-install ruby
+echo "==> Installing starred apm packages"                    ; apm i --packages-file "$HOME/.atom/package-list.txt"
