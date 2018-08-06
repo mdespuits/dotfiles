@@ -84,6 +84,7 @@ brew "wget"
 brew "fortune", args: ["without-offensive"]
 
 # macOS Applications
+cask "atom"
 cask "alfred"
 cask "anki"
 cask "bartender"
@@ -99,6 +100,7 @@ cask "iterm2"
 cask "kap"
 cask "macdown"
 cask "mojibar"
+cask "numi"
 cask "postgres"
 cask "postman"
 cask "psequel"
