@@ -298,7 +298,6 @@ call minpac#add('airblade/vim-gitgutter')
 " Tim Pope!
 call minpac#add('tpope/vim-abolish')
 call minpac#add('tpope/vim-commentary')
-call minpac#add('tpope/vim-haml', {'type': 'opt'})
 call minpac#add('tpope/vim-surround')
 call minpac#add('tpope/vim-unimpaired')
 call minpac#add('tpope/vim-eunuch')
@@ -313,16 +312,12 @@ call minpac#add('editorconfig/editorconfig-vim')
 call minpac#add('chrismccord/bclose.vim')
 " call minpac#add('rking/ag.vim')
 call minpac#add('jiangmiao/auto-pairs')
-call minpac#add('mengbo/vim-dash')
-" Plug 'majutsushi/tagbar', { 'on': 'TagbarToggle' }
 
 " ---------------------------------------
 " -- Language Support
 " ---------------------------------------
 call minpac#add('othree/html5.vim')
-call minpac#add('mustache/vim-mustache-handlebars')
 call minpac#add('pangloss/vim-javascript')
-call minpac#add('slim-template/vim-slim', {'type': 'opt'})
 call minpac#add('honza/vim-snippets')
 call minpac#add('posva/vim-vue')
 
@@ -331,7 +326,6 @@ call minpac#add('tpope/vim-endwise')
 call minpac#add('tpope/vim-rails')
 call minpac#add('tpope/vim-rake')
 call minpac#add('sunaku/vim-ruby-minitest')
-" call minpac#add('ngmy/vim-rubocop', {'type': 'opt'})
 call minpac#add('kana/vim-textobj-user') " vim-textobj-rubyblock dependeny
 call minpac#add('nelstrom/vim-textobj-rubyblock')
 call minpac#add('janko-m/vim-test')
@@ -428,12 +422,6 @@ let s:ruby_indent_keywords =
       \   '\|\%(module_function\|public\|protected\|private\)\=\s*def\):\@!\>' .
       \ '\|\%([=,*/%+-]\|<<\|>>\|:\s\)\s*\zs' .
       \    '\<\%(if\|for\|while\|until\|case\|unless\|begin\):\@!\>'
-
-" ---------------------------------------
-" -- Tagbar
-" nnoremap <leader>b :Tagbar<CR>
-" nnoremap <space>tt :TagbarToggle f<cr>
-" let g:tagbar_autofocus = 1
 
 " ---------------------------------------
 " -- vim-fugitive
@@ -574,12 +562,13 @@ nmap :Noh :noh<CR>
 " ***************************************
 " Buffer navigation
 " ***************************************
-nmap :bs :buffers
-nmap <leader>w :Bclose<CR>
+nmap :bs :buffers<CR>
+nmap <leader>w :close<CR>
 nmap <leader>q :bwipeout!<CR>
 nmap <leader>cb :ene<CR>:bw #<CR>
 nmap <leader>lc :lclose<CR>
 nmap <leader>lo :lopen<CR>
+nmap :clear :Bda<CR>
 
 " ***************************************
 " File shortcuts
