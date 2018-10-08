@@ -8,6 +8,7 @@
 [core]
 	excludesfile = /Users/mattbridges/.gitexcludes
   editor = nvim
+  symlinks = true
 [credential]
   helper = osxkeychain
 [help]
@@ -16,6 +17,7 @@
   ps  = push
   psu = push -u
   pso = push -u origin
+  pra = pull --rebase --autostash
 
   ra  = reset .
   rh  = reset --hard
@@ -23,6 +25,7 @@
 
   d   = diff
   ds  = diff --staged
+  ss  = status --short
 
   co  = checkout
   com = checkout master
@@ -31,7 +34,7 @@
   b   = branch
   bd  = !git pick | xargs git branch -d
 
-  a   = add .
+  aa  = add .
   ap  = add -p
   ac  = !git add . && git commit -v
   acm = !git add . && git commit -v -m
@@ -46,11 +49,11 @@
   dbranch = !git pick | xargs git branch -d
 
   l     = log --graph --all --pretty=format:'%C(yellow)%h%C(cyan)%d%Creset %s %C(white)- %an, %ar%Creset'
-  lg    = log --color --graph --pretty=format:'%C(bold white)%h%Creset -%C(bold green)%d%Creset %s %C(bold green)(%cr)%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --date = relative
+  lg    = log --color --graph --pretty=format:'%C(bold white)%h%Creset -%C(bold green)%d%Creset %s %C(bold green)(%cr)%Creset %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
   ll    = log --stat --abbrev-commit
   llg   = log --color --graph --pretty=format:'%C(bold white)%H %d%Creset%n%s%n%+b%C(bold blue)%an <%ae>%Creset %C(bold green)%cr (%ci)' --abbrev-commit
-  ls    = log --pretty='format:%Cred%h%Creset %Cblue%ai%Cred%d %Creset%s%Cgreen [%cn]%Creset' --decorate --date                                                 = short
-  graph = log --graph --pretty='format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(blue){%an}%Creset' --abbrev-commit --date                          = relative
+  ls    = log --pretty=format:'%C(red)%h%C(reset) %C(blue)%ai%C(red)%d %C(reset)%s%C(green) [%cn]%C(reset)' --decorate --date=short
+  graph = log --graph --pretty='format:%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset %C(blue){%an}%Creset' --abbrev-commit --date=relative
 
   reset-origin = ! git reset-branch $(git rev-parse --abbrev-ref HEAD)
   track = "! f() { git fetch origin && git checkout -t origin/$1; }; f"
