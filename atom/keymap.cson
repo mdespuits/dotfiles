@@ -1,9 +1,0 @@
-'atom-text-editor.vim-mode-plus.normal-mode':
-  ':': 'go-to-line:toggle'
-  ', v': 'pane:split-right-and-copy-active-item'
-  ', s': 'pane:split-down-and-copy-active-item'
-  ', t': 'fuzzy-finder:toggle-file-finder'
-  'ctrl-l': 'window:focus-pane-on-right'
-  'ctrl-h': 'window:focus-pane-on-left'
-  'ctrl-j': 'window:focus-pane-below'
-  'ctrl-k': 'window:focus-pane-above'
