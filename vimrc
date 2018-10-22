@@ -563,7 +563,8 @@ nmap :Noh :noh<CR>
 " Buffer navigation
 " ***************************************
 nmap :bs :buffers<CR>
-nmap <leader>w :close<CR>
+nmap <leader>w :Bclose<CR>
+nmap <leader>W :close<CR>
 nmap <leader>q :bwipeout!<CR>
 nmap <leader>cb :ene<CR>:bw #<CR>
 nmap <leader>lc :lclose<CR>
