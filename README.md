@@ -4,20 +4,12 @@ Dotfiles I have been grooming for quite a while. It has gone through several ite
 
 Currently, I am using [`rcm`](https://github.com/thoughtbot/rcm).
 
-# Install
+## Install
 
-**Prerequisites**
+```
+bash <(curl https://raw.githubusercontent.com/mdespuits/dotfiles/master/exe/install.sh)
+```
 
-* Homebrew
-* git
+## Prerequisites
 
-**Actions**
-
-    $ cd ~
-    $ git clone https://github.com/mattdbridges/dotfiles.git
-    $ mv dotfiles .dotfiles
-    $ cd .dotfiles
-    $ brew bundle --no-upgrade
-    $ rcup -x README.md -x Brewfile -x LICENSE -x com.googlecode.iterm2.plist
-    $ # to update
-    $ rcup -K -x README.md -x LICENSE -x com.googlecode.iterm2.plist
+**None!** The install script handles major dependencies and configuration needs.
