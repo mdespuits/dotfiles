@@ -1,2 +1,2 @@
-EXCLUDES="README.md LICENSE com.googlecode.iterm2.plist"
+EXCLUDES="README.md LICENSE com.googlecode.iterm2.plist exe"
 DOTFILES_DIRS="$HOME/.dotfiles"
