@@ -43,7 +43,7 @@
   ca  = commit --amend --date=now -v
   cma = commit --amend --date=now -m
 
-  commend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend --date=now
+  commend = !git aa && git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend --date=now
   pick    = !git branch | grep -v "^*" | fzf-tmux -d 15
   pco     = !git pick | xargs git checkout
   dbranch = !git pick | xargs git branch -d
@@ -60,8 +60,8 @@
   co-pr = "! f() { git fetch origin pull/$1/head:pull-request-$1 && git checkout pull-request-$1; }; f"
 
   # Cleaning up
-  cleanup-master = "! f() { git checkout master && git reset-origin && git merged-branches-delete && git remote prune origin; }; f"
-  cleanup-dev = "! f() { git checkout dev && git reset-origin && git merged-branches-delete && git remote prune origin; }; f"
+  cleanup-master = "! f() { git reset-branch master && git merged-branches-delete && git remote prune origin; }; f"
+  cleanup-dev = "! f() { git reset-branch dev && git remote prune origin; }; f"
   merged-branches        = ! git branch --merged | grep -v "\\\\*"
   merged-branches-delete = ! git merged-branches | xargs git branch -D
 
