@@ -7,6 +7,7 @@ call minpac#add('k-takata/minpac', {'type': 'opt'})
 
 command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
 command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
+command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
 
 " =======================================
 " Leader
