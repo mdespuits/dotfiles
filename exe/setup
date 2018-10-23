@@ -37,7 +37,7 @@ say_done() {
 }
 
 install_homebrew() {
-  if ! [ -x "$(command -v brew)" ]; then
+  if [ ! -x "$(command -v brew)" ]; then
     say "Installing Homebrew"
     ruby <(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)
     say_done
