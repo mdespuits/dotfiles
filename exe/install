@@ -1,5 +1,5 @@
-#!/bin/bash
-# vim: filetype=sh
+#!/bin/zsh
+# vim: filetype=zsh
 
 set -e
 
