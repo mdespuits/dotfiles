@@ -46,34 +46,9 @@ install_homebrew() {
   fi
 }
 
-install_git() {
-  if ! [ -x "$(command -v git)" ]; then
-    say "Installing git"
-    brew install git 2>/dev/null
-    say_done
-  else
-    announce "git already installed"
-  fi
-}
-
-install_neovim() {
-  if ! [ -x $(command -v nvim) ]; then
-    say "Installing and setting up neovim"
-    brew install neovim/neovim/neovim
-  else
-    announce "neovim already setup"
-  fi
-}
-
-install_zsh() {
-  say "Installing zsh"
-  brew install zsh
-  say_done
-}
-
-install_rcm() {
-  say "Installing rcm"
-  brew install thoughtbot/formulae/rcm &> /dev/null
+install_brews() {
+  say "Installing main brews"
+  brew install git neovim/neovim/neovim thoughtbot/formulae/rcm 2> /dev/null
   say_done
 }
 
@@ -145,14 +120,10 @@ setup_dotfiles() {
 
 main() {
   install_homebrew && echo
-  install_git && echo
-  install_neovim && echo
-  install_zsh && echo
-  install_rcm && echo
+  install_brews && echo
+  install_vim_minpac && echo
 
   clone_repo_to_dotfiles && echo
-
-  install_vim_minpac && echo
 
   brew_bundle && echo
 
