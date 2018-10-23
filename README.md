@@ -7,7 +7,9 @@ Currently, I am using [`rcm`](https://github.com/thoughtbot/rcm).
 ## Install
 
 ```
-bash <(curl https://raw.githubusercontent.com/mdespuits/dotfiles/master/exe/install.sh)
+$ bash <(curl https://raw.githubusercontent.com/mdespuits/dotfiles/master/exe/setup)
+# After it is complete, open a new window/tab
+$ bash <(curl https://raw.githubusercontent.com/mdespuits/dotfiles/master/exe/install)
 ```
 
 ## Prerequisites

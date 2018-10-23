@@ -1,0 +1,140 @@
+#!/bin/bash
+# vim: filetype=sh
+
+set -e
+
+# Don't need these right now, but maybe later on
+# readonly PROGNAME=`basename $0`
+# readonly PROGDIR=`/usr/bin/readlink -n $(dirname $0)`
+readonly ARGS="$@"
+
+readonly GREEN='\033[0;32m'
+readonly BLUE='\033[0;34m'
+readonly BGREEN='\033[1;32m'
+readonly BCYAN='\033[1;36m'
+readonly BWHITE='\033[1;37m'
+readonly NC='\033[0m'
+
+say() {
+  local statement=$@
+
+  echo -e "${BCYAN}==> ${BWHITE}$statement${NC}"
+}
+
+announce() {
+  local statement=$@
+  echo -e "${BCYAN}==>${NC}${GREEN} $statement${NC}"
+}
+
+say_done() {
+  echo -e "${BCYAN}==>${NC}${BGREEN} Done!${NC}"
+}
+
+install_homebrew() {
+  if ! [ -x "$(command -v brew)" ]; then
+    say "Installing Homebrew"
+    ruby <(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)
+    say_done
+  else
+    announce "Homebrew already installed"
+  fi
+}
+
+install_git() {
+  if ! [ -x "$(command -v git)" ]; then
+    say "Installing git"
+    brew install git 2>/dev/null
+    say_done
+  else
+    announce "git already installed"
+  fi
+}
+
+install_neovim() {
+  if ! [ -x $(command -v nvim) ]; then
+    say "Installing and setting up neovim"
+    brew install neovim/neovim/neovim
+  else
+    announce "neovim already setup"
+  fi
+}
+
+install_zsh() {
+  if ! [ -x $(command -v zsh) ]; then
+    say "Installing zsh"
+    brew install zsh
+  else
+    announce "zsh already installed"
+  fi
+}
+
+clone_repo_to_dotfiles() {
+  local dir="$HOME/.dotfiles"
+
+  if [ ! -d $dir ]; then
+    say "Cloning dotfiles repository"
+    git clone https://github.com/mdespuits/dotfiles.git $HOME/.dotfiles
+    say_done
+  else
+    announce "Dotfiles repo already cloned."
+  fi
+}
+
+install_vim_minpac() {
+  say "Preparing minpac for Vim"
+  rm -f $HOME/.config/nvim/init.vim
+  ln -s $HOME/.vimrc $HOME/.config/nvim/init.vim
+  if [ ! -d "$HOME/.config/nvim/pack/minpac/opt/minpac" ]; then
+    say "Cloning minpac for neovim"
+
+    mkdir -p ~/.config/nvim/pack/minpac/opt/
+    pushd "$HOME/.config/nvim/pack/minpac/opt" &> /dev/null
+    git clone https://github.com/k-takata/minpac.git "$HOME/.config/nvim/pack/minpac/opt"
+
+    popd &> /dev/null
+    say_done
+  else
+    announce "Updating minpac"
+
+    pushd "$HOME/.config/nvim/pack/minpac/opt/minpac" &> /dev/null
+    git pull
+
+    popd &> /dev/null
+  fi
+
+  popd &> /dev/null
+  say_done
+}
+
+install_minpac_plugins() {
+  say "Installing Vim plugins"
+  nvim +PackUpdate +q && echo
+  say_done
+}
+
+setup_zsh_as_default() {
+  if [ $SHELL == "zsh" ]; then
+    say "Setting zsh as default shell"
+    chsh -s $(which zsh)
+  else
+    say "Already using zsh as default shell"
+  fi
+  say_done
+}
+
+main() {
+  install_homebrew && echo
+  install_git && echo
+  install_neovim && echo
+  install_zsh && echo
+
+  clone_repo_to_dotfiles && echo
+
+  install_vim_minpac && echo
+
+  setup_zsh_as_default && echo
+
+  say "Dependencies setup!"
+}
+
+main $ARGS
