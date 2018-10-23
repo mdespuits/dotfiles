@@ -85,14 +85,15 @@ clone_repo_to_dotfiles() {
 
 install_vim_minpac() {
   say "Preparing minpac for Vim"
-  rm -f $HOME/.config/nvim/init.vim
-  ln -s $HOME/.vimrc $HOME/.config/nvim/init.vim
   if [ ! -d "$HOME/.config/nvim/pack/minpac/opt/minpac" ]; then
     say "Cloning minpac for neovim"
 
     mkdir -p ~/.config/nvim/pack/minpac/opt/
-    pushd "$HOME/.config/nvim/pack/minpac/opt" &> /dev/null
-    git clone https://github.com/k-takata/minpac.git "$HOME/.config/nvim/pack/minpac/opt"
+    git clone https://github.com/k-takata/minpac.git \
+      $HOME/.config/nvim/pack/minpac/opt/minpac
+
+    rm -f $HOME/.config/nvim/init.vim
+    ln -s $HOME/.vimrc $HOME/.config/nvim/init.vim
 
     popd &> /dev/null
     say_done
