@@ -71,6 +71,12 @@ install_zsh() {
   say_done
 }
 
+install_rcm() {
+  say "Installing rcm"
+  brew install thoughtbot/formulae/rcm &> /dev/null
+  say_done
+}
+
 clone_repo_to_dotfiles() {
   local dir="$HOME/.dotfiles"
 
@@ -91,9 +97,6 @@ install_vim_minpac() {
     mkdir -p ~/.config/nvim/pack/minpac/opt/
     git clone https://github.com/k-takata/minpac.git \
       $HOME/.config/nvim/pack/minpac/opt/minpac
-
-    rm -f $HOME/.config/nvim/init.vim
-    ln -s $HOME/.vimrc $HOME/.config/nvim/init.vim
 
     popd &> /dev/null
     say_done
@@ -126,17 +129,31 @@ setup_zsh_as_default() {
   fi
 }
 
+setup_dotfiles() {
+  say "Setting up dotfiles"
+  rm -rf $HOME/.rcrc
+  ln -s $HOME/.dotfiles/rcrc ~/.rcrc
+  rcup -v
+
+  rm -f $HOME/.config/nvim/init.vim
+  ln -s $HOME/.vimrc $HOME/.config/nvim/init.vim
+
+  say_done
+}
+
 main() {
   install_homebrew && echo
   install_git && echo
   install_neovim && echo
   install_zsh && echo
+  install_rcm && echo
 
   clone_repo_to_dotfiles && echo
 
   install_vim_minpac && echo
 
   setup_zsh_as_default && echo
+  setup_dotfiles && echo
 
   say "Dependencies setup!"
 }

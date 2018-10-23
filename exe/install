@@ -69,11 +69,7 @@ setup_zpresto() {
 
 setup_minpac_plugins() {
   say "Installing Vim plugins"
-
-  rm -f $HOME/.config/nvim/init.vim
-  ln -s $HOME/.vimrc $HOME/.config/nvim/init.vim
-
-  nvim +PackUpdate +q && echo
+  nvim +PackUpdate +q &> /dev/null && echo
   say_done
 }
 
