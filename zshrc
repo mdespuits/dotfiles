@@ -140,6 +140,10 @@ alias tms="tmuxinator start $1"
 alias tmlocal="tmuxinator local"
 alias osx="reattach-to-user-namespace"
 
+# Better GNU
+alias readlink="greadlink"
+alias cat="ccat"
+
 # =================================
 # Functions
 # =================================
@@ -168,6 +172,16 @@ eval "$(direnv hook zsh)"
 
 export FZF_TMUX_HEIGHT="40%"
 export FZF_DEFAULT_COMMAND='ag -U --hidden -g "" --ignore .git --ignore "*.png" --ignore "*.jpg" --ignore "node_modules" --ignore .bin --ignore .DS_Store --ignore "*.gif"'
+
+# Autojumping
+[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -f /usr/local/opt/nvm/nvm.sh ] && . "/usr/local/opt/nvm/nvm.sh"
+
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
