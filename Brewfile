@@ -32,7 +32,6 @@ cask "java" # Java First for Groovy
 brew "go"
 brew "lua"
 brew "the_silver_searcher"
-brew "rcm"
 brew "elixir"
 brew "node"
 brew "nvm"
