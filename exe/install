@@ -30,14 +30,6 @@ say_done() {
   echo -e "${BCYAN}==>${NC}${BGREEN} Done!${NC}"
 }
 
-brew_bundle() {
-  say "Homebrew Bundling..."
-  pushd $HOME/.dotfiles &> /dev/null
-  brew bundle --no-upgrade
-  popd &> /dev/null
-  say_done
-}
-
 setup_dotfiles() {
   say "Setting up dotfiles"
   rm -rf $HOME/.rcrc
@@ -75,8 +67,6 @@ setup_minpac_plugins() {
 
 
 main() {
-  brew_bundle && echo
-
   setup_dotfiles && echo
   setup_zpresto && echo
   setup_minpac_plugins && echo

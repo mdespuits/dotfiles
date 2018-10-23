@@ -119,6 +119,14 @@ install_minpac_plugins() {
   say_done
 }
 
+brew_bundle() {
+  say "Homebrew Bundling..."
+  pushd $HOME/.dotfiles &> /dev/null
+  brew bundle --no-upgrade
+  popd &> /dev/null
+  say_done
+}
+
 setup_zsh_as_default() {
   if [ -f /usr/local/bin/zsh ]; then
     say "Setting zsh as default shell"
@@ -151,6 +159,8 @@ main() {
   clone_repo_to_dotfiles && echo
 
   install_vim_minpac && echo
+
+  brew_bundle && echo
 
   setup_zsh_as_default && echo
   setup_dotfiles && echo
