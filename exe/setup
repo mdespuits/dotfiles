@@ -113,12 +113,6 @@ install_vim_minpac() {
   say_done
 }
 
-install_minpac_plugins() {
-  say "Installing Vim plugins"
-  nvim +PackUpdate +q && echo
-  say_done
-}
-
 brew_bundle() {
   say "Homebrew Bundling..."
   pushd $HOME/.dotfiles &> /dev/null
@@ -130,7 +124,7 @@ brew_bundle() {
 setup_zsh_as_default() {
   if [ -f /usr/local/bin/zsh ]; then
     say "Setting zsh as default shell"
-    chsh -s /usr/local/bin/zsh
+    sudo chsh -s $(which zsh) $(whoami)
   else
     announce "Homebrew zsh already set as default shell"
     say_done

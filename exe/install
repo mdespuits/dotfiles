@@ -61,7 +61,7 @@ setup_zpresto() {
 
 setup_minpac_plugins() {
   say "Installing Vim plugins"
-  nvim +PackUpdate +q &> /dev/null && echo
+  nvim +PackUpdate +q && echo
   say_done
 }
 

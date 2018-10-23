@@ -28,6 +28,7 @@ brew "unibilium"
 brew "xz"
 
 # Languages
+cask "java" # Java First for Groovy
 brew "go"
 brew "lua"
 brew "the_silver_searcher"
