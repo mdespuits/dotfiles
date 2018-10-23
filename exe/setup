@@ -3,6 +3,12 @@
 
 set -e
 
+# Ask for the administrator password upfront
+sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
 # Don't need these right now, but maybe later on
 # readonly PROGNAME=`basename $0`
 # readonly PROGDIR=`/usr/bin/readlink -n $(dirname $0)`
@@ -113,12 +119,8 @@ install_minpac_plugins() {
 }
 
 setup_zsh_as_default() {
-  if [ $SHELL == "zsh" ]; then
-    say "Setting zsh as default shell"
-    chsh -s $(which zsh)
-  else
-    say "Already using zsh as default shell"
-  fi
+  say "Setting zsh as default shell"
+  chsh -s /usr/local/bin/zsh
   say_done
 }
 
