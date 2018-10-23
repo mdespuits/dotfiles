@@ -66,12 +66,9 @@ install_neovim() {
 }
 
 install_zsh() {
-  if ! [ -x $(command -v zsh) ]; then
-    say "Installing zsh"
-    brew install zsh
-  else
-    announce "zsh already installed"
-  fi
+  say "Installing zsh"
+  brew install zsh
+  say_done
 }
 
 clone_repo_to_dotfiles() {
@@ -119,9 +116,13 @@ install_minpac_plugins() {
 }
 
 setup_zsh_as_default() {
-  say "Setting zsh as default shell"
-  chsh -s /usr/local/bin/zsh
-  say_done
+  if [ -f /usr/local/bin/zsh ]; then
+    say "Setting zsh as default shell"
+    chsh -s /usr/local/bin/zsh
+  else
+    announce "Homebrew zsh already set as default shell"
+    say_done
+  fi
 }
 
 main() {
