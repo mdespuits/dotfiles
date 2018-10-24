@@ -53,7 +53,13 @@ clone_repo_to_dotfiles() {
     git clone https://github.com/mdespuits/dotfiles.git $HOME/.dotfiles
     say_done
   else
-    announce "Dotfiles repo already cloned."
+    say "Updating dotfiles"
+
+    pushd "$HOME/.dotfiles" &> /dev/null
+    git pull --rebase --autostash
+
+    popd &> /dev/null
+    say_done
   fi
 }
 
@@ -65,7 +71,6 @@ install_vim_minpac() {
     mkdir -p ~/.config/nvim/pack/minpac/opt/
     git clone https://github.com/k-takata/minpac.git "$HOME/.config/nvim/pack/minpac/opt/minpac"
 
-    popd &> /dev/null
     say_done
   else
     announce "Updating minpac"
