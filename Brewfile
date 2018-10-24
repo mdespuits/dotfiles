@@ -88,7 +88,6 @@ brew "fortune", args: ["without-offensive"]
 cask "alfred"
 cask "anki"
 cask "bartender"
-cask "dropbox"
 cask "evernote"
 cask "firefox"
 cask "focus"
