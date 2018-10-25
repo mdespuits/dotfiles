@@ -1,0 +1,75 @@
+#!/usr/bin/env zsh
+# vim: filetype=zsh
+
+set -e
+
+setup_zsh_as_default() {
+  if [ -f /usr/local/bin/zsh ]; then
+    say "Setting zsh as default shell"
+    sudo chsh -s $(which zsh) $(whoami)
+  else
+    announce "Homebrew zsh already set as default shell"
+    say_done
+  fi
+}
+
+setup_dotfiles() {
+  say "Setting up dotfiles"
+  rm -rf $HOME/.rcrc
+  ln -s $HOME/.dotfiles/rcrc $HOME/.rcrc
+  rcup
+
+  rm -f $HOME/.config/nvim/init.vim
+  ln -s $HOME/.vimrc $HOME/.config/nvim/init.vim
+
+  say_done
+}
+
+setup_zpresto() {
+  if [ ! -e "$HOME/.zprezto" ]; then
+    say "Installing Prezto..."
+    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" &> /dev/null
+    setopt EXTENDED_GLOB
+    for rcfile in $(find ~/.zprezto/runcoms | grep -v README.md); do
+      if [ ! -f "$HOME/.${rcfile:t}" ]; then
+        ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
+      fi
+    done
+    say_done
+  else
+    say "Updating Prezto..."
+    cd "${ZDOTDIR:-$HOME}/.zprezto" &> /dev/null
+    git pull >/dev/null 2>&1
+    git submodule update >/dev/null 2>&1
+    cd - &> /dev/null
+    say_done
+  fi
+}
+
+setup_minpac_plugins() {
+  say "Installing Vim plugins"
+  nvim +PackUpdate +q && echo
+  say_done
+}
+
+setup_vagrant() {
+  local vagrantplugins=$(vagrant plugin list | cut -f1 -d' ')
+
+  if [[ $vagrantparallels =~ /vagrant-parallels/ ]]; then
+    say "Installing Vagrant dependencies"
+    vagrant plugin install vagrant-parallels
+    say_done
+  else
+    announce "vagrant-parallels already setup"
+  fi
+}
+
+main() {
+  setup_zsh_as_default && echo
+  setup_dotfiles && echo
+  setup_zpresto && echo
+  setup_minpac_plugins && echo
+  setup_vagrant && echo
+}
+
+main

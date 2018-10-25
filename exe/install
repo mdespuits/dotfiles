@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/usr/bin/env zsh
 # vim: filetype=zsh
 
 set -e
@@ -35,10 +35,11 @@ say_done() {
   echo -e "${BCYAN}==>${NC}${BGREEN} Done!${NC}"
 }
 
-install_homebrew() {
+install_setup_homebrew() {
   if [ ! -x "$(command -v brew)" ]; then
     say "Installing Homebrew"
     ruby <(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)
+    brew install git &> /dev/null
     say_done
   else
     announce "Homebrew already installed"
@@ -63,97 +64,15 @@ clone_repo_to_dotfiles() {
   fi
 }
 
-install_vim_minpac() {
-  say "Preparing minpac for Vim"
-  if [ ! -d "$HOME/.config/nvim/pack/minpac/opt/minpac" ]; then
-    say "Cloning minpac for neovim"
-
-    mkdir -p ~/.config/nvim/pack/minpac/opt/
-    git clone https://github.com/k-takata/minpac.git "$HOME/.config/nvim/pack/minpac/opt/minpac"
-
-    say_done
-  else
-    announce "Updating minpac"
-
-    pushd "$HOME/.config/nvim/pack/minpac/opt/minpac" &> /dev/null
-    git pull
-
-    popd &> /dev/null
-  fi
-
-  popd &> /dev/null
-  say_done
-}
-
-install_brews() {
-  say "Homebrew Bundling..."
-  pushd $HOME/.dotfiles &> /dev/null
-  brew bundle --no-upgrade
-  popd &> /dev/null
-  say_done
-}
-
-setup_zsh_as_default() {
-  if [ -f /usr/local/bin/zsh ]; then
-    say "Setting zsh as default shell"
-    sudo chsh -s $(which zsh) $(whoami)
-  else
-    announce "Homebrew zsh already set as default shell"
-    say_done
-  fi
-}
-
-setup_dotfiles() {
-  say "Setting up dotfiles"
-  rm -rf $HOME/.rcrc
-  ln -s $HOME/.dotfiles/rcrc ~/.rcrc
-  rcup
-
-  rm -f $HOME/.config/nvim/init.vim
-  ln -s $HOME/.vimrc $HOME/.config/nvim/init.vim
-
-  say_done
-}
-
-setup_zpresto() {
-  if [ ! -e "$HOME/.zprezto" ]; then
-    say "Installing Prezto..."
-    git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto" &> /dev/null
-    setopt EXTENDED_GLOB
-    for rcfile in $(find ~/.zprezto/runcoms | grep -v README.md); do
-      if [ ! -f "$HOME/.${rcfile:t}" ]; then
-        ln -s "$rcfile" "${ZDOTDIR:-$HOME}/.${rcfile:t}"
-      fi
-    done
-    say_done
-  else
-    say "Updating Prezto..."
-    cd "${ZDOTDIR:-$HOME}/.zprezto" &> /dev/null
-    git pull >/dev/null 2>&1
-    git submodule update >/dev/null 2>&1
-    cd - &> /dev/null
-    say_done
-  fi
-}
-
-setup_minpac_plugins() {
-  say "Installing Vim plugins"
-  nvim +PackUpdate +q && echo
-  say_done
-}
-
 main() {
-  install_homebrew && echo
-
+  install_setup_homebrew && echo
   clone_repo_to_dotfiles && echo
 
-  install_brews && echo
-  install_vim_minpac && echo
+  . $HOME/.dotfiles/exe/deps
+  . $HOME/.dotfiles/exe/setup
 
-  setup_zsh_as_default && echo
-  setup_dotfiles && echo
-  setup_zpresto && echo
-  setup_minpac_plugins && echo
+  # uncomment when configuration is nailed down
+  # . $HOME/.dotfiles/exe/macos
 
   announce "Dotfiles setup!"
 }
