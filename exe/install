@@ -70,9 +70,7 @@ main() {
 
   . $HOME/.dotfiles/exe/deps
   . $HOME/.dotfiles/exe/setup
-
-  # uncomment when configuration is nailed down
-  # . $HOME/.dotfiles/exe/macos
+  . $HOME/.dotfiles/exe/macos
 
   announce "Dotfiles setup!"
 }
