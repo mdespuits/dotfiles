@@ -139,7 +139,7 @@ if has('nvim')
   tnoremap <C-l> <C-\><C-N><C-w>l
 
   " I like relative numbering when in normal mode.
-  autocmd TermOpen * setlocal conceallevel=0 colorcolumn=0 relativenumber
+  autocmd TermOpen * setlocal conceallevel=0 colorcolumn=0 norelativenumber nonumber
 
   " Prefer Neovim terminal insert mode to normal mode.
   autocmd BufEnter term://* startinsert
