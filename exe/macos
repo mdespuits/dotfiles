@@ -1,16 +1,5 @@
-#!/usr/bin/env bash
-
-# ~/.macos — https://mths.be/macos
-
-# Close any open System Preferences panes, to prevent them from overriding
-# settings we’re about to change
-osascript -e 'tell application "System Preferences" to quit'
-
-# Ask for the administrator password upfront
-sudo -v
-
-# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+#!/usr/bin/env zsh
+# vim: filetype=zsh
 
 ###############################################################################
 # General UI/UX                                                               #
@@ -43,10 +32,6 @@ general_settings() {
 
   # Disable the over-the-top focus ring animation
   defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
-
-  # Disable smooth scrolling
-  # (Uncomment if you’re on an older Mac that messes up the animation)
-  #defaults write NSGlobalDomain NSScrollAnimationEnabled -bool false
 
   # Increase window resize speed for Cocoa applications
   defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
@@ -330,6 +315,8 @@ finder_settings() {
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 dock_settings() {
+  say "Updating Dock Settings"
+
   # System Preferences > Dock > Enable highlight hover effect for the grid view of a stack (Dock)
   defaults write com.apple.dock mouse-over-hilite-stack -bool true
 
@@ -565,6 +552,8 @@ restart_apps() {
 
 
 main() {
+  osascript -e 'tell application "System Preferences" to quit'
+
   general_settings && echo
   screen_settings && echo
   trackpad_settings && echo
