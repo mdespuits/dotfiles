@@ -32,7 +32,7 @@ general_settings() {
   defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
 
   # Increase window resize speed for Cocoa applications
-  defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+  defaults write NSGlobalDomain NSWindowResizeTime -float 0.01
 
   # Expand save panel by default
   defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
@@ -160,7 +160,7 @@ trackpad_settings() {
 
   # Set a blazingly fast keyboard repeat rate
   defaults write NSGlobalDomain KeyRepeat -int 1
-  defaults write NSGlobalDomain InitialKeyRepeat -int 10
+  defaults write NSGlobalDomain InitialKeyRepeat -int 50
 
   # Set language and text formats
   # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
