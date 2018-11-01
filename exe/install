@@ -94,8 +94,8 @@ main() {
   install_git && echo
   clone_repo_to_dotfiles && echo
 
-  # . $HOME/.dotfiles/exe/deps
-  # . $HOME/.dotfiles/exe/setup
+  . $HOME/.dotfiles/exe/deps
+  . $HOME/.dotfiles/exe/setup
   # . $HOME/.dotfiles/exe/macos
 
   announce "Dotfiles setup!"
