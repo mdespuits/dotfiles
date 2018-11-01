@@ -65,6 +65,12 @@ install_tpm() {
   say_done
 }
 
+install_git() {
+  say "Installing git"
+  brew install git
+  say_done
+}
+
 clone_repo_to_dotfiles() {
   local dir="$HOME/.dotfiles"
 
@@ -85,6 +91,7 @@ clone_repo_to_dotfiles() {
 main() {
   install_setup_homebrew && echo
   install_tpm && echo
+  install_git && echo
   clone_repo_to_dotfiles && echo
 
   # . $HOME/.dotfiles/exe/deps
