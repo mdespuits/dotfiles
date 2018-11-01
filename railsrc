@@ -1,8 +1,0 @@
---database=postgresql
---skip-action-cable
---skip-bundle
---skip-fixture
---skip-keeps
---skip-spring
---skip-turbolinks
---skip-test
