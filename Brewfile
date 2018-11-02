@@ -1,9 +1,11 @@
+# vim: filetype=ruby
 cask_args appdir: "/Applications"
 
-tap "caskroom/cask"
 tap "homebrew/bundle"
 tap "homebrew/core"
 tap "homebrew/services"
+tap "caskroom/cask"
+tap "caskroom/versions"
 tap "neovim/neovim"
 tap "phinze/cask"
 tap "thoughtbot/formulae"
@@ -29,12 +31,11 @@ brew "unibilium"
 brew "xz"
 
 # Languages
-cask "java" # Java First for Groovy
+cask "java6" # Java First for Groovy
 brew "go"
 brew "lua"
 brew "the_silver_searcher"
 brew "elixir"
-brew "node"
 brew "nvm"
 brew "yarn"
 brew "python"
@@ -110,4 +111,5 @@ cask "slack"
 cask "soundflower"
 cask "spotify"
 cask "sublime-merge"
+cask "sequel-pro"
 cask "vagrant"
