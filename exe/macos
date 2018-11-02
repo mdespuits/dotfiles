@@ -149,12 +149,6 @@ trackpad_settings() {
   # (e.g. enable Tab in modal dialogs)
   defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
 
-  # Use scroll gesture with the Ctrl (^) modifier key to zoom
-  defaults write com.apple.universalaccess closeViewScrollWheelToggle -bool true
-  defaults write com.apple.universalaccess HIDScrollZoomModifierMask -int 262144
-  # Follow the keyboard focus while zoomed in
-  defaults write com.apple.universalaccess closeViewZoomFollowsFocus -bool true
-
   # Disable press-and-hold for keys in favor of key repeat
   defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
@@ -166,9 +160,9 @@ trackpad_settings() {
   # Note: if you’re in the US, replace `EUR` with `USD`, `Centimeters` with
   # `Inches`, `en_GB` with `en_US`, and `true` with `false`.
   defaults write NSGlobalDomain AppleLanguages -array "en" "nl"
-  defaults write NSGlobalDomain AppleLocale -string "en_GB@currency=EUR"
-  defaults write NSGlobalDomain AppleMeasurementUnits -string "Centimeters"
-  defaults write NSGlobalDomain AppleMetricUnits -bool true
+  defaults write NSGlobalDomain AppleLocale -string "en_US@currency=USD"
+  defaults write NSGlobalDomain AppleMeasurementUnits -string "Inches"
+  defaults write NSGlobalDomain AppleMetricUnits -bool false
 
   # Show language menu in the top right corner of the boot screen
   sudo defaults write /Library/Preferences/com.apple.loginwindow showInputMenu -bool true
@@ -183,6 +177,7 @@ trackpad_settings() {
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 screen_settings() {
   say "Updating Screen Settings"
+
   # Require password immediately after sleep or screen saver begins
   defaults write com.apple.screensaver askForPassword -int 1
   defaults write com.apple.screensaver askForPasswordDelay -int 0
@@ -514,7 +509,7 @@ messages_settings() {
   say "Updating Messages Settings"
 
   # Disable smart quotes as it’s annoying for messages that contain code
-  defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticQuoteSubstitutionEnabled" -bool false
+  defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticQuoteSubstitutionEnabled" -bool true
 
   # Disable continuous spell checking
   defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
@@ -553,7 +548,7 @@ restart_apps() {
 main() {
   osascript -e 'tell application "System Preferences" to quit'
 
-  general_settings && echo
+  # general_settings && echo
   screen_settings && echo
   trackpad_settings && echo
   ssd_settings && echo
