@@ -61,8 +61,14 @@ fpath=("/usr/local/bin/" $fpath)
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin
 export PATH=/usr/local/heroku/bin:$PATH
+export PATH=/usr/local/heroku/bin:$PATH
 export PATH=/usr/local/opt/mysql@5.7/bin:$PATH
 export PATH=$HOME/.bin:$PATH
+
+if [[ -d "$HOME/go/bin" ]] ; then
+  export PATH=$HOME/go/bin:$PATH
+fi
+
 if [[ -d "$HOME/.localbin" ]] ; then
   export PATH=$HOME/.localbin:$PATH
 fi
