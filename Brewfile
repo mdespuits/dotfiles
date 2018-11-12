@@ -120,6 +120,7 @@ cask "sequel-pro"
 cask "vagrant"
 
 mas "BetterSnapTool", id: 417375580
+mas "Forecast Bar - Weather + Radar", id: 982710545
 mas "Pages", id: 409201541
 mas "Todoist", id: 585829637
 mas "Keynote", id: 409183694
