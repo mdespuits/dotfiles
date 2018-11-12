@@ -104,6 +104,12 @@ nnoremap <Up> <Nop>
 nnoremap <Down> <Nop>
 
 " =======================================
+" Since <Esc> is elusive with touchbar
+" =======================================
+inoremap jj <esc>
+inoremap jk <esc>
+
+" =======================================
 " Files
 " =======================================
 "
