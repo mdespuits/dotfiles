@@ -43,6 +43,7 @@ brew "nvm"
 brew "yarn"
 brew "python"
 brew "chruby"
+brew "mas"
 brew "ruby-install", args: ["HEAD"]
 
 # Development
@@ -117,3 +118,10 @@ cask "spotify"
 cask "sublime-merge"
 cask "sequel-pro"
 cask "vagrant"
+
+mas "BetterSnapTool", id: 417375580
+mas "Pages", id: 409201541
+mas "Todoist", id: 585829637
+mas "Keynote", id: 409183694
+mas "Numbers", id: 409203825
+mas "Spark", id: 1176895641
