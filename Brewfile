@@ -118,6 +118,7 @@ cask "spotify"
 cask "sublime-merge"
 cask "sequel-pro"
 cask "vagrant"
+cask "visual-studio-code"
 
 mas "BetterSnapTool", id: 417375580
 mas "Forecast Bar - Weather + Radar", id: 982710545
