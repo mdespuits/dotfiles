@@ -207,19 +207,13 @@ set mousehide     " Hide the mouse
 set mouse=n       " Allow 'mouse' navigation in Normal (n) mode
 set splitbelow    " When splitting, set new file on the bottom
 set hidden        " Hide hidden files
-set number        " Show line numbers
 set numberwidth=1 " Line number width
 
 " =======================================
 " Relative Line Numbers
-" ---------------------------------------
-" Stolen directly from https://github.com/jeffkreeftmeijer/vim-numbertoggle
 " =======================================
-augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * if &nu | set rnu   | endif
-  autocmd BufLeave,FocusLost,InsertEnter   * if &nu | set nornu | endif
-augroup END
+set number relativenumber
+call minpac#add('jeffkreeftmeijer/vim-numbertoggle')
 
 " Restore cursor position, window position, and last search after running a
 " command.
