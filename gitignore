@@ -9,3 +9,5 @@ tmp/**/*
 localbin
 !tmp/cache/.keep
 zeus.json
+*.envrc
+*/*.envrc
