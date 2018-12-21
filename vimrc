@@ -451,7 +451,8 @@ runtime macros/matchit.vim
 
 " ---------------------------------------
 " -- vim-go
-call minpac#add('fatih/vim-go', {'type': 'opt'})
+call minpac#add('fatih/vim-go')
+let g:go_fmt_command = "goimports"
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
 let g:go_highlight_structs = 1
@@ -461,7 +462,6 @@ let g:go_highlight_build_constraints = 1
 
 augroup GoFile
   autocmd!
-  autocmd filetype go call SetGoOPtions()
   autocmd filetype go nnoremap <leader>rg :! go run %<cr>
 augroup END
 
