@@ -125,3 +125,5 @@ mas "Todoist", id: 585829637
 mas "Keynote", id: 409183694
 mas "Numbers", id: 409203825
 mas "Spark", id: 1176895641
+mas "Kindle", id: 405399194
+mas "GIF Keyboard", id: 1043270657
