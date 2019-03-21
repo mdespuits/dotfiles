@@ -14,9 +14,9 @@
 [help]
   autocorrect = 1
 [alias]
-  ps  = push
-  psu = push -u
-  pso = push -u origin
+  ps  = push -u
+  pso = ps origin
+  psf = ps origin -f
   pra = pull --rebase --autostash
 
   ra  = reset .
@@ -62,6 +62,7 @@
   # Cleaning up
   cleanup-master = "! f() { git reset-branch master && git merged-branches-delete && git remote prune origin; }; f"
   cleanup-dev = "! f() { git reset-branch dev && git remote prune origin; }; f"
+  gone = "! f() { git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git b -D $branch; done }; f"
   merged-branches        = ! git branch --merged | grep -v "\\\\*"
   merged-branches-delete = ! git merged-branches | xargs git branch -D
 
