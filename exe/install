@@ -77,14 +77,13 @@ install_phpbrew() {
 
   if [ ! -f $HOME/.localbin/phpbrew ]; then
     say "Installing phpbrew"
-    curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew
-    chmod +x phpbrew
   else
     say "Updating phpbrew"
-    rm -f %HOME/.localbin/phpbrew
-    curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew > /dev/null
-    chmod +x phpbrew
   fi
+
+  rm -f %HOME/.localbin/phpbrew
+  curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew &>/dev/null
+  chmod +x phpbrew
 
   popd
   say_done

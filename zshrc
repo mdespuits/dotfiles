@@ -1,14 +1,31 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
+[[ ! -d "$HOME/.antigen" ]] && git clone https://github.com/zsh-users/antigen.git "$HOME/.antigen"
+source "$HOME/.antigen/antigen.zsh"
 
-# Source Prezto.
-if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
-  source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
-fi
+# Set the default plugin repo to be zsh-utils
+antigen use belak/zsh-utils
+
+# Specify completions we want before the completion module
+antigen bundle zsh-users/zsh-completions
+
+# Specify plugins we want
+antigen bundle editor
+antigen bundle history
+antigen bundle prompt
+antigen bundle utility
+antigen bundle completion
+
+# Specify additional external plugins we want
+antigen bundle zsh-users/zsh-syntax-highlighting
+antigen bundle postmodern/chruby share/chruby/chruby.sh
+antigen bundle postmodern/chruby share/chruby/auto.sh
+
+# Load everything
+antigen apply
+
+# Set any settings or overrides here
+# antigen theme candy
+prompt belak
+bindkey -e
 
 # Customize to your needs...
 
@@ -126,9 +143,12 @@ source /usr/local/opt/chruby/share/chruby/chruby.sh
 # Aliases
 # =================================
 
+if which nvim &>/dev/null; then
+  alias vim="nvim"
+  alias vi="nvim"
+fi
+
 alias reload="exec $SHELL -l"
-alias vim="nvim"
-alias vi="nvim"
 alias h="history 0 | grep"
 alias be="bundle exec"
 alias gs="git status"
@@ -154,20 +174,6 @@ alias cat="ccat"
 # Functions
 # =================================
 
-function who_wrote_this_code {
-  find $1 \( ! -regex '.*/\..*' \) -name '*.rb' -o -name '*.js' -o -name '*.css' -o -name '*.scss' -type f -print -exec git blame '{}' \; | ruby -pe "sub /(^.*\((.*?)\s+2.*$)/, '\2'" | egrep -vE '[[:punct:][:digit:]]' | sort | uniq -c | sort -nr;
-}
-
-function edit-file() {
-  if [[ -d ".git" ]] ; then
-    vim $(git ls-files | fzf)
-  else
-    vim $(fzf)
-  fi
-}
-alias edit='edit-file'
-
-# Bin files from this repo should be executable
 chmod -R 755 $HOME/.bin;
 
 # Hook direnv into ZSH
