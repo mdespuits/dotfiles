@@ -71,10 +71,22 @@ install_git() {
   say_done
 }
 
-install_correct_yarn_version() {
-  say "Install yarn 1.9.4"
-  brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/c1e2120401b511a5f393ee9148f10b22d24d936e/Formula/yarn.rb
-  brew pin yarn
+install_phpbrew() {
+  mkdir -p $HOME/.localbin
+  pushd $HOME/.localbin
+
+  if [ ! -f $HOME/.localbin/phpbrew ]; then
+    say "Installing phpbrew"
+    curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew
+    chmod +x phpbrew
+  else
+    say "Updating phpbrew"
+    rm -f %HOME/.localbin/phpbrew
+    curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew > /dev/null
+    chmod +x phpbrew
+  fi
+
+  popd
   say_done
 }
 
@@ -99,7 +111,7 @@ main() {
   install_setup_homebrew && echo
   install_tpm && echo
   install_git && echo
-  install_correct_yarn_version && echo
+  install_phpbrew && echo
   clone_repo_to_dotfiles && echo
 
   . $HOME/.dotfiles/exe/deps

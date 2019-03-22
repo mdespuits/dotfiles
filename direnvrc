@@ -30,3 +30,12 @@ use_nvm() {
 use_rvm() {
   local ver=$1
 }
+
+use_php() {
+  local ver=$1
+  if [[ -z $ver ]]; then
+    echo Unknown php version
+    exit 1
+  fi
+  phpbrew use $ver
+}
