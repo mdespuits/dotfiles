@@ -8,13 +8,13 @@
         "revision": "4d7c077cf9e3aff9ad746c02a500195e7e66a5e9"
       },
       "homebrew/cask": {
-        "revision": "b04d91bf591bdff693b3c192d55e10d4f142b2e0"
+        "revision": "85a5ac852201e61f7f1a2041df2f48c0977aece6"
       },
       "homebrew/cask-versions": {
-        "revision": "fdd4d2e86f5f11a002155c775f63c89cd8e108cb"
+        "revision": "c10d21c97bab750695fd1a51bc40e8868876521b"
       },
       "homebrew/core": {
-        "revision": "3d719935ee33334ed6e38d855f8204dd57abad12"
+        "revision": "50e2950f3768d5a4cdeda608bdf98e0c7af0ec3f"
       },
       "homebrew/services": {
         "revision": "64347a3a5761db1b392f1b30b045aeb4592e17a9"
@@ -23,7 +23,7 @@
         "revision": "e587b5c90456a895a11bc5ae81e5cfdde6b23dd4"
       },
       "phinze/cask": {
-        "revision": "b04d91bf591bdff693b3c192d55e10d4f142b2e0"
+        "revision": "85a5ac852201e61f7f1a2041df2f48c0977aece6"
       },
       "thoughtbot/formulae": {
         "revision": "001833cb2c9d79296f2bdcd4caded62828640eff"
@@ -2016,7 +2016,7 @@
       "mojave": {
         "HOMEBREW_VERSION": "2.2.13",
         "HOMEBREW_PREFIX": "/usr/local",
-        "Homebrew/homebrew-core": "3d719935ee33334ed6e38d855f8204dd57abad12",
+        "Homebrew/homebrew-core": "50e2950f3768d5a4cdeda608bdf98e0c7af0ec3f",
         "CLT": "10.3.0.0.1.1562985497",
         "Xcode": "11.3.1",
         "macOS": "10.14.6"
