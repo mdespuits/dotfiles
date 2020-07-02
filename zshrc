@@ -65,11 +65,11 @@ export PATH=/usr/local/heroku/bin:$PATH
 export PATH=/usr/local/opt/mysql@5.7/bin:$PATH
 export PATH=$HOME/.bin:$PATH
 
-if [[ -d "$HOME/go/bin" ]] ; then
+if [[ -d "$HOME/go/bin" ]]; then
   export PATH=$HOME/go/bin:$PATH
 fi
 
-if [[ -d "$HOME/.localbin" ]] ; then
+if [[ -d "$HOME/.localbin" ]]; then
   export PATH=$HOME/.localbin:$PATH
 fi
 
@@ -79,7 +79,7 @@ fi
 
 export EDITOR='nvim'
 export VISUAL=$EDITOR
-export JRUBY_OPTS='--1.9'   # Always prefer Ruby 1.9 in jRuby
+export JRUBY_OPTS='--1.9' # Always prefer Ruby 1.9 in jRuby
 
 # =================================
 # Homebrew Cask Options
@@ -154,12 +154,12 @@ alias cat="ccat"
 # Functions
 # =================================
 
-function who_wrote_this_code {
-  find $1 \( ! -regex '.*/\..*' \) -name '*.rb' -o -name '*.js' -o -name '*.css' -o -name '*.scss' -type f -print -exec git blame '{}' \; | ruby -pe "sub /(^.*\((.*?)\s+2.*$)/, '\2'" | egrep -vE '[[:punct:][:digit:]]' | sort | uniq -c | sort -nr;
+function who_wrote_this_code() {
+  find $1 \( ! -regex '.*/\..*' \) -name '*.rb' -o -name '*.js' -o -name '*.css' -o -name '*.scss' -type f -print -exec git blame '{}' \; | ruby -pe "sub /(^.*\((.*?)\s+2.*$)/, '\2'" | egrep -vE '[[:punct:][:digit:]]' | sort | uniq -c | sort -nr
 }
 
 function edit-file() {
-  if [[ -d ".git" ]] ; then
+  if [[ -d ".git" ]]; then
     vim $(git ls-files | fzf)
   else
     vim $(fzf)
@@ -168,7 +168,7 @@ function edit-file() {
 alias edit='edit-file'
 
 # Bin files from this repo should be executable
-chmod -R 755 $HOME/.bin;
+chmod -R 755 $HOME/.bin
 
 # Hook direnv into ZSH
 eval "$(direnv hook zsh)"
@@ -183,9 +183,8 @@ export FZF_DEFAULT_COMMAND='ag -U --hidden -g "" --ignore .git --ignore "*.png" 
 [ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
 
 # NVM
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-
+export NVM_DIR="$(brew --prefix nvm)"
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" # This loads nvm
 
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
