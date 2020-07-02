@@ -75,6 +75,7 @@ brew "mysql@5.7"
 brew "neovim"
 brew "nginx", restart_service: true
 brew "nss"
+brew "nvm"
 brew "pandoc"
 brew "php", restart_service: true
 brew "python"
@@ -100,11 +101,13 @@ cask "anki"
 cask "bartender"
 cask "chromedriver"
 cask "dbeaver-community"
+cask "docker"
 cask "evernote"
 cask "firefox"
 cask "focus"
 cask "font-courier-prime-code"
 cask "font-fira-code"
+cask "forticlient"
 cask "google-backup-and-sync"
 cask "google-chrome"
 cask "imageoptim"
@@ -121,12 +124,12 @@ cask "skype"
 cask "slack"
 cask "spotify"
 cask "sublime-merge"
+cask "tableplus"
 cask "vagrant"
 cask "visual-studio-code"
 cask "vlc"
 cask "workflowy"
 mas "BetterSnapTool", id: 417375580
-mas "Edison Mail", id: 1489591003
 mas "GIF Keyboard", id: 1043270657
 mas "Harvest", id: 506189836
 mas "Numbers", id: 409203825
