@@ -160,9 +160,9 @@ function who_wrote_this_code() {
 
 function edit-file() {
   if [[ -d ".git" ]]; then
-    vim $(git ls-files | fzf)
+    code $(git ls-files | fzf)
   else
-    vim $(fzf)
+    code $(fzf)
   fi
 }
 alias edit='edit-file'
