@@ -2,11 +2,6 @@
 #
 # Find and replace by a given list of files.
 #
-# replace foo bar **/*.rb
+# sreplace foo bar
 
-find_this=$1
-shift
-replace_with=$1
-shift
-
-ag -l $find_this $* | xargs sed -i '' -E -e "s/$find_this/$replace_with/g"
+ag -l -0 "$1" | xargs -0 sed -i '' -E -e "s/$1/$2/g"
