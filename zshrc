@@ -191,7 +191,3 @@ export LC_ALL=en_US.UTF-8
 
 # Local config
 [[ -f ~/.zshrc.local ]] && source ~/.zshrc.local
-
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/Users/mwells/.sdkman"
-[[ -s "/Users/mwells/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/mwells/.sdkman/bin/sdkman-init.sh"
