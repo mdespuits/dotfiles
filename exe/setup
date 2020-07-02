@@ -3,6 +3,8 @@
 
 set -e
 
+source $HOME/.dotfiles/exe/helpers
+
 setup_zsh_as_default() {
   if [ -f /usr/local/bin/zsh ]; then
     say "Setting zsh as default shell"

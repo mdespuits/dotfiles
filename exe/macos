@@ -1,6 +1,10 @@
 #!/usr/bin/env zsh
 # vim: filetype=zsh
 
+source $HOME/.dotfiles/exe/helpers
+
+set -e
+
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 general_settings() {
   # Set computer name (as done via System Preferences → Sharing)
@@ -129,6 +133,7 @@ trackpad_settings() {
   say "Updating Trackpad Settings"
 
   # System Preferences > Trackpad > Enable tap to click for this user and for the login screen
+  defaults write com.apple.trackpad.scaling -float 1.5
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
   defaults write NSGlobalDomain com.apple.mouse.tapBehavior -int 1
   defaults -currentHost write NSGlobalDomain com.apple.mouse.tapBehavior -int 1

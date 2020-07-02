@@ -3,6 +3,8 @@
 
 set -e
 
+source $HOME/.dotfiles/exe/helpers
+
 install_brews() {
   say "Homebrew Bundling..."
   pushd $HOME/.dotfiles &> /dev/null

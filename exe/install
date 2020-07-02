@@ -14,26 +14,7 @@ while true; do sudo -n true; sleep 30; kill -0 "$$" || exit; done 2>/dev/null &
 # readonly PROGDIR=`/usr/bin/readlink -n $(dirname $0)`
 readonly ARGS="$@"
 
-readonly GREEN='\033[0;32m'
-readonly BLUE='\033[0;34m'
-readonly BGREEN='\033[1;32m'
-readonly BCYAN='\033[1;36m'
-readonly NC='\033[0m'
-
-say() {
-  local statement=$@
-
-  echo -e "${BCYAN}==> ${NC}$statement${NC}"
-}
-
-announce() {
-  local statement=$@
-  echo -e "${BCYAN}==>${NC}${GREEN} $statement${NC}"
-}
-
-say_done() {
-  echo -e "${BCYAN}==>${NC}${BGREEN} Done!${NC}"
-}
+source $HOME/.dotfiles/exe/helpers
 
 install_setup_homebrew() {
   if [ ! -x "$(command -v brew)" ]; then
