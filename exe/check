@@ -1,0 +1,21 @@
+#!/usr/bin/env zsh
+# vim: filetype=zsh
+
+set -e
+
+source ${0:a:h}/helpers
+
+main() {
+  checkGit
+  checkBrew
+  checkRcm
+  checkZprezto
+  checkPhpbrew
+  checkTmux
+  checkTpm
+  checkVagrant
+  checkVagrantPlugins
+  checkDotfilesRepo
+}
+
+main $ARGS

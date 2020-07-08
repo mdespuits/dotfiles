@@ -6,119 +6,31 @@ set -e
 # Ask for the administrator password upfront
 sudo -v
 
+source ${0:a:h}/helpers
+
 # Keep-alive: update existing `sudo` time stamp until `install` has finished
-while true; do sudo -n true; sleep 30; kill -0 "$$" || exit; done 2>/dev/null &
-
-# Don't need these right now, but maybe later on
-# readonly PROGNAME=`basename $0`
-# readonly PROGDIR=`/usr/bin/readlink -n $(dirname $0)`
-readonly ARGS="$@"
-
-readonly GREEN='\033[0;32m'
-readonly BLUE='\033[0;34m'
-readonly BGREEN='\033[1;32m'
-readonly BCYAN='\033[1;36m'
-readonly NC='\033[0m'
-
-say() {
-  local statement=$@
-
-  echo -e "${BCYAN}==> ${NC}$statement${NC}"
-}
-
-announce() {
-  local statement=$@
-  echo -e "${BCYAN}==>${NC}${GREEN} $statement${NC}"
-}
-
-say_done() {
-  echo -e "${BCYAN}==>${NC}${BGREEN} Done!${NC}"
-}
-
-install_setup_homebrew() {
-  if [ ! -x "$(command -v brew)" ]; then
-    say "Installing Homebrew"
-    ruby <(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)
-    brew install git &> /dev/null
-    say_done
-  else
-    announce "Homebrew already installed"
-  fi
-}
-
-install_tpm() {
-	local dir=$HOME/.tmux/plugins/tpm
-
-  mkdir -p $HOME/.tmux/plugins
-	if [ ! -d $dir ]; then
-    say "Install TPM for tmux"
-		git clone https://github.com/tmux-plugins/tpm $dir &> /dev/null
-		say_done
-	else
-    pushd $dir &> /dev/null
-		say "Updating TPM"
-		git pull --rebase --autostash
-
-		popd &> /dev/null
-	fi
-
-  say_done
-}
-
-install_git() {
-  say "Installing git"
-  brew install git
-  say_done
-}
-
-install_phpbrew() {
-  mkdir -p $HOME/.localbin
-  pushd $HOME/.localbin
-
-  if [ ! -f $HOME/.localbin/phpbrew ]; then
-    say "Installing phpbrew"
-    curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew
-    chmod +x phpbrew
-  else
-    say "Updating phpbrew"
-    rm -f %HOME/.localbin/phpbrew
-    curl -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew > /dev/null
-    chmod +x phpbrew
-  fi
-
-  popd
-  say_done
-}
-
-clone_repo_to_dotfiles() {
-  local dir="$HOME/.dotfiles"
-
-  if [ ! -d $dir ]; then
-    say "Cloning dotfiles repository"
-    git clone https://github.com/mdespuits/dotfiles.git $dir
-  else
-    say "Updating dotfiles"
-
-    pushd $dir &> /dev/null
-    git pull --rebase --autostash
-
-    popd &> /dev/null
-    say_done
-  fi
+keepSudoAlive() {
+  while true; do sudo -n true; sleep 30; kill -0 "$$" || exit; done 2>/dev/null &
 }
 
 main() {
-  install_setup_homebrew && echo
-  install_tpm && echo
-  install_git && echo
-  install_phpbrew && echo
-  clone_repo_to_dotfiles && echo
+  keepSudoAlive
 
-  . $HOME/.dotfiles/exe/deps
-  . $HOME/.dotfiles/exe/setup
+  installHomebrew
+  installEssentialBrews
+  installVagrantPlugins
+  installPhpbrew
+  installZprezto
+  installTpm
+
+  cloneRepo
+
+  # . $HOME/.dotfiles/exe/deps
+  # . $HOME/.dotfiles/exe/setup
   # . $HOME/.dotfiles/exe/macos
 
-  announce "Dotfiles setup!"
+  echo
+  logSuccess "Finished installing"
 }
 
 main $ARGS

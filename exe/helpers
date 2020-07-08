@@ -1,0 +1,330 @@
+#!/usr/bin/env zsh
+# vim: filetype=zsh
+
+set -e
+
+# Ask for the administrator password upfront
+# sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `install` has finished
+# while true; do sudo -n true; sleep 30; kill -0 "$$" || exit; done 2>/dev/null &
+
+# Don't need these right now, but maybe later on
+# readonly PROGNAME=`basename $0`
+# readonly PROGDIR=`/usr/bin/readlink -n $(dirname $0)`
+readonly ARGS="$@"
+
+readonly GREEN='\033[0;32m'
+readonly BLUE='\033[0;34m'
+readonly BGREEN='\033[1;32m'
+readonly BCYAN='\033[1;36m'
+readonly NC='\033[0m'
+
+log() {
+  local statement=$@
+
+  print -P "%B%F{cyan}==>%f%b $statement"
+}
+
+logCheckPresent() {
+  local statement=$@
+
+  print -P "%B%F{cyan}==> [+]%f%b $statement"
+}
+
+logCheckFailed() {
+  local statement=$@
+
+  print -P "%B%F{red}==> [-]%f%b $statement"
+}
+
+logSuccess() {
+  local statement=$@
+
+  print -P "%B%F{green}==>%f%b $statement"
+}
+
+logError() {
+  local statement=$@
+
+  print -P "%B%F{red}==>%f%b $statement"
+}
+
+logDone() {
+  print -P "%B%F{cyan}==> %F{green}Done!%f%b"
+}
+
+announce() {
+  local statement=$@
+  echo -e "${BCYAN}==>${NC}${GREEN} $statement${NC}"
+}
+
+brewExists() {
+  which brew >/dev/null && [[ "$(which brew | grep -ic "not found")" -eq "0" ]]
+}
+
+hasBrewLib() {
+  local lib=$1
+  local MissingCount=$(brew ls $lib 2>&1 | grep -ic "No such keg")
+
+  if [[ $MissingCount -eq "0" ]]; then
+    return 0;
+  fi
+
+  return $MissingCount;
+}
+
+hasBrewCask() {
+  local lib=$1
+  local MissingCount=$(brew cask ls $lib 2>&1 | grep -ic "No cask with this name exists")
+
+  if [[ $MissingCount -eq "0" ]]; then
+    return 0;
+  fi
+
+  return $MissingCount;
+}
+
+hasZsh() {
+  return $(hasBrewLib "zsh")
+}
+
+hasGit() {
+  return $(hasBrewLib "git")
+}
+
+hasRcm() {
+  return $(hasBrewLib "rcm")
+}
+
+hasVagrant() {
+  return $(hasBrewCask "vagrant")
+}
+
+hasVagrantPlugins() {
+  local list=$(vagrant plugin list)
+
+  [[ $(echo $list 2>&1 | grep -ic "parallels") -eq "1" ]]
+}
+
+hasPhpbrew() {
+  [[ -d "$HOME/.localbin" ]] && [[ -f "$HOME/.localbin/phpbrew" ]]
+}
+
+hasZprezto() {
+  [[ -e "$HOME/.zprezto" ]]
+}
+
+hasTmux() {
+  which tmux >/dev/null && [[ "$(which tmux | grep -ic "not found")" -eq "0" ]]
+}
+
+hasTmuxTpm() {
+  hasTmux && [[ -d $HOME/.tmux/plugins ]]
+}
+
+checkGit() {
+  if hasGit; then
+    logCheckPresent "git"
+  else
+    logCheckFailed "git"
+  fi
+}
+
+checkBrew() {
+  if brewExists; then
+    logCheckPresent "brew"
+  else
+    logCheckFailed "brew"
+  fi
+}
+
+checkRcm() {
+  if hasRcm; then
+    logCheckPresent "rcm"
+  else
+    logCheckFailed "rcm"
+  fi
+}
+
+checkZprezto() {
+  if hasZprezto; then
+    logCheckPresent "zprezto"
+  else
+    logCheckFailed "zprezto"
+  fi
+}
+
+checkPhpbrew() {
+  if hasPhpbrew; then
+    logCheckPresent "phpbrew"
+  else
+    logCheckFailed "phpbrew"
+  fi
+}
+
+checkTmux() {
+  if hasTmux; then
+    logCheckPresent "tmux"
+  else
+    logCheckFailed "tmux"
+  fi
+}
+
+checkVagrant() {
+  if hasVagrant; then
+    logCheckPresent "vagrant"
+  else
+    logCheckFailed "vagrant"
+  fi
+}
+
+checkVagrantPlugins() {
+  if hasVagrantPlugins; then
+    logCheckPresent "vagrant plugins"
+  else
+    logCheckFailed "vagrant plugins"
+  fi
+}
+
+checkTpm() {
+  if hasTmuxTpm; then
+    logCheckPresent "tmux tpm"
+  else
+    logCheckFailed "tmux tpm"
+  fi
+}
+
+
+checkDotfilesRepo() {
+  local dir="$HOME/.dotfiles"
+
+  [[ ! -d $dir ]]
+}
+
+installHomebrew() {
+  if ! brewExists; then
+    log "Installing brew"
+    yes | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+  else
+    log "brew already installed"
+  fi
+}
+
+installGit() {
+  if ! hasGit; then
+    log "Installing git"
+    brew install git
+    logDone
+  else
+    log "git already installed"
+  fi
+}
+
+installPhpbrew() {
+  mkdir -p $HOME/.localbin
+  pushd $HOME/.localbin
+
+  if ! hasPhpbrew; then
+    log "Installing phpbrew"
+    pushd $HOME/.localbin
+
+    curl -s -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew > /dev/null
+    chmod +x phpbrew
+    logDone
+  else
+    log "phpbrew already installed"
+  fi
+
+  popd
+}
+
+updatePhpbrew() {
+  if hasPhpbrew; then
+    log "Updating phpbrew"
+    rm -f $HOME/.localbin/phpbrew
+    pushd $HOME/.localbin
+
+    curl -s -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew > /dev/null
+    chmod +x phpbrew
+
+    popd
+    logDone
+  else
+    installPhpbrew
+  fi
+}
+
+installZprezto() {
+  if hasZsh && ! hasZprezto; then
+    log "Installing Prezto..."
+    git clone --recursive https://github.com/sorin-ionescu/prezto.git "$HOME/.zprezto" &> /dev/null
+    setopt EXTENDED_GLOB
+    for rcfile in $(find ~/.zprezto/runcoms | grep -v README.md); do
+      if [ ! -f "$HOME/.${rcfile:t}" ]; then
+        ln -s "$rcfile" "$HOME/.${rcfile:t}"
+      fi
+    done
+    logDone
+  else
+    log "zprezto already installed"
+  fi
+}
+
+installEssentialBrews() {
+  if ! hasGit || ! hasTmux || ! hasZsh || ! hasRcm || ! hasVagrant; then
+    log "Installing Essential tools"
+    brew bundle --file=- <<EOF
+brew "git"
+brew "zsh"
+brew "tmux"
+brew "thoughtbot/formulae/rcm"
+brew "vagrant"
+EOF
+    logDone
+  else
+    log "Essential tools installed"
+  fi
+}
+
+installVagrantPlugins() {
+  if ! hasVagrantPlugins; then
+    local list=$(vagrant plugin list)
+    log "Installing Vagrant plugins"
+    if [[ $(echo $list 2>&1 | grep -ic "parallels") -eq "0" ]]; then
+      vagrant plugin install vagrant-parallels
+    fi
+  else
+    log "Vagrant plugins installed"
+  fi
+}
+
+installTmux() {
+  if ! hasTmux; then
+    log "Installing tmux"
+    brew install tmux
+  else
+    log "tmux already installed"
+  fi
+}
+
+installTpm() {
+  local dir=${HOME}/.tmux/plugins/tpm
+
+  if ! hasTmuxTpm; then
+    log "Installing TPM for tmux"
+		git clone https://github.com/tmux-plugins/tpm $dir &> /dev/null
+    logDone
+  else
+    log "tpm already installed"
+  fi
+}
+
+cloneRepo() {
+  if [ ! checkDotfilesRepo ]; then
+    log "Cloning dotfiles repository"
+    git clone https://github.com/mdespuits/dotfiles.git $dir
+  else
+    log "dotfiles repo cloned"
+  fi
+}
