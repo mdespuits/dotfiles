@@ -1,9 +1,9 @@
+tap "heroku/brew"
 tap "homebrew/bundle"
 tap "homebrew/cask"
 tap "homebrew/cask-fonts"
 tap "homebrew/core"
 tap "homebrew/services"
-tap "heroku/brew"
 tap "neovim/neovim"
 tap "phinze/cask"
 tap "thoughtbot/formulae"
@@ -47,8 +47,6 @@ brew "git"
 brew "git-flow"
 brew "git-hooks"
 brew "pcre"
-brew "glib"
-brew "gnutls"
 brew "gnupg"
 brew "go"
 brew "httpie"
@@ -59,9 +57,7 @@ brew "oniguruma"
 brew "jq"
 brew "lastpass-cli"
 brew "libiconv"
-brew "memcached"
 brew "libmemcached"
-brew "libpq"
 brew "libsodium"
 brew "unibilium"
 brew "libtermkey"
@@ -70,10 +66,11 @@ brew "libvterm"
 brew "libxml2"
 brew "lua"
 brew "mas"
+brew "memcached"
 brew "mkcert"
 brew "msgpack"
 brew "mysql@5.7"
-brew "neovim/neovim/neovim"
+brew "neovim"
 brew "nginx", restart_service: true
 brew "nss"
 brew "nvm"
@@ -82,9 +79,8 @@ brew "php", restart_service: true
 brew "python"
 brew "reattach-to-user-namespace"
 brew "redis"
-brew "ruby"
 brew "ruby-install", args: ["HEAD"]
-brew "ssh-copy-id", link: true
+brew "ssh-copy-id"
 brew "switchaudio-osx"
 brew "the_silver_searcher"
 brew "tmux"
@@ -135,6 +131,7 @@ cask "workflowy"
 mas "BetterSnapTool", id: 417375580
 mas "GIF Keyboard", id: 1043270657
 mas "Harvest", id: 506189836
+mas "NordVPN IKE", id: 1116599239
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Todoist", id: 585829637
