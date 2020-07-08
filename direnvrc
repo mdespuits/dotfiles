@@ -1,5 +1,7 @@
+export NVM_DIR="$(brew --prefix nvm)"
+
 source /usr/local/share/chruby/chruby.sh
-source $HOME/.nvm/nvm.sh
+source $NVM_DIR/nvm.sh
 
 # use ruby [version]
 use_ruby() {
