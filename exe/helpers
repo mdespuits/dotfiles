@@ -20,6 +20,9 @@ readonly BGREEN='\033[1;32m'
 readonly BCYAN='\033[1;36m'
 readonly NC='\033[0m'
 
+readonly EXE_PATH=${0:a:h}
+readonly DOTFILES_PATH=$(dirname "$EXE_PATH")
+
 log() {
   local statement=$@
 
@@ -318,6 +321,34 @@ installTpm() {
   else
     log "tpm already installed"
   fi
+}
+
+installBrewfile() {
+  log "Homebrew Bundling..."
+  brew bundle --no-upgrade --file=$DOTFILES_PATH/Brewfile
+  logSuccess "Bundled!"
+}
+
+installVimMinpac() {
+  log "Preparing minpac for Vim"
+  if [ ! -d "$HOME/.config/nvim/pack/minpac/opt/minpac" ]; then
+    log "Cloning minpac for neovim"
+
+    mkdir -p ~/.config/nvim/pack/minpac/opt/
+    git clone https://github.com/k-takata/minpac.git "$HOME/.config/nvim/pack/minpac/opt/minpac"
+
+    log "Cloned minpac"
+  else
+    log "Updating minpac"
+
+    pushd "$HOME/.config/nvim/pack/minpac/opt/minpac" &> /dev/null
+    git pull
+
+    popd &> /dev/null
+  fi
+
+  popd &> /dev/null
+  logDone
 }
 
 cloneRepo() {

@@ -23,9 +23,11 @@ main() {
   installZprezto
   installTpm
 
+  installBrewfile
+  installVimMinpac
+
   cloneRepo
 
-  # . $HOME/.dotfiles/exe/deps
   # . $HOME/.dotfiles/exe/setup
   # . $HOME/.dotfiles/exe/macos
 
