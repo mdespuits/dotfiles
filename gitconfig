@@ -98,3 +98,5 @@
 [difftool]
   prompt = false
 [init]
+[pull]
+  rebase = true
