@@ -65,3 +65,7 @@
 ehthumbs.db
 # Icon?
 Thumbs.db
+
+# Tmuxinator #
+######################
+.tmuxinator.yml

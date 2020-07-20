@@ -6,7 +6,7 @@
 [push]
   default = current
 [core]
-	excludesfile = /Users/mattbridges/.gitexcludes
+	excludesfile = ~/.gitexcludes
   editor = nvim
   symlinks = true
 [credential]
@@ -61,7 +61,7 @@
 
   # Cleaning up
   cleanup-master = "! f() { git reset-branch master && git merged-branches-delete && git remote prune origin; }; f"
-  cleanup-dev = "! f() { git reset-branch dev && git remote prune origin; }; f"
+  cleanup = "! f() { git reset-branch ${1} && git remote prune origin; }; f"
   gone = "! f() { git fetch -p && for branch in `git branch -vv | grep ': gone]' | awk '{print $1}'`; do git b -D $branch; done }; f"
   merged-branches        = ! git branch --merged | grep -v "\\\\*"
   merged-branches-delete = ! git merged-branches | xargs git branch -D
