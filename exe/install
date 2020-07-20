@@ -8,11 +8,6 @@ sudo -v
 
 source ${0:a:h}/helpers
 
-# Keep-alive: update existing `sudo` time stamp until `install` has finished
-keepSudoAlive() {
-  while true; do sudo -n true; sleep 30; kill -0 "$$" || exit; done 2>/dev/null &
-}
-
 main() {
   keepSudoAlive
 
@@ -22,6 +17,7 @@ main() {
   installPhpbrew
   installZprezto
   installTpm
+  installNvm
 
   installBrewfile
   installVimMinpac
