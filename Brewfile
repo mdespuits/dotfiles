@@ -73,9 +73,9 @@ brew "mysql@5.7"
 brew "neovim"
 brew "nginx", restart_service: true
 brew "nss"
-brew "nvm"
 brew "pandoc"
 brew "php", restart_service: true
+brew "pwgen"
 brew "python"
 brew "reattach-to-user-namespace"
 brew "redis"
