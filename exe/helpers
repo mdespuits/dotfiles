@@ -54,7 +54,7 @@ logError() {
 }
 
 logDone() {
-  print -P "%B%F{cyan}==> %F{green}Done!%f%b"
+  print -P "%B%F{green}==> Done!%f%b"
 }
 
 announce() {
@@ -120,6 +120,10 @@ hasZprezto() {
 
 hasTmux() {
   which tmux >/dev/null && [[ "$(which tmux | grep -ic "not found")" -eq "0" ]]
+}
+
+hasNvm() {
+  [ -d "$HOME/.nvm" ]
 }
 
 hasTmuxTpm() {
@@ -311,6 +315,19 @@ installTmux() {
   fi
 }
 
+installNvm() {
+  local dir=${HOME}/.nvm
+
+  if ! hasNvm; then
+    log "Installing NVM"
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+		git clone https://github.com/tmux-plugins/tpm $dir &> /dev/null
+    logDone
+  else
+    log "nvm already installed"
+  fi
+}
+
 installTpm() {
   local dir=${HOME}/.tmux/plugins/tpm
 
@@ -358,4 +375,9 @@ cloneRepo() {
   else
     log "dotfiles repo cloned"
   fi
+}
+
+# Keep-alive: update existing `sudo` time stamp until `install` has finished
+keepSudoAlive() {
+  while true; do sudo -n true; sleep 30; kill -0 "$$" || exit; done 2>/dev/null &
 }
