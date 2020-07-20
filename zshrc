@@ -55,21 +55,65 @@ unsetopt nomatch
 # Add homebrew to the completion path
 fpath=("/usr/local/bin/" $fpath)
 
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+
 # =================================
 # PATH info
 # =================================
 
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin
-export PATH=/usr/local/heroku/bin:$PATH
-export PATH=/usr/local/heroku/bin:$PATH
-export PATH=/usr/local/opt/mysql@5.7/bin:$PATH
-export PATH=$HOME/.bin:$PATH
+if [ -d "/usr/local/heroku/bin" ]; then
+  export PATH=/usr/local/heroku/bin:$PATH
+fi
 
-if [[ -d "$HOME/go/bin" ]]; then
+# =================================
+# MySQL
+# =================================
+if [ -d "/usr/local/opt/mysql@5.7/bin" ]; then
+  export PATH=/usr/local/opt/mysql@5.7/bin:$PATH
+fi
+
+
+# =================================
+# Vagrant
+# =================================
+if [ -d "/Applications/Vagrant/bin" ]; then
+  export PATH="/Applications/Vagrant/bin:$PATH"
+fi
+
+# =================================
+# Postgres.app
+# =================================
+if [ -d "/Applications/Postgres.app/Contents/Versions/latest/bin" ]; then
+  export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
+fi
+
+# =================================
+# OpenSSL update fix
+# =================================
+if [ -d "/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt" ]; then
+  export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
+fi
+
+# =========================
+# Composer
+# =========================
+if [ -d "$HOME/.composer/vendor/bin" ]; then
+  export PATH="$HOME/.composer/vendor/bin:$PATH"
+fi
+
+if [ -d "$HOME/go/bin" ]; then
   export PATH=$HOME/go/bin:$PATH
 fi
 
-if [[ -d "$HOME/.localbin" ]]; then
+if [ -d "$HOME/.bin" ]; then
+  chmod -R 755 $HOME/.bin
+  export PATH=$HOME/.bin:$PATH
+fi
+
+if [ -d "$HOME/.localbin" ]; then
+  chmod -R 755 $HOME/.localbin
   export PATH=$HOME/.localbin:$PATH
 fi
 
@@ -100,29 +144,6 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 export CC='/usr/bin/gcc'
 
 # =================================
-# macOS
-# =================================
-
-if [ -d "/Applications/Vagrant/bin" ]; then
-  export PATH="/Applications/Vagrant/bin:$PATH"
-fi
-
-# Postgres.app: Add bin to path for psql commands
-if [ -d "/Applications/Postgres.app/Contents/Versions/9.3/bin" ]; then
-  export PATH="/Applications/Postgres.app/Contents/Versions/9.3/bin:$PATH"
-fi
-
-# OpenSSL update fix
-if [ -d "/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt" ]; then
-  export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
-fi
-
-# =================================
-# chruby
-# =================================
-source /usr/local/share/chruby/chruby.sh
-
-# =================================
 # Aliases
 # =================================
 
@@ -130,10 +151,12 @@ alias reload="exec $SHELL -l"
 alias vim="nvim"
 alias vi="nvim"
 alias h="history 0 | grep"
-alias be="bundle exec"
+
+# git
 alias gs="git status"
 alias gd="git diff"
 alias gds="git diff --staged"
+
 alias fastping='ping -c 1 -s 1' # One. Ping. Only.
 alias ll="ls -laih"
 alias wget='wget -c'
@@ -146,8 +169,7 @@ alias tms="tmuxinator start $1"
 alias tmlocal="tmuxinator local"
 alias osx="reattach-to-user-namespace"
 
-# Better GNU
-alias readlink="greadlink"
+# Better cat
 alias cat="ccat"
 
 # =================================
@@ -167,27 +189,60 @@ function edit-file() {
 }
 alias edit='edit-file'
 
-# Bin files from this repo should be executable
-chmod -R 755 $HOME/.bin
-
-# Hook direnv into ZSH
-eval "$(direnv hook zsh)"
-
+# =========================
 # FZF Searching
+# =========================
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 export FZF_TMUX_HEIGHT="40%"
 export FZF_DEFAULT_COMMAND='ag -U --hidden -g "" --ignore .git --ignore "*.png" --ignore "*.jpg" --ignore "node_modules" --ignore .bin --ignore .DS_Store --ignore "*.gif"'
 
+# =========================
 # Autojumping
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
+# =========================
+[ -f /usr/local/etc/profile.d/autojump.sh ] && source /usr/local/etc/profile.d/autojump.sh
 
+# =========================
 # NVM
+# =========================
 export NVM_DIR="$(brew --prefix nvm)"
 [ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" # This loads nvm
 
-export LC_CTYPE=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
+# =========================
+# chruby
+# =========================
+if [ -f "/usr/local/share/chruby/chruby.sh" ]; then
+  source /usr/local/share/chruby/chruby.sh
+fi
+
+# =========================
+# phpbrew
+# =========================
+if [ -f "$HOME/.phpbrew/bashrc" ]; then
+  source $HOME/.phpbrew/bashrc
+fi
+
+# =========================
+# direnv
+# =========================
+hasCmd() {
+  local CMD=$1
+
+  which $CMD >/dev/null && [[ "$(which $CMD | grep -ic "not found")" -eq "0" ]]
+}
+
+hasDirenv() {
+  return $(hasCmd "direnv")
+}
+
+if hasDirenv; then
+  eval "$(direnv hook zsh)"
+else
+  echo "direnv is missing"
+fi
 
 # Local config
-[[ -f $HOME/.zshrc.local ]] && source $HOME/.zshrc.local
+if [ -f "$HOME/.zshrc.local" ]; then
+  source $HOME/.zshrc.local
+fi
+[[ -s ~/.envrc ]] && source ~/.envrc
