@@ -1,6 +1,11 @@
 #!/usr/bin/env zsh
 # vim: filetype=zsh
 
+# Ask for the administrator password upfront
+sudo -v
+
+source ${0:a:h}/helpers
+
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 general_settings() {
   # Set computer name (as done via System Preferences → Sharing)
@@ -109,7 +114,7 @@ general_settings() {
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 ssd_settings() {
-  say "Updating SSD Settings"
+  log "Updating SSD Settings"
 
   # Disable hibernation (speeds up entering sleep mode)
   sudo pmset -a hibernatemode 0
@@ -121,12 +126,12 @@ ssd_settings() {
   # …and make sure it can’t be rewritten
   # sudo chflags uchg /private/var/vm/sleepimage
 
-  say_done
+  logDone
 }
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 trackpad_settings() {
-  say "Updating Trackpad Settings"
+  log "Updating Trackpad Settings"
 
   # System Preferences > Trackpad > Enable tap to click for this user and for the login screen
   defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
@@ -171,12 +176,12 @@ trackpad_settings() {
   # See `sudo systemsetup -listtimezones` for other values
   sudo systemsetup -settimezone "America/Chicago" > /dev/null
 
-  say_done
+  logDone
 }
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 screen_settings() {
-  say "Updating Screen Settings"
+  log "Updating Screen Settings"
 
   # Require password immediately after sleep or screen saver begins
   defaults write com.apple.screensaver askForPassword -int 1
@@ -204,12 +209,12 @@ screen_settings() {
   # Remove the spring loading delay for directories
   defaults write NSGlobalDomain com.apple.springing.delay -float 0
 
-  say_done
+  logDone
 }
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 finder_settings() {
-  say "Updating Finder Settings"
+  log "Updating Finder Settings"
 
   # Finder > Preferences > Use list view in all Finder windows by default
   # Four-letter codes for the other view modes: `icnv`, `clmv`, `Flwv`
@@ -296,12 +301,12 @@ finder_settings() {
   defaults write com.apple.desktopservices DSDontWriteNetworkStores -bool true
   defaults write com.apple.desktopservices DSDontWriteUSBStores -bool true
 
-  say_done
+  logDone
 }
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-dock_settings() {
-  say "Updating Dock Settings"
+dockSettings() {
+  log "Updating Dock Settings"
 
   # System Preferences > Dock > Enable highlight hover effect for the grid view of a stack (Dock)
   defaults write com.apple.dock mouse-over-hilite-stack -bool true
@@ -373,12 +378,12 @@ dock_settings() {
   # System Preferences > Mission Control > Don’t automatically rearrange Spaces based on most recent use
   defaults write com.apple.dock mru-spaces -bool false
 
-  say_done
+  logDone
 }
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 screensaver_settings() {
-	say "Updating Screensaver Settings"
+	log "Updating Screensaver Settings"
 
   # Hot corners
   # Possible values:
@@ -408,12 +413,12 @@ screensaver_settings() {
   # System Preferences > Desktop & Screen Saver > Start after: Never
 	defaults -currentHost write com.apple.screensaver idleTime -int 0
 
-	say_done
+	logDone
 }
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 terminal_settings() {
-  say "Updating Terminal Settings"
+  log "Updating Terminal Settings"
 
   # Only use UTF-8 in Terminal.app
   defaults write com.apple.terminal StringEncodings -array 4
@@ -429,7 +434,7 @@ terminal_settings() {
   # Don’t display the annoying prompt when quitting iTerm
   defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
-  say_done
+  logDone
 }
 
 
@@ -437,7 +442,7 @@ terminal_settings() {
 # Time Machine                                                                #
 ###############################################################################
 timemachine_settings() {
-  say "Updating Time Machine Settings"
+  log "Updating Time Machine Settings"
 
   # Prevent Time Machine from prompting to use new hard drives as backup volume
   defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
@@ -445,7 +450,7 @@ timemachine_settings() {
   # Disable local Time Machine backups
   hash tmutil &> /dev/null && sudo tmutil disablelocal
 
-  say_done
+  logDone
 }
 
 
@@ -453,7 +458,7 @@ timemachine_settings() {
 # Activity Monitor                                                            #
 ###############################################################################
 activity_monitor_settings() {
-  say "Updating Activity Monitor Settings"
+  log "Updating Activity Monitor Settings"
 
   # Activity Monitor > Show the main window when launching Activity Monitor
   defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
@@ -485,7 +490,7 @@ activity_monitor_settings() {
   defaults write com.apple.DiskUtility DUDebugMenuEnabled -bool true
   defaults write com.apple.DiskUtility advanced-image-options -bool true
 
-  say_done
+  logDone
 }
 
 
@@ -493,12 +498,12 @@ activity_monitor_settings() {
 # Photos                                                                      #
 ###############################################################################
 photos_settings() {
-  say "Updating Photos Settings"
+  log "Updating Photos Settings"
 
   # Prevent Photos from opening automatically when devices are plugged in
   defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 
-  say_done
+  logDone
 }
 
 
@@ -506,7 +511,7 @@ photos_settings() {
 # Messages                                                                    #
 ###############################################################################
 messages_settings() {
-  say "Updating Messages Settings"
+  log "Updating Messages Settings"
 
   # Disable smart quotes as it’s annoying for messages that contain code
   defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticQuoteSubstitutionEnabled" -bool true
@@ -514,7 +519,7 @@ messages_settings() {
   # Disable continuous spell checking
   defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
 
-  say_done
+  logDone
 }
 
 
@@ -522,7 +527,7 @@ messages_settings() {
 # Kill affected applications                                                  #
 ###############################################################################
 restart_apps() {
-  say "Restarting apps..."
+  log "Restarting apps..."
 
   for app in "Activity Monitor" \
     "Address Book" \
@@ -541,30 +546,31 @@ restart_apps() {
     killall "${app}" &> /dev/null
   done
 
-  say_done
+  logDone
 }
 
 
 main() {
+  keepSudoAlive
+
   osascript -e 'tell application "System Preferences" to quit'
 
   # general_settings && echo
-  screen_settings && echo
-  trackpad_settings && echo
-  ssd_settings && echo
-  finder_settings && echo
-  screensaver_settings && echo
-  dock_settings && echo
-  activity_monitor_settings && echo
-  timemachine_settings && echo
-  terminal_settings && echo
-  photos_settings && echo
-  messages_settings && echo
+  # screen_settings && echo
+  # trackpad_settings && echo
+  # ssd_settings && echo
+  # finder_settings && echo
+  # screensaver_settings && echo
+  dockSettings && echo
+  # activity_monitor_settings && echo
+  # timemachine_settings && echo
+  # terminal_settings && echo
+  # photos_settings && echo
+  # messages_settings && echo
 
   restart_apps && echo
 
-  say_done
-  say "Note that some of these changes require a logout/restart to take effect."
+  log "Note that some of these changes require a logout/restart to take effect."
 }
 
 main $ARGS
