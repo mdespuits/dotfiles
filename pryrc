@@ -68,7 +68,7 @@ if defined?(Rails)
 end
 
 # History (Use one history file)
-Pry.config.history.file = File.expand_path("~/.irb_history")
+# Pry.config.history.file = File.expand_path("~/.irb_history")
 
 # ===================
 # Custom Pry aliases
