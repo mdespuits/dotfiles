@@ -77,6 +77,9 @@
   fixlast = reset --soft HEAD^
   rollback = reset --hard HEAD@{1}
 
+  # Remove untracked files
+  rm-untracked = !git status -s | grep '??' | awk '{print $2}' | xargs -I{} rm -rf {}
+
   # Diff of current branch to other branches.
   # Hope to move these into their own shell scripts
   # for better customizing
