@@ -1,38 +1,4 @@
-export NVM_DIR="$(brew --prefix nvm)"
-
-source /usr/local/share/chruby/chruby.sh
-source $NVM_DIR/nvm.sh
-
-# use ruby [version]
-use_ruby() {
-  local ver=$1
-  if [[ -z $ver ]] && [[ -f .ruby-version ]]; then
-    ver=$(cat .ruby-version)
-  fi
-  if [[ -z $ver ]]; then
-    echo Unknown ruby version
-    exit 1
-  fi
-  chruby $ver
-}
-
-use_nvm() {
-  local ver=$1
-  if [[ -z $ver ]] && [[ -f .nvmrc ]]; then
-    ver=$(cat .nvmrc)
-  fi
-  if [[ -z $ver ]]; then
-    echo Unknown nvm version
-    exit 1
-  fi
-  nvm use $ver
-}
-
-# use rvm [version]
-use_rvm() {
-  local ver=$1
-}
-
+# use php [version]
 use_php() {
   local ver=$1
   if [[ -z $ver ]]; then

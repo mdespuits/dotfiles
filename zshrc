@@ -166,7 +166,6 @@ alias tml="tmux list-sessions"
 alias tma="tmux -2 attach -t $1"
 alias tmk="tmux kill-session -t $1"
 alias tms="tmuxinator start $1"
-alias tmlocal="tmuxinator local"
 alias osx="reattach-to-user-namespace"
 
 # Better cat
@@ -175,6 +174,13 @@ alias cat="ccat"
 # =================================
 # Functions
 # =================================
+
+function tmlocal() {
+  if [[ ! "$(which tmuxinator | grep -ic "not found")" -eq "0" ]]; then
+    gem install tmuxinator
+  fi
+  tmuxinator local
+}
 
 function who_wrote_this_code() {
   find $1 \( ! -regex '.*/\..*' \) -name '*.rb' -o -name '*.js' -o -name '*.css' -o -name '*.scss' -type f -print -exec git blame '{}' \; | ruby -pe "sub /(^.*\((.*?)\s+2.*$)/, '\2'" | egrep -vE '[[:punct:][:digit:]]' | sort | uniq -c | sort -nr
@@ -201,19 +207,6 @@ export FZF_DEFAULT_COMMAND='ag -U --hidden -g "" --ignore .git --ignore "*.png" 
 # Autojumping
 # =========================
 [ -f /usr/local/etc/profile.d/autojump.sh ] && source /usr/local/etc/profile.d/autojump.sh
-
-# =========================
-# NVM
-# =========================
-export NVM_DIR="$(brew --prefix nvm)"
-[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh" # This loads nvm
-
-# =========================
-# chruby
-# =========================
-if [ -f "/usr/local/share/chruby/chruby.sh" ]; then
-  source /usr/local/share/chruby/chruby.sh
-fi
 
 # =========================
 # phpbrew
