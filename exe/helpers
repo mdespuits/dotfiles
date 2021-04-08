@@ -126,6 +126,16 @@ hasNvm() {
   [ -d "$HOME/.nvm" ]
 }
 
+hasAsdf() {
+  [ -d "$HOME/.asdf" ]
+}
+
+hasAsdfPlugin() {
+  local pluginName=$1
+
+  hasAsdf && [[ "$(asdf plugin list | grep -ic $pluginName)" -eq "1" ]]
+}
+
 hasTmuxTpm() {
   hasTmux && [[ -d $HOME/.tmux/plugins ]]
 }
@@ -159,6 +169,24 @@ checkZprezto() {
     logCheckPresent "zprezto"
   else
     logCheckFailed "zprezto"
+  fi
+}
+
+checkAsdf() {
+  if hasAsdf; then
+    logCheckPresent "asdf"
+  else
+    logCheckFailed "asdf"
+  fi
+}
+
+checkAsdfPlugin() {
+  local plugin=$1
+
+  if hasAsdfPlugin $plugin; then
+    logCheckPresent "asdf plugin $plugin"
+  else
+    logCheckFailed "asdf plugin $plugin"
   fi
 }
 
@@ -204,9 +232,7 @@ checkTpm() {
 
 
 checkDotfilesRepo() {
-  local dir="$HOME/.dotfiles"
-
-  [[ ! -d $dir ]]
+  [[ ! -d $DOTFILES_PATH ]]
 }
 
 installHomebrew() {
@@ -306,25 +332,37 @@ installVagrantPlugins() {
   fi
 }
 
-installTmux() {
-  if ! hasTmux; then
-    log "Installing tmux"
-    brew install tmux
+installAsdf() {
+  local dir=${HOME}/.asdf
+
+  if ! hasAsdf; then
+    log "Installing asdf"
+    git clone https://github.com/asdf-vm/asdf.git ~/.asdf --branch v0.8.0
+    cd ~/.asdf
+    git checkout "$(git describe --abbrev=0 --tags)"
+    cd -
+    logDone
   else
-    log "tmux already installed"
+    log "asdf already installed"
   fi
 }
 
-installNvm() {
-  local dir=${HOME}/.nvm
-
-  if ! hasNvm; then
-    log "Installing NVM"
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
-		git clone https://github.com/tmux-plugins/tpm $dir &> /dev/null
+installAsdfPlugins() {
+  local plugins=(ruby nodejs deno tmux php)
+  if hasAsdf; then
+    for plugin in $plugins; do
+      if ! hasAsdfPlugin $plugin; then
+        log "Installing asdf $plugin plugin"
+        asdf plugin add $plugin
+      fi
+    done
     logDone
-  else
-    log "nvm already installed"
+  fi
+}
+
+installAsdfTools() {
+  if hasAsdf; then
+    log "Installing main asdf toools"
   fi
 }
 
@@ -368,10 +406,36 @@ installVimMinpac() {
   logDone
 }
 
+setupZshAsDefault() {
+  if [ -f /usr/local/bin/zsh ] && [[ $SHELL != "/usr/local/bin/zsh" ]]; then
+    log "Setting zsh as default shell"
+    sudo chsh -s $(which zsh) $(whoami)
+  else
+    announce "Already using zsh"
+    logDone
+  fi
+}
+
+setupMinpackPlugins() {
+  log "Installing Vim plugins"
+  nvim +PackUpdate +q && echo
+  logDone
+}
+
+setupDotfiles() {
+  log "Setting up dotfiles"
+
+  rm -rf $HOME/.rcrc
+  ln -s $DOTFILES_PATH/rcrc $HOME/.rcrc
+  rcup
+
+  logDone
+}
+
 cloneRepo() {
   if [ ! checkDotfilesRepo ]; then
     log "Cloning dotfiles repository"
-    git clone https://github.com/mdespuits/dotfiles.git $dir
+    git clone https://github.com/mdespuits/dotfiles.git $DOTFILES_PATH
   else
     log "dotfiles repo cloned"
   fi

@@ -13,22 +13,27 @@ main() {
 
   installHomebrew
   installEssentialBrews
+  installAsdf
+  installAsdfPlugins
   installVagrantPlugins
   installPhpbrew
   installZprezto
   installTpm
-  installNvm
 
   installBrewfile
   installVimMinpac
 
   cloneRepo
+  setupDotfiles
 
-  # . $HOME/.dotfiles/exe/setup
+  setupZshAsDefault
+  setupMinpackPlugins
+  installAsdfTools
+
   # . $HOME/.dotfiles/exe/macos
 
   echo
-  logSuccess "Finished installing"
+  logSuccess "Finished setting up the system"
 }
 
 main $ARGS

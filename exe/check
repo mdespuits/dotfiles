@@ -11,6 +11,12 @@ main() {
   checkRcm
   checkZprezto
   checkPhpbrew
+  checkAsdf
+  checkAsdfPlugin "ruby"
+  checkAsdfPlugin "nodejs"
+  checkAsdfPlugin "deno"
+  checkAsdfPlugin "tmux"
+  checkAsdfPlugin "php"
   checkTmux
   checkTpm
   checkVagrant
