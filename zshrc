@@ -234,8 +234,20 @@ else
   echo "direnv is missing"
 fi
 
+if [ -f "$HOME/.asdf/asdf.sh" ]; then
+  source "$HOME/.asdf/asdf.sh"
+
+  # append completions to fpath
+  fpath=("${ASDF_DIR}/completions" $fpath)
+
+  # initialise completions with ZSH's compinit
+  autoload -Uz compinit
+  compinit
+fi
+
 # Local config
 if [ -f "$HOME/.zshrc.local" ]; then
   source $HOME/.zshrc.local
 fi
+
 [[ -s ~/.envrc ]] && source ~/.envrc
