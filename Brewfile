@@ -29,7 +29,6 @@ brew "cmake"
 brew "coreutils"
 brew "ctags"
 brew "openldap"
-brew "curl"
 brew "direnv"
 brew "dnsmasq", restart_service: true
 brew "editorconfig"
@@ -40,6 +39,7 @@ brew "libtool"
 brew "unixodbc"
 brew "fzf"
 brew "gdb"
+brew "gh"
 brew "ghostscript"
 brew "git"
 brew "git-flow"
@@ -49,6 +49,7 @@ brew "glib"
 brew "gmp"
 brew "pkg-config"
 brew "guile"
+brew "libksba"
 brew "gnupg"
 brew "go"
 brew "httpie"
@@ -76,7 +77,6 @@ brew "memcached"
 brew "mkcert"
 brew "msgpack"
 brew "mysql@5.7"
-brew "neovim"
 brew "nginx", restart_service: true
 brew "node"
 brew "nss"
@@ -84,9 +84,11 @@ brew "pandoc"
 brew "php", restart_service: true
 brew "pinentry-mac"
 brew "pwgen"
+brew "re2c"
 brew "reattach-to-user-namespace"
 brew "redis", restart_service: true
 brew "ruby"
+brew "speedtest-cli"
 brew "ssh-copy-id"
 brew "switchaudio-osx"
 brew "terminal-notifier"
@@ -111,7 +113,6 @@ cask "focus"
 cask "font-courier-prime-code"
 cask "font-fira-code"
 cask "forticlient"
-cask "google-backup-and-sync"
 cask "google-chrome"
 cask "imageoptim"
 cask "iterm2"
@@ -125,6 +126,7 @@ cask "sequel-pro"
 cask "skype"
 cask "spotify"
 cask "sublime-merge"
+cask "toggl-track"
 cask "vagrant"
 cask "visual-studio-code"
 cask "vlc"
@@ -132,7 +134,10 @@ cask "workflowy"
 mas "BetterSnapTool", id: 417375580
 mas "Harvest", id: 506189836
 mas "iMovie", id: 408981434
+mas "Microsoft Excel", id: 462058435
+mas "Microsoft Word", id: 462054704
 mas "NordVPN IKE", id: 1116599239
+mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
 mas "Slack", id: 803453959
 mas "Spark", id: 1176895641
