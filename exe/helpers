@@ -1,5 +1,5 @@
-#!/usr/bin/env zsh
-# vim: filetype=zsh
+#!/usr/bin/env bash
+# vim: filetype=bash
 
 set -e
 
@@ -12,53 +12,66 @@ set -e
 # Don't need these right now, but maybe later on
 # readonly PROGNAME=`basename $0`
 # readonly PROGDIR=`/usr/bin/readlink -n $(dirname $0)`
-readonly ARGS="$@"
+# readonly ARGS="$@"
 
+readonly RED='\033[0;31m'
 readonly GREEN='\033[0;32m'
-readonly BLUE='\033[0;34m'
-readonly BGREEN='\033[1;32m'
+readonly CYAN='\033[0;36m'
 readonly BCYAN='\033[1;36m'
 readonly NC='\033[0m'
 
-readonly EXE_PATH=${0:a:h}
-readonly DOTFILES_PATH=$(dirname "$EXE_PATH")
+# shellcheck disable=2155
+readonly DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+
+# shellcheck disable=2155
+readonly DOTFILES_PATH="$(dirname $DIR)"
+
+goToDir() {
+  local dir="$1"
+
+  pushd "$dir" &>/dev/null
+}
+
+goBackDir() {
+  popd &>/dev/null
+}
 
 log() {
-  local statement=$@
+  local statement="$1"
 
-  print -P "%B%F{cyan}==>%f%b $statement"
+  echo -e "${CYAN}==> $statement${NC}"
 }
 
 logCheckPresent() {
-  local statement=$@
+  local statement="$1"
 
-  print -P "%B%F{cyan}==> [+]%f%b $statement"
+  echo -e "${CYAN}==> [+]${NC} $statement"
 }
 
 logCheckFailed() {
-  local statement=$@
+  local statement="$1"
 
-  print -P "%B%F{red}==> [-]%f%b $statement"
+  echo -e "${RED}==> [-]${NC} $statement"
 }
 
 logSuccess() {
-  local statement=$@
+  local statement="$1"
 
-  print -P "%B%F{green}==>%f%b $statement"
+  echo -e "${GREEN}==>${NC} $statement"
 }
 
 logError() {
-  local statement=$@
+  local statement="$1"
 
-  print -P "%B%F{red}==>%f%b $statement"
+  echo -e "${RED}==> $statement${NC}"
 }
 
 logDone() {
-  print -P "%B%F{green}==> Done!%f%b"
+  echo -e "${GREEN}==> Done!${NC}"
 }
 
 announce() {
-  local statement=$@
+  local statement="$1"
   echo -e "${BCYAN}==>${NC}${GREEN} $statement${NC}"
 }
 
@@ -68,46 +81,56 @@ brewExists() {
 
 hasBrewLib() {
   local lib=$1
-  local MissingCount=$(brew ls $lib 2>&1 | grep -ic "No such keg")
+  local MissingCount=
+  MissingCount="$(brew ls "$lib" 2>&1 | grep -ic "No such keg")"
 
   if [[ $MissingCount -eq "0" ]]; then
-    return 0;
+    return 0
   fi
 
-  return $MissingCount;
+  # shellcheck disable=2086
+  return $MissingCount
 }
 
 hasBrewCask() {
   local lib=$1
-  local MissingCount=$(brew cask ls $lib 2>&1 | grep -ic "No cask with this name exists")
+  local MissingCount=
+
+  MissingCount=$(brew cask ls "$lib" 2>&1 | grep -ic "No cask with this name exists")
 
   if [[ $MissingCount -eq "0" ]]; then
-    return 0;
+    return 0
   fi
 
-  return $MissingCount;
+  # shellcheck disable=2086
+  return $MissingCount
 }
 
 hasZsh() {
+  # shellcheck disable=2046
   return $(hasBrewLib "zsh")
 }
 
 hasGit() {
+  # shellcheck disable=2046
   return $(hasBrewLib "git")
 }
 
 hasRcm() {
+  # shellcheck disable=2046
   return $(hasBrewLib "rcm")
 }
 
 hasVagrant() {
+  # shellcheck disable=2046
   return $(hasBrewCask "vagrant")
 }
 
 hasVagrantPlugins() {
-  local list=$(vagrant plugin list)
+  local list=
+  list=$(vagrant plugin list)
 
-  [[ $(echo $list 2>&1 | grep -ic "parallels") -eq "1" ]]
+  [[ $(echo "$list" 2>&1 | grep -ic "parallels") -eq "1" ]]
 }
 
 hasPhpbrew() {
@@ -133,7 +156,7 @@ hasAsdf() {
 hasAsdfPlugin() {
   local pluginName=$1
 
-  hasAsdf && [[ "$(asdf plugin list | grep -ic $pluginName)" -eq "1" ]]
+  hasAsdf && [[ "$(asdf plugin list | grep -ic "$pluginName")" -eq "1" ]]
 }
 
 hasTmuxTpm() {
@@ -183,7 +206,7 @@ checkAsdf() {
 checkAsdfPlugin() {
   local plugin=$1
 
-  if hasAsdfPlugin $plugin; then
+  if hasAsdfPlugin "$plugin"; then
     logCheckPresent "asdf plugin $plugin"
   else
     logCheckFailed "asdf plugin $plugin"
@@ -230,7 +253,6 @@ checkTpm() {
   fi
 }
 
-
 checkDotfilesRepo() {
   [[ ! -d $DOTFILES_PATH ]]
 }
@@ -244,44 +266,34 @@ installHomebrew() {
   fi
 }
 
-installGit() {
-  if ! hasGit; then
-    log "Installing git"
-    brew install git
-    logDone
-  else
-    log "git already installed"
-  fi
-}
-
 installPhpbrew() {
-  mkdir -p $HOME/.localbin
-  pushd $HOME/.localbin
+  local localbin="$HOME/.localbin"
+  mkdir -p "$localbin"
 
   if ! hasPhpbrew; then
     log "Installing phpbrew"
-    pushd $HOME/.localbin
+    goToDir "$localbin"
 
-    curl -s -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew > /dev/null
+    curl -s -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew >/dev/null
     chmod +x phpbrew
+    goBackDir
     logDone
   else
     log "phpbrew already installed"
   fi
 
-  popd
 }
 
 updatePhpbrew() {
   if hasPhpbrew; then
     log "Updating phpbrew"
-    rm -f $HOME/.localbin/phpbrew
-    pushd $HOME/.localbin
+    rm -f "$HOME/.localbin/phpbrew"
+    goToDir "$HOME/.localbin"
 
-    curl -s -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew > /dev/null
+    curl -s -L -O https://github.com/phpbrew/phpbrew/raw/master/phpbrew >/dev/null
     chmod +x phpbrew
 
-    popd
+    goBackDir
     logDone
   else
     installPhpbrew
@@ -291,7 +303,7 @@ updatePhpbrew() {
 installZprezto() {
   if hasZsh && ! hasZprezto; then
     log "Installing Prezto..."
-    git clone --recursive https://github.com/sorin-ionescu/prezto.git "$HOME/.zprezto" &> /dev/null
+    git clone --recursive https://github.com/sorin-ionescu/prezto.git "$HOME/.zprezto" &>/dev/null
     setopt EXTENDED_GLOB
     for rcfile in $(find ~/.zprezto/runcoms | grep -v README.md); do
       if [ ! -f "$HOME/.${rcfile:t}" ]; then
@@ -310,9 +322,8 @@ installEssentialBrews() {
     brew bundle --file=- <<EOF
 brew "git"
 brew "zsh"
-brew "tmux"
 brew "thoughtbot/formulae/rcm"
-brew "vagrant"
+cask "vagrant"
 EOF
     logDone
   else
@@ -322,9 +333,10 @@ EOF
 
 installVagrantPlugins() {
   if ! hasVagrantPlugins; then
-    local list=$(vagrant plugin list)
+    local list=
+    list="$(vagrant plugin list)"
     log "Installing Vagrant plugins"
-    if [[ $(echo $list 2>&1 | grep -ic "parallels") -eq "0" ]]; then
+    if [[ "$(echo "$list" 2>&1 | grep -ic "parallels")" -eq "0" ]]; then
       vagrant plugin install vagrant-parallels
     fi
   else
@@ -348,21 +360,23 @@ installAsdf() {
 }
 
 installAsdfPlugins() {
-  local plugins=(ruby nodejs deno tmux php)
+  local plugins=("ruby" "nodejs" "deno" "tmux" "php")
   if hasAsdf; then
-    for plugin in $plugins; do
-      if ! hasAsdfPlugin $plugin; then
+    for plugin in "${plugins[@]}"; do
+      if ! hasAsdfPlugin "$plugin"; then
         log "Installing asdf $plugin plugin"
-        asdf plugin add $plugin
+        asdf plugin add "$plugin"
       fi
     done
-    logDone
   fi
 }
 
 installAsdfTools() {
   if hasAsdf; then
-    log "Installing main asdf toools"
+    log "Installing main asdf tools"
+    goToDir "$HOME"
+    asdf install
+    goBackDir
   fi
 }
 
@@ -371,7 +385,7 @@ installTpm() {
 
   if ! hasTmuxTpm; then
     log "Installing TPM for tmux"
-		git clone https://github.com/tmux-plugins/tpm $dir &> /dev/null
+    git clone https://github.com/tmux-plugins/tpm "$dir" &>/dev/null
     logDone
   else
     log "tpm already installed"
@@ -380,7 +394,7 @@ installTpm() {
 
 installBrewfile() {
   log "Homebrew Bundling..."
-  brew bundle --no-upgrade --file=$DOTFILES_PATH/Brewfile
+  brew bundle --no-upgrade --file="$DOTFILES_PATH"/Brewfile
   logSuccess "Bundled!"
 }
 
@@ -396,20 +410,17 @@ installVimMinpac() {
   else
     log "Updating minpac"
 
-    pushd "$HOME/.config/nvim/pack/minpac/opt/minpac" &> /dev/null
+    goToDir "$HOME/.config/nvim/pack/minpac/opt/minpac"
     git pull
-
-    popd &> /dev/null
+    goBackDir
   fi
-
-  popd &> /dev/null
   logDone
 }
 
 setupZshAsDefault() {
   if [ -f /usr/local/bin/zsh ] && [[ $SHELL != "/usr/local/bin/zsh" ]]; then
     log "Setting zsh as default shell"
-    sudo chsh -s $(which zsh) $(whoami)
+    sudo chsh -s "$(which zsh)" "$(whoami)"
   else
     announce "Already using zsh"
     logDone
@@ -425,8 +436,8 @@ setupMinpackPlugins() {
 setupDotfiles() {
   log "Setting up dotfiles"
 
-  rm -rf $HOME/.rcrc
-  ln -s $DOTFILES_PATH/rcrc $HOME/.rcrc
+  rm -rf "$HOME/.rcrc"
+  ln -s "$DOTFILES_PATH/rcrc" "$HOME/.rcrc"
   rcup
 
   logDone
@@ -440,12 +451,12 @@ setupStarship() {
   ln -s "$DOTFILES_PATH/misc/starship.toml" "$HOME/.config/starship.toml"
 
   logDone
-} 
+}
 
 cloneRepo() {
-  if [ ! checkDotfilesRepo ]; then
+  if [[ ! -d $DOTFILES_PATH ]]; then
     log "Cloning dotfiles repository"
-    git clone https://github.com/mdespuits/dotfiles.git $DOTFILES_PATH
+    git clone https://github.com/mdespuits/dotfiles.git "$DOTFILES_PATH"
   else
     log "dotfiles repo cloned"
   fi
@@ -453,5 +464,9 @@ cloneRepo() {
 
 # Keep-alive: update existing `sudo` time stamp until `install` has finished
 keepSudoAlive() {
-  while true; do sudo -n true; sleep 30; kill -0 "$$" || exit; done 2>/dev/null &
+  while true; do
+    sudo -n true
+    sleep 30
+    kill -0 "$$" || exit
+  done 2>/dev/null &
 }

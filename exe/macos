@@ -1,10 +1,12 @@
-#!/usr/bin/env zsh
-# vim: filetype=zsh
+#!/usr/bin/env bash
 
 # Ask for the administrator password upfront
 sudo -v
 
-source ${0:a:h}/helpers
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" &> /dev/null && pwd )"
+
+# shellcheck source=./exe/helpers
+source "${DIR}/helpers"
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 general_settings() {
@@ -573,4 +575,4 @@ main() {
   log "Note that some of these changes require a logout/restart to take effect."
 }
 
-main $ARGS
+main
