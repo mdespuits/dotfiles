@@ -20,6 +20,11 @@ brew "awscli"
 brew "bash"
 brew "bash-completion"
 brew "bison"
+brew "icu4c"
+brew "libuv"
+brew "node"
+brew "bitwarden-cli"
+brew "bpytop"
 brew "bzip2"
 brew "ccat"
 brew "dialog"
@@ -53,7 +58,6 @@ brew "libksba"
 brew "gnupg"
 brew "go"
 brew "httpie"
-brew "icu4c"
 brew "shared-mime-info"
 brew "libheif"
 brew "python@3.8"
@@ -68,7 +72,6 @@ brew "libmemcached"
 brew "libsodium"
 brew "unibilium"
 brew "libtermkey"
-brew "libuv"
 brew "libvterm"
 brew "libxml2"
 brew "lua"
@@ -78,7 +81,6 @@ brew "mkcert"
 brew "msgpack"
 brew "mysql@5.7"
 brew "nginx", restart_service: true
-brew "node"
 brew "nss"
 brew "pandoc"
 brew "php", restart_service: true
@@ -87,9 +89,9 @@ brew "pwgen"
 brew "re2c"
 brew "reattach-to-user-namespace"
 brew "redis", restart_service: true
-brew "ruby"
 brew "speedtest-cli"
 brew "ssh-copy-id"
+brew "starship"
 brew "switchaudio-osx"
 brew "terminal-notifier"
 brew "the_silver_searcher"
@@ -106,6 +108,7 @@ cask "adoptopenjdk"
 cask "alfred"
 cask "anki"
 cask "bartender"
+cask "bitwarden"
 cask "chromedriver"
 cask "docker"
 cask "firefox"
@@ -121,25 +124,25 @@ cask "kindle"
 cask "postgres"
 cask "postico"
 cask "postman"
-cask "robo-3t"
 cask "sequel-pro"
 cask "skype"
 cask "spotify"
 cask "sublime-merge"
 cask "toggl-track"
+cask "tor-browser"
 cask "vagrant"
 cask "visual-studio-code"
 cask "vlc"
 cask "workflowy"
 mas "BetterSnapTool", id: 417375580
+mas "Edison Mail", id: 1489591003
+mas "exifpurge", id: 784466108
 mas "Harvest", id: 506189836
 mas "iMovie", id: 408981434
-mas "Microsoft Excel", id: 462058435
-mas "Microsoft Word", id: 462054704
 mas "NordVPN IKE", id: 1116599239
 mas "Numbers", id: 409203825
 mas "Pages", id: 409201541
+mas "Parcel", id: 639968404
 mas "Slack", id: 803453959
-mas "Spark", id: 1176895641
 mas "Todoist", id: 585829637
 mas "Xcode", id: 497799835
