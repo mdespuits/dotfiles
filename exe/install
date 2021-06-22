@@ -1,12 +1,15 @@
-#!/usr/bin/env zsh
-# vim: filetype=zsh
+#!/usr/bin/env bash
+# vim: filetype=sh
 
 set -e
 
 # Ask for the administrator password upfront
 sudo -v
 
-source ${0:a:h}/helpers
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
+
+# shellcheck source=./exe/helpers
+source "${DIR}/helpers"
 
 main() {
   keepSudoAlive
@@ -25,6 +28,7 @@ main() {
 
   cloneRepo
   setupDotfiles
+  setupStarship
 
   setupZshAsDefault
   setupMinpackPlugins
@@ -36,4 +40,4 @@ main() {
   logSuccess "Finished setting up the system"
 }
 
-main $ARGS
+main "$ARGS"

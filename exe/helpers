@@ -432,6 +432,16 @@ setupDotfiles() {
   logDone
 }
 
+setupStarship() {
+  log "Setting up starship prompt"
+
+  mkdir -p "$HOME/.config"
+  rm -rf "$HOME/.config/starship.toml"
+  ln -s "$DOTFILES_PATH/misc/starship.toml" "$HOME/.config/starship.toml"
+
+  logDone
+} 
+
 cloneRepo() {
   if [ ! checkDotfilesRepo ]; then
     log "Cloning dotfiles repository"

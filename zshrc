@@ -245,9 +245,9 @@ if [ -f "$HOME/.asdf/asdf.sh" ]; then
   compinit
 fi
 
+eval "$(starship init zsh)"
+
 # Local config
 if [ -f "$HOME/.zshrc.local" ]; then
   source $HOME/.zshrc.local
 fi
-
-[[ -s ~/.envrc ]] && source ~/.envrc
