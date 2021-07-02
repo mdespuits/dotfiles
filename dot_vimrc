@@ -297,6 +297,7 @@ command! Bda :call DeleteAllBufs()
 " =======================================
 
 call minpac#add('airblade/vim-gitgutter')
+call minpac#add('cespare/vim-toml')
 
 " Tim Pope!
 call minpac#add('tpope/vim-abolish')
