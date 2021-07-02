@@ -1,9 +1,14 @@
 [user]
   name = {{ .github.name }}
   email = {{ .github.email }}
-  {{ if gt (len .github.signingkey) 0 }}signingkey = {{ .github.signingkey }}{{end}}
+{{ if gt (len .github.signingkey) 0 }}
+# Configure GPG signing commits
+[user]
+  signingkey = {{ .github.signingkey }}
 [commit]
   gpgsign = true
+
+{{end}}
 [color]
   ui = true
   sh = auto
