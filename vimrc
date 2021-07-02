@@ -25,6 +25,7 @@ set showtabline=2
 set winwidth=100
 set winheight=10
 set nowrap
+set path=**
 
 set cursorline
 
@@ -87,6 +88,7 @@ set sidescrolloff=15           " Columns to keep on either side of cursor
 " =======================================
 set exrc   " Load .vimrc in project directory
 set secure " Disable unsafe commands in local .vimrc files
+
 " =======================================
 " Tabbing
 " =======================================
@@ -305,6 +307,9 @@ call minpac#add('tpope/vim-eunuch')
 " call minpac#add('tpope/vim-dispatch')
 " call minpac#add('jgdavey/tslime.vim')
 
+" ---------------------------------------
+" -- Always use EditorConfig
+" ---------------------------------------
 call minpac#add('editorconfig/editorconfig-vim')
 
 " ---------------------------------------
@@ -325,33 +330,31 @@ call minpac#add('posva/vim-vue')
 " Ruby-specific stuff
 call minpac#add('tpope/vim-endwise')
 call minpac#add('tpope/vim-rails')
-call minpac#add('tpope/vim-rake')
-call minpac#add('sunaku/vim-ruby-minitest')
-call minpac#add('kana/vim-textobj-user') " vim-textobj-rubyblock dependeny
-call minpac#add('nelstrom/vim-textobj-rubyblock')
+call minpac#add('slim-template/vim-slim')
+" call minpac#add('tpope/vim-rake')
+" call minpac#add('sunaku/vim-ruby-minitest')
+" call minpac#add('kana/vim-textobj-user') " vim-textobj-rubyblock dependeny
+" call minpac#add('nelstrom/vim-textobj-rubyblock')
 call minpac#add('janko-m/vim-test')
 
 call minpac#add('elixir-lang/vim-elixir', {'type': 'opt'})
 call minpac#add('rust-lang/rust.vim', {'type': 'opt'})
 call minpac#add('ap/vim-css-color', {'type': 'opt'})
-call minpac#add('hail2u/vim-css3-syntax', {'type': 'opt'})
 
 " ---------------------------------------
-" -- vim-coffee-script
-call minpac#add('kchmck/vim-coffee-script')
+" -- CSS Support
+" ---------------------------------------
+call minpac#add('hail2u/vim-css3-syntax')
 
 " ---------------------------------------
-" -- vim-snipmate
-call minpac#add('tomtom/tlib_vim')
-call minpac#add('MarcWeber/vim-addon-mw-utils')
-call minpac#add('garbas/vim-snipmate')
-
 " -- vim-jsx
+" ---------------------------------------
 call minpac#add('mxw/vim-jsx')
 let g:jsx_ext_required = 0
 
 " ---------------------------------------
 " -- Emmet
+" ---------------------------------------
 call minpac#add('mattn/emmet-vim')
 let g:user_emmet_expandabbr_key = '<c-e>'
 
@@ -367,52 +370,63 @@ autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black ctermbg=232
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=233
 
 " ---------------------------------------
+" -- CoC
+call minpac#add('neoclide/coc.nvim', { 'branch': 'release' })
+
+" nmap <silent> gd <Plug>(coc-definition)
+" nmap <silent> gy <Plug>(coc-type-definition)
+" nmap <silent> gi <Plug>(coc-implementation)
+" nmap <silent> gr <Plug>(coc-references)
+
+" ---------------------------------------
 " -- Ale
-call minpac#add('w0rp/ale')
-function! LinterStatus() abort
-    let l:counts = ale#statusline#Count(bufnr(''))
+" call minpac#add('w0rp/ale')
+" function! LinterStatus() abort
+"     let l:counts = ale#statusline#Count(bufnr(''))
 
-    let l:all_errors = l:counts.error + l:counts.style_error
-    let l:all_non_errors = l:counts.total - l:all_errors
+"     let l:all_errors = l:counts.error + l:counts.style_error
+"     let l:all_non_errors = l:counts.total - l:all_errors
 
-    return l:counts.total == 0 ? 'OK' : printf(
-    \   '%dW %dE',
-    \   all_non_errors,
-    \   all_errors
-    \)
-endfunction
+"     return l:counts.total == 0 ? 'OK' : printf(
+"     \   '%dW %dE',
+"     \   all_non_errors,
+"     \   all_errors
+"     \)
+" endfunction
 
-let g:ale_linters = {
-\  'ruby': ['rubocop', 'ruby'],
-\  'javascript': ['eslint'],
-\  'scss': []
-\}
+" let g:ale_linters = {
+" \  'ruby': ['rubocop', 'ruby'],
+" \  'javascript': ['eslint'],
+" \  'typescript': ['deno'],
+" \  'scss': []
+" \}
 
-" \  'javascript': ['eslint', 'remove_trailing_lines', 'trim_whitespace'],
-let g:ale_fixers = {
-\  'javascript': ['remove_trailing_lines', 'trim_whitespace'],
-\  'json': ['prettier'],
-\  'ruby': ['rubocop'],
-\  'html': ['remove_trailing_lines', 'trim_whitespace'],
-\  'vue': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
-\  'scss': ['remove_trailing_lines', 'trim_whitespace']
-\}
+" " \  'javascript': ['eslint', 'remove_trailing_lines', 'trim_whitespace'],
+" let g:ale_fixers = {
+" \  'javascript': ['remove_trailing_lines', 'trim_whitespace'],
+" \  'json': ['prettier'],
+" \  'ruby': ['rubocop'],
+" \  'html': ['remove_trailing_lines', 'trim_whitespace'],
+" \  'vue': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
+" \  'scss': ['remove_trailing_lines', 'trim_whitespace']
+" \}
 
-" let g:ale_fixer_aliases = { 'erb': 'html' }
+" " let g:ale_fixer_aliases = { 'erb': 'html' }
 
-let g:ale_fix_on_save = 1
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_enter = 0
-let g:ale_set_loclist = 1
-let g:ale_set_quickfix = 0
-let g:ale_set_signs = 1
-let g:ale_sign_column_always = 0
-let g:ale_sign_offset = 50000
+" let g:ale_fix_on_save = 1
+" let g:ale_lint_on_save = 1
+" let g:ale_lint_on_enter = 0
+" let g:ale_set_loclist = 1
+" let g:ale_set_quickfix = 0
+" let g:ale_set_signs = 1
+" let g:ale_sign_column_always = 0
+" let g:ale_sign_offset = 50000
 
 " ---------------------------------------
 " -- vim-ruby
-call minpac#add('vim-ruby/vim-ruby')
+call minpac#add('vim-ruby/vim-ruby', { 'rev': 'vim8.2' })
 let g:ruby_indent_access_modifier_style = 'indent'
+let g:rubycomplete_buffer_loading = 1
 
 " Regex used for words, that, at the start of a line, remove a level of indent
 setlocal indentkeys+==module_function
@@ -426,6 +440,7 @@ let s:ruby_indent_keywords =
 
 " ---------------------------------------
 " -- vim-fugitive
+" ---------------------------------------
 call minpac#add('tpope/vim-fugitive')
 call minpac#add('tpope/vim-rhubarb') " For using :Gbrowse
 map <leader>gd  :Gvdiff<CR>
@@ -437,6 +452,7 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 
 " ---------------------------------------
 " -- vim-rspec
+" ---------------------------------------
 " call minpac#add('thoughtbot/vim-rspec')
 
 " map <leader>c :call RunCurrentSpecFile()<CR>
@@ -446,12 +462,9 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 " let g:rspec_command = '!rspec {spec} --color'
 
 " ---------------------------------------
-" -- vim-textobj-rubyblock
-runtime macros/matchit.vim
-
-" ---------------------------------------
 " -- vim-go
-call minpac#add('fatih/vim-go')
+" ---------------------------------------
+call minpac#add('fatih/vim-go', { 'type': 'opt' })
 let g:go_fmt_command = "goimports"
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -504,6 +517,7 @@ au BufNewFile,BufRead *.dump      set filetype=sql
 au BufNewFile,BufRead *.ctp       set filetype=php
 au BufNewFile,BufRead *.erb       set filetype=eruby
 au BufNewFile,BufRead *.rhtml     set filetype=eruby
+au BufNewFile,BufRead *.slim setlocal filetype=slim
 au BufNewFile,BufRead Guardfile   set filetype=ruby
 au BufNewFile,BufRead Capfile     set filetype=ruby
 au BufNewFile,BufRead .pryrc      set filetype=ruby
