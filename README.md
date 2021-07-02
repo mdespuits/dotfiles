@@ -7,7 +7,7 @@ My dotfiles and system configuration handled by [chezmoi](https://www.chezmoi.io
 Installing
 
 ```
-$ sh -c "$(curl -fsLS git.io/chezmoi)" -- init -source $HOME/.dotfiles --apply mdespuits
+$ sh -c "$(curl -fsLS git.io/chezmoi)" -- init -S $HOME/.dotfiles --apply mdespuits
 ```
 
 ## Systems supported
