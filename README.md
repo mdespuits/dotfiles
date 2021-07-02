@@ -1,14 +1,19 @@
 # Dotfiles
 
-Dotfiles I have been grooming for quite a while. It has gone through several iterations due to changes in how I manage them.
-
-Currently, I am using [`rcm`](https://github.com/thoughtbot/rcm).
+My dotfiles and system configuration handled by [chezmoi](https://www.chezmoi.io).
 
 ## Install
 
+Installing
+
 ```
-$ zsh <(curl https://raw.githubusercontent.com/mdespuits/dotfiles/master/exe/install)
+$ sh -c "$(curl -fsLS git.io/chezmoi)" -- init -source $HOME/.dotfiles --apply mdespuits
 ```
+
+## Systems supported
+
+* macOS
+* ~~Ubuntu~~ **(coming soon!)**
 
 ## Prerequisites
 
