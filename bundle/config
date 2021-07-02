@@ -1,7 +1,0 @@
----
-BUNDLE_JOBS: "3"
-BUNDLE_BUILD__NOKOGIRI: "--use-system-libraries"
-BUNDLE_BUILD__THERUBYRACER: "--with-system-v8"
-BUNDLE_BUILD__LIBV8: "--with-system-v8"
-BUNDLE_GEM__TEST: "minitest"
-BUNDLE_GEMS__CONTRIBSYS__COM: "69bc02e5:3e5555c6"
