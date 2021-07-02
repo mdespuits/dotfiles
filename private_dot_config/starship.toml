@@ -13,14 +13,6 @@ format = '\[[$symbol$branch]($style)\]'
 [git_status]
 format = '([\[$all_status$ahead_behind\]]($style))'
 
-
-[status]
-style = "bg:blue"
-symbol = "🔴"
-format = '[\[$symbol $common_meaning$signal_name$maybe_int\]]($style) '
-map_symbol = true
-disabled = false
-
 [battery]
 full_symbol = "🔋 "
 charging_symbol = "⚡️ "
