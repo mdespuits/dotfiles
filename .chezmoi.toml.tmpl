@@ -8,6 +8,8 @@
 {{-   $name = promptString "name" -}}
 {{- end -}}
 
+sourceDir = "{{ .chezmoi.homeDir }}/.dotfiles"
+
 [data.github]
   name = {{ $name | quote }}
   email = {{ $email | quote }}
