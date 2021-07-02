@@ -148,19 +148,26 @@ export CC='/usr/bin/gcc'
 # =================================
 
 alias reload="exec $SHELL -l"
-alias vim="nvim"
-alias vi="nvim"
 alias h="history 0 | grep"
 
+# =================================
 # git
 alias gs="git status"
 alias gd="git diff"
 alias gds="git diff --staged"
 
-alias fastping='ping -c 1 -s 1' # One. Ping. Only.
-alias ll="ls -laih"
+# =================================
+# files
+alias ll="lsd --long"
+
 alias wget='wget -c'
 
+# =================================
+# tmux aliases
+alias cat="bat"
+alias j="z"
+
+# =================================
 # tmux aliases
 alias tml="tmux list-sessions"
 alias tma="tmux -2 attach -t $1"
@@ -168,32 +175,22 @@ alias tmk="tmux kill-session -t $1"
 alias tms="tmuxinator start $1"
 alias osx="reattach-to-user-namespace"
 
-# Better cat
-alias cat="ccat"
-
 # =================================
 # Functions
 # =================================
+function hasCmd() {
+  local CMD=$1
+
+  which $CMD >/dev/null && [[ "$(which $CMD | grep -ic "not found")" -eq "0" ]]
+}
+
 
 function tmlocal() {
-  if [[ ! "$(which tmuxinator | grep -ic "not found")" -eq "0" ]]; then
+  if hasCmd "tmuxinator"; then
     gem install tmuxinator
   fi
   tmuxinator local
 }
-
-function who_wrote_this_code() {
-  find $1 \( ! -regex '.*/\..*' \) -name '*.rb' -o -name '*.js' -o -name '*.css' -o -name '*.scss' -type f -print -exec git blame '{}' \; | ruby -pe "sub /(^.*\((.*?)\s+2.*$)/, '\2'" | egrep -vE '[[:punct:][:digit:]]' | sort | uniq -c | sort -nr
-}
-
-function edit-file() {
-  if [[ -d ".git" ]]; then
-    code $(git ls-files | fzf)
-  else
-    code $(fzf)
-  fi
-}
-alias edit='edit-file'
 
 # =========================
 # FZF Searching
@@ -201,29 +198,20 @@ alias edit='edit-file'
 [ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
 
 export FZF_TMUX_HEIGHT="40%"
-export FZF_DEFAULT_COMMAND='ag -U --hidden -g "" --ignore .git --ignore "*.png" --ignore "*.jpg" --ignore "node_modules" --ignore .bin --ignore .DS_Store --ignore "*.gif"'
+export FZF_DEFAULT_COMMAND='ag -U --hidden -g "" --ignore .git --ignore tmp --ignore "*.png" --ignore "*.jpg" --ignore "node_modules" --ignore .bin --ignore .DS_Store --ignore "*.gif"'
 
 # =========================
-# Autojumping
-# =========================
-[ -f /usr/local/etc/profile.d/autojump.sh ] && source /usr/local/etc/profile.d/autojump.sh
+# Autojumping with z
+[ -f /usr/local/etc/profile.d/z.sh ] && source /usr/local/etc/profile.d/z.sh
 
 # =========================
 # phpbrew
-# =========================
 if [ -f "$HOME/.phpbrew/bashrc" ]; then
   source $HOME/.phpbrew/bashrc
 fi
 
 # =========================
 # direnv
-# =========================
-hasCmd() {
-  local CMD=$1
-
-  which $CMD >/dev/null && [[ "$(which $CMD | grep -ic "not found")" -eq "0" ]]
-}
-
 hasDirenv() {
   return $(hasCmd "direnv")
 }
@@ -234,6 +222,8 @@ else
   echo "direnv is missing"
 fi
 
+# =========================
+# asdf
 if [ -f "$HOME/.asdf/asdf.sh" ]; then
   source "$HOME/.asdf/asdf.sh"
 
@@ -245,9 +235,20 @@ if [ -f "$HOME/.asdf/asdf.sh" ]; then
   compinit
 fi
 
+# =========================
+# starship
 eval "$(starship init zsh)"
 
+# =========================
 # Local config
 if [ -f "$HOME/.zshrc.local" ]; then
   source $HOME/.zshrc.local
+fi
+
+if hasCmd "bat"; then
+  alias cat="bat"
+fi
+
+if hasCmd "z"; then
+  alias j="z"
 fi
