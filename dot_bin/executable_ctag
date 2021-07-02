@@ -24,7 +24,8 @@
 # takes a few minutes to generate.
 # With these options, it's <3Mb, and takes under a second
 ctags --sort=yes \
+  -R \
   --languages="Ruby,JavaScript,typescript" \
   --exclude=node_modules \
   --exclude=tmp \
-  --exclude=public &> /dev/null 2>&1 &
+  --exclude=public . &> /dev/null 2>&1 &
