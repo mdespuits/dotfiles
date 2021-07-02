@@ -1,0 +1,20 @@
+{{- $email := get . "email" -}}
+{{- if not $email -}}
+{{-   $email = promptString "email" -}}
+{{- end -}}
+
+{{- $name := get . "name" -}}
+{{- if not $name -}}
+{{-   $name = promptString "name" -}}
+{{- end -}}
+
+[data.github]
+  name = {{ $name | quote }}
+  username = {{ $email | quote }}
+  signingkey = ""
+
+[data.bundler]
+  contribsys = ""
+
+[diff]
+  pager = "delta"
