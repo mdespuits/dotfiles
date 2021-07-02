@@ -1,3 +1,9 @@
+[user]
+  name = {{ .github.name }}
+  email = {{ .github.email }}
+  {{ if gt (len .github.signingkey) 0 }}signingkey = {{ .github.signingkey }}{{end}}
+[commit]
+  gpgsign = true
 [color]
   ui = true
   sh = auto
@@ -88,8 +94,6 @@
 
   # Alias Master Command
   alias = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\\t => \\2/' | sort
-[include]
-  path = .gitconfig.local
 [filter "media"]
   clean = git media clean %f
   smudge = git media smudge %f
