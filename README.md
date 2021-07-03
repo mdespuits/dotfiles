@@ -10,6 +10,12 @@ Installing
 $ sh -c "$(curl -fsLS git.io/chezmoi)" -- init -S $HOME/.dotfiles --apply mdespuits
 ```
 
+## Features
+
+* [Starship](https://starship.rs/) prompt
+* [direnv](https://direnv.net/)
+* [fzf](https://github.com/junegunn/fzf.vim)
+
 ## Systems supported
 
 * macOS
