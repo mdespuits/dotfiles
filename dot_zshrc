@@ -87,6 +87,12 @@ export CC='/usr/bin/gcc'
 export LDFLAGS="-L/usr/local/opt/icu4c/lib"
 export CPPFLAGS="-I/usr/local/opt/icu4c/include"
 
+export GPG_TTY=$(tty)
+
+if [ -f "${HOME}/.profile" ]; then
+  source "${HOME}/.profile"
+fi
+
 source "${HOME}/.zsh/paths.zsh"
 source "${HOME}/.zsh/aliases.zsh"
 source "${HOME}/.zsh/tokens.zsh"
