@@ -373,7 +373,7 @@ autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path %
 
 " ---------------------------------------
 " -- CoC
-call minpac#add('neoclide/coc.nvim', { 'branch': 'release' })
+" call minpac#add('neoclide/coc.nvim', { 'branch': 'release' })
 
 " nmap <silent> gd <Plug>(coc-definition)
 " nmap <silent> gy <Plug>(coc-type-definition)
