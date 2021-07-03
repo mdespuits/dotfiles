@@ -369,7 +369,7 @@ let g:indent_guides_start_level = 2
 
 autocmd VimEnter,Colorscheme * :hi IndentGuidesOdd  guibg=black ctermbg=232
 autocmd VimEnter,Colorscheme * :hi IndentGuidesEven guibg=darkgrey ctermbg=233
-autocmd BufWritePost ~/.local/share/chezmoi/* ! chezmoi apply --source-path %
+autocmd BufWritePost ~/.dotfiles/* ! chezmoi apply --source-path %
 
 " ---------------------------------------
 " -- CoC
