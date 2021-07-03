@@ -15,7 +15,7 @@ fi
 setopt interactivecomments
 
 # Do not accidentally clobber files
-setopt noclobber
+# setopt noclobber
 
 # Why type 'cd dir' when you can type 'dir'?
 setopt AUTO_CD
@@ -58,72 +58,13 @@ fpath=("/usr/local/bin/" $fpath)
 export LC_CTYPE=en_US.UTF-8
 export LC_ALL=en_US.UTF-8
 
-# =================================
-# PATH info
-# =================================
-
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin
-if [ -d "/usr/local/heroku/bin" ]; then
-  export PATH=/usr/local/heroku/bin:$PATH
-fi
-
-# =================================
-# MySQL
-# =================================
-if [ -d "/usr/local/opt/mysql@5.7/bin" ]; then
-  export PATH=/usr/local/opt/mysql@5.7/bin:$PATH
-fi
-
-
-# =================================
-# Vagrant
-# =================================
-if [ -d "/Applications/Vagrant/bin" ]; then
-  export PATH="/Applications/Vagrant/bin:$PATH"
-fi
-
-# =================================
-# Postgres.app
-# =================================
-if [ -d "/Applications/Postgres.app/Contents/Versions/latest/bin" ]; then
-  export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:$PATH"
-fi
-
-# =================================
-# OpenSSL update fix
-# =================================
-if [ -d "/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt" ]; then
-  export SSL_CERT_FILE=/usr/local/opt/curl-ca-bundle/share/ca-bundle.crt
-fi
-
-# =========================
-# Composer
-# =========================
-if [ -d "$HOME/.composer/vendor/bin" ]; then
-  export PATH="$HOME/.composer/vendor/bin:$PATH"
-fi
-
-if [ -d "$HOME/go/bin" ]; then
-  export PATH=$HOME/go/bin:$PATH
-fi
-
-if [ -d "$HOME/.bin" ]; then
-  chmod -R 755 $HOME/.bin
-  export PATH=$HOME/.bin:$PATH
-fi
-
-if [ -d "$HOME/.localbin" ]; then
-  chmod -R 755 $HOME/.localbin
-  export PATH=$HOME/.localbin:$PATH
-fi
 
 # =================================
 # General Environment
 # =================================
 
-export EDITOR='nvim'
+export EDITOR='vim'
 export VISUAL=$EDITOR
-export JRUBY_OPTS='--1.9' # Always prefer Ruby 1.9 in jRuby
 
 # =================================
 # Homebrew Cask Options
@@ -143,112 +84,9 @@ export HOMEBREW_CASK_OPTS="--appdir=/Applications"
 
 export CC='/usr/bin/gcc'
 
-# =================================
-# Aliases
-# =================================
+export LDFLAGS="-L/usr/local/opt/icu4c/lib"
+export CPPFLAGS="-I/usr/local/opt/icu4c/include"
 
-alias reload="exec $SHELL -l"
-alias h="history 0 | grep"
-
-# =================================
-# git
-alias gs="git status"
-alias gd="git diff"
-alias gds="git diff --staged"
-
-# =================================
-# files
-alias ll="lsd --long"
-
-alias wget='wget -c'
-
-# =================================
-# tmux aliases
-alias cat="bat"
-alias j="z"
-
-# =================================
-# tmux aliases
-alias tml="tmux list-sessions"
-alias tma="tmux -2 attach -t $1"
-alias tmk="tmux kill-session -t $1"
-alias tms="tmuxinator start $1"
-alias osx="reattach-to-user-namespace"
-
-# =================================
-# Functions
-# =================================
-function hasCmd() {
-  local CMD=$1
-
-  which $CMD >/dev/null && [[ "$(which $CMD | grep -ic "not found")" -eq "0" ]]
-}
-
-
-function tmlocal() {
-  if hasCmd "tmuxinator"; then
-    gem install tmuxinator
-  fi
-  tmuxinator local
-}
-
-# =========================
-# FZF Searching
-# =========================
-[ -f $HOME/.fzf.zsh ] && source $HOME/.fzf.zsh
-
-export FZF_TMUX_HEIGHT="40%"
-export FZF_DEFAULT_COMMAND='ag -U --hidden -g "" --ignore .git --ignore tmp --ignore "*.png" --ignore "*.jpg" --ignore "node_modules" --ignore .bin --ignore .DS_Store --ignore "*.gif"'
-
-# =========================
-# Autojumping with z
-[ -f /usr/local/etc/profile.d/z.sh ] && source /usr/local/etc/profile.d/z.sh
-
-# =========================
-# phpbrew
-if [ -f "$HOME/.phpbrew/bashrc" ]; then
-  source $HOME/.phpbrew/bashrc
-fi
-
-# =========================
-# direnv
-hasDirenv() {
-  return $(hasCmd "direnv")
-}
-
-if hasDirenv; then
-  eval "$(direnv hook zsh)"
-else
-  echo "direnv is missing"
-fi
-
-# =========================
-# asdf
-if [ -f "$HOME/.asdf/asdf.sh" ]; then
-  source "$HOME/.asdf/asdf.sh"
-
-  # append completions to fpath
-  fpath=("${ASDF_DIR}/completions" $fpath)
-
-  # initialise completions with ZSH's compinit
-  autoload -Uz compinit
-  compinit
-fi
-
-# =========================
-# starship
-eval "$(starship init zsh)"
-
-# =========================
-# Local config
-if [ -f "$HOME/.zshrc.local" ]; then
-  source $HOME/.zshrc.local
-fi
-
-if hasCmd "bat"; then
-  alias cat="bat"
-fi
-
-if hasCmd "z"; then
-  alias j="z"
-fi
+source "${HOME}/.zsh/paths.zsh"
+source "${HOME}/.zsh/aliases.zsh"
+source "${HOME}/.zsh/tokens.zsh"
