@@ -94,5 +94,6 @@ if [ -f "${HOME}/.profile" ]; then
 fi
 
 source "${HOME}/.zsh/paths.zsh"
+source "${HOME}/.zsh/fzf.zsh"
 source "${HOME}/.zsh/aliases.zsh"
 source "${HOME}/.zsh/tokens.zsh"
