@@ -13,9 +13,7 @@ export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin
 # =================================
 # MySQL
 # =================================
-if [ -d "/usr/local/opt/mysql@5.7/bin" ]; then
-  export PATH=/usr/local/opt/mysql@5.7/bin:$PATH
-fi
+add_path_before "/usr/local/opt/mysql@5.7/bin"
 
 # =================================
 # Postgres.app
