@@ -1,6 +1,11 @@
 {{- if not .minimal -}}
+# Github Credentials
 export GITHUB_USERNAME="mdespuits"
 export GITHUB_TOKEN={{ (bitwardenFields "item" .bitwarden.tokens).token_github.value | quote }}
+
+# NPM Auth Token (may not be necessary anymore?)
 export NPM_AUTH_TOKEN={{ (bitwardenFields "item" .bitwarden.tokens).token_npm_auth_token.value | quote }}
+
+# Homebrew-specific Github API Token
 export HOMEBREW_GITHUB_API_TOKEN={{ (bitwardenFields "item" .bitwarden.tokens).token_homebrew_github_api.value | quote }}
 {{ end }}
