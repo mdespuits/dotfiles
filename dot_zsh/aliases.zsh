@@ -94,6 +94,11 @@ if [ -f "$HOME/.asdf/asdf.sh" ]; then
   compinit
 fi
 
+# =================================
+# chezmoi
+alias dote="chezmoi edit"
+alias dotd="chezmoi diff"
+
 # =========================
 # starship prompt
 eval "$(starship init zsh)"

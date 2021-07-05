@@ -1,0 +1,5 @@
+{{- if eq .chezmoi.os "darwin" -}}
+# Set the XDG_CONFIG_HOME value on macOS so that
+# programs who respect it use it correctly
+export XDG_CONFIG_HOME="${HOME}/.config"
+{{ end }}
