@@ -18,11 +18,9 @@ sourceDir = "{{ .chezmoi.homeDir }}/.dotfiles"
 
 [data]
   minimal = {{ $minimal }}
-
-[data.github]
   name = {{ $name | quote }}
   email = {{ $email | quote }}
-  signingkey = ""
+  signingkey = "AA59D211400B6FC9"
 
 [data.bundler]
   contribsys = ""
