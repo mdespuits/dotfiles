@@ -298,6 +298,12 @@ command! Bda :call DeleteAllBufs()
 
 call minpac#add('airblade/vim-gitgutter')
 call minpac#add('cespare/vim-toml')
+call minpac#add('preservim/nerdtree')
+
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-s-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
 
 " Tim Pope!
 call minpac#add('tpope/vim-abolish')
