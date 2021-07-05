@@ -1,4 +1,8 @@
+{{ $noTokens:= env "NO_TOKENS" | not }}
+
+{{- if $noTokens }}
 export GITHUB_USERNAME="mdespuits"
 export GITHUB_TOKEN={{ (bitwardenFields "item" "acd12069-1b34-494a-9162-ad5a00cb6d23").token_github.value | quote }}
 export NPM_AUTH_TOKEN={{ (bitwardenFields "item" "acd12069-1b34-494a-9162-ad5a00cb6d23").token_npm_auth_token.value | quote }}
 export HOMEBREW_GITHUB_API_TOKEN={{ (bitwardenFields "item" "acd12069-1b34-494a-9162-ad5a00cb6d23").token_homebrew_github_api.value | quote }}
+{{ end }}
