@@ -1,14 +1,23 @@
-{{- $email := get . "email" -}}
-{{- if not $email -}}
-{{-   $email = promptString "email" -}}
-{{- end -}}
+{{- $minimal := false -}}
+{{- $secrets := false -}}
 
-{{- $name := get . "name" -}}
-{{- if not $name -}}
-{{-   $name = promptString "name" -}}
-{{- end -}}
+{{- $name := "Matthew Wells" -}}
+{{- $email := "wells.md@pm.me" -}}
+
+{{- if (env "DOTFILES_MINIMAL") -}}
+{{- $minimal = true -}}
+{{- $secrets = false -}}
+{{- end }}
+
+{{- if (env "ASK") -}}
+{{- $name = promptString "Name" -}}
+{{- $email = promptString "Email" -}}
+{{- end }}
 
 sourceDir = "{{ .chezmoi.homeDir }}/.dotfiles"
+
+[data]
+  minimal = {{ $minimal }}
 
 [data.github]
   name = {{ $name | quote }}
@@ -17,6 +26,10 @@ sourceDir = "{{ .chezmoi.homeDir }}/.dotfiles"
 
 [data.bundler]
   contribsys = ""
+
+[data.bitwarden]
+  tokens = "acd12069-1b34-494a-9162-ad5a00cb6d23"
+  ssh = "fece7bf2-ac0c-4787-b13a-ad5c0120fd96"
 
 [diff]
   pager = "delta"
