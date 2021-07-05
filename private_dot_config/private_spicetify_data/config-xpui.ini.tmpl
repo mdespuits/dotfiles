@@ -1,20 +1,20 @@
 [AdditionalOptions]
 home_config    = 1
-extensions     = dribbblish.js
-custom_apps    = 
+extensions     =
+custom_apps    =
 sidebar_config = 1
 
 [Patch]
 
 [Setting]
-spotify_launch_flags    = 
+spotify_launch_flags    =
 check_spicetify_upgrade = 0
-color_scheme            = nord-dark
+color_scheme            = {{ .spicetify.scheme }}
 prefs_path              = /Users/mwells/Library/Application Support/Spotify/prefs
-current_theme           = Dribbblish
+current_theme           = {{ .spicetify.theme }}
 inject_css              = 1
 replace_colors          = 1
-overwrite_assets        = 1
+overwrite_assets        = 0
 spotify_path            = /Applications/Spotify.app/Contents/Resources
 
 [Preprocesses]
@@ -26,6 +26,6 @@ disable_upgrade_check = 1
 
 ; DO NOT CHANGE!
 [Backup]
-version = 1.1.62.583.gdac868ed
-with    = 
+1ersion = 1.1.62.583.gdac868ed
+with    =
 

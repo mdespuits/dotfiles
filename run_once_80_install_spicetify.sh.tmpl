@@ -1,37 +1,40 @@
-{{- if eq .chezmoi.os "darwin" -}}
+{{- if (and (eq .chezmoi.os "darwin") (eq .minimal false)) -}}
 {{ include "./exe/helpers" }}
 
 announce "Installing and configuring Spicetify 2"
+
+TMP_THEMES="${HOME}/spicetify-themes"
 
 main() {
   local data_dir=
   data_dir="$(dirname "$(spicetify -c)")"
 
-  rm -rf ~/spicetify-themes
-
   if [ ! -d ${data_dir}/Themes/Dribbblish ]; then
     log "Installing needed Spicetify themes and extensions"
-    rm -rf ~/spicetify-themes
-    git clone https://github.com/morpheusthewhite/spicetify-themes ~/spicetify-themes --branch=v2 --depth=10
+    git clone https://github.com/morpheusthewhite/spicetify-themes ${TMP_THEMES} --branch=v2 --depth=10
     cp -r ~/spicetify-themes/* ${data_dir}/Themes/
   else
     log "Spicetify themes already installed"
   fi
 
+{{ if eq .spicetify.theme "Dribbblish" -}}
   if [ ! -f ${data_dir}/Extensions/dribbblish.js ]; then
+    mkdir -p $data_dir/Extensions
     cd "$data_dir/Themes/Dribbblish"
-    mkdir -p ../../Extensions
-    cp dribbblish.js ../../Extensions/.
+    cp dribbblish.js $data_dir/Extensions/.
     spicetify config extensions dribbblish.js
-    spicetify config current_theme Dribbblish color_scheme nord-dark
     spicetify config inject_css 1 replace_colors 1 overwrite_assets 1
     spicetify apply
-
     log "Spicetify Dribbblish theme installed"
   else
-    log "Spicetify Dribbblish already theme installed with nord-dark"
+    log "Spicetify Dribbblish theme already installed"
   fi
+{{ else }}
+  spicetify apply
+{{ end }}
+
+  rm -rf $TMP_THEMES
 }
 
 main
-{{ end }}
+{{- end -}}
