@@ -75,7 +75,7 @@ announce() {
   echo -e "${BCYAN}==>${NC}${GREEN} $statement${NC}"
 }
 
-brewExists() {
+hasHomebrew() {
   which brew >/dev/null && [[ "$(which brew | grep -ic "not found")" -eq "0" ]]
 }
 
@@ -172,7 +172,7 @@ checkGit() {
 }
 
 checkBrew() {
-  if brewExists; then
+  if hasHomebrew; then
     logCheckPresent "brew"
   else
     logCheckFailed "brew"
@@ -258,7 +258,7 @@ checkDotfilesRepo() {
 }
 
 installHomebrew() {
-  if ! brewExists; then
+  if ! hasHomebrew; then
     log "Installing brew"
     yes | /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
   else
@@ -429,7 +429,7 @@ setupZshAsDefault() {
 
 setupMinpackPlugins() {
   log "Installing Vim plugins"
-  nvim +PackUpdate +q && echo
+  vim +PackUpdate +q && echo
   logDone
 }
 
