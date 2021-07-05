@@ -1,0 +1,15 @@
+{{- if eq .chezmoi.os "darwin" -}}
+{{ include "./exe/helpers" }}
+
+announce "Setting zsh as main shell"
+
+main() {
+  if [ -f /usr/local/bin/zsh ] && [[ $SHELL != "/usr/local/bin/zsh" ]]; then
+    sudo chsh -s "$(which zsh)" "$(whoami)"
+  else
+    log "Already using zsh"
+  fi
+}
+
+main
+{{ end }}

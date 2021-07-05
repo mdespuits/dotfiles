@@ -1,0 +1,16 @@
+{{- if eq .chezmoi.os "darwin" -}}
+{{ include "./exe/helpers" }}
+
+announce "Installing essential Homebrew dependencies"
+
+brew bundle \
+  --quiet \
+  --no-upgrade \
+  --file={{- .chezmoi.sourceDir }}/Brewfile
+
+installVagrantPlugins
+installPhpbrew
+installZprezto
+installTpm
+installVimMinpac
+{{ end }}

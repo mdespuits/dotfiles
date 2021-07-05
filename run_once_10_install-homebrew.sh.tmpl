@@ -1,0 +1,12 @@
+{{- if eq .chezmoi.os "darwin" -}}
+{{ include "./exe/helpers" }}
+
+announce "Installing Homebrew"
+
+if ! hasHomebrew; then
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+else
+  log "Homebrew already installed"
+fi
+
+{{ end }}
