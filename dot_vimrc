@@ -1,13 +1,73 @@
 " =======================================
 " Basic Setup
 " =======================================
-packadd minpac
-call minpac#init()
-call minpac#add('k-takata/minpac', {'type': 'opt'})
+" packadd minpac
+" call minpac#init()
+" call minpac#add('k-takata/minpac', {'type': 'opt'})
 
-command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
-command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
-command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
+" command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
+" command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
+" command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
+
+" =======================================
+" Plugins!
+" =======================================
+call plug#begin('~/.vim/plugged')
+
+" General Environment
+" -----------------------------------------
+Plug 'morhetz/gruvbox'                    " gruvbox theme
+Plug 'direnv/direnv.vim'                  " direnv for environment
+Plug 'editorconfig/editorconfig-vim'      " editorconfig
+Plug 'itchyny/lightline.vim'              " slightly better line information
+Plug 'jeffkreeftmeijer/vim-numbertoggle'  " Toggle number lines
+Plug 'airblade/vim-gitgutter'             " Display git status in files
+
+" Tim Pope
+" -----------------------------------------
+Plug 'tpope/vim-abolish'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-rake'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rails'
+" Plug 'tpope/vim-dispatch'
+" Plug 'jgdavey/tslime.vim'
+
+Plug 'cespare/vim-toml'
+Plug 'chrismccord/bclose.vim'
+Plug 'jiangmiao/auto-pairs'
+Plug 'honza/vim-snippets'
+Plug 'mattn/emmet-vim'
+" Plug 'posva/vim-vue'
+
+" Searching/Navigation
+" -----------------------------------------
+Plug 'junegunn/fzf'
+Plug 'junegunn/fzf.vim'
+" Plug 'preservim/nerdtree'
+Plug 'w0rp/ale'
+
+" Ruby
+" -----------------------------------------
+Plug 'slim-template/vim-slim'
+" Plug 'kana/vim-textobj-user' " vim-textobj-rubyblock dependeny
+" Plug 'nelstrom/vim-textobj-rubyblock'
+" Plug 'sunaku/vim-ruby-minitest'
+" Plug 'vim-ruby/vim-ruby', { 'rev': 'vim8.2' }
+Plug 'mxw/vim-jsx'
+
+" -----------------------------------------
+" HTML, CSS, and JS
+Plug 'othree/html5.vim'
+Plug 'pangloss/vim-javascript'
+Plug 'ap/vim-css-color'
+Plug 'hail2u/vim-css3-syntax'
+
+call plug#end()
 
 " =======================================
 " Leader
@@ -65,12 +125,10 @@ set wildignore+=.DS_Store
 " =======================================
 syntax on
 set background=dark
-
-call minpac#add('morhetz/gruvbox')
 colorscheme gruvbox
 
 " Allow direnv environment handling
-call minpac#add('direnv/direnv.vim')
+" Plug 'direnv/direnv.vim'
 
 " =======================================
 "  Vim's :! system bash
@@ -171,7 +229,7 @@ filetype plugin indent on " Filetype detection
 " =======================================
 " Statusline Setup
 " =======================================
-call minpac#add('itchyny/lightline.vim')
+" Plug 'itchyny/lightline.vim'
 set laststatus=2
 set noshowmode
 
@@ -215,7 +273,7 @@ set numberwidth=1 " Line number width
 " Relative Line Numbers
 " =======================================
 set number relativenumber
-call minpac#add('jeffkreeftmeijer/vim-numbertoggle')
+" Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
 " Restore cursor position, window position, and last search after running a
 " command.
@@ -296,78 +354,32 @@ command! Bda :call DeleteAllBufs()
 " Plugin Configuration
 " =======================================
 
-call minpac#add('airblade/vim-gitgutter')
-call minpac#add('cespare/vim-toml')
-call minpac#add('preservim/nerdtree')
-
-nnoremap <leader>n :NERDTreeFocus<CR>
-nnoremap <C-s-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
-
-" Tim Pope!
-call minpac#add('tpope/vim-abolish')
-call minpac#add('tpope/vim-commentary')
-call minpac#add('tpope/vim-surround')
-call minpac#add('tpope/vim-unimpaired')
-call minpac#add('tpope/vim-eunuch')
-" call minpac#add('tpope/vim-dispatch')
-" call minpac#add('jgdavey/tslime.vim')
-
 " ---------------------------------------
-" -- Always use EditorConfig
+" -- NERDTree
 " ---------------------------------------
-call minpac#add('editorconfig/editorconfig-vim')
-
-" ---------------------------------------
-" -- Navigation/Editing
-" ---------------------------------------
-call minpac#add('chrismccord/bclose.vim')
-" call minpac#add('rking/ag.vim')
-call minpac#add('jiangmiao/auto-pairs')
-
-" ---------------------------------------
-" -- Language Support
-" ---------------------------------------
-call minpac#add('othree/html5.vim')
-call minpac#add('pangloss/vim-javascript')
-call minpac#add('honza/vim-snippets')
-call minpac#add('posva/vim-vue')
-
-" Ruby-specific stuff
-call minpac#add('tpope/vim-endwise')
-call minpac#add('tpope/vim-rails')
-call minpac#add('slim-template/vim-slim')
-" call minpac#add('tpope/vim-rake')
-" call minpac#add('sunaku/vim-ruby-minitest')
-" call minpac#add('kana/vim-textobj-user') " vim-textobj-rubyblock dependeny
-" call minpac#add('nelstrom/vim-textobj-rubyblock')
-call minpac#add('janko-m/vim-test')
-
-call minpac#add('elixir-lang/vim-elixir', {'type': 'opt'})
-call minpac#add('rust-lang/rust.vim', {'type': 'opt'})
-call minpac#add('ap/vim-css-color', {'type': 'opt'})
+" nnoremap <leader>n :NERDTreeFocus<CR>
+" nnoremap <C-s-n> :NERDTree<CR>
+" nnoremap <C-t> :NERDTreeToggle<CR>
+" nnoremap <C-f> :NERDTreeFind<CR>
 
 " ---------------------------------------
 " -- CSS Support
 " ---------------------------------------
-call minpac#add('hail2u/vim-css3-syntax')
+" Plug 'hail2u/vim-css3-syntax'
 
 " ---------------------------------------
 " -- vim-jsx
 " ---------------------------------------
-call minpac#add('mxw/vim-jsx')
 let g:jsx_ext_required = 0
 
 " ---------------------------------------
 " -- Emmet
 " ---------------------------------------
-call minpac#add('mattn/emmet-vim')
 let g:user_emmet_expandabbr_key = '<c-e>'
 
 " ---------------------------------------
 " -- Indent Guides
-call minpac#add('nathanaelkane/vim-indent-guides')
+Plug 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 2
@@ -388,51 +400,48 @@ autocmd BufWritePost ~/.dotfiles/* ! chezmoi apply --source-path %
 
 " ---------------------------------------
 " -- Ale
-" call minpac#add('w0rp/ale')
-" function! LinterStatus() abort
-"     let l:counts = ale#statusline#Count(bufnr(''))
+function! LinterStatus() abort
+    let l:counts = ale#statusline#Count(bufnr(''))
 
-"     let l:all_errors = l:counts.error + l:counts.style_error
-"     let l:all_non_errors = l:counts.total - l:all_errors
+    let l:all_errors = l:counts.error + l:counts.style_error
+    let l:all_non_errors = l:counts.total - l:all_errors
 
-"     return l:counts.total == 0 ? 'OK' : printf(
-"     \   '%dW %dE',
-"     \   all_non_errors,
-"     \   all_errors
-"     \)
-" endfunction
+    return l:counts.total == 0 ? 'OK' : printf(
+    \   '%dW %dE',
+    \   all_non_errors,
+    \   all_errors
+    \)
+endfunction
 
-" let g:ale_linters = {
-" \  'ruby': ['rubocop', 'ruby'],
-" \  'javascript': ['eslint'],
-" \  'typescript': ['deno'],
-" \  'scss': []
-" \}
+let g:ale_linters = {
+\  'ruby': ['rubocop', 'ruby'],
+\  'javascript': ['eslint'],
+\  'scss': []
+\}
 
-" " \  'javascript': ['eslint', 'remove_trailing_lines', 'trim_whitespace'],
-" let g:ale_fixers = {
-" \  'javascript': ['remove_trailing_lines', 'trim_whitespace'],
-" \  'json': ['prettier'],
-" \  'ruby': ['rubocop'],
-" \  'html': ['remove_trailing_lines', 'trim_whitespace'],
-" \  'vue': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
-" \  'scss': ['remove_trailing_lines', 'trim_whitespace']
-" \}
+"  'javascript': ['eslint', 'remove_trailing_lines', 'trim_whitespace'],
+let g:ale_fixers = {
+\  'javascript': ['eslint'],
+\  'json': ['prettier'],
+\  'ruby': ['rubocop'],
+\  'html': ['remove_trailing_lines', 'trim_whitespace'],
+\  'vue': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
+\  'scss': ['remove_trailing_lines', 'trim_whitespace']
+\}
 
-" " let g:ale_fixer_aliases = { 'erb': 'html' }
+let g:ale_fixer_aliases = { 'erb': 'html' }
 
-" let g:ale_fix_on_save = 1
-" let g:ale_lint_on_save = 1
-" let g:ale_lint_on_enter = 0
-" let g:ale_set_loclist = 1
-" let g:ale_set_quickfix = 0
-" let g:ale_set_signs = 1
-" let g:ale_sign_column_always = 0
-" let g:ale_sign_offset = 50000
+let g:ale_fix_on_save = 1
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_enter = 0
+let g:ale_set_loclist = 1
+let g:ale_set_quickfix = 0
+let g:ale_set_signs = 1
+let g:ale_sign_column_always = 0
+let g:ale_sign_offset = 50000
 
 " ---------------------------------------
 " -- vim-ruby
-call minpac#add('vim-ruby/vim-ruby', { 'rev': 'vim8.2' })
 let g:ruby_indent_access_modifier_style = 'indent'
 let g:rubycomplete_buffer_loading = 1
 
@@ -449,8 +458,8 @@ let s:ruby_indent_keywords =
 " ---------------------------------------
 " -- vim-fugitive
 " ---------------------------------------
-call minpac#add('tpope/vim-fugitive')
-call minpac#add('tpope/vim-rhubarb') " For using :Gbrowse
+" call minpac#add('tpope/vim-fugitive')
+" call minpac#add('tpope/vim-rhubarb') " For using :Gbrowse
 map <leader>gd  :Gvdiff<CR>
 map <leader>gs  :Gstatus<CR>
 
@@ -472,7 +481,7 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 " ---------------------------------------
 " -- vim-go
 " ---------------------------------------
-call minpac#add('fatih/vim-go', { 'type': 'opt' })
+" call minpac#add('fatih/vim-go', { 'type': 'opt' })
 let g:go_fmt_command = "goimports"
 let g:go_highlight_functions = 1
 let g:go_highlight_methods = 1
@@ -488,7 +497,7 @@ augroup END
 
 " ---------------------------------------
 " -- Tabularize
-call minpac#add('godlygeek/tabular')
+" call minpac#add('godlygeek/tabular')
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 
 function! s:align()
@@ -504,9 +513,6 @@ endfunction
 
 " ---------------------------------------
 " -- fzf
-call minpac#add('junegunn/fzf')
-call minpac#add('junegunn/fzf.vim')
-
 nmap <leader>t :Files<CR>
 nmap <leader>b :Buffers<CR>
 nmap <leader><S-T> :BTags<CR>
@@ -517,22 +523,19 @@ let g:fzf_layout = { 'window': 'enew' }
 " Filetype highlighting
 " =======================================
 au BufNewFile,BufRead *.svg       set filetype=html
+au BufNewFile,BufRead *.sh.tmpl   set filetype=gotexttmpl
 au BufNewFile,BufRead *.thor      set filetype=ruby
 au BufNewFile,BufRead *.cap       set filetype=ruby
-au BufNewFile,BufRead *.jbuilder  set filetype=ruby
-au BufNewFile,BufRead *.tasks     set filetype=ruby
-au BufNewFile,BufRead *.dump      set filetype=sql
-au BufNewFile,BufRead *.ctp       set filetype=php
 au BufNewFile,BufRead *.erb       set filetype=eruby
-au BufNewFile,BufRead *.rhtml     set filetype=eruby
 au BufNewFile,BufRead *.slim setlocal filetype=slim
+au BufNewFile,BufRead Gemfile     set filetype=ruby
 au BufNewFile,BufRead Guardfile   set filetype=ruby
 au BufNewFile,BufRead Capfile     set filetype=ruby
 au BufNewFile,BufRead .pryrc      set filetype=ruby
 au BufNewFile,BufRead pryrc       set filetype=ruby
 au BufNewFile,BufRead *.{md,markdown,mdown,mkd,mkdn,txt} set filetype=markdown
-au BufNewFile,BufRead Gemfile     set filetype=ruby
-au BufNewFile,BufRead *.es6       set filetype=javascript.jsx
+au BufNewFile,BufRead *.dump      set filetype=sql
+au BufNewFile,BufRead *.ctp       set filetype=php
 au BufNewFile,BufRead .stylelintrc set filetype=json
 
 au FileType GO setlocal shiftwidth=2 tabstop=2 noexpandtab
@@ -579,8 +582,8 @@ nmap :Noh :noh<CR>
 " See http://vim.wikia.com/wiki/Replace_a_word_with_yanked_text
 " for more information
 " ***************************************
-" nnoremap S "_diwP
-" vnoremap S "_dP
+nnoremap S "_diwP
+vnoremap S "_dP
 
 " ***************************************
 " Buffer navigation
@@ -604,6 +607,40 @@ nmap <leader>r :edit!<CR>
 nmap <leader>s :sp<CR>
 " -- Create a vertical split
 nmap <leader>v :vsplit<CR>
+
+function! s:get_selected_text(...) abort
+    let mode = get(a:, 1, mode(1))
+    let end_col = s:curswant() is s:INT.MAX ? s:INT.MAX : s:get_col_in_visual('.')
+    let current_pos = [line('.'), end_col]
+    let other_end_pos = [line('v'), s:get_col_in_visual('v')]
+    let [begin, end] = s:sort_pos([current_pos, other_end_pos])
+    if s:is_exclusive() && begin[1] !=# end[1]
+        " Decrement column number for :set selection=exclusive
+        let end[1] -= 1
+    endif
+    if mode !=# 'V' && begin ==# end
+        let lines = [s:get_pos_char(begin)]
+    elseif mode ==# "\<C-v>"
+        let [min_c, max_c] = s:sort_num([begin[1], end[1]])
+        let lines = map(range(begin[0], end[0]), '
+        \   getline(v:val)[min_c - 1 : max_c - 1]
+        \ ')
+    elseif mode ==# 'V'
+        let lines = getline(begin[0], end[0])
+    else
+        if begin[0] ==# end[0]
+            let lines = [getline(begin[0])[begin[1]-1 : end[1]-1]]
+        else
+            let lines = [getline(begin[0])[begin[1]-1 :]]
+            \         + (end[0] - begin[0] < 2 ? [] : getline(begin[0]+1, end[0]-1))
+            \         + [getline(end[0])[: end[1]-1]]
+        endif
+    endif
+    return join(lines, "\n") . (mode ==# 'V' ? "\n" : '')
+endfunction
+
+nmap <leader><c-s> :exe ':Ag ' . expand('<cword>')<CR>
+vnoremap <c-s> :Ag call s:get_selected_text()<CR>
 
 " ***************************************
 " Commonly mistyped commands
