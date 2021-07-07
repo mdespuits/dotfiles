@@ -1,5 +1,7 @@
 {{- if eq .chezmoi.os "darwin" -}}
-{{ include "./exe/helpers" }}
+#!/usr/bin/env bash
+
+source {{ joinPath .chezmoi.sourceDir "exe" "helpers" }}
 
 hasAsdf() {
   [ -d "$HOME/.asdf" ]
@@ -34,7 +36,7 @@ installAsdfPlugins() {
 }
 
 installAsdfTools() {
-  if hasAsdf; the falsn
+  if hasAsdf; then
     log "Installing main asdf tools"
     goToDir "$HOME"
     asdf install
