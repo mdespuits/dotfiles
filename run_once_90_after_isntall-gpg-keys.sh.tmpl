@@ -1,5 +1,7 @@
 {{- if eq .chezmoi.os "darwin" -}}
-{{ include "./exe/helpers" }}
+#!/usr/bin/env bash
+
+source {{ joinPath .chezmoi.sourceDir "exe" "helpers" }}
 
 # Restoring GnuPG keys
 #
