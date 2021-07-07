@@ -1,0 +1,112 @@
+{{- if eq .chezmoi.os "darwin" -}}
+{{ include "./exe/helpers" }}
+
+announce "Installing essential Homebrew dependencies"
+
+{{ $casks := list }}
+{{ $brews := list
+  "git"
+  "bitwarden-cli"
+  "reattach-to-user-namespace"
+  "fzf"
+  "vim"
+  "mkcert"
+  "cloc"
+  "cmake"
+  "certbot"
+  "tree"
+  "git-delta"
+  "direnv"
+  "bat"
+  "httpie"
+  "jq"
+  "lsd"
+  "editorconfig"
+  "entr"
+  "curl"
+  "universal-ctags"
+  "ripgrep"
+  "zsh"
+  "yarn"
+  "z"
+  "memcached"
+  "imagemagick"
+  "imagemagick@6"
+  "fortune"
+}}
+
+{{ $casks := list
+  "alfred"
+  "postgres"
+  "sequel-pro"
+  "alfred"
+  "firefox"
+  "google-chrome"
+  "iterm2"
+  "sublime-merge"
+  "kap"
+  "homebrew/cask-fonts/font-fira-code"
+  "homebrew/cask-fonts/font-hack-nerd-font"
+  }}
+
+{{- if not .minimal }}
+  {{ $brews = concat $brews (list
+    "ansible"
+    "heroku/brew/heroku"
+    "khanhas/tap/spicetify-cli"
+    "mas"
+    ) }}
+
+  {{ $casks = concat $casks (list
+      "bitwarden"
+      "docker"
+      "postman"
+      "vlc"
+      "spotify"
+      "kap"
+      "toggl-track"
+      "forticlient"
+      "vagrant"
+      "visual-studio-code"
+      "workflowy"
+    ) }}
+{{- end}}
+
+brew bundle --no-lock --no-upgrade --file=/dev/stdin <<EOF
+tap 'homebrew/bundle'
+tap 'homebrew/cask'
+tap 'homebrew/cask-fonts'
+tap 'homebrew/core'
+tap 'homebrew/services'
+tap 'heroku/brew'
+tap 'khanhas/tap'
+
+{{- range ($brews | sortAlpha | uniq) }}
+brew "{{ .  }}"
+{{- end }}
+
+{{- range ($casks | sortAlpha | uniq) }}
+cask "{{ . }}"
+{{- end }}
+
+{{ if not .minimal -}}
+mas "BetterSnapTool", id: 417375580
+mas "Edison Mail", id: 1489591003
+mas "exifpurge", id: 784466108
+mas "Harvest", id: 506189836
+mas "iMovie", id: 408981434
+mas "NordVPN IKE", id: 1116599239
+mas "Numbers", id: 409203825
+mas "Pages", id: 409201541
+mas "Slack", id: 803453959
+mas "Todoist", id: 585829637
+{{- end }}
+EOF
+
+# installVagrantPlugins
+# installPhpbrew
+# installZprezto
+# installTpm
+# installVimMinpac
+# vim:ft=sh
+{{ end }}

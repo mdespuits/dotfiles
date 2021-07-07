@@ -1,7 +1,9 @@
-{{- if (and (eq .chezmoi.os "darwin") (eq .minimal false)) -}}
-{{ include "./exe/helpers" }}
+{{- if (and (eq .chezmoi.os "darwin") (not .minimal)) -}}
+#!/usr/bin/env bash
 
-announce "Installing and configuring Spicetify 2"
+source {{ joinPath .chezmoi.sourceDir "exe" "helpers" }}
+
+announce "Installing and configuring Spicetify"
 
 TMP_THEMES="${HOME}/spicetify-themes"
 
@@ -37,4 +39,5 @@ main() {
 }
 
 main
+# vim: ft=bash
 {{- end -}}
