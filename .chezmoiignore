@@ -1,5 +1,7 @@
 Brewfile
 Brewfile.lock.json
+Makefile
+install.sh
 /scripts
 .gnupg
 README.md
