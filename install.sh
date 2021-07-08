@@ -49,7 +49,7 @@ installMinimumRequirements() {
 
 initChezmoi() {
   log "chezmoi init"
-  BW_SESSION=$BW_SESSION bin/chezmoi init ~/.dotfiles-test -S ~/.dotfiles -v
+  BW_SESSION=$BW_SESSION bin/chezmoi init mdespuits/dotfiles -S ~/.dotfiles -v
 
   log "chezmoi apply tool-versions"
   BW_SESSION=$BW_SESSION bin/chezmoi apply ~/.tool-versions -v --force
