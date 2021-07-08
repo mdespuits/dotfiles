@@ -64,7 +64,7 @@ main() {
   installChezmoi
   installMinimumRequirements
 
-  pushd "$(bin/cezmoi souce-path)" &> /dev/null
+  pushd "$(bin/chezmoi source-path)" &> /dev/null
   # make install-bw
 
   initChezmoi
