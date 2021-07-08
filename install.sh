@@ -8,12 +8,6 @@ readonly CYAN='\033[0;36m'
 readonly BCYAN='\033[1;36m'
 readonly NC='\033[0m'
 
-# shellcheck disable=2155
-readonly DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" &>/dev/null && pwd)"
-
-# shellcheck disable=2155
-readonly DOTFILES_PATH="$(dirname $DIR)"
-
 BW_SESSION=${BW_SESSION:-""}
 
 log() {
