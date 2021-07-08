@@ -21,36 +21,35 @@ announce() {
   echo -e "${BCYAN}==>${NC}${GREEN} $statement${NC}"
 }
 
-# Test if $1 is available
 isavailable() {
-  type "$1" &>/dev/null
+  type "$1" &> /dev/null
 }
 
-installHomebrew() {
+main() {
+  # ===============================
+  # Homebrew
+  # ===============================
   if ! isavailable brew; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   else
     log "Homebrew already installed"
   fi
-}
 
-installChezmoi() {
-  sh -c "$(curl -fsLS git.io/chezmoi)"
-}
+  # ===============================
+  # Install minimal requirement
+  # ===============================
+  brew bundle --no-lock --no-upgrade --file=/dev/stdin <<EOF
+  brew "git"
+  brew "vim"
+  brew "chezmoi"
+  brew "bitwarden-cli"
+  brew "gnupg"
+EOF
 
-initChezmoi() {
-  log "chezmoi init"
-  BW_SESSION=$BW_SESSION bin/chezmoi init ~/.dotfiles-test -S ~/.dotfiles -v
-}
-
-applyChezmoi() {
-  log "chezmoi apply all"
-  BW_SESSION=$BW_SESSION bin/chezmoi apply -k -v
-}
-
-main() {
-  installChezmoi
-  initChezmoi
+  # ===============================
+  # Initialize dotfiles
+  # ===============================
+  chezmoi init mdespuits/dotfiles -S ~/.dotfiles
 }
 
 main
