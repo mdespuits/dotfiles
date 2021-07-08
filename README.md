@@ -6,9 +6,18 @@ My dotfiles and system configuration handled by [chezmoi](https://www.chezmoi.io
 
 Installing
 
+
 ```
-$ sh -c "$(curl -fsLS git.io/chezmoi)" -- init -S $HOME/.dotfiles --apply mdespuits
+$ curl -fsLS https://raw.githubusercontent.com/mdespuits/dotfiles/master/install.sh | bash
 ```
+
+### Initialize
+
+```
+$ bin/chezmoi init mdespuits
+```
+
+### Install minimum tools
 
 ## Tools
 

@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-set -e
+set -euo pipefail
 
 readonly RED='\033[0;31m'
 readonly GREEN='\033[0;32m'
@@ -47,39 +47,33 @@ installMinimumRequirements() {
   brew install git bitwarden-cli gnupg --quiet
 }
 
-loginToBitwarden() {
-  log "Logging into Bitwarden"
+initChezmoi() {
+  log "chezmoi init"
+  BW_SESSION=$BW_SESSION bin/chezmoi init ~/.dotfiles-test -S ~/.dotfiles -v
 
-  bw logout 1>/dev/null 2>&1
-
-  if [[ "$(bw login 2>&1 | grep -ic "You are already logged in")" -eq "0" ]]; then
-    bw login
-
-    echo -n "What is the Bitwarden session value: "
-    read -r BW_SESSION
-  else
-    log "Already logged in to Bitwarden"
-  fi
+  log "chezmoi apply tool-versions"
+  BW_SESSION=$BW_SESSION bin/chezmoi apply ~/.tool-versions -v --force
 }
 
 applyChezmoi() {
-  log "chezmoi init"
-  BW_SESSION=$BW_SESSION bin/chezmoi init mdespuits/dotfiles -S ~/.dotfiles
-
-  log "chezmoi apply tool-versions"
-  BW_SESSION=$BW_SESSION bin/chezmoi apply ~/.tool-versions -S ~/.dotfiles
-
-  BW_SESSION=$BW_SESSION bin/chezmoi apply -k -S ~/.dotfiles
+  log "chezmoi apply all"
+  BW_SESSION=$BW_SESSION bin/chezmoi apply -k -S ~/.dotfiles -v
 }
 
 main() {
-  installHomebrew
   installChezmoi
   installMinimumRequirements
 
-  loginToBitwarden
+  pushd "$(bin/cezmoi souce-path)" &> /dev/null
+  # make install-bw
 
-  applyChezmoi
+  initChezmoi
+
+  popd &> /dev/null
+
+  vim +PlugInstall +qall
+
+  # applyChezmoi
 }
 
 main

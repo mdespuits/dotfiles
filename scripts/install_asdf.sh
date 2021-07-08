@@ -1,24 +1,28 @@
-{{- if eq .chezmoi.os "darwin" -}}
 #!/usr/bin/env bash
 
-source {{ joinPath .chezmoi.sourceDir "exe" "helpers" }}
+set -euo pipefail
 
-hasAsdf() {
-  [ -d "$HOME/.asdf" ]
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+. "$DIR/base.sh"
+. "$DIR/ansi"
+
+hasAsdfPlugin() {
+  local pluginName=$1
+
+  isavailable asdf && [[ "$(asdf plugin list | grep -ic "$pluginName")" -eq "1" ]]
 }
 
 installAsdf() {
   local asdf_dir=${HOME}/.asdf
 
-  if ! hasAsdf; then
-    log "Installing asdf"
+  if ! isavailable asdf; then
+    ansi --blue "Installing asdf"
     git clone https://github.com/asdf-vm/asdf.git "${asdf_dir}" --branch v0.8.0
     cd "${asdf_dir}"
     git checkout "$(git describe --abbrev=0 --tags)"
     cd -
-    logDone
   else
-    log "asdf already installed"
+    ansi --yellow "asdf already installed"
   fi
 }
 
@@ -27,17 +31,17 @@ installAsdfPlugins() {
 
   for plugin in "${plugins[@]}"; do
     if ! hasAsdfPlugin "$plugin"; then
-      log "Installing asdf $plugin plugin"
+      ansi --blue "Installing asdf $plugin plugin"
       asdf plugin add "$plugin"
     else
-      log "asdf $plugin plugin installed"
+      ansi --yellow "asdf $plugin plugin installed"
     fi
   done
 }
 
 installAsdfTools() {
-  if hasAsdf; then
-    log "Installing main asdf tools"
+  if isavailable asdf; then
+    ansi --blue "Installing main asdf tools"
     goToDir "$HOME"
     asdf install
     goBackDir
@@ -45,7 +49,7 @@ installAsdfTools() {
 }
 
 main() {
-  announce "Installing asdf and plugins"
+  ansi --green "Installing asdf and plugins"
 
   installAsdf
   installAsdfPlugins
@@ -54,4 +58,3 @@ main() {
 
 main
 # vim: ft=sh
-{{ end }}

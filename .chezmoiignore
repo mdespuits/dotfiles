@@ -1,5 +1,6 @@
 Brewfile
 Brewfile.lock.json
+/scripts
 .gnupg
 README.md
 LICENSE
