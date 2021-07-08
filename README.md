@@ -9,15 +9,16 @@ Installing
 
 ```
 $ curl -fsLS https://raw.githubusercontent.com/mdespuits/dotfiles/master/install.sh | bash
+$ bin/chezmoi cd
+$ make install-bw
+$ bw login # and then follow instructions
 ```
 
-### Initialize
+### Apply
 
 ```
-$ bin/chezmoi init mdespuits
+$ bin/chezmoi apply -v
 ```
-
-### Install minimum tools
 
 ## Tools
 

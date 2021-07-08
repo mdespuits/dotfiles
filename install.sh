@@ -21,15 +21,16 @@ announce() {
   echo -e "${BCYAN}==>${NC}${GREEN} $statement${NC}"
 }
 
-hasHomebrew() {
-  which brew >/dev/null && [[ "$(which brew | grep -ic "not found")" -eq "0" ]]
+# Test if $1 is available
+isavailable() {
+  type "$1" &>/dev/null
 }
 
 installHomebrew() {
-  if ! hasHomebrew; then
+  if ! isavailable brew; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   else
-     log "Homebrew already installed"
+    log "Homebrew already installed"
   fi
 }
 
@@ -37,37 +38,19 @@ installChezmoi() {
   sh -c "$(curl -fsLS git.io/chezmoi)"
 }
 
-installMinimumRequirements() {
-  brew install git bitwarden-cli gnupg --quiet
-}
-
 initChezmoi() {
   log "chezmoi init"
-  BW_SESSION=$BW_SESSION bin/chezmoi init mdespuits/dotfiles -S ~/.dotfiles -v
-
-  log "chezmoi apply tool-versions"
-  BW_SESSION=$BW_SESSION bin/chezmoi apply ~/.tool-versions -v --force
+  BW_SESSION=$BW_SESSION bin/chezmoi init ~/.dotfiles-test -S ~/.dotfiles -v
 }
 
 applyChezmoi() {
   log "chezmoi apply all"
-  BW_SESSION=$BW_SESSION bin/chezmoi apply -k -S ~/.dotfiles -v
+  BW_SESSION=$BW_SESSION bin/chezmoi apply -k -v
 }
 
 main() {
   installChezmoi
-  installMinimumRequirements
-
-  pushd "$(bin/chezmoi source-path)" &> /dev/null
-  # make install-bw
-
   initChezmoi
-
-  popd &> /dev/null
-
-  vim +PlugInstall +qall
-
-  # applyChezmoi
 }
 
 main
