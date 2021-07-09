@@ -98,3 +98,5 @@ source "${HOME}/.zsh/fzf.zsh"
 source "${HOME}/.zsh/aliases.zsh"
 source "${HOME}/.zsh/token.zsh"
 source "${HOME}/.zsh/xdg.zsh"
+
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
