@@ -41,6 +41,7 @@
 *.iml
 .idea
 
+
 # git-hooks        #
 ####################
 /git_hooks
@@ -55,9 +56,11 @@
 ##########
 .envrc
 
-# Per-project vimrc
+# Vim
 ######################
+# Per-project .vimrc
 .vimrc
+session.vim
 
 # OS generated files #
 ######################
