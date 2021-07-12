@@ -13,8 +13,23 @@ alias gds="git diff --staged"
 
 # =================================
 # files
-alias ll="lsd -lai --long"
 alias wget='wget -c'
+
+function isavailable() {
+  type "$1" > /dev/null
+}
+
+function ll() {
+  local dir=${1:-"."}
+
+  if isavailable exa; then
+    exa $dir --long -T -L 1 --icons
+  elif isavailable lsd; then
+    lsd -lai --long
+  else
+    ls -laih $dir
+  fi
+}
 
 # =================================
 # autojump to z

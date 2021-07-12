@@ -99,4 +99,10 @@ source "${HOME}/.zsh/aliases.zsh"
 source "${HOME}/.zsh/token.zsh"
 source "${HOME}/.zsh/xdg.zsh"
 
-source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Syntax Highlighting
+# ===================
+#
+# DO NOT MOVE. CANNOT GO ANYWHERE ELSE!
+if [ -f "/usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ]; then
+  source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+fi
