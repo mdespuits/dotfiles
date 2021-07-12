@@ -13,14 +13,16 @@ alias gds="git diff --staged"
 
 # =================================
 # files
-alias ll="lsd --long"
-
+alias ll="lsd -lai --long"
 alias wget='wget -c'
 
 # =================================
-# tmux aliases
-alias cat="bat"
+# autojump to z
 alias j="z"
+
+# =================================
+# Ruby
+alias be="bundle exec"
 
 # =================================
 # tmux aliases
