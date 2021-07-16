@@ -65,7 +65,7 @@ main() {
   # ===============================
   # Initialize dotfiles
   # ===============================
-  chezmoi init mdespuits/dotfiles -S ~/.dotfiles
+  ASK=1 MINIMAL=1 chezmoi init mdespuits/dotfiles -S ~/.dotfiles
 }
 
 main
