@@ -4,10 +4,8 @@ function add_path_before() {
   fi
 }
 
-add_path_before "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin"
-
-if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
-  eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+if [ -d "$(brew --prefix)/bin" ]; then
+  eval "$($(brew --prefix)/bin/brew shellenv)"
 fi
 
 # =================================
