@@ -4,12 +4,16 @@ My dotfiles and system configuration handled by [chezmoi](https://www.chezmoi.io
 
 ## Install
 
-Installing
+Install `chezmoi` and initialize the minimal files
 
+
+```sh
+ASK=1 MINIMAL=1 sh -c "$(curl -fsLS git.io/chezmoi)" -- init mdespuits -S ~/.dotfiles -v
+```
 
 ```
 $ curl -fsLS https://raw.githubusercontent.com/mdespuits/dotfiles/master/install.sh | bash
-$ bin/chezmoi cd
+$ SECRETS=1 bin/chezmoi init
 $ make install-bw
 $ bw login # and then follow instructions
 ```
