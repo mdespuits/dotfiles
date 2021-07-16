@@ -4,11 +4,11 @@ function add_path_before() {
   fi
 }
 
-# =================================
-# PATH info
-# =================================
+add_path_before "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin"
 
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/sbin
+if [ -f "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+  eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)
+fi
 
 # =================================
 # MySQL
