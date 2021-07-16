@@ -51,6 +51,11 @@ alias osx="reattach-to-user-namespace"
 # vim aliases
 alias svim="MYVIMRC=~/.vimrc.simple vim -u ~/.vimrc.simple"
 
+# =================================
+# For cleaner desktop
+alias screencast="defaults write com.apple.finder CreateDesktop false; killall Finder"
+alias unscreencast="defaults write com.apple.finder CreateDesktop true; killall Finder"
+
 
 # =================================
 # Functions
