@@ -124,7 +124,9 @@ alias dotd="chezmoi diff"
 
 # =========================
 # starship prompt
-eval "$(starship init zsh)"
+if isavailable starship; then
+  eval "$(starship init zsh)"
+fi
 
 # =========================
 # Local config

@@ -89,15 +89,19 @@ export CPPFLAGS="-I/usr/local/opt/icu4c/include"
 
 export GPG_TTY=$(tty)
 
-if [ -f "${HOME}/.profile" ]; then
-  source "${HOME}/.profile"
-fi
+function source_if_exists() {
+  if [ -f "$1" ]; then
+    source "$1"
+  fi
+}
 
-source "${HOME}/.zsh/paths.zsh"
-source "${HOME}/.zsh/fzf.zsh"
-source "${HOME}/.zsh/aliases.zsh"
-source "${HOME}/.zsh/token.zsh"
-source "${HOME}/.zsh/xdg.zsh"
+source_if_exists "${HOME}/.profile"
+
+source_if_exists "${HOME}/.zsh/paths.zsh"
+source_if_exists "${HOME}/.zsh/fzf.zsh"
+source_if_exists "${HOME}/.zsh/aliases.zsh"
+source_if_exists "${HOME}/.zsh/token.zsh"
+source_if_exists "${HOME}/.zsh/xdg.zsh"
 
 # Syntax Highlighting
 # ===================
