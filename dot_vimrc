@@ -22,6 +22,8 @@ Plug 'editorconfig/editorconfig-vim'      " editorconfig
 Plug 'itchyny/lightline.vim'              " slightly better line information
 Plug 'jeffkreeftmeijer/vim-numbertoggle'  " Toggle number lines
 Plug 'airblade/vim-gitgutter'             " Display git status in files
+Plug 'nathanaelkane/vim-indent-guides'
+Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
 
 " Tim Pope
 " -----------------------------------------
@@ -48,7 +50,6 @@ Plug 'mattn/emmet-vim'
 " -----------------------------------------
 Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
-" Plug 'preservim/nerdtree'
 Plug 'w0rp/ale'
 
 " Ruby
@@ -357,10 +358,12 @@ command! Bda :call DeleteAllBufs()
 " ---------------------------------------
 " -- NERDTree
 " ---------------------------------------
-" nnoremap <leader>n :NERDTreeFocus<CR>
-" nnoremap <C-s-n> :NERDTree<CR>
-" nnoremap <C-t> :NERDTreeToggle<CR>
-" nnoremap <C-f> :NERDTreeFind<CR>
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-s-n> :NERDTree<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
+
+let g:NERDTreeWinSize = 50
 
 " ---------------------------------------
 " -- CSS Support
@@ -379,7 +382,6 @@ let g:user_emmet_expandabbr_key = '<c-e>'
 
 " ---------------------------------------
 " -- Indent Guides
-Plug 'nathanaelkane/vim-indent-guides'
 let g:indent_guides_enable_on_vim_startup = 1
 let g:indent_guides_auto_colors = 0
 let g:indent_guides_guide_size = 2
@@ -458,10 +460,8 @@ let s:ruby_indent_keywords =
 " ---------------------------------------
 " -- vim-fugitive
 " ---------------------------------------
-" call minpac#add('tpope/vim-fugitive')
-" call minpac#add('tpope/vim-rhubarb') " For using :Gbrowse
 map <leader>gd  :Gvdiff<CR>
-map <leader>gs  :Gstatus<CR>
+map <leader>gs  :Git<CR>
 
 " Remove fugitive buffers completely when done
 autocmd BufReadPost fugitive://* set bufhidden=delete
@@ -608,39 +608,8 @@ nmap <leader>s :sp<CR>
 " -- Create a vertical split
 nmap <leader>v :vsplit<CR>
 
-function! s:get_selected_text(...) abort
-    let mode = get(a:, 1, mode(1))
-    let end_col = s:curswant() is s:INT.MAX ? s:INT.MAX : s:get_col_in_visual('.')
-    let current_pos = [line('.'), end_col]
-    let other_end_pos = [line('v'), s:get_col_in_visual('v')]
-    let [begin, end] = s:sort_pos([current_pos, other_end_pos])
-    if s:is_exclusive() && begin[1] !=# end[1]
-        " Decrement column number for :set selection=exclusive
-        let end[1] -= 1
-    endif
-    if mode !=# 'V' && begin ==# end
-        let lines = [s:get_pos_char(begin)]
-    elseif mode ==# "\<C-v>"
-        let [min_c, max_c] = s:sort_num([begin[1], end[1]])
-        let lines = map(range(begin[0], end[0]), '
-        \   getline(v:val)[min_c - 1 : max_c - 1]
-        \ ')
-    elseif mode ==# 'V'
-        let lines = getline(begin[0], end[0])
-    else
-        if begin[0] ==# end[0]
-            let lines = [getline(begin[0])[begin[1]-1 : end[1]-1]]
-        else
-            let lines = [getline(begin[0])[begin[1]-1 :]]
-            \         + (end[0] - begin[0] < 2 ? [] : getline(begin[0]+1, end[0]-1))
-            \         + [getline(end[0])[: end[1]-1]]
-        endif
-    endif
-    return join(lines, "\n") . (mode ==# 'V' ? "\n" : '')
-endfunction
 
 nmap <leader><c-s> :exe ':Ag ' . expand('<cword>')<CR>
-vnoremap <c-s> :Ag call s:get_selected_text()<CR>
 
 " ***************************************
 " Commonly mistyped commands
