@@ -38,13 +38,7 @@ main() {
   # ===============================
   # Install minimal requirement
   # ===============================
-  brew bundle --no-lock --no-upgrade --file=/dev/stdin <<EOF
-  brew "git"
-  brew "vim"
-  brew "chezmoi"
-  brew "bitwarden-cli"
-  brew "gnupg"
-EOF
+  brew install git vim chezmoi bitwarden-cli gnupg jq
 
   # ===============================
   # Initialize dotfiles
