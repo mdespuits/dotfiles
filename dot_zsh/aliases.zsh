@@ -87,7 +87,7 @@ fi
 
 # =========================
 # Autojumping with z
-[ -f /usr/local/etc/profile.d/z.sh ] && source /usr/local/etc/profile.d/z.sh
+source_if_exists "$(brew --prefix)/etc/profile.d/z.sh"
 
 # =========================
 # phpbrew
