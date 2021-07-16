@@ -55,10 +55,12 @@ main() {
     log "Homebrew already installed"
   fi
 
-  # ===============================
-  # Install minimal requirement
-  # ===============================
-  brew install gcc git vim chezmoi bitwarden-cli gnupg jq
+  if ! isavailable jq; then
+    # ===============================
+    # Install minimal requirement
+    # ===============================
+    brew install gcc git vim chezmoi bitwarden-cli gnupg jq
+  fi
 
   # ===============================
   # Initialize dotfiles
