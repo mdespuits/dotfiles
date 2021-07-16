@@ -1,1 +1,3 @@
+{{- if eq .secrets true -}}
 {{ bitwardenAttachment "id_ed25519" .bitwarden.ssh  }}
+{{- end -}}
