@@ -96,8 +96,7 @@ function source_if_exists() {
 }
 
 source_if_exists "${HOME}/.profile"
-
-source_if_exists "${HOME}/fzf.zsh"
+source_if_exists "${HOME}/.fzf.zsh"
 
 source_if_exists "${HOME}/.zsh/paths.zsh"
 source_if_exists "${HOME}/.zsh/aliases.zsh"
