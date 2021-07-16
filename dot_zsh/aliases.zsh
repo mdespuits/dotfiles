@@ -133,10 +133,6 @@ if [ -f "$HOME/.zshrc.local" ]; then
   source $HOME/.zshrc.local
 fi
 
-if hasCmd "bat"; then
-  alias cat="bat"
-fi
-
 if hasCmd "z"; then
   alias j="z"
 fi
