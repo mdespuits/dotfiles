@@ -1,8 +1,8 @@
 {{- $minimal := false -}}
 {{- $secrets := false -}}
 
-{{- $name := "Matthew Wells" -}}
-{{- $email := "wells.md@pm.me" -}}
+{{- $name := get . "name" -}}
+{{- $email := get .  "email" -}}
 
 {{- if (env "DOTFILES_MINIMAL") -}}
 {{- $minimal = true -}}
@@ -14,10 +14,16 @@
 {{- $email = promptString "Email" -}}
 {{- end }}
 
+{{- if (or (not $name) (not $email)) -}}
+{{- $name = promptString "Name" -}}
+{{- $email = promptString "Email" -}}
+{{- end -}}
+
 sourceDir = "{{ .chezmoi.homeDir }}/.dotfiles"
 
 [data]
   minimal = {{ $minimal }}
+  secrets = {{ $secrets }}
   name = {{ $name | quote }}
   email = {{ $email | quote }}
   signingkey = "AA59D211400B6FC9"
