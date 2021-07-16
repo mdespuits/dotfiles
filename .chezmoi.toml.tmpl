@@ -4,9 +4,12 @@
 {{- $name := get . "name" -}}
 {{- $email := get .  "email" -}}
 
-{{- if (env "DOTFILES_MINIMAL") -}}
+{{- if (env "MINIMAL") -}}
 {{- $minimal = true -}}
-{{- $secrets = false -}}
+{{- end }}
+
+{{- if (env "SECRETS") -}}
+{{- $secrets = true -}}
 {{- end }}
 
 {{- if (env "ASK") -}}
