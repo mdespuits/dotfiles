@@ -10,6 +10,15 @@ readonly NC='\033[0m'
 
 BW_SESSION=${BW_SESSION:-""}
 
+unameOut="$(uname -s)"
+case "${unameOut}" in
+    Linux*)     machine=linux;;
+    Darwin*)    machine=darwin;;
+    CYGWIN*)    machine=cygwin;;
+    MINGW*)     machine=mingw;;
+    *)          machine="UNKNOWN:${unameOut}"
+esac
+
 log() {
   local statement="$1"
 
@@ -27,10 +36,21 @@ isavailable() {
 
 main() {
   # ===============================
+  # Install
+  # ===============================
+  if [ $machine == "linux" ]; then
+    sudo apt-get -y install zsh build-essential
+    sudo chsh -s $(which zsh) $(whoami)
+  fi
+
+  # ===============================
   # Homebrew
   # ===============================
   if ! isavailable brew; then
     /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+
+    log "Follow directions above and then re-run the curl install.sh command"
+    exit 0
   else
     log "Homebrew already installed"
   fi
@@ -38,7 +58,7 @@ main() {
   # ===============================
   # Install minimal requirement
   # ===============================
-  brew install git vim chezmoi bitwarden-cli gnupg jq
+  brew install gcc git vim chezmoi bitwarden-cli gnupg jq
 
   # ===============================
   # Initialize dotfiles
