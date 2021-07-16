@@ -76,7 +76,7 @@ function tmlocal() {
 
 # =========================
 # FZF Searching
-[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.zsh/fzf.zsh"
+[ -f "$HOME/.fzf.zsh" ] && source "$HOME/.fzf.zsh"
 
 export FZF_TMUX_HEIGHT="40%"
 export FZF_DEFAULT_OPTS="--height 30% --layout=reverse"
