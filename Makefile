@@ -34,6 +34,10 @@ install-bw:
 	$(MAKE) install-homebrew
 	bash ./scripts/install_bitwarden.sh | tee -a $(LOGFILE)
 
+install-gpg-keys:
+	$(MAKE) install-bw
+	bash ./scripts/install_gpg_keys.sh | tee -a $(LOGFILE)
+
 all:
 	$(MAKE) install-homebrew
 	$(MAKE) install-bw
