@@ -672,9 +672,8 @@ nmap <leader>ev :e $MYVIMRC<CR>
 " ***************************************
 " Managing Sessions
 " ***************************************
-nmap <F2> :source ~/.config/vim-sessions/current.vim<CR>
-nmap <F3> :wa<Bar>exe "mksession! ~/.config/vim-sessions/current.vim"<CR>
-nmap <F4> :silent! rm -rf ~/.config/vim-sessions/current.vim<CR>
+nmap <F2> :source ./session.vim<CR>
+nmap <F3> :mks! session.vim<CR>
 
 " ***************************************
 " Local machine overrides
