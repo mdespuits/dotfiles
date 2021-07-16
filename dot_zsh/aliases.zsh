@@ -97,14 +97,8 @@ fi
 
 # =========================
 # direnv
-hasDirenv() {
-  return $(hasCmd "direnv")
-}
-
-if hasDirenv; then
+if isavailable direnv; then
   eval "$(direnv hook zsh)"
-else
-  echo "direnv is missing"
 fi
 
 # =========================
