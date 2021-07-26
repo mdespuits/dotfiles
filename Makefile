@@ -11,6 +11,7 @@ help:
 	@echo '    make install-homebrew   Install Homebrew.'
 # @echo '    make install-chezmoi    Install chezmoi.'
 	@echo '    make install-asdf       Install asdf and plugins.'
+	@echo '    make install-nvm        Install nvm.'
 	@echo '    make install-bw         Install Bitwarden CLI.'
 # @echo '    make install-deps       Install system dependencies.'
 # @echo '    make ensure-dirs        Creates required directories.'
@@ -29,6 +30,9 @@ install-homebrew:
 
 install-asdf:
 	bash ./scripts/install_asdf.sh | tee -a $(LOGFILE)
+
+install-nvm:
+	bash ./scripts/install_nvm.sh | tee -a $(LOGFILE)
 
 install-bw:
 	$(MAKE) install-homebrew

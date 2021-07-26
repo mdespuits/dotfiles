@@ -101,6 +101,11 @@ if isavailable direnv; then
   eval "$(direnv hook zsh)"
 fi
 
+# =================================
+# chezmoi
+alias dote="chezmoi edit"
+alias dotd="chezmoi diff"
+
 # =========================
 # asdf
 if [ -f "$HOME/.asdf/asdf.sh" ]; then
@@ -115,9 +120,10 @@ if [ -f "$HOME/.asdf/asdf.sh" ]; then
 fi
 
 # =================================
-# chezmoi
-alias dote="chezmoi edit"
-alias dotd="chezmoi diff"
+# nvm
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}"  ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh"  ] && source "$NVM_DIR/nvm.sh" # This loads nvm
+[ -s "$NVM_DIR/bash_completion"  ] && source "$NVM_DIR/bash_completion" # This loads nvm completion
 
 # =========================
 # starship prompt

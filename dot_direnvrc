@@ -7,3 +7,30 @@ use_php() {
   fi
   phpbrew use $ver
 }
+
+# use ruby 2.7.2
+use_ruby() {
+  local ver=$1
+  if [[ -z $ver ]]; then
+    echo Unknown ruby version
+    exit 1
+  fi
+  frum local $ver
+}
+
+# use node
+# use node 12.18.0
+use_node() {
+  local ver=$1
+
+  [ -f "$NVM_DIR/nvm.sh"  ] && source "$NVM_DIR/nvm.sh" # This loads nvm
+
+  if [[ -f ".tool-versions" ]]; then
+    ver="$(grep "node" .tool-versions | cut -d" " -f2)"
+  elif [[ -z $ver ]]; then
+    echo Unknown node version
+    exit 1
+  fi
+
+  nvm use $ver
+}
