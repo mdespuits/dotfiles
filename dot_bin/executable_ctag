@@ -1,11 +1,11 @@
-#!/bin/sh -e
+#!/usr/bin/env bash
 # If you're new to ctags, here's the quick intro:
 #
 # It's just a little database that lets you hop to definitions, quickly.
 # If you have a favorite GUI that does something like this, it either uses
 # ctags internally or does something similar.
 
-[ "`uname`" != Darwin -o -e /usr/local/bin/ctags ] || brew install ctags
+[ "`uname`" != Darwin -o -e /usr/local/bin/ctags ] || brew install universal-ctags
 
 # Quickref:
 # For vim, the CLI use is:
@@ -23,6 +23,10 @@
 # Without these options, a basic 'ctags -R' generates a 180Mb+ tags file, which
 # takes a few minutes to generate.
 # With these options, it's <3Mb, and takes under a second
+if [ -f "tags" ]; then
+  rm -rf tags;
+fi
+
 ctags --sort=yes \
   -R \
   --languages="Ruby,JavaScript,typescript" \
