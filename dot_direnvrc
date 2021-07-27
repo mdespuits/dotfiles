@@ -11,10 +11,16 @@ use_php() {
 # use ruby 2.7.2
 use_ruby() {
   local ver=$1
-  if [[ -z $ver ]]; then
+
+  eval "$(frum init)"
+
+  if [[ -f ".tool-versions" ]]; then
+    ver="$(grep "ruby" .tool-versions | cut -d" " -f2)"
+  elif [[ -z $ver ]]; then
     echo Unknown ruby version
     exit 1
   fi
+
   frum local $ver
 }
 

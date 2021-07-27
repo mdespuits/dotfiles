@@ -1,7 +1,6 @@
 # =================================
 # Aliases
 # =================================
-
 alias reload="exec $SHELL -l"
 alias h="history 0 | grep"
 
@@ -22,14 +21,17 @@ function isavailable() {
 function ll() {
   local dir=${1:-"."}
 
-  if isavailable exa; then
-    exa $dir --long -T -L 1 --icons
-  elif isavailable lsd; then
+  if isavailable lsd; then
     lsd -lai --long
   else
     ls -laih $dir
   fi
 }
+
+if isavailable exa; then
+  alias ll="exa  --long --icons -T -L 1"
+  alias llT="exa --long --icons -T -L 3"
+fi
 
 # =================================
 # autojump to z
@@ -46,6 +48,13 @@ alias tma="tmux -2 attach -t $1"
 alias tmk="tmux kill-session -t $1"
 alias tms="tmuxinator start $1"
 alias osx="reattach-to-user-namespace"
+
+# =================================
+# frum aliases
+alias fminit='eval "$(frum init)"'
+alias fml='frum local'
+alias fmu="frum uninstall"
+alias fmv="frum versions"
 
 # =================================
 # vim aliases
@@ -99,6 +108,10 @@ fi
 # direnv
 if isavailable direnv; then
   eval "$(direnv hook zsh)"
+fi
+
+if isavailable frum; then
+  eval "$(frum init)"
 fi
 
 # =================================

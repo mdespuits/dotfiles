@@ -4,9 +4,9 @@ function add_path_before() {
   fi
 }
 
-if [ -d "$(brew --prefix)/bin" ]; then
-  eval "$($(brew --prefix)/bin/brew shellenv)"
-fi
+# if [ -d "$(brew --prefix)/bin" ]; then
+#   eval "$($(brew --prefix)/bin/brew shellenv)"
+# fi
 
 # =================================
 # MySQL
