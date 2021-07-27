@@ -27,7 +27,7 @@ installAsdf() {
 }
 
 installAsdfPlugins() {
-  local plugins=("ruby" "nodejs" "deno" "tmux" "php")
+  local plugins=("deno" "tmux" "php")
 
   for plugin in "${plugins[@]}"; do
     if ! hasAsdfPlugin "$plugin"; then
