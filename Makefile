@@ -13,6 +13,7 @@ help:
 	@echo '    make install-asdf       Install asdf and plugins.'
 	@echo '    make install-nvm        Install nvm.'
 	@echo '    make install-bw         Install Bitwarden CLI.'
+	@echo '    make install-gpg-keys   Install personal GPG key.'
 # @echo '    make install-deps       Install system dependencies.'
 # @echo '    make ensure-dirs        Creates required directories.'
 # @echo '    make install-riscv      Install RISC-V toolchain and dependencies.'
@@ -45,5 +46,6 @@ install-gpg-keys:
 all:
 	$(MAKE) install-homebrew
 	$(MAKE) install-bw
+	$(MAKE) install-gpg-keys
 
 run: all
