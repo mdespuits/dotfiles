@@ -23,7 +23,8 @@ Plug 'itchyny/lightline.vim'              " slightly better line information
 Plug 'jeffkreeftmeijer/vim-numbertoggle'  " Toggle number lines
 Plug 'airblade/vim-gitgutter'             " Display git status in files
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'preservim/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'preservim/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFocus', 'NERDTree'] }
+Plug 'godlygeek/tabular'
 
 " Tim Pope
 " -----------------------------------------
@@ -33,11 +34,13 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-eunuch'
 Plug 'tpope/vim-rake'
-Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-endwise', { 'for': ['ruby', 'eruby'] }
 Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-rails'
+Plug 'tpope/vim-rails', { 'for': ['ruby', 'eruby'] }
 " Plug 'tpope/vim-dispatch'
 " Plug 'jgdavey/tslime.vim'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
 Plug 'cespare/vim-toml'
 Plug 'chrismccord/bclose.vim'
@@ -54,19 +57,21 @@ Plug 'w0rp/ale'
 
 " Ruby
 " -----------------------------------------
-Plug 'slim-template/vim-slim'
-" Plug 'kana/vim-textobj-user' " vim-textobj-rubyblock dependeny
-" Plug 'nelstrom/vim-textobj-rubyblock'
-" Plug 'sunaku/vim-ruby-minitest'
-" Plug 'vim-ruby/vim-ruby', { 'rev': 'vim8.2' }
-Plug 'mxw/vim-jsx'
+Plug 'slim-template/vim-slim', { 'for': ['slim'] }
+Plug 'kana/vim-textobj-user', { 'for': 'ruby' } " vim-textobj-rubyblock dependeny
+Plug 'nelstrom/vim-textobj-rubyblock', { 'for': 'ruby' }
+Plug 'sunaku/vim-ruby-minitest', { 'for': 'ruby' }
+Plug 'vim-ruby/vim-ruby', {  'for': 'ruby', 'rev': 'vim8.2' }
+Plug 'thoughtbot/vim-rspec', { 'for': 'ruby' }
+Plug 'jgdavey/tslime.vim', { 'for': 'ruby' }
 
 " -----------------------------------------
 " HTML, CSS, and JS
-Plug 'othree/html5.vim'
+Plug 'othree/html5.vim', { 'for': ['html', 'eruby'] }
 Plug 'pangloss/vim-javascript'
-Plug 'ap/vim-css-color'
-Plug 'hail2u/vim-css3-syntax'
+Plug 'ap/vim-css-color', { 'for': 'css' }
+Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
+Plug 'mxw/vim-jsx'
 
 call plug#end()
 
@@ -274,7 +279,6 @@ set numberwidth=1 " Line number width
 " Relative Line Numbers
 " =======================================
 set number relativenumber
-" Plug 'jeffkreeftmeijer/vim-numbertoggle'
 
 " Restore cursor position, window position, and last search after running a
 " command.
@@ -363,7 +367,15 @@ nnoremap <C-s-n> :NERDTree<CR>
 nnoremap <C-t> :NERDTreeToggle<CR>
 nnoremap <C-f> :NERDTreeFind<CR>
 
-let g:NERDTreeWinSize = 50
+let g:NERDTreeWinSize = 45
+
+" ---------------------------------------
+" -- ultisnips
+" ---------------------------------------
+let g:UltiSnipsExpandTrigger="<tab>"
+" list all snippets for current filetype
+let g:UltiSnipsListSnippets="<leader>usl"
+
 
 " ---------------------------------------
 " -- CSS Support
@@ -442,6 +454,8 @@ let g:ale_set_signs = 1
 let g:ale_sign_column_always = 0
 let g:ale_sign_offset = 50000
 
+nnoremap <leader>lf :ALEFix<CR>
+
 " ---------------------------------------
 " -- vim-ruby
 let g:ruby_indent_access_modifier_style = 'indent'
@@ -497,7 +511,6 @@ augroup END
 
 " ---------------------------------------
 " -- Tabularize
-" call minpac#add('godlygeek/tabular')
 inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
 
 function! s:align()
