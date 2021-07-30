@@ -44,7 +44,7 @@ alias be="bundle exec"
 # =================================
 # tmux aliases
 alias tml="tmux list-sessions"
-alias tma="tmux -2 attach -t $1"
+alias tma="tmux -2 attach-session -t $1"
 alias tmk="tmux kill-session -t $1"
 alias tms="tmuxinator start $1"
 alias osx="reattach-to-user-namespace"
