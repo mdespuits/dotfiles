@@ -484,13 +484,14 @@ autocmd BufReadPost fugitive://* set bufhidden=delete
 " ---------------------------------------
 " -- vim-rspec
 " ---------------------------------------
-" call minpac#add('thoughtbot/vim-rspec')
+map <leader>c :call RunCurrentSpecFile()<CR>
+map <leader>n :call RunNearestSpec()<CR>
+map <leader>l :call RunLastSpec()<CR>
+map <leader>a :call RunAllSpecs()<CR>
+let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec {spec} --color\n")'
 
-" map <leader>c :call RunCurrentSpecFile()<CR>
-" map <leader>n :call RunNearestSpec()<CR>
-" map <leader>l :call RunLastSpec()<CR>
-" map <leader>a :call RunAllSpecs()<CR>
-" let g:rspec_command = '!rspec {spec} --color'
+let g:tslime_always_current_session = 1
+let g:tslime_always_current_window = 1
 
 " ---------------------------------------
 " -- vim-go
