@@ -44,9 +44,9 @@ alias be="bundle exec"
 # =================================
 # tmux aliases
 alias tml="tmux list-sessions"
-alias tma="tmux -2 attach-session -t $1"
-alias tmk="tmux kill-session -t $1"
-alias tms="tmuxinator start $1"
+alias tma="tmux -2 attach-session -t"
+alias tmk="tmux kill-session -t"
+alias tms="tmuxinator start"
 alias osx="reattach-to-user-namespace"
 
 # =================================
@@ -55,6 +55,10 @@ alias fminit='eval "$(frum init)"'
 alias fml='frum local'
 alias fmu="frum uninstall"
 alias fmv="frum versions"
+
+# =================================
+# ruby/rails
+alias r="bundle exec rails"
 
 # =================================
 # vim aliases
