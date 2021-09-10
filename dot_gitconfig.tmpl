@@ -50,7 +50,7 @@
   cma = commit --amend --date=now -m
 
   commend = !git aa && git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend --date=now
-  pick    = !git branch | grep -v "^*" | fzf-tmux -d 15
+  pick    = !git branch | grep -v "^*" | fzf
   pco     = !git pick | xargs git checkout
   dbranch = !git pick | xargs git branch -d
 
