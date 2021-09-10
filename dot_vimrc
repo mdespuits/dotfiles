@@ -55,6 +55,11 @@ Plug 'junegunn/fzf'
 Plug 'junegunn/fzf.vim'
 Plug 'w0rp/ale'
 
+" CoC.nvim
+" -----------------------------------------
+Plug 'neoclide/coc.nvim', { 'branch': 'release' }
+Plug 'rodrigore/coc-tailwind-intellisense', {'do': 'npm install'}
+
 " Ruby
 " -----------------------------------------
 Plug 'slim-template/vim-slim', { 'for': ['slim'] }
