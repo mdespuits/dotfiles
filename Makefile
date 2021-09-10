@@ -12,6 +12,7 @@ help:
 # @echo '    make install-chezmoi    Install chezmoi.'
 	@echo '    make install-asdf       Install asdf and plugins.'
 	@echo '    make install-nvm        Install nvm.'
+	@echo '    make install-basis      Initial installation run.'
 	@echo '    make install-bw         Install Bitwarden CLI.'
 	@echo '    make install-gpg-keys   Install personal GPG key.'
 # @echo '    make install-deps       Install system dependencies.'
@@ -25,6 +26,9 @@ help:
 	@echo '    Logs are stored in      $(LOGFILE)'
 	@echo
 	@echo '    Author                  Matthew Wells (github.com/mdespuits)'
+
+install-basis:
+	bash ./install.sh | tee -a $(LOGFILE)
 
 install-homebrew:
 	bash ./scripts/install_homebrew.sh | tee -a $(LOGFILE)
