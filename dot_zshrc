@@ -95,6 +95,7 @@ function source_if_exists() {
   fi
 }
 
+source_if_exists "${HOME}/.phpbrew/bashrc"
 source_if_exists "${HOME}/.profile"
 
 source_if_exists "${HOME}/.zsh/paths.zsh"
