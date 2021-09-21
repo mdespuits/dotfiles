@@ -1,29 +1,165 @@
+"--- Main Configuration{{{
 " =======================================
-" Basic Setup
+" Leader
 " =======================================
-" packadd minpac
-" call minpac#init()
-" call minpac#add('k-takata/minpac', {'type': 'opt'})
+let mapleader = ","
+let g:mapleader = ","
 
-" command! PackUpdate packadd minpac | source $MYVIMRC | call minpac#update()
-" command! PackClean  packadd minpac | source $MYVIMRC | call minpac#clean()
-" command! PackStatus packadd minpac | source $MYVIMRC | call minpac#status()
+" Display
+set linespace=3
+set title
+set cmdheight=1
+set showtabline=2
+set winwidth=100
+set winheight=10
+set nowrap
+set path=**
+
+set cursorline
+"--- Something else
+
+set shortmess=a
+set cmdheight=2
+
+set wildignore+=*tmp/**
+set wildignore+=*coverage
+
+" Disable output and VCS files
+set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
+
+" Ignore images and log files
+set wildignore+=*.gif,*.jpg,*.png,*.log
+
+" Disable archive files
+set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
+
+" Ignore bundler and sass cache
+set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
+
+" Ignore custom folders
+set wildignore+=*/resources/*
+set wildignore+=*/tmp/*
+
+" Ignore node modules
+set wildignore+=node_modules/*
+
+" Disable temp and backup files
+set wildignore+=*.swp,*~,._*
+
+" Disable osx index files
+set wildignore+=.DS_Store
 
 " =======================================
-" Plugins!
+"  Vim's :! system bash
 " =======================================
+set shellcmdflag=-c
+
+" =======================================
+" Per Project .vimrc
+" =======================================
+set exrc   " Load .vimrc in project directory
+set secure " Disable unsafe commands in local .vimrc files
+
+" =======================================
+" Tabbing
+" =======================================
+set tabstop=2       " Number of spaces in 'soft' tabs
+set softtabstop=2   " Number of spaces in 'soft' tabs
+set shiftwidth=2    " For use with indent plugins and `tabstop` setting
+set expandtab       " Use 'soft' tabs when using <Tab> character
+
+" =======================================
+" Arrow Keys Are Not Allowed
+" =======================================
+nnoremap <Left> <Nop>
+nnoremap <Right> <Nop>
+nnoremap <Up> <Nop>
+nnoremap <Down> <Nop>
+
+" =======================================
+" Since <Esc> is elusive with touchbar
+" =======================================
+inoremap jj <esc>
+inoremap jk <esc>
+
+" =======================================
+" Files
+" =======================================
+"
+" Don't backup. Already using other forms of verion control.
+set nobackup   " Do not make backup before over-writing file
+set nowb       " Do not backup file before writing
+set noswapfile " Do not save swapfiles for unsaved buffers
+set shortmess=aWtI
+
+" =======================================
+" Movement
+" =======================================
+nnoremap <c-j> <c-w>j
+nnoremap <c-k> <c-w>k
+nnoremap <c-h> <c-w>h
+nnoremap <c-l> <c-w>l
+nnoremap <c-n> :bp<CR>
+nnoremap <c-p> :bn<CR>
+" nnoremap <c-s-h> :tabnext<CR>
+" nnoremap <c-s-l> :tabprev<CR>
+
+set belloff=all
+set history=3000               " History Length
+set backspace=indent,eol,start " Allow backspecing over everything in insert mode
+set autoread                   " Automatically read files from disk when detected
+set smarttab                   " Smart tabbing
+set autoindent                 " Use indent level from current line for next line
+set ruler
+
+filetype plugin indent on " Filetype detection
+
+" =======================================
+" Statusline Setup
+" =======================================
+set laststatus=2
+set noshowmode
+
+" =======================================
+" Searching
+" =======================================
+highlight Search guibg=yellow guifg=black gui=underline
+highlight Search ctermbg=yellow ctermfg=black cterm=underline
+
+set showcmd
+set incsearch
+set hlsearch " Don't highlight results
+" set ignorecase " Don't search by case
+
+" =======================================
+" Various
+" =======================================
+set go=-T         " Hide GUI toolbar
+set mousehide     " Hide the mouse
+set mouse=n       " Allow 'mouse' navigation in Normal (n) mode
+set splitbelow    " When splitting, set new file on the bottom
+set hidden        " Hide hidden files
+set numberwidth=1 " Line number width
+
+" =======================================
+" Relative Line Numbers
+" =======================================
+set number relativenumber
+"}}}
+
+" --- Plugins{{{
 call plug#begin('~/.vim/plugged')
 
 " General Environment
 " -----------------------------------------
-Plug 'morhetz/gruvbox'                    " gruvbox theme
+Plug 'morhetz/gruvbox' " theme
 Plug 'direnv/direnv.vim'                  " direnv for environment
 Plug 'editorconfig/editorconfig-vim'      " editorconfig
 Plug 'itchyny/lightline.vim'              " slightly better line information
 Plug 'jeffkreeftmeijer/vim-numbertoggle'  " Toggle number lines
 Plug 'airblade/vim-gitgutter'             " Display git status in files
 Plug 'nathanaelkane/vim-indent-guides'
-Plug 'preservim/nerdtree', { 'on': ['NERDTreeToggle', 'NERDTreeFocus', 'NERDTree'] }
+Plug 'preservim/nerdtree', { 'on': ['NERDTreeToggle',  'NERDTreeFind', 'NERDTreeFocus', 'NERDTree'] }
 Plug 'godlygeek/tabular'
 
 " Tim Pope
@@ -79,132 +215,15 @@ Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'mxw/vim-jsx'
 
 call plug#end()
+" }}}
 
-" =======================================
-" Leader
-" =======================================
-let mapleader = ","
-let g:mapleader = ","
-
-" =======================================
-" Display
-" =======================================
-set linespace=3
-set title
-set cmdheight=1
-set showtabline=2
-set winwidth=100
-set winheight=10
-set nowrap
-set path=**
-
-set cursorline
-
-set shortmess=a
-set cmdheight=2
-
-set wildignore+=*tmp/**
-set wildignore+=*coverage
-
-" Disable output and VCS files
-set wildignore+=*.o,*.out,*.obj,.git,*.rbc,*.rbo,*.class,.svn,*.gem
-
-" Ignore images and log files
-set wildignore+=*.gif,*.jpg,*.png,*.log
-
-" Disable archive files
-set wildignore+=*.zip,*.tar.gz,*.tar.bz2,*.rar,*.tar.xz
-
-" Ignore bundler and sass cache
-set wildignore+=*/vendor/gems/*,*/vendor/cache/*,*/.bundle/*,*/.sass-cache/*
-
-" Ignore custom folders
-set wildignore+=*/resources/*
-set wildignore+=*/tmp/*
-
-" Ignore node modules
-set wildignore+=node_modules/*
-
-" Disable temp and backup files
-set wildignore+=*.swp,*~,._*
-
-" Disable osx index files
-set wildignore+=.DS_Store
-
-" =======================================
-" Theme/Styling
-" =======================================
+" Theme
 syntax on
 set background=dark
 colorscheme gruvbox
-
-" Allow direnv environment handling
-" Plug 'direnv/direnv.vim'
-
-" =======================================
-"  Vim's :! system bash
-" =======================================
-set shellcmdflag=-c
-
-" =======================================
-" Scrolling
-" =======================================
-set scrolloff=8                " Lines to keep above and below the cursor
-set sidescrolloff=15           " Columns to keep on either side of cursor
-
-" =======================================
-" Per Project .vimrc
-" =======================================
-set exrc   " Load .vimrc in project directory
-set secure " Disable unsafe commands in local .vimrc files
-
-" =======================================
-" Tabbing
-" =======================================
-set tabstop=2       " Number of spaces in 'soft' tabs
-set softtabstop=2   " Number of spaces in 'soft' tabs
-set shiftwidth=2    " For use with indent plugins and `tabstop` setting
-set expandtab       " Use 'soft' tabs when using <Tab> character
-
-" =======================================
-" Arrow Keys Are Not Allowed
-" =======================================
-nnoremap <Left> <Nop>
-nnoremap <Right> <Nop>
-nnoremap <Up> <Nop>
-nnoremap <Down> <Nop>
-
-" =======================================
-" Since <Esc> is elusive with touchbar
-" =======================================
-inoremap jj <esc>
-inoremap jk <esc>
-
-" =======================================
-" Files
-" =======================================
 "
-" Don't backup. Already using other forms of verion control.
-set nobackup   " Do not make backup before over-writing file
-set nowb       " Do not backup file before writing
-set noswapfile " Do not save swapfiles for unsaved buffers
-set shortmess=aWtI
 
-" =======================================
-" Movement
-" =======================================
-nnoremap <c-j> <c-w>j
-nnoremap <c-k> <c-w>k
-nnoremap <c-h> <c-w>h
-nnoremap <c-l> <c-w>l
-nnoremap <c-n> :bp<CR>
-nnoremap <c-p> :bn<CR>
-" nnoremap <c-s-h> :tabnext<CR>
-" nnoremap <c-s-l> :tabprev<CR>
-
-" =======================================
-" Neovim-specific configuration
-" =======================================
+" Neovim!
 if has('nvim')
   " Make escape work in the Neovim terminal.
   tnoremap <Esc> <C-\><C-n>
@@ -226,65 +245,10 @@ if has('nvim')
 else
   " When classic Vim is in use
 endif
+"
 
-set belloff=all
-set history=3000               " History Length
-set backspace=indent,eol,start " Allow backspecing over everything in insert mode
-set autoread                   " Automatically read files from disk when detected
-set smarttab                   " Smart tabbing
-set autoindent                 " Use indent level from current line for next line
-set ruler
-
-filetype plugin indent on " Filetype detection
-
-" =======================================
-" Statusline Setup
-" =======================================
-" Plug 'itchyny/lightline.vim'
-set laststatus=2
-set noshowmode
-
-let g:lightline = {
-      \ 'colorscheme': 'one',
-      \ 'active': {
-      \   'left': [ [ 'mode', 'paste' ],
-      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
-      \ },
-      \ 'component_function': {
-      \   'gitbranch': 'fugitive#head'
-      \ }
-      \ }
-
-if !has('gui_running')
-  set t_Co=256
-endif
-
-" =======================================
-" Searching
-" =======================================
-highlight Search guibg=yellow guifg=black gui=underline
-highlight Search ctermbg=yellow ctermfg=black cterm=underline
-
-set showcmd
-set incsearch
-set hlsearch " Don't highlight results
-" set ignorecase " Don't search by case
-
-" =======================================
-" Various
-" =======================================
-set go=-T         " Hide GUI toolbar
-set mousehide     " Hide the mouse
-set mouse=n       " Allow 'mouse' navigation in Normal (n) mode
-set splitbelow    " When splitting, set new file on the bottom
-set hidden        " Hide hidden files
-set numberwidth=1 " Line number width
-
-" =======================================
-" Relative Line Numbers
-" =======================================
-set number relativenumber
-
+" Custom Functions
+" ----------
 " Restore cursor position, window position, and last search after running a
 " command.
 function! Preserve(command)
@@ -359,12 +323,9 @@ function! DeleteAllBufs()
   echomsg nWipeouts . ' buffer(s) wiped out'
 endfunction
 command! Bda :call DeleteAllBufs()
+"
 
-" =======================================
 " Plugin Configuration
-" =======================================
-
-" ---------------------------------------
 " -- NERDTree
 " ---------------------------------------
 nnoremap <C-s-n> :NERDTree<CR>
@@ -373,13 +334,26 @@ nnoremap <C-f> :NERDTreeFind<CR>
 
 let g:NERDTreeWinSize = 45
 
+
 " ---------------------------------------
 " -- ultisnips
-" ---------------------------------------
 let g:UltiSnipsExpandTrigger="<tab>"
 " list all snippets for current filetype
 let g:UltiSnipsListSnippets="<leader>usl"
 
+" ---------------------------------------
+" -- lightline configj
+" ---------------------------------------
+let g:lightline = {
+      \ 'colorscheme': 'one',
+      \ 'active': {
+      \   'left': [ [ 'mode', 'paste' ],
+      \             [ 'gitbranch', 'readonly', 'filename', 'modified' ] ]
+      \ },
+      \ 'component_function': {
+      \   'gitbranch': 'fugitive#head'
+      \ }
+      \ }
 
 " ---------------------------------------
 " -- CSS Support
@@ -434,7 +408,8 @@ endfunction
 let g:ale_linters = {
 \  'ruby': ['rubocop', 'ruby'],
 \  'javascript': ['eslint'],
-\  'scss': []
+\  'scss': ['stylelint'],
+\  'css': ['stylelint']
 \}
 
 "  'javascript': ['eslint', 'remove_trailing_lines', 'trim_whitespace'],
@@ -444,7 +419,8 @@ let g:ale_fixers = {
 \  'ruby': ['rubocop'],
 \  'html': ['remove_trailing_lines', 'trim_whitespace'],
 \  'vue': ['prettier', 'remove_trailing_lines', 'trim_whitespace'],
-\  'scss': ['remove_trailing_lines', 'trim_whitespace']
+\  'scss': ['stylelint', 'remove_trailing_lines', 'trim_whitespace'],
+\  'css': ['stylelint', 'remove_trailing_lines', 'trim_whitespace']
 \}
 
 let g:ale_fixer_aliases = { 'erb': 'html' }
@@ -537,9 +513,9 @@ nmap <leader><S-T> :BTags<CR>
 
 let g:fzf_layout = { 'window': 'enew' }
 
-" =======================================
-" Filetype highlighting
-" =======================================
+"
+
+" Highlighting
 au BufNewFile,BufRead *.svg       set filetype=html
 au BufNewFile,BufRead *.sh.tmpl   set filetype=gotexttmpl
 au BufNewFile,BufRead *.thor      set filetype=ruby
@@ -566,21 +542,17 @@ augroup END
 
 let &colorcolumn="100"
 highlight ColorColumn ctermbg=234 guibg=#2c2d27
+"
 
-" =======================================
 " System Clipboard
-" =======================================
 if $TMUX == ''
   set clipboard+=unnamed
 endif
 set pastetoggle=<F2>
+"
+"
 
-" =======================================
 " Mappings
-" =======================================
-
-" Truncating extra whitespace
-autocmd BufWritePre * :%s/\s\+$//e
 
 " Resize windows within terminal and tmux
 autocmd VimResized * :wincmd =
@@ -603,9 +575,7 @@ nmap :Noh :noh<CR>
 nnoremap S "_diwP
 vnoremap S "_dP
 
-" ***************************************
 " Buffer navigation
-" ***************************************
 nmap :bs :buffers<CR>
 nmap <leader>w :Bclose<CR>
 nmap <leader>W :close<CR>
@@ -614,6 +584,7 @@ nmap <leader>cb :ene<CR>:bw #<CR>
 nmap <leader>lc :lclose<CR>
 nmap <leader>lo :lopen<CR>
 nmap :clear :Bda<CR>
+"
 
 " ***************************************
 " File shortcuts
@@ -629,8 +600,7 @@ nmap <leader>v :vsplit<CR>
 
 nmap <leader><c-s> :exe ':Ag ' . expand('<cword>')<CR>
 
-" ***************************************
-" Commonly mistyped commands
+" Mistyped Commands
 " ***************************************
 nmap :W :w
 nmap :W! :w!
@@ -638,33 +608,33 @@ nmap :Q :q
 nmap :Q! :q!
 nmap :Wq! :wq!
 nmap :WQ! :wq!
+"
 
 " ***************************************
 " A few convenient shortcuts
 " ***************************************
 
-" --- Convert Ruby 1.8 Hashes to Ruby 1.9
-nmap :rhs :%s/:\([^ ]*\)\(\s*\)=>\s*/\1: /g<CR>
-" --- Convert Ruby 1.9 Hashes to Ruby 1.8
-nmap :hrs :%s/\([a-zA-Z][a-zA-Z0-9_]*\):\s\([^\,\}]*\)/:\1 => \2/g<CR>
 " --- Replace all 'hard' tabs with 'soft' tabs
 nmap <leader>rt :retab!<Return>
 
-" ***************************************
 " Managing .vimrc
 " ***************************************
 nmap <leader>m :source $MYVIMRC<CR>
 nmap <leader>ev :e $MYVIMRC<CR>
+"
 
-" ***************************************
-" Managing Sessions
-" ***************************************
+" Sessions
 nmap <F2> :source ./session.vim<CR>
 nmap <F3> :mks! session.vim<CR>
+"
 
-" ***************************************
-" Local machine overrides
-" ***************************************
+" Local Overrides
 if filereadable(expand('~/.vimrc.local'))
   source ~/.vimrc.local
 endif
+
+if !has('gui_running')
+  set t_Co=256
+endif
+
+" vim: ft=vim fdm=marker
