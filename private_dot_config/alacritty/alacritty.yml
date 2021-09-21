@@ -1,0 +1,17 @@
+import:
+  - ~/.config/alacritty/dracula.yml
+
+window:
+  padding:
+    x: 4
+    y: 4
+
+font:
+  normal:
+    family: "Hack Nerd Font"
+
+  italic:
+    family: "Hack Nerd Font"
+
+  bold:
+    family: "Hack Nerd Font"
