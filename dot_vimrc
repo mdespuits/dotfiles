@@ -213,6 +213,7 @@ Plug 'pangloss/vim-javascript'
 Plug 'ap/vim-css-color', { 'for': 'css' }
 Plug 'hail2u/vim-css3-syntax', { 'for': 'css' }
 Plug 'mxw/vim-jsx'
+Plug 'mustache/vim-mustache-handlebars'
 
 call plug#end()
 " }}}
@@ -328,9 +329,9 @@ command! Bda :call DeleteAllBufs()
 " Plugin Configuration
 " -- NERDTree
 " ---------------------------------------
-nnoremap <C-s-n> :NERDTree<CR>
-nnoremap <C-t> :NERDTreeToggle<CR>
-nnoremap <C-f> :NERDTreeFind<CR>
+nmap <C-t> :NERDTreeToggle<CR>
+nmap <C-f> :NERDTreeFind<CR>
+nmap <leader><C-f> :NERDTreeFocus<CR>
 
 let g:NERDTreeWinSize = 45
 
@@ -468,7 +469,7 @@ map <leader>c :call RunCurrentSpecFile()<CR>
 map <leader>n :call RunNearestSpec()<CR>
 map <leader>l :call RunLastSpec()<CR>
 map <leader>a :call RunAllSpecs()<CR>
-let g:rspec_command = 'call Send_to_Tmux("bundle exec rspec {spec}\n")'
+let g:rspec_command = 'call Send_to_Tmux("be rspec {spec}\n")'
 
 let g:tslime_always_current_session = 1
 let g:tslime_always_current_window = 1
