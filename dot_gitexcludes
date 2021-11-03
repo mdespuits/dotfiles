@@ -22,9 +22,9 @@
 
 # ctags!!!           #
 ######################
-/tags
-/.tags
-/.tags*
+# /tags
+# /.tags
+# /.tags*
 
 # Logs and databases #
 ######################
