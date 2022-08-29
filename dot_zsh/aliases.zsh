@@ -15,7 +15,7 @@ alias gds="git diff --staged"
 alias wget='wget -c'
 
 function isavailable() {
-  type "$1" > /dev/null
+  type "$1" >/dev/null
 }
 
 function ll() {
@@ -29,8 +29,8 @@ function ll() {
 }
 
 if isavailable exa; then
-  alias ll="exa  --long --icons -T -L 1"
-  alias llT="exa --long --icons -T -L 3"
+  alias ll="exa  --long --icons -T -L 1 -a"
+  alias llT="exa --long --icons -T -L 3 -a"
 fi
 
 # =================================
@@ -40,6 +40,7 @@ alias j="z"
 # =================================
 # Ruby
 alias be="bundle exec"
+# alias r="bundle exec rails"
 
 # =================================
 # tmux aliases
@@ -50,15 +51,15 @@ alias tms="tmuxinator start"
 alias osx="reattach-to-user-namespace"
 
 # =================================
+# node aliases
+alias pn="pnpm"
+
+# =================================
 # frum aliases
 alias fminit='eval "$(frum init)"'
 alias fml='frum local'
 alias fmu="frum uninstall"
 alias fmv="frum versions"
-
-# =================================
-# ruby/rails
-alias r="bundle exec rails"
 
 # =================================
 # vim aliases
@@ -69,7 +70,6 @@ alias svim="MYVIMRC=~/.vimrc.simple vim -u ~/.vimrc.simple"
 alias screencast="defaults write com.apple.finder CreateDesktop false; killall Finder"
 alias unscreencast="defaults write com.apple.finder CreateDesktop true; killall Finder"
 
-
 # =================================
 # Functions
 # =================================
@@ -78,7 +78,6 @@ function hasCmd() {
 
   which $CMD >/dev/null && [[ "$(which $CMD | grep -ic "not found")" -eq "0" ]]
 }
-
 
 function tmlocal() {
   if hasCmd "tmuxinator"; then
@@ -104,9 +103,7 @@ source_if_exists "$(brew --prefix)/etc/profile.d/z.sh"
 
 # =========================
 # phpbrew
-if [ -f "$HOME/.phpbrew/bashrc" ]; then
-  source $HOME/.phpbrew/bashrc
-fi
+source_if_exists "$HOME/.phpbrew/bashrc"
 
 # =========================
 # direnv
@@ -138,9 +135,9 @@ fi
 
 # =================================
 # nvm
-export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}"  ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
-[ -s "$NVM_DIR/nvm.sh"  ] && source "$NVM_DIR/nvm.sh" # This loads nvm
-[ -s "$NVM_DIR/bash_completion"  ] && source "$NVM_DIR/bash_completion" # This loads nvm completion
+export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
+[ -s "$NVM_DIR/nvm.sh" ] && source "$NVM_DIR/nvm.sh"                   # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && source "$NVM_DIR/bash_completion" # This loads nvm completion
 
 # =========================
 # starship prompt
